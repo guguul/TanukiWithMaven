@@ -64,7 +64,7 @@ public class MainJFrame extends javax.swing.JFrame {
             
             controlador = new SistemaControlador();
             
-            controlador.iniciaVentana(this, "src/Recursos/Imagenes/iconoApp.png");
+            controlador.iniciaVentana(this, "src/main/resources/imagenes/iconoApp.png");
             this.grupoOpciones = new ButtonGroup();
             this.grupoOpciones.add(opcionA); 
             this.grupoOpciones.add(opcionB); 
@@ -180,24 +180,52 @@ public class MainJFrame extends javax.swing.JFrame {
         subtemaEst = new javax.swing.JPanel();
         temaPadreSelecc = new javax.swing.JLabel();
         cboTemaHijo = new javax.swing.JComboBox<>();
-        seguir_temahijo = new javax.swing.JButton();
+        cboDificultad = new javax.swing.JComboBox<>();
+        seguirPresentacion = new javax.swing.JButton();
         volver11 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        plantillaEjercicio = new javax.swing.JPanel();
+        presentacionPJ = new javax.swing.JPanel();
+        irDescripcion = new javax.swing.JButton();
+        volver = new javax.swing.JButton();
+        saludoEstudiante = new javax.swing.JLabel();
+        imagenPresentacion1 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        descripcionTema = new javax.swing.JPanel();
+        volver2 = new javax.swing.JButton();
+        irAPrevia = new javax.swing.JButton();
+        descripcion = new javax.swing.JLabel();
+        tituloContenidoPractica = new javax.swing.JLabel();
+        imagenPresentacion2 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        previaPractica = new javax.swing.JPanel();
+        atras = new javax.swing.JButton();
+        tutorial = new javax.swing.JButton();
+        seguir_temahijo = new javax.swing.JButton();
+        imagenCelebrando = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        Tutorial = new javax.swing.JPanel();
+        volverAPractica = new javax.swing.JButton();
+        jLabel53 = new javax.swing.JLabel();
+        EjercicioSeleccion = new javax.swing.JPanel();
         siguiente_ejercicio = new javax.swing.JButton();
-        volver12 = new javax.swing.JButton();
         opcionA = new javax.swing.JToggleButton();
         opcionB = new javax.swing.JToggleButton();
         opcionC = new javax.swing.JToggleButton();
         opcionD = new javax.swing.JToggleButton();
         pregunta_ejercicio = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        EjercicioEscrito = new javax.swing.JPanel();
+        preguntaEjEscrito = new javax.swing.JLabel();
+        siguienteEjercicioEscrita = new javax.swing.JButton();
+        respuestaEscrita = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
         ejercicioCorrecto = new javax.swing.JPanel();
         frase_correcto = new javax.swing.JLabel();
         continuar_ejer_correcto = new javax.swing.JButton();
         respuesta_correc = new javax.swing.JLabel();
         retroali_Pcorrecto = new javax.swing.JLabel();
         lblImagenPanelCorrecto = new javax.swing.JLabel();
+        imagenPJCorrecto = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
@@ -208,10 +236,12 @@ public class MainJFrame extends javax.swing.JFrame {
         retroali_Pincorrecto = new javax.swing.JLabel();
         lblImagenPanelIncorrecto = new javax.swing.JLabel();
         frase_incorrecto = new javax.swing.JLabel();
+        imagenPJIncorrecto = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
         InterfazMaestro = new javax.swing.JPanel();
         perfil2 = new javax.swing.JButton();
         solicitudes = new javax.swing.JButton();
@@ -315,12 +345,14 @@ public class MainJFrame extends javax.swing.JFrame {
         exportarExcel1 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tablaReporteSalon = new javax.swing.JTable();
+        volverDeTablaSalon = new javax.swing.JButton();
         gradoSeccionTablaDes = new javax.swing.JLabel();
         jLabel60 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         graficoSalonReportesMaestro = new javax.swing.JPanel();
         exportarPdf2 = new javax.swing.JButton();
         exportarExcel2 = new javax.swing.JButton();
+        volverDeGraficoSalon = new javax.swing.JButton();
         panelContenedorGraficoSalon = new javax.swing.JPanel();
         nombreSalonGraficoDes = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
@@ -342,12 +374,14 @@ public class MainJFrame extends javax.swing.JFrame {
         exportarExcel3 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         tablaReporteEstudiante = new javax.swing.JTable();
+        volverDeTablaEst = new javax.swing.JButton();
         nombre_estudiante = new javax.swing.JLabel();
         jLabel64 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         graficoEstReportesMaestro = new javax.swing.JPanel();
         exportarPdf4 = new javax.swing.JButton();
         exportarExcel4 = new javax.swing.JButton();
+        volverDeGraficoEst = new javax.swing.JButton();
         panelContenedorGraficoEst = new javax.swing.JPanel();
         nombreEstGrafico = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
@@ -472,7 +506,7 @@ public class MainJFrame extends javax.swing.JFrame {
         CorreoLogin.setBackground(new java.awt.Color(151, 211, 255));
         CorreoLogin.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
         CorreoLogin.setForeground(new java.awt.Color(255, 255, 255));
-        CorreoLogin.setText("tucorreo@gmail.com");
+        CorreoLogin.setText("Ingrese un nombre de usuario");
         CorreoLogin.setBorder(null);
         CorreoLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -565,7 +599,7 @@ public class MainJFrame extends javax.swing.JFrame {
         RegECorreo.setBackground(new java.awt.Color(151, 211, 255));
         RegECorreo.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
         RegECorreo.setForeground(new java.awt.Color(255, 255, 255));
-        RegECorreo.setText("tucorreo@gmail.com");
+        RegECorreo.setText("Ingrese un nombre de usuario");
         RegECorreo.setBorder(null);
         RegECorreo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -658,7 +692,7 @@ public class MainJFrame extends javax.swing.JFrame {
         RegMCorreo.setBackground(new java.awt.Color(151, 211, 255));
         RegMCorreo.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
         RegMCorreo.setForeground(new java.awt.Color(255, 255, 255));
-        RegMCorreo.setText("tucorreo@gmail.com");
+        RegMCorreo.setText("Ingrese un nombre de usuario");
         RegMCorreo.setBorder(null);
         RegMCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -757,7 +791,7 @@ public class MainJFrame extends javax.swing.JFrame {
         interfazEstudiante.add(cerrarSesion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 622, 330, 70));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/principalE.png"))); // NOI18N
-        interfazEstudiante.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 375, 720));
+        interfazEstudiante.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 720));
 
         principalE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1028,16 +1062,13 @@ public class MainJFrame extends javax.swing.JFrame {
                 cboTemaHijoActionPerformed(evt);
             }
         });
-        subtemaEst.add(cboTemaHijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 262, 650, 80));
+        subtemaEst.add(cboTemaHijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 252, 660, 80));
 
-        seguir_temahijo.setBorderPainted(false);
-        seguir_temahijo.setContentAreaFilled(false);
-        seguir_temahijo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seguir_temahijoActionPerformed(evt);
-            }
-        });
-        subtemaEst.add(seguir_temahijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 540, 240, 70));
+        subtemaEst.add(cboDificultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 410, 650, 80));
+
+        seguirPresentacion.setBorderPainted(false);
+        seguirPresentacion.setContentAreaFilled(false);
+        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 550, 160, 60));
 
         volver11.setBorderPainted(false);
         volver11.setContentAreaFilled(false);
@@ -1046,12 +1077,128 @@ public class MainJFrame extends javax.swing.JFrame {
                 volver11ActionPerformed(evt);
             }
         });
-        subtemaEst.add(volver11, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 540, 190, 70));
+        subtemaEst.add(volver11, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 620, 200, 70));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/subtemaEst.png"))); // NOI18N
         subtemaEst.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         cardPracticaEst.add(subtemaEst, "subtemaEst");
+
+        presentacionPJ.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        irDescripcion.setBorderPainted(false);
+        irDescripcion.setContentAreaFilled(false);
+        irDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irDescripcionActionPerformed(evt);
+            }
+        });
+        presentacionPJ.add(irDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 620, 250, 70));
+
+        volver.setBorderPainted(false);
+        volver.setContentAreaFilled(false);
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+        presentacionPJ.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 620, 200, 70));
+
+        saludoEstudiante.setFont(new java.awt.Font("Cy Grotesk Key", 0, 14)); // NOI18N
+        presentacionPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 350, 70));
+        presentacionPJ.add(imagenPresentacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 350, 490));
+
+        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/PresentacionPersonaje.png"))); // NOI18N
+        jLabel45.setText("jLabel45");
+        presentacionPJ.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        cardPracticaEst.add(presentacionPJ, "card6");
+
+        descripcionTema.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        volver2.setBorderPainted(false);
+        volver2.setContentAreaFilled(false);
+        volver2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volver2ActionPerformed(evt);
+            }
+        });
+        descripcionTema.add(volver2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 620, 200, 70));
+
+        irAPrevia.setBorderPainted(false);
+        irAPrevia.setContentAreaFilled(false);
+        irAPrevia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irAPreviaActionPerformed(evt);
+            }
+        });
+        descripcionTema.add(irAPrevia, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 620, 250, 70));
+
+        descripcion.setFont(new java.awt.Font("Cy Grotesk Key", 0, 14)); // NOI18N
+        descripcion.setForeground(new java.awt.Color(255, 255, 255));
+        descripcionTema.add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 230, 450, 350));
+
+        tituloContenidoPractica.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
+        descripcionTema.add(tituloContenidoPractica, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, 500, 70));
+        descripcionTema.add(imagenPresentacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 350, 490));
+
+        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/Descripcion.png"))); // NOI18N
+        descripcionTema.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        cardPracticaEst.add(descripcionTema, "card5");
+
+        previaPractica.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        atras.setBorderPainted(false);
+        atras.setContentAreaFilled(false);
+        atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasActionPerformed(evt);
+            }
+        });
+        previaPractica.add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 600, -1, 70));
+
+        tutorial.setBorderPainted(false);
+        tutorial.setContentAreaFilled(false);
+        tutorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tutorialActionPerformed(evt);
+            }
+        });
+        previaPractica.add(tutorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 600, 210, 70));
+
+        seguir_temahijo.setBorderPainted(false);
+        seguir_temahijo.setContentAreaFilled(false);
+        seguir_temahijo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seguir_temahijoActionPerformed(evt);
+            }
+        });
+        previaPractica.add(seguir_temahijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 600, 200, 70));
+        previaPractica.add(imagenCelebrando, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 176, 380, 540));
+
+        jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/iniciarPractica.png"))); // NOI18N
+        previaPractica.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        cardPracticaEst.add(previaPractica, "card6");
+
+        Tutorial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        volverAPractica.setToolTipText("");
+        volverAPractica.setBorderPainted(false);
+        volverAPractica.setContentAreaFilled(false);
+        volverAPractica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverAPracticaActionPerformed(evt);
+            }
+        });
+        Tutorial.add(volverAPractica, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 170, 60));
+
+        jLabel53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/tutorialPractica.png"))); // NOI18N
+        jLabel53.setText("jLabel53");
+        Tutorial.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        cardPracticaEst.add(Tutorial, "card7");
 
         jTabbedPane1.addTab("cardPracticaEst", cardPracticaEst);
 
@@ -1059,7 +1206,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         cardInterfazEstudiante.add(interfazEstudiante, "interfazEstudiante");
 
-        plantillaEjercicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        EjercicioSeleccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         siguiente_ejercicio.setBorderPainted(false);
         siguiente_ejercicio.setContentAreaFilled(false);
@@ -1068,52 +1215,63 @@ public class MainJFrame extends javax.swing.JFrame {
                 siguiente_ejercicioActionPerformed(evt);
             }
         });
-        plantillaEjercicio.add(siguiente_ejercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 630, 240, 70));
-
-        volver12.setBorderPainted(false);
-        volver12.setContentAreaFilled(false);
-        volver12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                volver12ActionPerformed(evt);
-            }
-        });
-        plantillaEjercicio.add(volver12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 630, 190, 70));
+        EjercicioSeleccion.add(siguiente_ejercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 630, 240, 70));
 
         opcionA.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         opcionA.setText("opcion A");
         opcionA.setBorderPainted(false);
-        plantillaEjercicio.add(opcionA, new org.netbeans.lib.awtextra.AbsoluteConstraints(649, 231, 251, 200));
+        EjercicioSeleccion.add(opcionA, new org.netbeans.lib.awtextra.AbsoluteConstraints(649, 231, 251, 200));
 
         opcionB.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         opcionB.setText("opcion B");
         opcionB.setBorderPainted(false);
-        plantillaEjercicio.add(opcionB, new org.netbeans.lib.awtextra.AbsoluteConstraints(919, 231, 252, 200));
+        EjercicioSeleccion.add(opcionB, new org.netbeans.lib.awtextra.AbsoluteConstraints(919, 231, 252, 200));
 
         opcionC.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         opcionC.setText("opcion C");
         opcionC.setBorderPainted(false);
-        plantillaEjercicio.add(opcionC, new org.netbeans.lib.awtextra.AbsoluteConstraints(649, 500, 251, 200));
+        EjercicioSeleccion.add(opcionC, new org.netbeans.lib.awtextra.AbsoluteConstraints(649, 500, 251, 200));
 
         opcionD.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         opcionD.setText("opcion D");
         opcionD.setBorderPainted(false);
-        plantillaEjercicio.add(opcionD, new org.netbeans.lib.awtextra.AbsoluteConstraints(919, 500, 252, 200));
+        EjercicioSeleccion.add(opcionD, new org.netbeans.lib.awtextra.AbsoluteConstraints(919, 500, 252, 200));
 
         pregunta_ejercicio.setFont(new java.awt.Font("Cy Grotesk Key", 1, 36)); // NOI18N
         pregunta_ejercicio.setText("pregunta ejercicio");
-        plantillaEjercicio.add(pregunta_ejercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 360, 320));
+        EjercicioSeleccion.add(pregunta_ejercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 360, 320));
 
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/plantillaEjercicio.png"))); // NOI18N
-        plantillaEjercicio.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/plantillaEjerSelecSimp.png"))); // NOI18N
+        EjercicioSeleccion.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
-        cardInterfazEstudiante.add(plantillaEjercicio, "plantillaEjercicio");
+        cardInterfazEstudiante.add(EjercicioSeleccion, "plantillaEjercicio");
+
+        EjercicioEscrito.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        EjercicioEscrito.add(preguntaEjEscrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 450, 350));
+
+        siguienteEjercicioEscrita.setBorderPainted(false);
+        siguienteEjercicioEscrita.setContentAreaFilled(false);
+        EjercicioEscrito.add(siguienteEjercicioEscrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 630, 250, 70));
+
+        respuestaEscrita.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
+        respuestaEscrita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                respuestaEscritaActionPerformed(evt);
+            }
+        });
+        EjercicioEscrito.add(respuestaEscrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(644, 302, 510, 190));
+
+        jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/plantillaEjercicioEscrito.png"))); // NOI18N
+        EjercicioEscrito.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        cardInterfazEstudiante.add(EjercicioEscrito, "card6");
 
         ejercicioCorrecto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         frase_correcto.setBackground(new java.awt.Color(255, 255, 255));
         frase_correcto.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         frase_correcto.setText("Frase Motivadora");
-        ejercicioCorrecto.add(frase_correcto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 230, 160));
+        ejercicioCorrecto.add(frase_correcto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 230, 90));
         frase_correcto.getAccessibleContext().setAccessibleName("frase_correcto");
 
         continuar_ejer_correcto.setBorderPainted(false);
@@ -1138,18 +1296,19 @@ public class MainJFrame extends javax.swing.JFrame {
         lblImagenPanelCorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagenPanelCorrecto.setText("jLabel42");
         ejercicioCorrecto.add(lblImagenPanelCorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 340, 310, 260));
+        ejercicioCorrecto.add(imagenPJCorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 420, 340));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setOpaque(true);
-        ejercicioCorrecto.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 210, 60));
+        ejercicioCorrecto.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 210, 50));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setOpaque(true);
-        ejercicioCorrecto.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 210, 100));
+        ejercicioCorrecto.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 220, 60));
 
         jLabel41.setBackground(new java.awt.Color(255, 255, 255));
         jLabel41.setOpaque(true);
-        ejercicioCorrecto.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 210, 100));
+        ejercicioCorrecto.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 220, 100));
 
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/ejercicioCorrecto.png"))); // NOI18N
         ejercicioCorrecto.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -1184,22 +1343,27 @@ public class MainJFrame extends javax.swing.JFrame {
         frase_incorrecto.setBackground(new java.awt.Color(255, 255, 255));
         frase_incorrecto.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         frase_incorrecto.setText("Frase Motivadora");
-        ejercicioIncorrecto.add(frase_incorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 220, 130));
+        ejercicioIncorrecto.add(frase_incorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 220, 130));
+        ejercicioIncorrecto.add(imagenPJIncorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 430, 350));
 
         jLabel42.setBackground(new java.awt.Color(255, 255, 255));
         jLabel42.setOpaque(true);
-        ejercicioIncorrecto.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 210, 60));
+        ejercicioIncorrecto.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 250, 40));
 
         jLabel43.setBackground(new java.awt.Color(255, 255, 255));
         jLabel43.setOpaque(true);
-        ejercicioIncorrecto.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 210, 120));
+        ejercicioIncorrecto.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 190, 90));
 
         jLabel44.setBackground(new java.awt.Color(255, 255, 255));
         jLabel44.setOpaque(true);
-        ejercicioIncorrecto.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 220, 100));
+        ejercicioIncorrecto.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 220, 60));
 
         jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/ejercicioIncorrecto.png"))); // NOI18N
         ejercicioIncorrecto.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
+
+        jLabel55.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel55.setOpaque(true);
+        ejercicioIncorrecto.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 220, 60));
 
         cardInterfazEstudiante.add(ejercicioIncorrecto, "ejercicioIncorrecto");
 
@@ -1334,22 +1498,23 @@ public class MainJFrame extends javax.swing.JFrame {
         editPerfilMaestro.add(volver9, new org.netbeans.lib.awtextra.AbsoluteConstraints(995, 93, 190, 70));
 
         EPMContrasena.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        EPMContrasena.setText("contraseña del estudiante");
         EPMContrasena.setBorder(null);
         editPerfilMaestro.add(EPMContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(455, 562, 760, 50));
 
         EPMCorreo.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        EPMCorreo.setText("correo del estudiante");
         EPMCorreo.setBorder(null);
+        EPMCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EPMCorreoActionPerformed(evt);
+            }
+        });
         editPerfilMaestro.add(EPMCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 447, 760, 50));
 
         EPMApellido.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        EPMApellido.setText("apellido del estudiante");
         EPMApellido.setBorder(null);
         editPerfilMaestro.add(EPMApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 332, 410, 50));
 
         EPMNombre.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        EPMNombre.setText("nombre del estudiante");
         EPMNombre.setBorder(null);
         EPMNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1841,6 +2006,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
         tablaSalonReportesMaestro.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 780, 360));
 
+        volverDeTablaSalon.setBorderPainted(false);
+        volverDeTablaSalon.setContentAreaFilled(false);
+        volverDeTablaSalon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverDeTablaSalonActionPerformed(evt);
+            }
+        });
+        tablaSalonReportesMaestro.add(volverDeTablaSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 100, 90));
+
         gradoSeccionTablaDes.setFont(new java.awt.Font("Cy Grotesk Key", 0, 36)); // NOI18N
         gradoSeccionTablaDes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gradoSeccionTablaDes.setText("grado, seccion");
@@ -1877,6 +2051,15 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         graficoSalonReportesMaestro.add(exportarExcel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, 390, 90));
+
+        volverDeGraficoSalon.setBorderPainted(false);
+        volverDeGraficoSalon.setContentAreaFilled(false);
+        volverDeGraficoSalon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverDeGraficoSalonActionPerformed(evt);
+            }
+        });
+        graficoSalonReportesMaestro.add(volverDeGraficoSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 90, 90));
 
         panelContenedorGraficoSalon.setLayout(new java.awt.BorderLayout());
         graficoSalonReportesMaestro.add(panelContenedorGraficoSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 820, 350));
@@ -1946,7 +2129,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 cboReporteEstudianteActionPerformed(evt);
             }
         });
-        detalleEstReportesMaestro.add(cboReporteEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 247, 540, 70));
+        detalleEstReportesMaestro.add(cboReporteEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 247, 490, 70));
 
         btnVerTablaEstudiante.setBorderPainted(false);
         btnVerTablaEstudiante.setContentAreaFilled(false);
@@ -2015,6 +2198,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
         tablaEstReportesMaestro.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 780, 360));
 
+        volverDeTablaEst.setBorderPainted(false);
+        volverDeTablaEst.setContentAreaFilled(false);
+        volverDeTablaEst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverDeTablaEstActionPerformed(evt);
+            }
+        });
+        tablaEstReportesMaestro.add(volverDeTablaEst, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 90, 90));
+
         nombre_estudiante.setFont(new java.awt.Font("Cy Grotesk Key", 0, 36)); // NOI18N
         nombre_estudiante.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombre_estudiante.setText("nombre estudiante");
@@ -2051,6 +2243,15 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         graficoEstReportesMaestro.add(exportarExcel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, 390, 90));
+
+        volverDeGraficoEst.setBorderPainted(false);
+        volverDeGraficoEst.setContentAreaFilled(false);
+        volverDeGraficoEst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverDeGraficoEstActionPerformed(evt);
+            }
+        });
+        graficoEstReportesMaestro.add(volverDeGraficoEst, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 90, 90));
 
         panelContenedorGraficoEst.setLayout(new java.awt.BorderLayout());
         graficoEstReportesMaestro.add(panelContenedorGraficoEst, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 820, 350));
@@ -2139,7 +2340,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_volver1ActionPerformed
 
     private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
-        CorreoLogin.setText("tucorreo@gmail.com");
+        CorreoLogin.setText("Ingrese un nombre de usuario");
         CorreoLogin.setForeground(Color.WHITE);
         ContrasenaLogin.setText("********");
         ContrasenaLogin.setForeground(Color.WHITE);
@@ -2153,7 +2354,7 @@ public class MainJFrame extends javax.swing.JFrame {
         RegENombre.setForeground(Color.WHITE);
         RegEApellido.setText("Ingresa tu primer apellido");
         RegEApellido.setForeground(Color.WHITE);
-        RegECorreo.setText("tucorreo@gmail.com");
+        RegECorreo.setText("Ingrese un nombre de usuario");
         RegECorreo.setForeground(Color.WHITE);
         RegEContrasena.setText("********");
         RegEContrasena.setForeground(Color.WHITE);
@@ -2162,7 +2363,7 @@ public class MainJFrame extends javax.swing.JFrame {
         RegMNombre.setForeground(Color.WHITE);
         RegMApellido.setText("Ingresa tu primer apellido");
         RegMApellido.setForeground(Color.WHITE);
-        RegMCorreo.setText("tucorreo@gmail.com");
+        RegMCorreo.setText("Ingrese un nombre de usuario");
         RegMCorreo.setForeground(Color.WHITE);
         RegMContrasena.setText("********");
         RegMContrasena.setForeground(Color.WHITE);
@@ -2181,7 +2382,7 @@ public class MainJFrame extends javax.swing.JFrame {
         RegENombre.setForeground(Color.WHITE);
         RegEApellido.setText("Ingresa tu primer apellido");
         RegEApellido.setForeground(Color.WHITE);
-        RegECorreo.setText("tucorreo@gmail.com");
+        RegECorreo.setText("Ingrese un nombre de usuario");
         RegECorreo.setForeground(Color.WHITE);
         RegEContrasena.setText("********");
         RegEContrasena.setForeground(Color.WHITE);
@@ -2194,7 +2395,7 @@ public class MainJFrame extends javax.swing.JFrame {
         RegMNombre.setForeground(Color.WHITE);
         RegMApellido.setText("Ingresa tu primer apellido");
         RegMApellido.setForeground(Color.WHITE);
-        RegMCorreo.setText("tucorreo@gmail.com");
+        RegMCorreo.setText("Ingrese un nombre de usuario");
         RegMCorreo.setForeground(Color.WHITE);
         RegMContrasena.setText("********");
         RegMContrasena.setForeground(Color.WHITE);
@@ -2509,25 +2710,16 @@ public class MainJFrame extends javax.swing.JFrame {
             this.temaSeleccionado = temaSeleccionado;
             //this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista(pregunta_ejercicio,opcionA, opcionB, opcionC, opcionD,grupoOpciones);
 
-            // muestra el panel del ejercicio
+            // CAMBIAR SEGUN EL TIPO DE EJERCICIO
             CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-            cardLayout.show(cardInterfazEstudiante,"plantillaEjercicio");
+            cardLayout.show(cardInterfazEstudiante,"EjercicioSeleccion");
+            // ACA ESTA EL OTRO TIPO DE EJERCICIO
+            //cardLayout.show(cardInterfazEstudiante,"EjercicioSeleccion");
         }
         // Si es falso el controlador ya mostro el error 
         this.revalidate(); // Recalcula el layout
         this.repaint();  // Redibuja la ventana
     }//GEN-LAST:event_seguir_temahijoActionPerformed
-
-    private void volver12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver12ActionPerformed
-        CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-        cardLayout.show(cardInterfazEstudiante,"interfazEstudiante");
-        
-        JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane1;
-        tabbedPane.setSelectedComponent(cardPracticaEst);
-        
-        CardLayout cardLayout2 = (CardLayout) this.cardPracticaEst.getLayout();
-        cardLayout2.show(cardPracticaEst,"subtemaEst");
-    }//GEN-LAST:event_volver12ActionPerformed
 
     private void siguiente_ejercicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_ejercicioActionPerformed
         
@@ -3222,7 +3414,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void CorreoLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CorreoLoginMousePressed
         // TODO add your handling code here:
-        if (CorreoLogin.getText().equals("tucorreo@gmail.com")){
+        if (CorreoLogin.getText().equals("Ingrese un nombre de usuario")){
             CorreoLogin.setText("");
             CorreoLogin.setForeground(new Color(40,66,119));
         }
@@ -3241,7 +3433,7 @@ public class MainJFrame extends javax.swing.JFrame {
             
         }
         if (CorreoLogin.getText().isEmpty()) {
-            CorreoLogin.setText("tucorreo@gmail.com");
+            CorreoLogin.setText("Ingrese un nombre de usuario");
             CorreoLogin.setForeground(Color.WHITE);
         }   
     }//GEN-LAST:event_ContrasenaLoginMousePressed
@@ -3257,7 +3449,7 @@ public class MainJFrame extends javax.swing.JFrame {
             RegEApellido.setForeground(Color.WHITE);
         }
         if (RegECorreo.getText().isEmpty()){
-            RegECorreo.setText("tucorreo@gmail.com");
+            RegECorreo.setText("Ingrese un nombre de usuario");
             RegECorreo.setForeground(Color.WHITE);
         }
         if (String.valueOf(RegEContrasena.getPassword()).isEmpty()){
@@ -3278,7 +3470,7 @@ public class MainJFrame extends javax.swing.JFrame {
             RegENombre.setForeground(Color.WHITE);
         }
         if (RegECorreo.getText().isEmpty()){
-            RegECorreo.setText("tucorreo@gmail.com");
+            RegECorreo.setText("Ingrese un nombre de usuario");
             RegECorreo.setForeground(Color.WHITE);
         }
         if (String.valueOf(RegEContrasena.getPassword()).isEmpty()){
@@ -3289,7 +3481,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void RegECorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegECorreoMousePressed
         // TODO add your handling code here:
-        if (RegECorreo.getText().equals("tucorreo@gmail.com")){
+        if (RegECorreo.getText().equals("Ingrese un nombre de usuario")){
             RegECorreo.setText("");
             RegECorreo.setForeground(new Color(40,66,119));
         }
@@ -3324,7 +3516,7 @@ public class MainJFrame extends javax.swing.JFrame {
             RegEApellido.setForeground(Color.WHITE);
         }
         if (RegECorreo.getText().isEmpty()){
-            RegECorreo.setText("tucorreo@gmail.com");
+            RegECorreo.setText("Ingrese un nombre de usuario");
             RegECorreo.setForeground(Color.WHITE);
         }
     }//GEN-LAST:event_RegEContrasenaMousePressed
@@ -3340,7 +3532,7 @@ public class MainJFrame extends javax.swing.JFrame {
             RegMApellido.setForeground(Color.WHITE);
         }
         if (RegMCorreo.getText().isEmpty()){
-            RegMCorreo.setText("tucorreo@gmail.com");
+            RegMCorreo.setText("Ingrese un nombre de usuario");
             RegMCorreo.setForeground(Color.WHITE);
         }
         if (String.valueOf(RegMContrasena.getPassword()).isEmpty()){
@@ -3360,7 +3552,7 @@ public class MainJFrame extends javax.swing.JFrame {
             RegMNombre.setForeground(Color.WHITE);
         }
         if (RegMCorreo.getText().isEmpty()){
-            RegMCorreo.setText("tucorreo@gmail.com");
+            RegMCorreo.setText("Ingrese un nombre de usuario");
             RegMCorreo.setForeground(Color.WHITE);
         }
         if (String.valueOf(RegMContrasena.getPassword()).isEmpty()){
@@ -3371,7 +3563,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void RegMCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegMCorreoMousePressed
         // TODO add your handling code here:
-        if (RegMCorreo.getText().equals("tucorreo@gmail.com")){
+        if (RegMCorreo.getText().equals("Ingrese un nombre de usuario")){
             RegMCorreo.setText("");
             RegMCorreo.setForeground(new Color(40,66,119));
         }
@@ -3405,7 +3597,7 @@ public class MainJFrame extends javax.swing.JFrame {
             RegMApellido.setForeground(Color.WHITE);
         }
         if (RegMCorreo.getText().isEmpty()){
-            RegMCorreo.setText("tucorreo@gmail.com");
+            RegMCorreo.setText("Ingrese un nombre de usuario");
             RegMCorreo.setForeground(Color.WHITE);
         }
     }//GEN-LAST:event_RegMContrasenaMousePressed
@@ -3502,6 +3694,81 @@ public class MainJFrame extends javax.swing.JFrame {
     private void comboBoxGradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxGradoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxGradoActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"subtemaEst");
+    }//GEN-LAST:event_volverActionPerformed
+
+    private void irDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irDescripcionActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"descripcionTema");
+    }//GEN-LAST:event_irDescripcionActionPerformed
+
+    private void volver2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver2ActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"presentacionPJ");
+    }//GEN-LAST:event_volver2ActionPerformed
+
+    private void irAPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irAPreviaActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"previaPractica");
+    }//GEN-LAST:event_irAPreviaActionPerformed
+
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"descripcionTema");
+    }//GEN-LAST:event_atrasActionPerformed
+
+    private void volverAPracticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverAPracticaActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"previaPractica");
+    }//GEN-LAST:event_volverAPracticaActionPerformed
+
+    private void tutorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"Tutorial");
+    }//GEN-LAST:event_tutorialActionPerformed
+
+    private void respuestaEscritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_respuestaEscritaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_respuestaEscritaActionPerformed
+
+    private void EPMCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EPMCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EPMCorreoActionPerformed
+
+    private void volverDeTablaEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverDeTablaEstActionPerformed
+
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardReportesMaestro.getLayout();
+        cardLayout.show(cardReportesMaestro,"detalleEstReportesMaestro");
+    }//GEN-LAST:event_volverDeTablaEstActionPerformed
+
+    private void volverDeGraficoEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverDeGraficoEstActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardReportesMaestro.getLayout();
+        cardLayout.show(cardReportesMaestro,"detalleEstReportesMaestro");
+    }//GEN-LAST:event_volverDeGraficoEstActionPerformed
+
+    private void volverDeTablaSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverDeTablaSalonActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardReportesMaestro.getLayout();
+        cardLayout.show(cardReportesMaestro,"detalleSalonReportesMaestro");
+    }//GEN-LAST:event_volverDeTablaSalonActionPerformed
+
+    private void volverDeGraficoSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverDeGraficoSalonActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardReportesMaestro.getLayout();
+        cardLayout.show(cardReportesMaestro,"detalleSalonReportesMaestro");
+    }//GEN-LAST:event_volverDeGraficoSalonActionPerformed
     
     private modelo_tanuki.PeriodoReporte getPeriodoEnumFromString(String s) {
         if (s == null) return modelo_tanuki.PeriodoReporte.COMPLETO;
@@ -3584,6 +3851,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField EPMContrasena;
     private javax.swing.JTextField EPMCorreo;
     private javax.swing.JTextField EPMNombre;
+    private javax.swing.JPanel EjercicioEscrito;
+    private javax.swing.JPanel EjercicioSeleccion;
     private javax.swing.JLabel InstruccionSelec;
     private javax.swing.JLabel InstruccionSelec1;
     private javax.swing.JLabel InstruccionSelec2;
@@ -3609,12 +3878,14 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField RegMCorreo;
     private javax.swing.JTextField RegMNombre;
     private javax.swing.JTable SalonesAsignados;
+    private javax.swing.JPanel Tutorial;
     private javax.swing.JButton aceptar;
     private javax.swing.JButton aceptar1;
     private javax.swing.JButton aceptar3;
     private javax.swing.JButton aceptar4;
     private javax.swing.JButton aggEst;
     private javax.swing.JPanel aggEstSalonMaestro;
+    private javax.swing.JButton atras;
     private javax.swing.JPanel borrarEstMaestro;
     private javax.swing.JButton borrarSalon;
     private javax.swing.JPanel borrarSalonMaestro;
@@ -3627,6 +3898,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel cardReportesMaestro;
     private javax.swing.JPanel cardSalonEst;
     private javax.swing.JPanel cardSalonesMaestro;
+    private javax.swing.JComboBox<String> cboDificultad;
     private javax.swing.JComboBox<String> cboPeriodoEst;
     private javax.swing.JComboBox<String> cboReporteEstGrado;
     private javax.swing.JComboBox<String> cboReporteEstSeccion;
@@ -3650,6 +3922,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton crear;
     private javax.swing.JButton crearSalon;
     private javax.swing.JPanel crearSalonMaestro;
+    private javax.swing.JLabel descripcion;
+    private javax.swing.JPanel descripcionTema;
     private javax.swing.JPanel detalleEstReportesMaestro;
     private javax.swing.JPanel detalleSalonReportesMaestro;
     private javax.swing.JPanel editPerfilEst;
@@ -3684,10 +3958,17 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton guardar2;
     private javax.swing.JTextField idEliminar;
     private javax.swing.JPanel idSalonMaestro;
+    private javax.swing.JLabel imagenCelebrando;
+    private javax.swing.JLabel imagenPJCorrecto;
+    private javax.swing.JLabel imagenPJIncorrecto;
+    private javax.swing.JLabel imagenPresentacion1;
+    private javax.swing.JLabel imagenPresentacion2;
     private javax.swing.JPanel infoSalonEst;
     private javax.swing.JButton iniciarSesion;
     private javax.swing.JPanel inicioSesion;
     private javax.swing.JPanel interfazEstudiante;
+    private javax.swing.JButton irAPrevia;
+    private javax.swing.JButton irDescripcion;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
@@ -3730,12 +4011,18 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
@@ -3774,13 +4061,15 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel perfilEst;
     private javax.swing.JPanel perfilMaestro;
     private javax.swing.JLabel plantillaBienvenida;
-    private javax.swing.JPanel plantillaEjercicio;
     private javax.swing.JLabel plantillaPortada;
     private javax.swing.JButton porEstudiante;
     private javax.swing.JButton porSalon;
     private javax.swing.JButton practica;
     private javax.swing.JPanel practicaEst;
+    private javax.swing.JLabel preguntaEjEscrito;
     private javax.swing.JLabel pregunta_ejercicio;
+    private javax.swing.JPanel presentacionPJ;
+    private javax.swing.JPanel previaPractica;
     private javax.swing.JPanel principalE;
     private javax.swing.JPanel principalM;
     private javax.swing.JButton progreso;
@@ -3792,6 +4081,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel registroM;
     private javax.swing.JButton reportes;
     private javax.swing.JPanel reportesMaestro;
+    private javax.swing.JTextField respuestaEscrita;
     private javax.swing.JLabel respuesta_correc;
     private javax.swing.JLabel respuesta_correc1;
     private javax.swing.JLabel retroali_Pcorrecto;
@@ -3805,7 +4095,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel salonReportesMaestro;
     private javax.swing.JButton salones;
     private javax.swing.JPanel salonesMaestro;
+    private javax.swing.JLabel saludoEstudiante;
+    private javax.swing.JButton seguirPresentacion;
     private javax.swing.JButton seguir_temahijo;
+    private javax.swing.JButton siguienteEjercicioEscrita;
     private javax.swing.JButton siguiente_ejercicio;
     private javax.swing.JButton solicitudes;
     private javax.swing.JPanel solicitudesMaestro;
@@ -3819,12 +4112,14 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JTable tablaReporteSalon;
     private javax.swing.JPanel tablaSalonReportesMaestro;
     private javax.swing.JLabel temaPadreSelecc;
+    private javax.swing.JLabel tituloContenidoPractica;
+    private javax.swing.JButton tutorial;
     private javax.swing.JButton unirseSalon;
     private javax.swing.JPanel unirseSalonEst;
+    private javax.swing.JButton volver;
     private javax.swing.JButton volver1;
     private javax.swing.JButton volver10;
     private javax.swing.JButton volver11;
-    private javax.swing.JButton volver12;
     private javax.swing.JButton volver13;
     private javax.swing.JButton volver14;
     private javax.swing.JButton volver15;
@@ -3832,6 +4127,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton volver17;
     private javax.swing.JButton volver18;
     private javax.swing.JButton volver19;
+    private javax.swing.JButton volver2;
     private javax.swing.JButton volver20;
     private javax.swing.JButton volver21;
     private javax.swing.JButton volver22;
@@ -3841,6 +4137,11 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton volver7;
     private javax.swing.JButton volver8;
     private javax.swing.JButton volver9;
+    private javax.swing.JButton volverAPractica;
+    private javax.swing.JButton volverDeGraficoEst;
+    private javax.swing.JButton volverDeGraficoSalon;
+    private javax.swing.JButton volverDeTablaEst;
+    private javax.swing.JButton volverDeTablaSalon;
     // End of variables declaration//GEN-END:variables
     private javax.swing.ButtonGroup grupoOpciones;
     private Tema temaSeleccionado;
