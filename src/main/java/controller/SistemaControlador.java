@@ -145,15 +145,19 @@ public class SistemaControlador {
     
     
     
-    public void validarLetras (java.awt.event.KeyEvent evt){
-        int k=(int)evt.getKeyChar();
-            if ((k < 97 || k > 122) && (k<65 || k>90) && k!=20 && k!=8 && k!=32 && k!=127){
-                evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-                JOptionPane.showMessageDialog(null,"Sólo debe ingresar letras","Error Datos",JOptionPane.ERROR_MESSAGE);
-            }
+    public boolean validarCampoTexto(JTextField campo) {
+        String texto = campo.getText().trim(); 
+
+        if (texto.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+")) {
+            return true; 
+        } else {
+            JOptionPane.showMessageDialog(null,"Solo puede ingresar letras en Nombre y Apellido","Error Datos",JOptionPane.ERROR_MESSAGE);
+            return false; // No es válido
         }
+    }
+    
     public boolean esVacio (JTextField campo, String mensaje){
-            if (campo.getText().isEmpty()|| "Ingresa tu primer nombre".equals(campo.getText())|| campo.getText().equals("Ingresa tu primer apellido")||campo.getText().equals("tucorreo@gmail.com")|| campo.getText().equals("********"))
+            if (campo.getText().isEmpty()|| "Ingresa tu primer nombre".equals(campo.getText())|| campo.getText().equals("Ingresa tu primer apellido")||campo.getText().equals("Ingrese un nombre de usuario")|| campo.getText().equals("********"))
                { JOptionPane.showMessageDialog(null, mensaje, "Error falta un dato", JOptionPane.ERROR_MESSAGE); 
                  return true; 
                }
@@ -181,22 +185,7 @@ public class SistemaControlador {
             return true;   
        }
     }
-    
-    public boolean validarCorreo(String correo){
-        String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
-        
-        if (Pattern.matches(regex,correo)) {
-            return true;
-        }
-        else {
-            JOptionPane.showMessageDialog(
-                    null, "El formato del correo '" + correo + "' no es válido.","ERROR DE FORMATO",
-                    JOptionPane.ERROR_MESSAGE);
-            return false;
-        
-        }
-    }
-    
+  
     public boolean validarSalon(){
         Estudiante est = (Estudiante) usuarioActual;
         boolean tieneSalon;
@@ -231,7 +220,7 @@ public class SistemaControlador {
     
     public boolean registrarEstudiante(JTextField nombre, JTextField apellido, JTextField correo, JPasswordField clave){
         boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un correo (puede ser de su representante)")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCorreo(correo.getText())==true){
+        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true){
             Usuario estudianteRegistrado = buscarUsuario(correo.getText());
             if (estudianteRegistrado == null){
                 Estudiante estudianteNuevo = new Estudiante();
@@ -258,7 +247,7 @@ public class SistemaControlador {
     
     public boolean registrarMaestro(JTextField nombre, JTextField apellido, JTextField correo, JPasswordField clave){
         boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un correo")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCorreo(correo.getText())==true){
+        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un correo")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true){
             Usuario maestroRegistrado = buscarUsuario(correo.getText());
             if (maestroRegistrado == null){
                 Maestro maestroNuevo = new Maestro();
@@ -373,7 +362,7 @@ public class SistemaControlador {
     }
     
     public Usuario iniciarSesionUsuario(JTextField correo, JPasswordField clave){
-        if (esVacio(correo,"Debe indicar su correo")==false && esVacio(clave,"Debe indicar su contraseña")==false && validarCorreo(correo.getText())==true){
+        if (esVacio(correo,"Debe indicar su correo")==false && esVacio(clave,"Debe indicar su contraseña")==false){
             String contrasena = new String(clave.getPassword());
             Usuario user = validarInicioSesion(correo.getText(),contrasena);
             if (user == null){
@@ -482,7 +471,7 @@ public class SistemaControlador {
     
     public boolean editarPerfil(JTextField nombre, JTextField apellido, JTextField correo, JTextField clave){
         boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un correo")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCorreo(correo.getText())==true){
+        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false){
             if (correo.getText().equals(usuarioActual.getCorreo())){
                 usuarioActual.setNombre(nombre.getText());
                 usuarioActual.setApellido(apellido.getText());
