@@ -184,11 +184,13 @@ public class MainJFrame extends javax.swing.JFrame {
         seguirPresentacion = new javax.swing.JButton();
         volver11 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        presentacionPJ = new javax.swing.JPanel();
-        irDescripcion = new javax.swing.JButton();
+        PresentPJ = new javax.swing.JPanel();
+        subtemaElegido = new javax.swing.JLabel();
+        nombrePersonaje = new javax.swing.JLabel();
+        irADescripcion = new javax.swing.JButton();
         volver = new javax.swing.JButton();
+        imagenPresentacionPJ = new javax.swing.JLabel();
         saludoEstudiante = new javax.swing.JLabel();
-        imagenPresentacion1 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         descripcionTema = new javax.swing.JPanel();
         volver2 = new javax.swing.JButton();
@@ -1084,16 +1086,24 @@ public class MainJFrame extends javax.swing.JFrame {
 
         cardPracticaEst.add(subtemaEst, "subtemaEst");
 
-        presentacionPJ.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PresentPJ.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        irDescripcion.setBorderPainted(false);
-        irDescripcion.setContentAreaFilled(false);
-        irDescripcion.addActionListener(new java.awt.event.ActionListener() {
+        subtemaElegido.setFont(new java.awt.Font("Cy Grotesk Key", 0, 32)); // NOI18N
+        subtemaElegido.setText("xtema");
+        PresentPJ.add(subtemaElegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 160, 400, 60));
+
+        nombrePersonaje.setFont(new java.awt.Font("Cy Grotesk Key", 0, 32)); // NOI18N
+        nombrePersonaje.setText("(nombre)");
+        PresentPJ.add(nombrePersonaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 60, 240, 50));
+
+        irADescripcion.setBorderPainted(false);
+        irADescripcion.setContentAreaFilled(false);
+        irADescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                irDescripcionActionPerformed(evt);
+                irADescripcionActionPerformed(evt);
             }
         });
-        presentacionPJ.add(irDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 620, 250, 70));
+        PresentPJ.add(irADescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 620, 250, 70));
 
         volver.setBorderPainted(false);
         volver.setContentAreaFilled(false);
@@ -1102,17 +1112,15 @@ public class MainJFrame extends javax.swing.JFrame {
                 volverActionPerformed(evt);
             }
         });
-        presentacionPJ.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 620, 200, 70));
-
-        saludoEstudiante.setFont(new java.awt.Font("Cy Grotesk Key", 0, 14)); // NOI18N
-        presentacionPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 350, 70));
-        presentacionPJ.add(imagenPresentacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 350, 490));
+        PresentPJ.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 620, 200, 70));
+        PresentPJ.add(imagenPresentacionPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 220, 340, 500));
+        PresentPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 350, 70));
 
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/PresentacionPersonaje.png"))); // NOI18N
         jLabel45.setText("jLabel45");
-        presentacionPJ.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        PresentPJ.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        cardPracticaEst.add(presentacionPJ, "card6");
+        cardPracticaEst.add(PresentPJ, "PresentacionPJ");
 
         descripcionTema.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -2693,34 +2701,6 @@ public class MainJFrame extends javax.swing.JFrame {
         cardLayout.show(cardPracticaEst,"practicaEst");
     }//GEN-LAST:event_volver11ActionPerformed
 
-    private void seguir_temahijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguir_temahijoActionPerformed
-        // obtiene el Tema HIJO seleccionado
-        Tema temaSeleccionado = (modelo_tanuki.Tema) cboTemaHijo.getSelectedItem();
-        if (temaSeleccionado == null) {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un sub-tema.");
-            return;
-        }
-
-        // llama al controlador para preparar la práctica
-        // (Verifica si tiene salon, si hay 5 ejercicios, etc.)
-        boolean puedeEmpezar = controlador.iniciarNuevaPractica(temaSeleccionado);
-
-        if (puedeEmpezar) {
-            // guarda el tema y carga la PRIMERA pregunta
-            this.temaSeleccionado = temaSeleccionado;
-            //this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista(pregunta_ejercicio,opcionA, opcionB, opcionC, opcionD,grupoOpciones);
-
-            // CAMBIAR SEGUN EL TIPO DE EJERCICIO
-            CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-            cardLayout.show(cardInterfazEstudiante,"EjercicioSeleccion");
-            // ACA ESTA EL OTRO TIPO DE EJERCICIO
-            //cardLayout.show(cardInterfazEstudiante,"EjercicioSeleccion");
-        }
-        // Si es falso el controlador ya mostro el error 
-        this.revalidate(); // Recalcula el layout
-        this.repaint();  // Redibuja la ventana
-    }//GEN-LAST:event_seguir_temahijoActionPerformed
-
     private void siguiente_ejercicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_ejercicioActionPerformed
         
         // Revisa cuál de los JToggleButtons esta seleccionado
@@ -3695,18 +3675,6 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxGradoActionPerformed
 
-    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
-        // TODO add your handling code here:
-        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
-        cardLayout.show(cardPracticaEst,"subtemaEst");
-    }//GEN-LAST:event_volverActionPerformed
-
-    private void irDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irDescripcionActionPerformed
-        // TODO add your handling code here:
-        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
-        cardLayout.show(cardPracticaEst,"descripcionTema");
-    }//GEN-LAST:event_irDescripcionActionPerformed
-
     private void volver2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver2ActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
@@ -3719,23 +3687,11 @@ public class MainJFrame extends javax.swing.JFrame {
         cardLayout.show(cardPracticaEst,"previaPractica");
     }//GEN-LAST:event_irAPreviaActionPerformed
 
-    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
-        // TODO add your handling code here:
-        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
-        cardLayout.show(cardPracticaEst,"descripcionTema");
-    }//GEN-LAST:event_atrasActionPerformed
-
     private void volverAPracticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverAPracticaActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
         cardLayout.show(cardPracticaEst,"previaPractica");
     }//GEN-LAST:event_volverAPracticaActionPerformed
-
-    private void tutorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialActionPerformed
-        // TODO add your handling code here:
-        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
-        cardLayout.show(cardPracticaEst,"Tutorial");
-    }//GEN-LAST:event_tutorialActionPerformed
 
     private void respuestaEscritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_respuestaEscritaActionPerformed
         // TODO add your handling code here:
@@ -3769,6 +3725,58 @@ public class MainJFrame extends javax.swing.JFrame {
         CardLayout cardLayout = (CardLayout) this.cardReportesMaestro.getLayout();
         cardLayout.show(cardReportesMaestro,"detalleSalonReportesMaestro");
     }//GEN-LAST:event_volverDeGraficoSalonActionPerformed
+
+    private void seguir_temahijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguir_temahijoActionPerformed
+        // obtiene el Tema HIJO seleccionado
+        Tema temaSeleccionado = (modelo_tanuki.Tema) cboTemaHijo.getSelectedItem();
+        if (temaSeleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un sub-tema.");
+            return;
+        }
+
+        // llama al controlador para preparar la práctica
+        // (Verifica si tiene salon, si hay 5 ejercicios, etc.)
+        boolean puedeEmpezar = controlador.iniciarNuevaPractica(temaSeleccionado);
+
+        if (puedeEmpezar) {
+            // guarda el tema y carga la PRIMERA pregunta
+            this.temaSeleccionado = temaSeleccionado;
+            //this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista(pregunta_ejercicio,opcionA, opcionB, opcionC, opcionD,grupoOpciones);
+
+            // CAMBIAR SEGUN EL TIPO DE EJERCICIO
+            CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
+            cardLayout.show(cardInterfazEstudiante,"EjercicioSeleccion");
+            // ACA ESTA EL OTRO TIPO DE EJERCICIO
+            //cardLayout.show(cardInterfazEstudiante,"EjercicioSeleccion");
+        }
+        // Si es falso el controlador ya mostro el error
+        this.revalidate(); // Recalcula el layout
+        this.repaint();  // Redibuja la ventana
+    }//GEN-LAST:event_seguir_temahijoActionPerformed
+
+    private void tutorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"Tutorial");
+    }//GEN-LAST:event_tutorialActionPerformed
+
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"descripcionTema");
+    }//GEN-LAST:event_atrasActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"subtemaEst");
+    }//GEN-LAST:event_volverActionPerformed
+
+    private void irADescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irADescripcionActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"descripcionTema");
+    }//GEN-LAST:event_irADescripcionActionPerformed
     
     private modelo_tanuki.PeriodoReporte getPeriodoEnumFromString(String s) {
         if (s == null) return modelo_tanuki.PeriodoReporte.COMPLETO;
@@ -3869,6 +3877,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel PMCorreo;
     private javax.swing.JLabel PMNombre;
     private javax.swing.JPanel Portada;
+    private javax.swing.JPanel PresentPJ;
     private javax.swing.JTextField RegEApellido;
     private javax.swing.JPasswordField RegEContrasena;
     private javax.swing.JTextField RegECorreo;
@@ -3961,14 +3970,14 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel imagenCelebrando;
     private javax.swing.JLabel imagenPJCorrecto;
     private javax.swing.JLabel imagenPJIncorrecto;
-    private javax.swing.JLabel imagenPresentacion1;
     private javax.swing.JLabel imagenPresentacion2;
+    private javax.swing.JLabel imagenPresentacionPJ;
     private javax.swing.JPanel infoSalonEst;
     private javax.swing.JButton iniciarSesion;
     private javax.swing.JPanel inicioSesion;
     private javax.swing.JPanel interfazEstudiante;
+    private javax.swing.JButton irADescripcion;
     private javax.swing.JButton irAPrevia;
-    private javax.swing.JButton irDescripcion;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
@@ -4048,6 +4057,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton maestro1;
     private javax.swing.JButton mostrarIdSalon;
     private javax.swing.JLabel nombreEstGrafico;
+    private javax.swing.JLabel nombrePersonaje;
     private javax.swing.JLabel nombreSalonGraficoDes;
     private javax.swing.JLabel nombre_estudiante;
     private javax.swing.JToggleButton opcionA;
@@ -4068,7 +4078,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel practicaEst;
     private javax.swing.JLabel preguntaEjEscrito;
     private javax.swing.JLabel pregunta_ejercicio;
-    private javax.swing.JPanel presentacionPJ;
     private javax.swing.JPanel previaPractica;
     private javax.swing.JPanel principalE;
     private javax.swing.JPanel principalM;
@@ -4102,6 +4111,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton siguiente_ejercicio;
     private javax.swing.JButton solicitudes;
     private javax.swing.JPanel solicitudesMaestro;
+    private javax.swing.JLabel subtemaElegido;
     private javax.swing.JPanel subtemaEst;
     private javax.swing.JButton tablaDesempeno;
     private javax.swing.JPanel tablaEstReportesMaestro;
