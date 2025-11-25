@@ -276,6 +276,55 @@ public class SistemaControlador {
         return avanzar;
     }
     
+    public boolean registrarUsuarioFirebase(String nombre, String apellido, String correo, String clave, String rol){
+        
+        try {
+            Firestore db = FirestoreClient.getFirestore();
+            Map<String, Object> datos = new HashMap<>();
+            datos.put("nombre", nombre);
+            datos.put("apellido", apellido);
+            datos.put("correo", correo);
+            datos.put("contrasena", clave); // Guardamos la contraseña (texto plano por ahora)
+            datos.put("rol", rol);
+            if ("estudiante".equals(rol)) {
+            datos.put("puntos", 0);
+            }
+            ApiFuture<WriteResult> resultado = db.collection("usuarios")
+                                              .document(correo)
+                                              .set(datos);
+            
+            resultado.get();
+            
+            if ("estudiante".equals(rol)) {
+                Estudiante nuevoEst = new Estudiante();
+                nuevoEst.setNombre(nombre);
+                nuevoEst.setCorreo(correo);
+                nuevoEst.setApellido(apellido);
+                nuevoEst.setContrasena(clave);
+                //faltan los datos especificos
+                this.usuarioActual = nuevoEst;
+
+            } else {
+                Maestro nuevoMstro = new Maestro();
+                nuevoMstro.setNombre(nombre);
+                nuevoMstro.setCorreo(correo);
+                nuevoMstro.setApellido(apellido);
+                nuevoMstro.setContrasena(clave);
+                //faltan los datos especificos
+                this.usuarioActual = nuevoMstro;
+            }
+
+            System.out.println("Registro exitoso. Usuario: " + this.usuarioActual.getNombre());
+            return true;
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error al registrar: " + e.getMessage());
+            return false;
+        }
+    }
+    
     public boolean registrarMaestro(JTextField nombre, JTextField apellido, JTextField correo, JPasswordField clave){
         boolean avanzar;
         if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un correo")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true){
@@ -347,20 +396,23 @@ public class SistemaControlador {
             if (documento.exists()) {
                 
                 String rol = documento.getString("rol");
+                String passReal = documento.getString("contrasena");
                 
                 if (rol == null) {
                 System.err.println("Error: El usuario " + correoLogin + " no tiene un 'rol' definido en la BD.");
+                return null; }
+                
+                if ((!passReal.equals(passLogin)) || (passReal == null)) {
+                System.err.println("Error: El usuario " + correoLogin + " contraseña invalida");
                 return null;
                 }
-                
-                Usuario usuarioLogueado;
                 
                 if (rol.equals("estudiante")) {
                     Estudiante estudiante = new Estudiante();
                     estudiante.setNombre(documento.getString("nombre"));
                     estudiante.setCorreo(documento.getString("correo"));
                     estudiante.setApellido(documento.getString("apellido"));
-                    estudiante.setApellido(documento.getString("contrasena"));
+                    estudiante.setContrasena(documento.getString("contrasena"));
                     //se pueden poner datos especificos
                     this.usuarioActual = estudiante;
                     
@@ -369,7 +421,7 @@ public class SistemaControlador {
                     maestro.setNombre(documento.getString("nombre"));
                     maestro.setCorreo(documento.getString("correo"));
                     maestro.setApellido(documento.getString("apellido"));
-                    maestro.setApellido(documento.getString("contrasena"));
+                    maestro.setContrasena(documento.getString("contrasena"));
                     //se pueden poner datos especificos
                     this.usuarioActual = maestro;
                 } else {

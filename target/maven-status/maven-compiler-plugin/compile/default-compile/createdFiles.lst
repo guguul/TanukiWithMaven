@@ -47,6 +47,7 @@ vista\MainJFrame$108.class
 modelo_tanuki\NivelDificultad.class
 vista\MainJFrame$128.class
 modelo_tanuki\ConfiguracionReporte.class
+vista\MainJFrame$135.class
 vista\MainJFrame$112.class
 vista\MainJFrame$16.class
 vista\MainJFrame$36.class
@@ -87,6 +88,7 @@ vista\MainJFrame$129.class
 vista\MainJFrame$95.class
 modelo_tanuki\AnalizadorSalon.class
 vista\MainJFrame$43.class
+vista\MainJFrame$134.class
 vista\MainJFrame$38.class
 vista\MainJFrame$7.class
 controller\SistemaControlador$2.class
@@ -164,6 +166,7 @@ modelo_tanuki\IGeneradorReporte.class
 vista\MainJFrame$117.class
 vista\MainJFrame$31.class
 vista\MainJFrame$26.class
+vista\FondoRedondeado.class
 vista\MainJFrame$122.class
 modelo_tanuki\ReporteDatosPorTema.class
 vista\MainJFrame$60.class
