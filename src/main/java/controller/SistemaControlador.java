@@ -60,6 +60,9 @@ import java.util.HashMap;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 
+import javax.sound.sampled.*; 
+import java.io.IOException;
+import java.net.URL;
 
 public class SistemaControlador {
     
@@ -150,6 +153,28 @@ public class SistemaControlador {
     }
     
     
+
+    public void reproducirSonido(String nombreArchivo) {
+        try {
+            // 1. Obtenemos la URL del archivo (Igual que con tus imágenes)
+            // Nota: Asume que tienes una carpeta "sonidos" dentro de resources
+            URL url = getClass().getResource("/sonidos/" + nombreArchivo);
+
+            if (url != null) {
+                // 2. Abrir el flujo de audio
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+                // 3. Obtener un clip de sonido del sistema
+                Clip clip = AudioSystem.getClip();
+                // 4. Abrir el clip y reproducirlo
+                clip.open(audioIn);
+                clip.start();
+            } else {
+                System.err.println("No se encontró el archivo de sonido: " + nombreArchivo);
+            }
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
     
     public boolean validarCampoTexto(JTextField campo) {
         String texto = campo.getText().trim(); 
@@ -542,10 +567,10 @@ public class SistemaControlador {
 
         List<Logro> listaL = estudianteActual.getLogros();
 
-        ImageIcon expertoResta = new ImageIcon(getClass().getResource("/Recursos/Imagenes/iconos/experto_resta.png"));
-        ImageIcon geometraFiguras = new ImageIcon(getClass().getResource("/Recursos/Imagenes/iconos/geometra_figuras.png"));
-        ImageIcon maestroSuma = new ImageIcon(getClass().getResource("/Recursos/Imagenes/iconos/maestro_suma.png"));
-        ImageIcon novatoSuma = new ImageIcon(getClass().getResource("/Recursos/Imagenes/iconos/novato_suma.png"));
+        ImageIcon expertoResta = new ImageIcon(getClass().getResource("/imagenes/iconos/experto_resta.png"));
+        ImageIcon geometraFiguras = new ImageIcon(getClass().getResource("/imagenes/iconos/geometra_figuras.png"));
+        ImageIcon maestroSuma = new ImageIcon(getClass().getResource("/imagenes/iconos/maestro_suma.png"));
+        ImageIcon novatoSuma = new ImageIcon(getClass().getResource("/imagenes/iconos/novato_suma.png"));
 
         String[] columna = {"MEDALLA","TEMA","NOMBRE","DESCRIPCION","PUNTOS"};
 
