@@ -215,9 +215,13 @@ public class MainJFrame extends javax.swing.JFrame {
         opcionC = new javax.swing.JToggleButton();
         opcionD = new javax.swing.JToggleButton();
         pregunta_ejercicio = new javax.swing.JLabel();
+        panelImagenSeleccion = new javax.swing.JPanel();
+        lblImagenPreguntaSeleccion = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         EjercicioEscrito = new javax.swing.JPanel();
         preguntaEjEscrito = new javax.swing.JLabel();
+        panelImagenEscrita = new javax.swing.JPanel();
+        lblImagenPreguntaEscrita = new javax.swing.JLabel();
         siguienteEjercicioEscrita = new javax.swing.JButton();
         respuestaEscrita = new javax.swing.JTextField();
         jLabel54 = new javax.swing.JLabel();
@@ -1066,11 +1070,21 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         subtemaEst.add(cboTemaHijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 252, 660, 80));
 
+        cboDificultad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboDificultadActionPerformed(evt);
+            }
+        });
         subtemaEst.add(cboDificultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 410, 650, 80));
 
         seguirPresentacion.setBorderPainted(false);
         seguirPresentacion.setContentAreaFilled(false);
-        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 550, 160, 60));
+        seguirPresentacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seguirPresentacionActionPerformed(evt);
+            }
+        });
+        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 620, 160, 60));
 
         volver11.setBorderPainted(false);
         volver11.setContentAreaFilled(false);
@@ -1249,6 +1263,11 @@ public class MainJFrame extends javax.swing.JFrame {
         pregunta_ejercicio.setText("pregunta ejercicio");
         EjercicioSeleccion.add(pregunta_ejercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 360, 320));
 
+        lblImagenPreguntaSeleccion.setPreferredSize(new java.awt.Dimension(280, 280));
+        panelImagenSeleccion.add(lblImagenPreguntaSeleccion);
+
+        EjercicioSeleccion.add(panelImagenSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 290, 290));
+
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/plantillaEjerSelecSimp.png"))); // NOI18N
         EjercicioSeleccion.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
@@ -1257,8 +1276,18 @@ public class MainJFrame extends javax.swing.JFrame {
         EjercicioEscrito.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         EjercicioEscrito.add(preguntaEjEscrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 450, 350));
 
+        lblImagenPreguntaEscrita.setPreferredSize(new java.awt.Dimension(280, 280));
+        panelImagenEscrita.add(lblImagenPreguntaEscrita);
+
+        EjercicioEscrito.add(panelImagenEscrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 290, 290));
+
         siguienteEjercicioEscrita.setBorderPainted(false);
         siguienteEjercicioEscrita.setContentAreaFilled(false);
+        siguienteEjercicioEscrita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteEjercicioEscritaActionPerformed(evt);
+            }
+        });
         EjercicioEscrito.add(siguienteEjercicioEscrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 630, 250, 70));
 
         respuestaEscrita.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
@@ -1298,11 +1327,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         retroali_Pcorrecto.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         retroali_Pcorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        retroali_Pcorrecto.setText("jLabel3");
-        ejercicioCorrecto.add(retroali_Pcorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 660, 60));
+        ejercicioCorrecto.add(retroali_Pcorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 660, 130));
 
         lblImagenPanelCorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImagenPanelCorrecto.setText("jLabel42");
         ejercicioCorrecto.add(lblImagenPanelCorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 340, 310, 260));
         ejercicioCorrecto.add(imagenPJCorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 420, 340));
 
@@ -1341,11 +1368,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         retroali_Pincorrecto.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         retroali_Pincorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        retroali_Pincorrecto.setText("jLabel3");
-        ejercicioIncorrecto.add(retroali_Pincorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 660, 60));
+        ejercicioIncorrecto.add(retroali_Pincorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 660, 180));
 
         lblImagenPanelIncorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImagenPanelIncorrecto.setText("jLabel42");
         ejercicioIncorrecto.add(lblImagenPanelIncorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 320, 300, 280));
 
         frase_incorrecto.setBackground(new java.awt.Color(255, 255, 255));
@@ -2702,155 +2727,159 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_volver11ActionPerformed
 
     private void siguiente_ejercicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_ejercicioActionPerformed
-        
-        // Revisa cuál de los JToggleButtons esta seleccionado
+        // 0. Seguridad
+        if (this.ejercicioActual == null) return;
+
         String respuestaElegida = null;
-        if (opcionA.isSelected()) {
-            respuestaElegida = opcionA.getText();
-        } else if (opcionB.isSelected()) {
-            respuestaElegida = opcionB.getText();
-        } else if (opcionC.isSelected()) {
-            respuestaElegida = opcionC.getText();
-        } else if (opcionD.isSelected()) {
-            respuestaElegida = opcionD.getText();
+
+        // --- PASO 1: OBTENER RESPUESTA (Lógica Híbrida) ---
+        if (this.ejercicioActual.getOpciones() != null && this.ejercicioActual.getOpciones().length == 4) {
+            // CASO SELECCIÓN: Usamos el índice del botón seleccionado
+            String[] opcionesReales = this.ejercicioActual.getOpciones();
+            if (opcionA.isSelected()) respuestaElegida = opcionesReales[0];
+            else if (opcionB.isSelected()) respuestaElegida = opcionesReales[1];
+            else if (opcionC.isSelected()) respuestaElegida = opcionesReales[2];
+            else if (opcionD.isSelected()) respuestaElegida = opcionesReales[3];
+        } else {
+            // CASO ESCRITO: Leemos el texto
+            respuestaElegida = respuestaEscrita.getText().trim();
         }
 
-        
-        // Si no selecciono ninguno, muestra un error y se detiene.
-        if (respuestaElegida == null) {
-            JOptionPane.showMessageDialog(this, "Debes seleccionar una opcion para continuar.");
+        // --- PASO 2: VALIDACIÓN ---
+        if (respuestaElegida == null || respuestaElegida.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "¡Por favor, selecciona una opción o escribe tu respuesta!");
             return;
         }
 
-        // se llama a la función 'registrarRespuesta'
-        // el controlador guarda el resultado, los puntos y revisa los logros
+        // --- PASO 3: REGISTRAR ---
         Resultado res = controlador.registrarRespuesta(this.ejercicioActual, respuestaElegida);
 
-        // feedback
-        String fraseMotivadora;
-        String retroalimentacion = res.getEjercicio().getRetroalimentacion();
-        String rutaImagen = res.getEjercicio().getRutaImagen();
+        // --- PASO 4: MOSTRAR FEEDBACK (Manejo de Imagen Condicional) ---
+
+        // Obtenemos los datos para mostrar
+        String retro = res.getEjercicio().getRetroalimentacion();
         String respCorrecta = res.getEjercicio().getRespuestaCorrecta();
 
-        // MUESTRA EL PANEL DE FEEDBACK CORRECTO
+        // ¡AQUÍ ESTÁ LA CLAVE! Obtenemos la ruta. Si es null (ejercicio de texto), el helper lo sabrá.
+        String rutaImg = res.getEjercicio().getRutaImagen(); 
+
+        CardLayout cardLayout = (CardLayout) this.interfazEstudiante.getLayout();
+
         if (res.isEsCorrecto()) {
-            // se obtiene la Frase Motivadora
-            fraseMotivadora =FrasesMotivacionales.getFraseCorrecta(); 
+            // --- 4.1 PANEL CORRECTO ---
+            frase_correcto.setText("<html><center>" + modelo_tanuki.FrasesMotivacionales.getFraseCorrecta() + "</center></html>");
+            retroali_Pcorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
+            respuesta_correc.setText("<html><b>¡Correcto!</b> Respuesta: " + respCorrecta + "</html>");
 
-            // 5.2. Prepara los JLabels del panel "ejercicioCorrecto"
-            // (¡Asegúrate de que tu compañero haya creado estos JLabels!)
-            frase_correcto.setText("<html>"+fraseMotivadora+"<html>");
-            retroali_Pcorrecto.setText("<html>" + (retroalimentacion != null ? retroalimentacion : "") + "</html>");
-            respuesta_correc.setText("<html>Respuesta: " + respCorrecta + "</html>");
+            // Condicional: Si rutaImg existe, se muestra. Si no, se oculta el label.
+            cargarImagenEnLabel(rutaImg, lblImagenPanelCorrecto);
 
-            if (rutaImagen != null && !rutaImagen.isEmpty()) {
-                try {
-                    // 1. Carga la imagen original
-                    ImageIcon originalIcon = new ImageIcon(getClass().getResource(rutaImagen));
-
-                    // 2. Obtiene las dimensiones del JLabel donde se mostrará
-                    int labelWidth = lblImagenPanelCorrecto.getWidth();
-                    int labelHeight = lblImagenPanelCorrecto.getHeight();
-
-                    // 3. Redimensiona la imagen para que se ajuste al JLabel
-                    //    (Mantiene la proporción y la suaviza)
-                    Image scaledImage = originalIcon.getImage().getScaledInstance(
-                        labelWidth, 
-                        labelHeight, 
-                        Image.SCALE_SMOOTH
-                    );
-
-                    // 4. Crea un nuevo ImageIcon con la imagen redimensionada
-                    ImageIcon scaledIcon = new ImageIcon(scaledImage);
-
-                    // 5. Establece el icono en el JLabel
-                    lblImagenPanelCorrecto.setIcon(scaledIcon);
-                    lblImagenPanelCorrecto.setVisible(true);
-                } catch (Exception e) { 
-                    // Si hay un error, ocultar y opcionalmente imprimir el error
-                    System.err.println("Error al cargar la imagen: " + rutaImagen + " - " + e.getMessage());
-                    lblImagenPanelCorrecto.setVisible(false); 
-                }
-            } else {
-                lblImagenPanelCorrecto.setVisible(false);
-            }
-
-            // muestra el panel "ejercicioCorrecto"
-            CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-            cardLayout.show(cardInterfazEstudiante,"ejercicioCorrecto");
+            cardLayout.show(interfazEstudiante, "ejercicioCorrecto");
 
         } else {
-            //panel incorrecto
-            // obtiene la Frase Motivadora
-            fraseMotivadora = modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta();
-            frase_incorrecto.setText("<html>"+ fraseMotivadora + "<html>");
-            retroali_Pincorrecto.setText("<html>" + (retroalimentacion != null ? retroalimentacion : "") + "</html>");
-            respuesta_correc1.setText("<html>Respuesta: " + respCorrecta + "</html>");
+            // --- 4.2 PANEL INCORRECTO ---
+            frase_incorrecto.setText("<html><center>" + modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta() + "</center></html>");
+            retroali_Pincorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
+            respuesta_correc1.setText("<html>La respuesta era: <b>" + respCorrecta + "</b></html>");
 
-            if (rutaImagen != null && !rutaImagen.isEmpty()) {
-                try {
-                    lblImagenPanelIncorrecto.setIcon(new ImageIcon(getClass().getResource(rutaImagen)));
-                    lblImagenPanelIncorrecto.setVisible(true);
-                } catch (Exception e) { lblImagenPanelIncorrecto.setVisible(false); }
-            } else {
-                lblImagenPanelIncorrecto.setVisible(false);
-            }
+            // Condicional: Si rutaImg existe, se muestra. Si no, se oculta el label.
+            cargarImagenEnLabel(rutaImg, lblImagenPanelIncorrecto);
 
-            // muestra el panel "ejercicioIncorrecto"
-            CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-            cardLayout.show(cardInterfazEstudiante,"ejercicioIncorrecto");
+            cardLayout.show(interfazEstudiante, "ejercicioIncorrecto");
         }
-
     }//GEN-LAST:event_siguiente_ejercicioActionPerformed
 
     private void continuar_ejer_correctoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuar_ejer_correctoActionPerformed
-        // llama al controlador para cargar la SIGUIENTE pregunta
-        //this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista(pregunta_ejercicio, opcionA, opcionB, opcionC, opcionD, grupoOpciones);
+            this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista(
+            // A. CONTROL DE FLUJO
+            (java.awt.CardLayout) interfazEstudiante.getLayout(),
+            interfazEstudiante,
 
-        if (this.ejercicioActual != null) {
-            // si hay ejercicio, muestra el panel
-            CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-            cardLayout.show(cardInterfazEstudiante,"plantillaEjercicio");
-        } else {
-            // Si NO hay ejercicio vuelve al menu de temas
-            // (El controlador ya mostro el pop-up de subir nivel si aplica)
-            controlador.finalizarPractica();
-            CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-            cardLayout.show(cardInterfazEstudiante,"interfazEstudiante");
+            // B. PANELES DE IMAGEN DE PREGUNTA
+            lblImagenPreguntaSeleccion, panelImagenSeleccion,
+            lblImagenPreguntaEscrita,   panelImagenEscrita,
 
-            // selecciona practica
-            JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane1;
-            tabbedPane.setSelectedComponent(cardPracticaEst);
+            // C. COMPONENTES DE SELECCIÓN
+            pregunta_ejercicio, preguntaEjEscrito,respuestaEscrita,
+            opcionA, opcionB, opcionC, opcionD, 
+            grupoOpciones
+            );
 
-            // muestra la tarjeta de subtema dentro de la practica
-            CardLayout cardLayout2 = (CardLayout) this.cardPracticaEst.getLayout();
-            cardLayout2.show(cardPracticaEst,"subtemaEst");
+        // 2. VERIFICAR SI TERMINÓ LA PRÁCTICA
+        if (this.ejercicioActual == null) {
+            // Si devuelve null, significa que se acabaron los ejercicios.
+            // El controlador YA llamó internamente a finalizarPractica() (mostrando el mensaje de puntaje).
+
+            // AHORA NOS TOCA NAVEGAR DE VUELTA AL MENÚ (Selección de Tema)
+
+            // Paso A: Volver a mostrar el TabbedPane principal dentro de interfazEstudiante
+            java.awt.CardLayout mainLayout = (java.awt.CardLayout) interfazEstudiante.getLayout();
+            // NOTA: Revisa en el Navigator qué "Nombre de Tarjeta" le diste al jTabbedPane1.
+            // Por defecto suele ser el nombre de la variable, o algo como "cardTabs".
+            // Asumiré que la tarjeta se llama "jTabbedPane1" o la que usabas antes.
+            mainLayout.show(interfazEstudiante, "jTabbedPane1"); 
+
+            // Paso B: Seleccionar la pestaña de "Práctica"
+            jTabbedPane1.setSelectedComponent(cardPracticaEst);
+
+            // Paso C: Dentro de la pestaña Práctica, volver al inicio ("subtemaEst")
+            java.awt.CardLayout practiceLayout = (java.awt.CardLayout) cardPracticaEst.getLayout();
+            practiceLayout.show(cardPracticaEst, "subtemaEst");
+
+            // Paso D: Limpiar campos por seguridad (Opcional)
+            respuestaEscrita.setText("");
+            if (grupoOpciones != null) grupoOpciones.clearSelection();
         }
-        this.revalidate(); // Recalcula el layout
-        this.repaint();  // Redibuja la ventana
+
+        // Si NO es null, el controlador ya cambió la tarjeta a "EjercicioSeleccion" o "EjercicioEscrito",
+        // así que no tenemos que hacer nada más aquí.
+    
     }//GEN-LAST:event_continuar_ejer_correctoActionPerformed
 
     private void continuar_ejer_incoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuar_ejer_incoActionPerformed
-       //this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista(pregunta_ejercicio, opcionA, opcionB, opcionC, opcionD, // los 4 JToggleButtons grupoOpciones // El ButtonGroup);
-    
-        if (this.ejercicioActual != null) {
-            // si hay ejercicio, muestra el panel de la plantilla
-            CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-            cardLayout.show(cardInterfazEstudiante,"plantillaEjercicio");
-        } else {
-            //si NO hay ejercicio vuelve al meni de temas
-            CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-            cardLayout.show(cardInterfazEstudiante,"interfazEstudiante");
+        this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista(
+            // A. CONTROL DE FLUJO
+            (java.awt.CardLayout) interfazEstudiante.getLayout(),
+            interfazEstudiante,
 
-            //selecciona la pestaña practica
-            JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane1;
-            tabbedPane.setSelectedComponent(cardPracticaEst);
+            // B. PANELES DE IMAGEN DE PREGUNTA
+            lblImagenPreguntaSeleccion, panelImagenSeleccion,
+            lblImagenPreguntaEscrita,   panelImagenEscrita,
 
-            CardLayout cardLayout2 = (CardLayout) this.cardPracticaEst.getLayout();
-            cardLayout2.show(cardPracticaEst,"subtemaEst");
+            // C. COMPONENTES DE SELECCIÓN
+            pregunta_ejercicio, preguntaEjEscrito,respuestaEscrita,
+            opcionA, opcionB, opcionC, opcionD, 
+            grupoOpciones
+            );
+
+        // 2. VERIFICAR SI TERMINÓ LA PRÁCTICA
+        if (this.ejercicioActual == null) {
+            // Si devuelve null, significa que se acabaron los ejercicios.
+            // El controlador YA llamó internamente a finalizarPractica() (mostrando el mensaje de puntaje).
+
+            // AHORA NOS TOCA NAVEGAR DE VUELTA AL MENÚ (Selección de Tema)
+
+            // Paso A: Volver a mostrar el TabbedPane principal dentro de interfazEstudiante
+            java.awt.CardLayout mainLayout = (java.awt.CardLayout) interfazEstudiante.getLayout();
+            // NOTA: Revisa en el Navigator qué "Nombre de Tarjeta" le diste al jTabbedPane1.
+            // Por defecto suele ser el nombre de la variable, o algo como "cardTabs".
+            // Asumiré que la tarjeta se llama "jTabbedPane1" o la que usabas antes.
+            mainLayout.show(interfazEstudiante, "jTabbedPane1"); 
+
+            // Paso B: Seleccionar la pestaña de "Práctica"
+            jTabbedPane1.setSelectedComponent(cardPracticaEst);
+
+            // Paso C: Dentro de la pestaña Práctica, volver al inicio ("subtemaEst")
+            java.awt.CardLayout practiceLayout = (java.awt.CardLayout) cardPracticaEst.getLayout();
+            practiceLayout.show(cardPracticaEst, "subtemaEst");
+
+            // Paso D: Limpiar campos por seguridad (Opcional)
+            respuestaEscrita.setText("");
+            if (grupoOpciones != null) grupoOpciones.clearSelection();
         }
-        this.revalidate(); // Recalcula el layout
-        this.repaint();  // Redibuja la ventana
+
+        // Si NO es null, el controlador ya cambió la tarjeta a "EjercicioSeleccion" o "EjercicioEscrito",
+        // así que no tenemos que hacer nada más aquí.
     }//GEN-LAST:event_continuar_ejer_incoActionPerformed
 
     private void editarPerfil2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPerfil2ActionPerformed
@@ -3604,7 +3633,19 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cboTemaPadreActionPerformed
 
     private void cboTemaHijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTemaHijoActionPerformed
-        // TODO add your handling code here:
+       Object seleccion = cboTemaHijo.getSelectedItem();
+    
+        if (seleccion != null && seleccion instanceof Tema) {
+            Tema temaSeleccionado = (Tema) seleccion;
+
+            // 2. Llamar al controlador para actualizar el SEGUNDO combo (Niveles)
+            // Esto ejecutará la lógica de "Si soy Elevado, muéstrame Bajo, Medio, Optimo, Elevado"
+            controlador.cargarNivelesPermitidos(temaSeleccionado, cboDificultad);
+
+        } else {
+            // Si no hay selección, limpiar niveles
+            cboDificultad.removeAllItems();
+        }
     }//GEN-LAST:event_cboTemaHijoActionPerformed
 
     private void cboTemaPadreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTemaPadreItemStateChanged
@@ -3727,31 +3768,40 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_volverDeGraficoSalonActionPerformed
 
     private void seguir_temahijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguir_temahijoActionPerformed
-        // obtiene el Tema HIJO seleccionado
-        Tema temaSeleccionado = (modelo_tanuki.Tema) cboTemaHijo.getSelectedItem();
-        if (temaSeleccionado == null) {
-            JOptionPane.showMessageDialog(this, "Por favor, selecciona un sub-tema.");
-            return;
+        boolean puedeEmpezar = controlador.iniciarNuevaPractica();
+
+        // Si hubo un error (ej: no hay ejercicios), el controlador ya mostró el mensaje. Salimos.
+        if (!puedeEmpezar) {
+            return; 
         }
 
-        // llama al controlador para preparar la práctica
-        // (Verifica si tiene salon, si hay 5 ejercicios, etc.)
-        boolean puedeEmpezar = controlador.iniciarNuevaPractica(temaSeleccionado);
+        // 3. CARGAR LA PRIMERA PREGUNTA
+        // En lugar de hacer cardLayout.show() manualmente, dejamos que el
+        // "Director de Orquesta" decida qué panel mostrar (Selección o Escrito).
 
-        if (puedeEmpezar) {
-            // guarda el tema y carga la PRIMERA pregunta
-            this.temaSeleccionado = temaSeleccionado;
-            //this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista(pregunta_ejercicio,opcionA, opcionB, opcionC, opcionD,grupoOpciones);
+        this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista((java.awt.CardLayout) interfazEstudiante.getLayout(), // El layout
+            interfazEstudiante,                                   // El panel padre
 
-            // CAMBIAR SEGUN EL TIPO DE EJERCICIO
-            CardLayout cardLayout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-            cardLayout.show(cardInterfazEstudiante,"EjercicioSeleccion");
-            // ACA ESTA EL OTRO TIPO DE EJERCICIO
-            //cardLayout.show(cardInterfazEstudiante,"EjercicioSeleccion");
-        }
-        // Si es falso el controlador ya mostro el error
-        this.revalidate(); // Recalcula el layout
-        this.repaint();  // Redibuja la ventana
+            // B. PANELES DE IMAGEN DE PREGUNTA (Los que creamos para ocultar/mostrar)
+            lblImagenPreguntaSeleccion, panelImagenSeleccion,
+            lblImagenPreguntaEscrita,   panelImagenEscrita,
+
+            // C. COMPONENTES DE SELECCIÓN (Tus JToggleButtons)
+            pregunta_ejercicio, // Label de la pregunta
+            preguntaEjEscrito, // label de pregunta de panelEjercicioEscrito
+            
+            respuestaEscrita,    // TextField de respuesta
+            opcionA,            // Botón A
+            opcionB,            // Botón B
+            opcionC,            // Botón C
+            opcionD,            // Botón D
+            grupoOpciones   
+        );
+
+        // 4. FORZAR ACTUALIZACIÓN VISUAL (Por si acaso)
+        this.revalidate();
+        this.repaint();
+    
     }//GEN-LAST:event_seguir_temahijoActionPerformed
 
     private void tutorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorialActionPerformed
@@ -3777,6 +3827,80 @@ public class MainJFrame extends javax.swing.JFrame {
         CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
         cardLayout.show(cardPracticaEst,"descripcionTema");
     }//GEN-LAST:event_irADescripcionActionPerformed
+
+    private void seguirPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguirPresentacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_seguirPresentacionActionPerformed
+
+    private void siguienteEjercicioEscritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteEjercicioEscritaActionPerformed
+    
+
+        // 0. Seguridad
+        if (this.ejercicioActual == null) return;
+
+        String respuestaElegida = null;
+
+        // --- PASO 1: OBTENER RESPUESTA (Lógica Híbrida) ---
+        if (this.ejercicioActual.getOpciones() != null && this.ejercicioActual.getOpciones().length == 4) {
+            // CASO SELECCIÓN: Usamos el índice del botón seleccionado
+            String[] opcionesReales = this.ejercicioActual.getOpciones();
+            if (opcionA.isSelected()) respuestaElegida = opcionesReales[0];
+            else if (opcionB.isSelected()) respuestaElegida = opcionesReales[1];
+            else if (opcionC.isSelected()) respuestaElegida = opcionesReales[2];
+            else if (opcionD.isSelected()) respuestaElegida = opcionesReales[3];
+        } else {
+            // CASO ESCRITO: Leemos el texto
+            respuestaElegida = respuestaEscrita.getText().trim();
+        }
+
+        // --- PASO 2: VALIDACIÓN ---
+        if (respuestaElegida == null || respuestaElegida.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "¡Por favor, selecciona una opción o escribe tu respuesta!");
+            return;
+        }
+
+        // --- PASO 3: REGISTRAR ---
+        Resultado res = controlador.registrarRespuesta(this.ejercicioActual, respuestaElegida);
+
+        // --- PASO 4: MOSTRAR FEEDBACK (Manejo de Imagen Condicional) ---
+
+        // Obtenemos los datos para mostrar
+        String retro = res.getEjercicio().getRetroalimentacion();
+        String respCorrecta = res.getEjercicio().getRespuestaCorrecta();
+
+        // ¡AQUÍ ESTÁ LA CLAVE! Obtenemos la ruta. Si es null (ejercicio de texto), el helper lo sabrá.
+        String rutaImg = res.getEjercicio().getRutaImagen(); 
+
+        CardLayout cardLayout = (CardLayout) this.interfazEstudiante.getLayout();
+
+        if (res.isEsCorrecto()) {
+            // --- 4.1 PANEL CORRECTO ---
+            frase_correcto.setText("<html><center>" + modelo_tanuki.FrasesMotivacionales.getFraseCorrecta() + "</center></html>");
+            retroali_Pcorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
+            respuesta_correc.setText("<html><b>¡Correcto!</b> Respuesta: " + respCorrecta + "</html>");
+
+            // Condicional: Si rutaImg existe, se muestra. Si no, se oculta el label.
+            cargarImagenEnLabel(rutaImg, lblImagenPanelCorrecto);
+
+            cardLayout.show(interfazEstudiante, "ejercicioCorrecto");
+
+        } else {
+            // --- 4.2 PANEL INCORRECTO ---
+            frase_incorrecto.setText("<html><center>" + modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta() + "</center></html>");
+            retroali_Pincorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
+            respuesta_correc1.setText("<html>La respuesta era: <b>" + respCorrecta + "</b></html>");
+
+            // Condicional: Si rutaImg existe, se muestra. Si no, se oculta el label.
+            cargarImagenEnLabel(rutaImg, lblImagenPanelIncorrecto);
+
+            cardLayout.show(interfazEstudiante, "ejercicioIncorrecto");
+        }
+
+    }//GEN-LAST:event_siguienteEjercicioEscritaActionPerformed
+
+    private void cboDificultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDificultadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboDificultadActionPerformed
     
     private modelo_tanuki.PeriodoReporte getPeriodoEnumFromString(String s) {
         if (s == null) return modelo_tanuki.PeriodoReporte.COMPLETO;
@@ -3791,6 +3915,39 @@ public class MainJFrame extends javax.swing.JFrame {
             case "Histórico": // O "Completo"
             default:
                 return modelo_tanuki.PeriodoReporte.COMPLETO;
+        }
+    }
+    
+    private void cargarImagenEnLabel(String rutaImagen, javax.swing.JLabel labelDestino) {
+        // CONDICIÓN CRÍTICA:
+        // Si la ruta es nula o vacía (caso ejercicio de texto), OCULTAMOS el label.
+        if (rutaImagen == null || rutaImagen.isEmpty()) {
+            labelDestino.setVisible(false); // <--- Aquí se oculta
+            labelDestino.setIcon(null);
+            return;
+        }
+
+        try {
+            // Si hay ruta, intentamos cargarla y MOSTRAR el label
+            String rutaCompleta = "/imagenes/" + rutaImagen; 
+            java.net.URL url = getClass().getResource(rutaCompleta);
+
+            if (url != null) {
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(url);
+                // Redimensionado simple
+                int w = labelDestino.getWidth() > 0 ? labelDestino.getWidth() : 150;
+                int h = labelDestino.getHeight() > 0 ? labelDestino.getHeight() : 150;
+
+                java.awt.Image img = icon.getImage().getScaledInstance(w, h, java.awt.Image.SCALE_SMOOTH);
+
+                labelDestino.setIcon(new javax.swing.ImageIcon(img));
+                labelDestino.setVisible(true); // <--- Aquí se muestra
+            } else {
+                // Si la ruta existe pero el archivo no, ocultamos por seguridad
+                labelDestino.setVisible(false);
+            }
+        } catch (Exception e) {
+            labelDestino.setVisible(false);
         }
     }
     
@@ -4054,6 +4211,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField17;
     private javax.swing.JLabel lblImagenPanelCorrecto;
     private javax.swing.JLabel lblImagenPanelIncorrecto;
+    private javax.swing.JLabel lblImagenPreguntaEscrita;
+    private javax.swing.JLabel lblImagenPreguntaSeleccion;
     private javax.swing.JButton maestro1;
     private javax.swing.JButton mostrarIdSalon;
     private javax.swing.JLabel nombreEstGrafico;
@@ -4066,6 +4225,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JToggleButton opcionD;
     private javax.swing.JPanel panelContenedorGraficoEst;
     private javax.swing.JPanel panelContenedorGraficoSalon;
+    private javax.swing.JPanel panelImagenEscrita;
+    private javax.swing.JPanel panelImagenSeleccion;
     private javax.swing.JButton perfil1;
     private javax.swing.JButton perfil2;
     private javax.swing.JPanel perfilEst;
