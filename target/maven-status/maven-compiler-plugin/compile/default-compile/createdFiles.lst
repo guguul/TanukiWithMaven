@@ -50,6 +50,7 @@ modelo_tanuki\ConfiguracionReporte.class
 vista\MainJFrame$112.class
 vista\MainJFrame$16.class
 vista\MainJFrame$36.class
+vista\MainJFrame$132.class
 vista\MainJFrame$96.class
 vista\MainJFrame$13.class
 vista\MainJFrame$70.class
@@ -70,8 +71,11 @@ vista\MainJFrame$8.class
 vista\MainJFrame$39.class
 vista\MainJFrame$94.class
 modelo_tanuki\AnalizadorSalon$1.class
+Persistencia\ConvertidorExcelAJson$1.class
 modelo_tanuki\Progreso.class
+Persistencia\ConvertidorExcelAJson.class
 vista\MainJFrame$110.class
+modelo_tanuki\FiltroPractica.class
 vista\MainJFrame$89.class
 vista\MainJFrame$105.class
 controller\SistemaControlador$1.class
@@ -87,6 +91,7 @@ vista\MainJFrame$7.class
 controller\SistemaControlador$2.class
 vista\MainJFrame$17.class
 vista\MainJFrame$111.class
+vista\MainJFrame$131.class
 vista\MainJFrame$97.class
 vista\MainJFrame$37.class
 vista\MainJFrame$57.class
@@ -126,6 +131,7 @@ vista\MainJFrame$10.class
 vista\MainJFrame$83.class
 vista\MainJFrame$30.class
 vista\MainJFrame.class
+vista\MainJFrame$130.class
 vista\MainJFrame$3.class
 vista\MainJFrame$118.class
 vista\MainJFrame$99.class
