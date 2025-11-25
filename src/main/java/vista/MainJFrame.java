@@ -41,7 +41,9 @@ import javax.swing.ImageIcon;
 import java.time.*;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 /**
  *
@@ -70,6 +72,47 @@ public class MainJFrame extends javax.swing.JFrame {
             this.grupoOpciones.add(opcionB); 
             this.grupoOpciones.add(opcionC); 
             this.grupoOpciones.add(opcionD);
+            
+        javax.swing.JButton[] todosLosBotones = {
+            comenzar, salir1, iniciarSesion, registrate, salir2, estudiante1, maestro1, volver1, 
+            volver3, aceptar1, aceptar3, volver5, aceptar4, volver6, perfil1, progreso, salon, 
+            practica, cerrarSesion1, editarPerfil, guardar1, volver7, consultarInfo, unirseSalon, 
+            volver8, enviar, volver10, continuar_tema, seguirPresentacion, volver11, irADescripcion, 
+            volver, volver2, irAPrevia, atras, tutorial, seguir_temahijo, volverAPractica, 
+            siguiente_ejercicio, siguienteEjercicioEscrita, continuar_ejer_correcto, 
+            continuar_ejer_inco, perfil2, solicitudes, salones, reportes, cerrarSesion2, 
+            editarPerfil2, guardar2, volver9, filtrar, aceptar, crearSalon, borrarSalon, 
+            sacarEstudiante, aggEst, mostrarIdSalon, crear, volver13, guardar, volver14, 
+            volver15, eliminar, volver16, volver17, sacar, porSalon, porEstudiante, volver18, 
+            consultarReporte, volver19, tablaDesempeno, graficoDesempeno, volver20, exportarPdf1, 
+            exportarExcel1, volverDeTablaSalon, exportarPdf2, exportarExcel2, volverDeGraficoSalon, 
+            filtrarEstReporte, volver21, btnVerTablaEstudiante, graficoDesempeno2, volver22, 
+            exportarPdf3, exportarExcel3, volverDeTablaEst, exportarPdf4, exportarExcel4, 
+            volverDeGraficoEst
+        };
+        for (javax.swing.JButton btn : todosLosBotones) {
+                btn.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mouseEntered(java.awt.event.MouseEvent evt) {
+                        controlador.reproducirSonido("mouseclick1.wav");
+                    }
+            });
+        }
+        
+        ejercicioCorrecto.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                // Este código se ejecuta CADA VEZ que el panel se hace visible
+                controlador.reproducirSonido("CORRECTO.wav");
+            }
+        });
+        
+        ejercicioIncorrecto.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                // Este código se ejecuta CADA VEZ que el panel se hace visible
+                controlador.reproducirSonido("INCORRECTO.wav");
+            }
+        });
     }
     
 
@@ -2598,11 +2641,19 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarSesion2ActionPerformed
 
     private void salir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir1ActionPerformed
-        System.exit(0);
+        int confirmacion = JOptionPane.showOptionDialog(
+                        null,"¿Desea salir de Tanuki?", "",
+                        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+        if (confirmacion==0) 
+          this.dispose();
     }//GEN-LAST:event_salir1ActionPerformed
 
     private void salir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir2ActionPerformed
-        System.exit(0);
+        int confirmacion = JOptionPane.showOptionDialog(
+                        null,"¿Desea salir de Tanuki?", "",
+                        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+        if (confirmacion==0) 
+          this.dispose();
     }//GEN-LAST:event_salir2ActionPerformed
 
     private void editarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPerfilActionPerformed
