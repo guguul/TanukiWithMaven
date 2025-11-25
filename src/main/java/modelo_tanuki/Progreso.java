@@ -62,26 +62,43 @@ public class Progreso {
         }
         return totalTema;
     }
-    public void subirNivel(Tema t) {
+    
+    public boolean subirNivel(Tema t) {
         NivelDificultad nivelActual = this.getNivelActual(t);
-        
+        boolean huboCambio = false; // Bandera para saber si subió
+
         switch (nivelActual) {
-            case BAJO://si el tema no esta en el map, devuelve bajo
+            case BAJO:
+                // De Bajo pasa a Medio
                 this.nivelesDesbloqueados.put(t, NivelDificultad.MEDIO);
+                huboCambio = true;
                 break;
+
             case MEDIO:
+                // De Medio pasa a Optimo
                 this.nivelesDesbloqueados.put(t, NivelDificultad.OPTIMO);
+                huboCambio = true;
                 break;
+
             case OPTIMO:
+                // De Optimo pasa a Elevado
                 this.nivelesDesbloqueados.put(t, NivelDificultad.ELEVADO);
+                huboCambio = true;
                 break;
+
             case ELEVADO:
-                this.nivelesDesbloqueados.put(t, NivelDificultad.MUYELEVADO);
+                // Ya es el máximo, no hace nada
+                huboCambio = false;
                 break;
-            case MUYELEVADO:
-                //nivel maximo no hace nada
+
+            default:
+                // Por seguridad, si no hay nivel, empieza en Medio (sube desde Bajo implícito)
+                this.nivelesDesbloqueados.put(t, NivelDificultad.MEDIO);
+                huboCambio = true;
                 break;
         }
+
+        return huboCambio; // Devuelve true solo si cambio el nivel
     }
         
     

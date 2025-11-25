@@ -49,6 +49,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import java.time.*;
+import java.io.File;
 
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.cloud.FirestoreClient;
@@ -59,6 +60,9 @@ import java.util.HashMap;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 
+import javax.sound.sampled.*; 
+import java.io.IOException;
+import java.net.URL;
 
 public class SistemaControlador {
     
@@ -76,7 +80,11 @@ public class SistemaControlador {
     private List<Ejercicio> ejerciciosFallados = new ArrayList<>();
     private boolean esRondaDeRepeticion = false;
     private Random decisionAleatoria = new Random();
-    
+    private List<Ejercicio> ejerciciosPendientes; 
+    private Ejercicio ejercicioActual;   
+    private Tema temaSeleccionado;
+    private NivelDificultad nivelSeleccionado;
+    private FiltroPractica filtroPractica;
     
     public SistemaControlador(){
         DatosPrecargados datos = new DatosPrecargados();
@@ -86,6 +94,7 @@ public class SistemaControlador {
         this.listaTemas = datos.getTemas();
         this.listaLogros = datos.getLogros();
         this.listaSalones = datos.getSalones();
+        this.filtroPractica = new FiltroPractica();
         
         for (Usuario user: listaUsuarios){
             if (user instanceof Estudiante){
@@ -144,16 +153,42 @@ public class SistemaControlador {
     }
     
     
-    
-    public void validarLetras (java.awt.event.KeyEvent evt){
-        int k=(int)evt.getKeyChar();
-            if ((k < 97 || k > 122) && (k<65 || k>90) && k!=20 && k!=8 && k!=32 && k!=127){
-                evt.setKeyChar((char)KeyEvent.VK_CLEAR);
-                JOptionPane.showMessageDialog(null,"Sólo debe ingresar letras","Error Datos",JOptionPane.ERROR_MESSAGE);
+
+    public void reproducirSonido(String nombreArchivo) {
+        try {
+            // 1. Obtenemos la URL del archivo (Igual que con tus imágenes)
+            // Nota: Asume que tienes una carpeta "sonidos" dentro de resources
+            URL url = getClass().getResource("/sonidos/" + nombreArchivo);
+
+            if (url != null) {
+                // 2. Abrir el flujo de audio
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+                // 3. Obtener un clip de sonido del sistema
+                Clip clip = AudioSystem.getClip();
+                // 4. Abrir el clip y reproducirlo
+                clip.open(audioIn);
+                clip.start();
+            } else {
+                System.err.println("No se encontró el archivo de sonido: " + nombreArchivo);
             }
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
         }
+    }
+    
+    public boolean validarCampoTexto(JTextField campo) {
+        String texto = campo.getText().trim(); 
+
+        if (texto.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+")) {
+            return true; 
+        } else {
+            JOptionPane.showMessageDialog(null,"Solo puede ingresar letras en Nombre y Apellido","Error Datos",JOptionPane.ERROR_MESSAGE);
+            return false; // No es válido
+        }
+    }
+    
     public boolean esVacio (JTextField campo, String mensaje){
-            if (campo.getText().isEmpty()|| "Ingresa tu primer nombre".equals(campo.getText())|| campo.getText().equals("Ingresa tu primer apellido")||campo.getText().equals("tucorreo@gmail.com")|| campo.getText().equals("********"))
+            if (campo.getText().isEmpty()|| "Ingresa tu primer nombre".equals(campo.getText())|| campo.getText().equals("Ingresa tu primer apellido")||campo.getText().equals("Ingrese un nombre de usuario")|| campo.getText().equals("********"))
                { JOptionPane.showMessageDialog(null, mensaje, "Error falta un dato", JOptionPane.ERROR_MESSAGE); 
                  return true; 
                }
@@ -181,22 +216,7 @@ public class SistemaControlador {
             return true;   
        }
     }
-    
-    public boolean validarCorreo(String correo){
-        String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
-        
-        if (Pattern.matches(regex,correo)) {
-            return true;
-        }
-        else {
-            JOptionPane.showMessageDialog(
-                    null, "El formato del correo '" + correo + "' no es válido.","ERROR DE FORMATO",
-                    JOptionPane.ERROR_MESSAGE);
-            return false;
-        
-        }
-    }
-    
+  
     public boolean validarSalon(){
         Estudiante est = (Estudiante) usuarioActual;
         boolean tieneSalon;
@@ -231,7 +251,7 @@ public class SistemaControlador {
     
     public boolean registrarEstudiante(JTextField nombre, JTextField apellido, JTextField correo, JPasswordField clave){
         boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un correo (puede ser de su representante)")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCorreo(correo.getText())==true){
+        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true){
             Usuario estudianteRegistrado = buscarUsuario(correo.getText());
             if (estudianteRegistrado == null){
                 Estudiante estudianteNuevo = new Estudiante();
@@ -258,7 +278,7 @@ public class SistemaControlador {
     
     public boolean registrarMaestro(JTextField nombre, JTextField apellido, JTextField correo, JPasswordField clave){
         boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un correo")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCorreo(correo.getText())==true){
+        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un correo")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true){
             Usuario maestroRegistrado = buscarUsuario(correo.getText());
             if (maestroRegistrado == null){
                 Maestro maestroNuevo = new Maestro();
@@ -342,7 +362,7 @@ public class SistemaControlador {
                     estudiante.setApellido(documento.getString("apellido"));
                     estudiante.setApellido(documento.getString("contrasena"));
                     //se pueden poner datos especificos
-                    usuarioLogueado = estudiante;
+                    this.usuarioActual = estudiante;
                     
                 } else if (rol.equals("maestro")) {
                     Maestro maestro = new Maestro();
@@ -351,14 +371,14 @@ public class SistemaControlador {
                     maestro.setApellido(documento.getString("apellido"));
                     maestro.setApellido(documento.getString("contrasena"));
                     //se pueden poner datos especificos
-                    usuarioLogueado = maestro;
+                    this.usuarioActual = maestro;
                 } else {
                 JOptionPane.showMessageDialog(null,"Error: Rol desconocido '" + rol + "' en la BD.","Error en el inicio de sesion",JOptionPane.ERROR_MESSAGE);
                 
                 return null;
                 }
                 JOptionPane.showMessageDialog(null,"Bienvenido a Tanuki "+documento.getString("nombre"),"",JOptionPane.INFORMATION_MESSAGE);
-                return usuarioLogueado;
+                return this.usuarioActual;
             } else {
                 
                 JOptionPane.showMessageDialog(null,"No se encontró usuario con correo: ","Error en el inicio de sesion",JOptionPane.ERROR_MESSAGE);
@@ -373,7 +393,7 @@ public class SistemaControlador {
     }
     
     public Usuario iniciarSesionUsuario(JTextField correo, JPasswordField clave){
-        if (esVacio(correo,"Debe indicar su correo")==false && esVacio(clave,"Debe indicar su contraseña")==false && validarCorreo(correo.getText())==true){
+        if (esVacio(correo,"Debe indicar su correo")==false && esVacio(clave,"Debe indicar su contraseña")==false){
             String contrasena = new String(clave.getPassword());
             Usuario user = validarInicioSesion(correo.getText(),contrasena);
             if (user == null){
@@ -482,7 +502,7 @@ public class SistemaControlador {
     
     public boolean editarPerfil(JTextField nombre, JTextField apellido, JTextField correo, JTextField clave){
         boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un correo")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCorreo(correo.getText())==true){
+        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false){
             if (correo.getText().equals(usuarioActual.getCorreo())){
                 usuarioActual.setNombre(nombre.getText());
                 usuarioActual.setApellido(apellido.getText());
@@ -547,10 +567,10 @@ public class SistemaControlador {
 
         List<Logro> listaL = estudianteActual.getLogros();
 
-        ImageIcon expertoResta = new ImageIcon(getClass().getResource("/Recursos/Imagenes/iconos/experto_resta.png"));
-        ImageIcon geometraFiguras = new ImageIcon(getClass().getResource("/Recursos/Imagenes/iconos/geometra_figuras.png"));
-        ImageIcon maestroSuma = new ImageIcon(getClass().getResource("/Recursos/Imagenes/iconos/maestro_suma.png"));
-        ImageIcon novatoSuma = new ImageIcon(getClass().getResource("/Recursos/Imagenes/iconos/novato_suma.png"));
+        ImageIcon expertoResta = new ImageIcon(getClass().getResource("/imagenes/iconos/experto_resta.png"));
+        ImageIcon geometraFiguras = new ImageIcon(getClass().getResource("/imagenes/iconos/geometra_figuras.png"));
+        ImageIcon maestroSuma = new ImageIcon(getClass().getResource("/imagenes/iconos/maestro_suma.png"));
+        ImageIcon novatoSuma = new ImageIcon(getClass().getResource("/imagenes/iconos/novato_suma.png"));
 
         String[] columna = {"MEDALLA","TEMA","NOMBRE","DESCRIPCION","PUNTOS"};
 
@@ -811,7 +831,7 @@ public class SistemaControlador {
         return temasPadre;
     }
     
-    public boolean iniciarNuevaPractica(Tema tema) {
+    public boolean iniciarNuevaPractica() {
         if (this.usuarioActual == null || !(this.usuarioActual instanceof Estudiante)) { //el usuario es estduante
              JOptionPane.showMessageDialog(null, "Error: No hay un estudiante logueado.", "Error", JOptionPane.ERROR_MESSAGE);
              return false;
@@ -826,18 +846,21 @@ public class SistemaControlador {
             return false; // NO DEJA JUGAR
         }
         
+        if (this.temaSeleccionado == null || this.nivelSeleccionado == null) {
+            JOptionPane.showMessageDialog(null, "Error: No se ha seleccionado Tema o Nivel para la práctica.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        Tema tema = this.temaSeleccionado; // Usar el tema guardado
+        NivelDificultad nivel = this.nivelSeleccionado; // Usar el nivel guardado
         //obtener grupo y nivel del estudiante
         int gradoGrupo = getGrupoDeGrado(est); 
-        modelo_tanuki.NivelDificultad nivel = est.getProgreso().getNivelActual(tema);
        
-        this.practicaActual = tema.getPractica(nivel, gradoGrupo); //tema q se va a practicar
+        List<Ejercicio> ejerciciosCompletos = this.filtroPractica.getEjerciciosFiltrados(tema, nivel, gradoGrupo);
         
         // resetear los contadores
         this.resultadosTemporales.clear();
         this.indicePreguntaActual = 0;
         
-        // validar si existen ejercicios
-        List<Ejercicio> ejerciciosCompletos = tema.getPractica(nivel, gradoGrupo);
     
         if (ejerciciosCompletos.isEmpty()) {
             JOptionPane.showMessageDialog(null,"¡Próximamente! No hay ejercicios de '" + tema.getNombre() + "'...", "Contenido Faltante",JOptionPane.INFORMATION_MESSAGE );
@@ -856,27 +879,17 @@ public class SistemaControlador {
 
     public Ejercicio getSiguientePregunta() {
         if (!practicaActual.isEmpty()) {
-            return practicaActual.remove(0); // saca la primera pregunta de la lista
-        }        
-        // verifica si era la ronda 1
+            return practicaActual.remove(0);
+        }    
         if (!esRondaDeRepeticion) {
-
-            //si era la ronda 1
             esRondaDeRepeticion = true;
-
-            // verifica si hay ejercicios fallados para repetir
             if (!ejerciciosFallados.isEmpty()) {
-
-                // mueve los fallos a la lista de practica y los mezcla
                 this.practicaActual = new ArrayList<>(ejerciciosFallados);
                 this.ejerciciosFallados.clear();
-                Collections.shuffle(this.practicaActual); 
-
-                return practicaActual.remove(0); // devuelve el primer ejercicio fallado
+                Collections.shuffle(this.practicaActual);  
+                return practicaActual.remove(0); 
             }
         }
-    
-        // si llega aqui es porque ronda 1 termino y no hubo fallos o la repeticion termino
         return null;
     }
     
@@ -920,115 +933,89 @@ public class SistemaControlador {
     }
     
     public Ejercicio mostrarSiguientePreguntaEnVista(
-        CardLayout cardLayoutPractica, 
-        JPanel panelContenedor,    
-        
-        // --- Panel 1: COMPONENTES DE TEXTO (cardPracticaTexto) ---
-        JPanel panelOpcionesTexto,  // El sub-panel con JToggleButtons
-        JPanel panelEscritoTexto,   // El sub-panel con JTextField
-        JLabel lblPreguntaTexto,
-        JTextField txtRespuestaTexto,
-        JToggleButton btnOpcionA_Texto, 
-        JToggleButton btnOpcionB_Texto,
-        JToggleButton btnOpcionC_Texto,
-        JToggleButton btnOpcionD_Texto,
-        ButtonGroup grupoOpcionesTexto, // ButtonGroup para los botones de texto
+            java.awt.CardLayout cardLayoutPrincipal, 
+            javax.swing.JPanel panelContenedor, 
 
-        // --- Panel 2: COMPONENTES DE IMAGEN (cardPracticaImagen) ---
-        JPanel panelOpcionesImagen, // El sub-panel con JToggleButtons
-        JPanel panelEscritoImagen,  // El sub-panel con JTextField
-        JLabel lblPreguntaImagen,
-        JTextField txtRespuestaImagen,
-        JToggleButton btnOpcionA_Imagen,
-        JToggleButton btnOpcionB_Imagen,
-        JToggleButton btnOpcionC_Imagen,
-        JToggleButton btnOpcionD_Imagen,
-        ButtonGroup grupoOpcionesImagen // ButtonGroup para los botones de imagen
-        ){
+            // 1. PREGUNTA: Usamos Labels Separados (Estrategia de Paneles)
+            javax.swing.JLabel lblImagenPreguntaSeleccion, javax.swing.JPanel panelImagenSeleccion,
+            javax.swing.JLabel lblImagenPreguntaEscrita, javax.swing.JPanel panelImagenEscrita,
 
-            Ejercicio ej = getSiguientePregunta(); 
+            // 2. TEXTOS DE PREGUNTA
+            javax.swing.JLabel lblPreguntaTexto, 
+            javax.swing.JLabel lblPreguntaEscrita, 
+            javax.swing.JTextField txtRespuestaEscrita,
 
-            if (ej != null) {
-                // 2. ¡Inicia el cronómetro!
-                this.tiempoInicioPregunta = java.time.Instant.now();
+            // 3. OPCIONES: Usamos JToggleButtons Reutilizados (Estrategia de Botones)
+            javax.swing.JToggleButton btnA, javax.swing.JToggleButton btnB, 
+            javax.swing.JToggleButton btnC, javax.swing.JToggleButton btnD,
+            javax.swing.ButtonGroup grupoOpciones) {
 
-                // 3. --- ¡LA DECISIÓN ALEATORIA! ---
-                boolean mostrarComoDirecta = decisionAleatoria.nextBoolean(); // 50% de chance
+        Ejercicio ej = getSiguientePregunta();
+        if (ej == null) {
+            finalizarPractica(); 
+            return null;
+        }
 
-                // (Excepción: si el ejercicio NO tiene opciones, FORZAMOS que sea 'DIRECTA')
-                if (ej.getOpciones() == null || ej.getOpciones().length == 0) {
-                    mostrarComoDirecta = true;
+        // Guardar referencia
+        // this.ejercicioActual = ej; 
+        this.tiempoInicioPregunta = java.time.Instant.now();
+        javax.swing.JToggleButton[] botones = {btnA, btnB, btnC, btnD};
+
+        // --- ESTRATEGIA 1: PREGUNTA (Separada) ---
+        // Si hay imagen en la pregunta, mostramos el panel dedicado.
+        if (ej.tieneImagen()) {
+            cargarImagen(ej.getRutaImagen(), lblImagenPreguntaSeleccion);
+            cargarImagen(ej.getRutaImagen(), lblImagenPreguntaEscrita);
+            panelImagenSeleccion.setVisible(true);
+            panelImagenEscrita.setVisible(true);
+        } else {
+            panelImagenSeleccion.setVisible(false);
+            panelImagenEscrita.setVisible(false);
+        }
+
+        // Decisión de Tipo de Ejercicio (Escrito vs Selección)
+        java.util.Random rnd = new java.util.Random();
+        boolean esEscrito = rnd.nextBoolean();
+        // Regla de Negocio: Si el ejercicio dice "Solo Seleccion"
+        if (ej.isForzarSeleccion()) {
+            esEscrito = false; //debe ser de seleccion
+        }
+        if (ej.getOpciones() == null || ej.getOpciones().length < 4) esEscrito = true;
+
+        if (esEscrito) {
+            // MODO ESCRITO
+            lblPreguntaEscrita.setText(ej.getPregunta());
+            txtRespuestaEscrita.setText("");
+            cardLayoutPrincipal.show(panelContenedor, "EjercicioEscrito");
+        } else {
+            // MODO SELECCION
+            lblPreguntaTexto.setText(ej.getPregunta());
+            grupoOpciones.clearSelection();
+
+            if (ej.tieneOpcionesConImagen()) {
+                // CASO: Opciones son imagenes
+                String[] rutas = ej.getRutasOpciones();
+                for (int i = 0; i < 4; i++) {
+                    botones[i].setText(""); // Borramos texto
+                    cargarImagen(rutas[i], botones[i]); // Ponemos icono
+
+                    // centrar imagen
+                    botones[i].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 }
-
-                // --- 4. DECIDE QUÉ TARJETA PRINCIPAL MOSTRAR (Texto vs Imagen) ---
-                if (ej.tieneImagen()) {
-
-                    // --- Es un ejercicio de IMAGEN (Figuras) ---
-                    cardLayoutPractica.show(panelContenedor, "cardPracticaImagen"); // (Usa el nombre de tu tarjeta)
-
-                    // Carga la imagen
-                    try {
-                        String rutaCompleta = RUTA_BASE_IMAGENES + ej.getRutaImagen();
-                        ImageIcon icon = new ImageIcon(getClass().getResource(rutaCompleta));
-                        lblPreguntaImagen.setIcon(icon);
-                        lblPreguntaImagen.setText(null);
-                    } catch (Exception e) { 
-                        lblPreguntaImagen.setIcon(null);
-                        lblPreguntaImagen.setText("Error al cargar imagen");
-                    }
-
-                    // 5. --- DECIDE QUÉ SUB-PANEL MOSTRAR (Opciones vs Escrito) ---
-                    if (mostrarComoDirecta) {
-                        // Muestra el panel escrito
-                        txtRespuestaImagen.setText("");
-                        panelOpcionesImagen.setVisible(false);
-                        panelEscritoImagen.setVisible(true);
-                    } else {
-                        // Muestra las opciones múltiples
-                        btnOpcionA_Imagen.setText(ej.getOpciones()[0]);
-                        btnOpcionB_Imagen.setText(ej.getOpciones()[1]);
-                        btnOpcionC_Imagen.setText(ej.getOpciones()[2]);
-                        btnOpcionD_Imagen.setText(ej.getOpciones()[3]);
-                        grupoOpcionesImagen.clearSelection();
-
-                        panelOpcionesImagen.setVisible(true);
-                        panelEscritoImagen.setVisible(false);
-                    }
-
-                } else {
-
-                    // --- Es un ejercicio de TEXTO (Suma, Resta) ---
-                    cardLayoutPractica.show(panelContenedor, "cardPracticaTexto"); // (Usa el nombre de tu tarjeta)
-
-                    // Pone el texto de la pregunta
-                    lblPreguntaTexto.setText("<html>" + ej.getPregunta() + "</html>");
-
-                    // 5. --- DECIDE QUÉ SUB-PANEL MOSTRAR (Opciones vs Escrito) ---
-                    if (mostrarComoDirecta) {
-                        // Muestra el panel escrito
-                        txtRespuestaTexto.setText("");
-                        panelOpcionesTexto.setVisible(false);
-                        panelEscritoTexto.setVisible(true);
-                    } else {
-                        // Muestra las opciones múltiples
-                        btnOpcionA_Texto.setText(ej.getOpciones()[0]);
-                        btnOpcionB_Texto.setText(ej.getOpciones()[1]);
-                        btnOpcionC_Texto.setText(ej.getOpciones()[2]);
-                        btnOpcionD_Texto.setText(ej.getOpciones()[3]);
-                        grupoOpcionesTexto.clearSelection();
-
-                        panelOpcionesTexto.setVisible(true);
-                        panelEscritoTexto.setVisible(false);
-                    }
-                }
-
-                return ej; // Devuelve el ejercicio (para que MainJFrame lo guarde)
-
             } else {
-                // ¡Se acabaron las preguntas de la Ronda 1 Y de la Ronda 2!
-                return null; // Fin de la práctica
+                // cuando las opciones son texto
+                String[] textos = ej.getOpciones();
+                for (int i = 0; i < 4; i++) {
+                    botones[i].setIcon(null); // Borramos icono (IMPORTANTE)
+                    botones[i].setText(textos[i]); // Ponemos texto
+                }
             }
+            cardLayoutPrincipal.show(panelContenedor, "EjercicioSeleccion");
+        }
+
+        return ej;
     }
+
     
     public void finalizarPractica() {
         if (this.resultadosTemporales.isEmpty()) return;
@@ -1037,21 +1024,53 @@ public class SistemaControlador {
         Tema tema = this.resultadosTemporales.get(0).getEjercicio().getTema();
 
         //LOGICA DEL 70%: si el 70% de los resultados de los ejercicios es correcto pasa de nivel, sino se mantiene
-        double correctos = 0;
-        for (Resultado r : this.resultadosTemporales) {
-            if (r.isEsCorrecto()) correctos++;
-        }
-        double porcentaje = (correctos / this.resultadosTemporales.size());
-        boolean aprobo = porcentaje >= 0.70;
+        double aciertos = 0;
+        double totalIntentos = 0;
 
-        // Subir de nivel si aplica
+        for (Resultado r : this.resultadosTemporales) {
+            // Opción A (Estricta): Contar todos los intentos (incluyendo los fallidos)
+            totalIntentos++;
+            if (r.isEsCorrecto()) {
+                aciertos++;
+            }
+        }
+
+        // Evitar división por cero
+        if (totalIntentos == 0) return;
+
+        double porcentaje = (aciertos / totalIntentos); 
+        // Convertir a formato 0-100 para mostrar, pero usar 0.0-1.0 para lógica
+        boolean aprobo = porcentaje >= 0.70; // 70% para aprobar
+
+        // --- MENSAJES Y SUBIDA DE NIVEL ---
+
+        // Formatear porcentaje para que se vea bonito (ej: "85%")
+        String porcentajeTexto = String.format("%.0f%%", porcentaje * 100);
+
         if (aprobo) {
-            est.getProgreso().subirNivel(tema);
-            JOptionPane.showMessageDialog(null, "¡Felicidades! Aprobaste y subiste de nivel en " + tema.getNombre() + ".", "¡Nivel Superado!", JOptionPane.INFORMATION_MESSAGE);
+            // Lógica para subir de nivel en el Progreso del estudiante
+            // (Asume que tu clase Progreso tiene este método)
+            boolean subioNivel = est.getProgreso().subirNivel(tema);
+
+            String mensaje = "¡Felicidades!\nAprobaste la práctica con " + porcentajeTexto + " de aciertos.";
+            if (subioNivel) {
+                mensaje += "\n\n¡HAS SUBIDO DE NIVEL EN " + tema.getNombre().toUpperCase() + "!";
+            } else {
+                mensaje += "\n\nYa estás en el nivel máximo o mantienes tu nivel.";
+            }
+
+            JOptionPane.showMessageDialog(null, mensaje, "¡Práctica Superada!", JOptionPane.INFORMATION_MESSAGE);
+
         } else {
-            // Calcula cuantas respuestas correctas necesitaba
-            int necesitadas = (int) Math.ceil(this.resultadosTemporales.size() * 0.7);
-            JOptionPane.showMessageDialog(null, "¡Sigue practicando! Necesitas 70% (" + necesitadas + " aciertos) para subir de nivel.", "¡Ánimo!", JOptionPane.INFORMATION_MESSAGE);
+            // Mensaje de ánimo
+            // Calculamos cuántos aciertos hubieran sido necesarios para el 70%
+            int necesarios = (int) Math.ceil(totalIntentos * 0.7);
+
+            String mensaje = "¡Buen intento!\nObtuviste " + porcentajeTexto + " de aciertos.";
+            mensaje += "\nNecesitas al menos 70% (" + necesarios + " aciertos) para avanzar de nivel.";
+            mensaje += "\n\n¡Sigue practicando, tú puedes!";
+
+            JOptionPane.showMessageDialog(null, mensaje, "Práctica Finalizada", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     
@@ -1296,5 +1315,95 @@ public class SistemaControlador {
 
         generador.guardar(datosDelReporte);
     }
+    
+    public void cargarNivelesPermitidos(Tema tema, javax.swing.JComboBox<String> cboDificultad) {
+        // 1. Limpiar el combo
+        cboDificultad.removeAllItems();
+
+        if (tema == null || this.usuarioActual == null) return;
+
+        Estudiante est = (Estudiante) this.usuarioActual;
+
+        // 2. Obtener el nivel ACTUAL del estudiante en ese tema
+        // (Asumo que Progreso.getNivelActual devuelve el nivel máximo alcanzado)
+        NivelDificultad nivelMaximoAlcanzado = est.getProgreso().getNivelActual(tema);
+
+        // Si el estudiante nunca ha tocado este tema, su nivel máximo es BAJO
+        if (nivelMaximoAlcanzado == null) {
+            nivelMaximoAlcanzado = NivelDificultad.BAJO;
+        }
+
+        // 3. Iterar sobre TODOS los niveles posibles
+        for (NivelDificultad nivelPosible : NivelDificultad.values()) {
+
+            // 4. LÓGICA DE ORO: Comparar los "ordinales"
+            // Si el nivel posible es MENOR o IGUAL al nivel máximo alcanzado, se agrega.
+            // Ej: Si estoy en OPTIMO (2), agrego: BAJO(0), MEDIO(1) y OPTIMO(2).
+            if (nivelPosible.ordinal() <= nivelMaximoAlcanzado.ordinal()) {
+                cboDificultad.addItem(nivelPosible.toString());
+            }
+        }
+
+        // 5. Seleccionar por defecto el nivel máximo (el último de la lista agregada)
+        cboDificultad.setSelectedItem(nivelMaximoAlcanzado.toString());
+    }
+    
+    private void cargarImagen(String rutaImagen, javax.swing.JComponent componente) {
+        if (rutaImagen == null || rutaImagen.isEmpty()) {
+            // Limpiar si no hay ruta
+            if (componente instanceof javax.swing.JLabel) {
+                ((javax.swing.JLabel) componente).setIcon(null);
+            } else if (componente instanceof javax.swing.AbstractButton) {
+                ((javax.swing.AbstractButton) componente).setIcon(null);
+            }
+            return;
+        }
+
+        try {
+            // Carga robusta usando recursos (funciona en NetBeans y en el JAR final)
+            java.net.URL url = getClass().getResource("/imagenes/" + rutaImagen);
+
+            if (url != null) {
+                javax.swing.ImageIcon icono = new javax.swing.ImageIcon(url);
+
+                // OPCIONAL: Redimensionar imagen si es para un BOTÓN (Opciones)
+                if (componente instanceof javax.swing.AbstractButton) {
+                     // Ajusta este tamaño (ej: 100x100) según el tamaño de tus botones azules
+                    java.awt.Image imgEscalada = icono.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
+                    icono = new javax.swing.ImageIcon(imgEscalada);
+                }
+                // OPCIONAL: Redimensionar si es para la PREGUNTA (JLabel)
+                else if (componente instanceof javax.swing.JLabel) {
+                    // Las preguntas suelen ser más grandes
+                    java.awt.Image imgEscalada = icono.getImage().getScaledInstance(250, 200, java.awt.Image.SCALE_SMOOTH);
+                    icono = new javax.swing.ImageIcon(imgEscalada);
+                }
+
+                // Asignar el icono
+                if (componente instanceof javax.swing.JLabel) {
+                    ((javax.swing.JLabel) componente).setIcon(icono);
+                } else if (componente instanceof javax.swing.AbstractButton) {
+                    ((javax.swing.AbstractButton) componente).setIcon(icono);
+                }
+            } else {
+                System.err.println("Imagen no encontrada: " + rutaImagen);
+            }
+        } catch (Exception e) {
+            System.err.println("Error cargando imagen: " + e.getMessage());
+        }
+    }
+    
+    public void configurarPractica(Tema tema, String nombreNivel) {
+        this.temaSeleccionado = tema;
+
+        // convertir el string del ComboBox al enum NivelDificultad
+        try {
+            this.nivelSeleccionado = NivelDificultad.valueOf(nombreNivel); 
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error al convertir nivel: " + nombreNivel);
+            this.nivelSeleccionado = NivelDificultad.BAJO; 
+        }
+    }
+    
     
 }

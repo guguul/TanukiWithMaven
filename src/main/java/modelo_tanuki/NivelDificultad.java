@@ -12,6 +12,5 @@ public enum NivelDificultad {
     BAJO,
     MEDIO,
     OPTIMO,
-    ELEVADO,
-    MUYELEVADO
+    ELEVADO
 }

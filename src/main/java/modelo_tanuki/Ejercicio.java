@@ -20,7 +20,8 @@ public class Ejercicio {
     private int idEjercicio;
     private String rutaImagen; // Ruta al archivo de imagen (ej: "triangulo.png"), !!!estas imagenes deben estan en la carpeta imagenes
     private String retroalimentacion;
-    private TipoRespuesta tipoRespuesta;
+    private String[] rutasOpciones;
+    private boolean forzarSeleccion;
     
     public Ejercicio(String pregunta, String[] opciones, String respuestaCorrecta, NivelDificultad dificultad, Tema tema, int valorPuntos, int grado, int idEjercicio, String rutaImagen, String retroalimentacion){
         this.pregunta = pregunta;
@@ -126,12 +127,16 @@ public class Ejercicio {
         return retroalimentacion;
     }
     
-    public void SetRutaImagen(String rutaImagen){
+    public void setRutaImagen(String rutaImagen){ 
         this.rutaImagen = rutaImagen;
     }
     
-    public void SetRetroalimentacion(String retroalimentacion){
+    public void setRetroalimentacion(String retroalimentacion){
         this.retroalimentacion = retroalimentacion;
+    }
+    
+    public String[] getRutasOpciones() {
+        return rutasOpciones;
     }
     
     /**
@@ -150,6 +155,28 @@ public class Ejercicio {
     
     public boolean tieneImagen() {
         return this.rutaImagen != null && !this.rutaImagen.isEmpty();
+    }
+    
+    public boolean tieneOpcionesConImagen() {
+        return rutasOpciones != null 
+               && rutasOpciones.length == 4 
+               && rutasOpciones[0] != null 
+               && !rutasOpciones[0].isEmpty();
+    }
+    
+    public void setRutasOpciones(String[] rutasOpciones) { 
+        if (rutasOpciones != null && rutasOpciones.length != 4) {
+            throw new IllegalArgumentException("Si se usan rutas de imagen, deben ser exactamente 4.");
+        }
+        this.rutasOpciones = rutasOpciones;
+    }
+    
+    public boolean isForzarSeleccion() {
+        return forzarSeleccion;
+    }
+
+    public void setForzarSeleccion(boolean forzarSeleccion) {
+        this.forzarSeleccion = forzarSeleccion;
     }
     
 }

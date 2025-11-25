@@ -3,6 +3,7 @@ C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo_tanuki\ConfiguracionReporte.java
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo_tanuki\Ejercicio.java
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo_tanuki\Estudiante.java
+C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo_tanuki\FiltroPractica.java
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo_tanuki\FormatoArchivo.java
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo_tanuki\FormatoVisual.java
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo_tanuki\FrasesMotivacionales.java
@@ -24,6 +25,7 @@ C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo_tanuki\Tema.java
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo_tanuki\TipoRespuesta.java
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\modelo_tanuki\Usuario.java
+C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\Persistencia\ConvertidorExcelAJson.java
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\Persistencia\DatosPrecargados.java
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\vista\MainJFrame.java
 C:\Users\Personal\Documents\NetBeansProjects\TanukiAppMaven\src\main\java\vista\RoundedPanel.java

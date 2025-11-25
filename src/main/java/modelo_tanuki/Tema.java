@@ -20,6 +20,8 @@ public class Tema {
     private String descripcion;
     private Tema temaPadre;
     private int id;
+    private String personajeNombre;
+    private String personajeRutaImagen;
     /**
      * ATRIBUTO CLAVE:
      * Un "diccionario" que agrupa las listas de ejercicios
@@ -118,6 +120,22 @@ public class Tema {
         this.id = id;
     }
     
+    public String getPersonajeNombre() {
+        return personajeNombre;
+    }
+
+    public void setPersonajeNombre(String personajeNombre) {
+        this.personajeNombre = personajeNombre;
+    }
+
+    public String getPersonajeRutaImagen() {
+        return personajeRutaImagen;
+    }
+
+    public void setPersonajeRutaImagen(String personajeRutaImagen) {
+        this.personajeRutaImagen = personajeRutaImagen;
+    }
+    
     /**
      * MÉTODO CLAVE MODIFICADO (Lógica del 70%)
      * Ahora acepta el Nivel Y el Grupo de Grado.
@@ -205,8 +223,6 @@ public class Tema {
             case OPTIMO:
                 return 5; // 7 ejercicios para optimo
             case ELEVADO:
-                return 5;
-            case MUYELEVADO:  
                 return 5;
             default:
                 return 5; // un valor por defecto seguro

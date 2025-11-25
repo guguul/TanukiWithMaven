@@ -76,13 +76,7 @@ public class DatosPrecargados {
         suma.agregarEjercicio(new Ejercicio("30 + 35 = ?", new String[]{"55", "60", "65", "70"}, "65", NivelDificultad.ELEVADO, suma, 25, 1, 118, null, null));
         suma.agregarEjercicio(new Ejercicio("45 + 15 = ?", new String[]{"50", "55", "60", "65"}, "60", NivelDificultad.ELEVADO, suma, 25, 1, 119, null, null));
         suma.agregarEjercicio(new Ejercicio("25 + 25 = ?", new String[]{"40", "45", "50", "55"}, "50", NivelDificultad.ELEVADO, suma, 25, 1, 120, null, null));
-        // muy elevado
-        suma.agregarEjercicio(new Ejercicio("100 + 50 = ?", new String[]{"150", "160", "200", "105"}, "150", NivelDificultad.MUYELEVADO, suma, 30, 1, 121, null, null));
-        suma.agregarEjercicio(new Ejercicio("110 + 20 = ?", new String[]{"120", "130", "140", "125"}, "130", NivelDificultad.MUYELEVADO, suma, 30, 1, 122, null, null));
-        suma.agregarEjercicio(new Ejercicio("60 + 30 = ?", new String[]{"70", "80", "90", "100"}, "90", NivelDificultad.MUYELEVADO, suma, 30, 1, 123, null, null));
-        suma.agregarEjercicio(new Ejercicio("80 + 15 = ?", new String[]{"90", "95", "100", "105"}, "95", NivelDificultad.MUYELEVADO, suma, 30, 1, 124, null, null));
-        suma.agregarEjercicio(new Ejercicio("50 + 35 = ?", new String[]{"75", "80", "85", "90"}, "85", NivelDificultad.MUYELEVADO, suma, 30, 1, 125, null, null));
-
+   
         // GRADO 4-6 (Grupo 4)
         // bajo
         suma.agregarEjercicio(new Ejercicio("100 + 200 = ?", new String[]{"300", "400", "500", "200"}, "300", NivelDificultad.BAJO, suma, 10, 4, 126, null, null));
@@ -108,15 +102,7 @@ public class DatosPrecargados {
         suma.agregarEjercicio(new Ejercicio("2200 + 3300 = ?", new String[]{"5000", "5500", "5550", "5050"}, "5500", NivelDificultad.ELEVADO, suma, 25, 4, 143, null, null));
         suma.agregarEjercicio(new Ejercicio("5000 + 1250 = ?", new String[]{"6250", "6500", "6050", "7250"}, "6250", NivelDificultad.ELEVADO, suma, 25, 4, 144, null, null));
         suma.agregarEjercicio(new Ejercicio("1234 + 1000 = ?", new String[]{"2234", "2000", "2134", "2334"}, "2234", NivelDificultad.ELEVADO, suma, 25, 4, 145, null, null));
-        // muyelevado
-        suma.agregarEjercicio(new Ejercicio("10,000 + 5,000 = ?", new String[]{"15,000", "10,500", "12,000", "20,000"}, "15,000", NivelDificultad.MUYELEVADO, suma, 30, 4, 146, null, null));
-        suma.agregarEjercicio(new Ejercicio("25,000 + 10,000 = ?", new String[]{"30,000", "35,000", "40,000", "25,100"}, "35,000", NivelDificultad.MUYELEVADO, suma, 30, 4, 147, null, null));
-        suma.agregarEjercicio(new Ejercicio("50,000 + 50,000 = ?", new String[]{"1,000,000", "500,000", "100,000", "90,000"}, "100,000", NivelDificultad.MUYELEVADO, suma, 30, 4, 148, null, null));
-        suma.agregarEjercicio(new Ejercicio("12,000 + 13,000 = ?", new String[]{"20,000", "23,000", "25,000", "30,000"}, "25,000", NivelDificultad.MUYELEVADO, suma, 30, 4, 149, null, null));
-        suma.agregarEjercicio(new Ejercicio("100,000 + 1 = ?", new String[]{"100,001", "100,010", "100,100", "101,000"}, "100,001", NivelDificultad.MUYELEVADO, suma, 30, 4, 150, null, null));
-        
-        
-        
+     
         //RESTA GRADO 1-3 (Grupo 1) 
         // bajo
         resta.agregarEjercicio(new Ejercicio("5 - 2 = ?", new String[]{"1", "2", "3", "4"}, "3", NivelDificultad.BAJO, resta, 10, 1, 301, null, null));
@@ -142,13 +128,7 @@ public class DatosPrecargados {
         resta.agregarEjercicio(new Ejercicio("75 - 25 = ?", new String[]{"25", "40", "50", "60"}, "50", NivelDificultad.ELEVADO, resta, 25, 1, 318, null, null));
         resta.agregarEjercicio(new Ejercicio("60 - 30 = ?", new String[]{"30", "20", "40", "10"}, "30", NivelDificultad.ELEVADO, resta, 25, 1, 319, null, null));
         resta.agregarEjercicio(new Ejercicio("40 - 20 = ?", new String[]{"10", "15", "20", "25"}, "20", NivelDificultad.ELEVADO, resta, 25, 1, 320, null, null));
-        // muyelevado
-        resta.agregarEjercicio(new Ejercicio("100 - 1 = ?", new String[]{"90", "95", "98", "99"}, "99", NivelDificultad.MUYELEVADO, resta, 30, 1, 321, null, null));
-        resta.agregarEjercicio(new Ejercicio("50 - 15 = ?", new String[]{"30", "35", "40", "45"}, "35", NivelDificultad.MUYELEVADO, resta, 30, 1, 322, null, null));
-        resta.agregarEjercicio(new Ejercicio("65 - 10 = ?", new String[]{"50", "55", "60", "45"}, "55", NivelDificultad.MUYELEVADO, resta, 30, 1, 323, null, null));
-        resta.agregarEjercicio(new Ejercicio("80 - 25 = ?", new String[]{"50", "55", "60", "65"}, "55", NivelDificultad.MUYELEVADO, resta, 30, 1, 324, null, null));
-        resta.agregarEjercicio(new Ejercicio("90 - 9 = ?", new String[]{"80", "81", "82", "83"}, "81", NivelDificultad.MUYELEVADO, resta, 30, 1, 325, null, null));
-        
+    
         //GRADO 4-6 (Grupo 4)
         // bajo
         resta.agregarEjercicio(new Ejercicio("100 - 50 = ?", new String[]{"50", "40", "60", "25"}, "50", NivelDificultad.BAJO, resta, 10, 4, 326, null, null));
@@ -174,13 +154,7 @@ public class DatosPrecargados {
         resta.agregarEjercicio(new Ejercicio("1000 - 10 = ?", new String[]{"900", "950", "990", "999"}, "990", NivelDificultad.ELEVADO, resta, 25, 4, 343, null, null));
         resta.agregarEjercicio(new Ejercicio("505 - 5 = ?", new String[]{"500", "501", "502", "503"}, "500", NivelDificultad.ELEVADO, resta, 25, 4, 344, null, null));
         resta.agregarEjercicio(new Ejercicio("101 - 11 = ?", new String[]{"80", "85", "90", "95"}, "90", NivelDificultad.ELEVADO, resta, 25, 4, 345, null, null));
-        // muyelevado
-        resta.agregarEjercicio(new Ejercicio("10,000 - 2,000 = ?", new String[]{"8,000", "7,000", "6,000", "5,000"}, "8,000", NivelDificultad.MUYELEVADO, resta, 30, 4, 346, null, null));
-        resta.agregarEjercicio(new Ejercicio("5,500 - 500 = ?", new String[]{"5,000", "4,500", "4,000", "5,450"}, "5,000", NivelDificultad.MUYELEVADO, resta, 30, 4, 347, null, null));
-        resta.agregarEjercicio(new Ejercicio("1,250 - 1,200 = ?", new String[]{"0", "25", "50", "100"}, "50", NivelDificultad.MUYELEVADO, resta, 30, 4, 348, null, null));
-        resta.agregarEjercicio(new Ejercicio("1,000 - 1 = ?", new String[]{"900", "990", "999", "998"}, "999", NivelDificultad.MUYELEVADO, resta, 30, 4, 349, null, null));
-        resta.agregarEjercicio(new Ejercicio("50,000 - 10,000 = ?", new String[]{"40,000", "30,000", "20,000", "45,000"}, "40,000", NivelDificultad.MUYELEVADO, resta, 30, 4, 350, null, null));
-        
+       
         
         // FIGURAS GRADO 1-3 (Grupo 1) ---
         // bajo
@@ -207,13 +181,7 @@ public class DatosPrecargados {
         figuras.agregarEjercicio(new Ejercicio("Esta figura es una:", new String[]{"Círculo", "Esfera", "Cilindro", "Cono"}, "Esfera", NivelDificultad.ELEVADO, figuras, 30, 1, 518, null, "Una pelota es una esfera."));
         figuras.agregarEjercicio(new Ejercicio("¿Cómo se llama esta figura?", new String[]{"Pirámide", "Cono", "Cubo", "Prisma"}, "Pirámide", NivelDificultad.ELEVADO, figuras, 30, 1, 519, null, null));
         figuras.agregarEjercicio(new Ejercicio("Esta figura es un:", new String[]{"Prisma", "Cubo", "Cono", "Pirámide"}, "Cono", NivelDificultad.ELEVADO, figuras, 30, 1, 520, null, "Un cono de helado tiene esta forma."));
-        // muyelevado
-        figuras.agregarEjercicio(new Ejercicio("¿Cuántas caras tiene un cubo?", new String[]{"4", "5", "6", "8"}, "6", NivelDificultad.MUYELEVADO, figuras, 35, 1, 521, null, "Un cubo tiene 6 caras cuadradas."));
-        figuras.agregarEjercicio(new Ejercicio("¿Qué figura plana forma las caras de una pirámide?", new String[]{"Triángulos", "Cuadrados", "Círculos", "Rectángulos"}, "Triángulos", NivelDificultad.MUYELEVADO, figuras, 35, 1, 522, null, "Las caras de una pirámide son triángulos."));
-        figuras.agregarEjercicio(new Ejercicio("¿Qué figura plana forma la base de un cilindro?", new String[]{"Cuadrado", "Triángulo", "Círculo", "Rectángulo"}, "Círculo", NivelDificultad.MUYELEVADO, figuras, 35, 1, 523, null, "Un cilindro tiene dos bases circulares."));
-        figuras.agregarEjercicio(new Ejercicio("¿Cuántos vértices (esquinas) tiene un cubo?", new String[]{"4", "6", "8", "12"}, "8", NivelDificultad.MUYELEVADO, figuras, 35, 1, 524, null, "Un cubo tiene 8 vértices."));
-        figuras.agregarEjercicio(new Ejercicio("¿Cuántas bases tiene un cono?", new String[]{"0", "1", "2", "3"}, "1", NivelDificultad.MUYELEVADO, figuras, 35, 1, 525, null, "Un cono tiene 1 base circular."));
-
+   
         // GRADO 4-6 (Grupo 4)
         // bajo
         figuras.agregarEjercicio(new Ejercicio("¿Qué figura tiene 3 lados?", new String[]{"Triángulo", "Cuadrado", "Círculo", "Pentágono"}, "Triángulo", NivelDificultad.BAJO, figuras, 15, 4, 526, null, null));
@@ -239,13 +207,7 @@ public class DatosPrecargados {
         figuras.agregarEjercicio(new Ejercicio("¿Qué figura plana forma la base de un cilindro?", new String[]{"Cuadrado", "Triángulo", "Círculo", "Rectángulo"}, "Círculo", NivelDificultad.ELEVADO, figuras, 30, 4, 543, null, "Un cilindro tiene dos bases circulares."));
         figuras.agregarEjercicio(new Ejercicio("Esta figura es un:", new String[]{"Cilindro", "Rectángulo", "Óvalo", "Rombo"}, "Cilindro", NivelDificultad.ELEVADO, figuras, 30, 4, 544, null, null));
         figuras.agregarEjercicio(new Ejercicio("¿Cómo se llama esta figura?", new String[]{"Pirámide", "Cono", "Cubo", "Prisma"}, "Pirámide", NivelDificultad.ELEVADO, figuras, 30, 4, 545, null, null));
-        // muyelevado
-        figuras.agregarEjercicio(new Ejercicio("Área de un cuadrado (Lado=2):", new String[]{"2", "4", "6", "8"}, "4", NivelDificultad.MUYELEVADO, figuras, 35, 4, 546, null, "El área es Lado x Lado, entonces 2 x 2 = 4."));
-        figuras.agregarEjercicio(new Ejercicio("Área de un rectángulo (Lados=3 y 2):", new String[]{"4", "5", "6", "8"}, "6", NivelDificultad.MUYELEVADO, figuras, 35, 4, 547, null, "El área es Base x Altura, entonces 3 x 2 = 6."));
-        figuras.agregarEjercicio(new Ejercicio("Perímetro de un cuadrado (Lado=3):", new String[]{"3", "6", "9", "12"}, "12", NivelDificultad.MUYELEVADO, figuras, 35, 4, 548, null, "El perímetro es la suma de los 4 lados: 3+3+3+3 = 12."));
-        figuras.agregarEjercicio(new Ejercicio("Esta figura es un:", new String[]{"Prisma Rectangular", "Cubo", "Cilindro", "Prisma Triangular"}, "Prisma Triangular", NivelDificultad.MUYELEVADO, figuras, 35, 4, 549, null, "La figura es un Prisma Triangular."));
-        figuras.agregarEjercicio(new Ejercicio("¿Cuántas caras tiene una pirámide de base cuadrada?", new String[]{"3", "4", "5", "6"}, "5", NivelDificultad.MUYELEVADO, figuras, 35, 4, 550, null, "Tiene 4 caras triangulares y 1 base cuadrada. Total = 5."));
-
+        
        // logros 
         // constructir de Logro(String nombre, String descripcion, int puntosNecesarios, Tema tema, int id, String rutaIcono)
         Logro l1 = new Logro("Novato de la Suma", "Gana 50 puntos en Suma", 50, suma, 501,"/Recursos/Imagenes/iconos/novato_suma.png");
