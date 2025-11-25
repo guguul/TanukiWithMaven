@@ -2410,14 +2410,14 @@ public class MainJFrame extends javax.swing.JFrame {
         
         String correoLogin = CorreoLogin.getText();
         String passLogin = new String(ContrasenaLogin.getPassword());
-        Usuario usuario = controlador.iniciarSesionFirebase(correoLogin, passLogin);
+        usuarioActual = controlador.iniciarSesionFirebase(correoLogin, passLogin);
         //lo de abajo lo comente para que funcione solo con la base de datos
-        //usuarioActual = controlador.iniciarSesionUsuario(CorreoLogin, ContrasenaLogin);
-        if (/*usuarioActual==null &&*/ usuario== null){
+        // = controlador.iniciarSesionUsuario(CorreoLogin, ContrasenaLogin);
+        if (usuarioActual==null){
             JOptionPane.showMessageDialog(null,"Falló el inicio de sesión","Error en el incio de sesion",JOptionPane.ERROR_MESSAGE);
         }
         else {
-            if (usuario instanceof Estudiante){
+            if (usuarioActual instanceof Estudiante){
                 CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
                 cardLayout.show(cardPrincipal,"cardInterfazEstudiante");
 
@@ -2427,7 +2427,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane1;
                 tabbedPane.setSelectedComponent(principalE);
             }
-            else if (usuario instanceof Maestro){
+            else if (usuarioActual instanceof Maestro){
                 CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
                 cardLayout.show(cardPrincipal,"InterfazMaestro");
 
@@ -2519,7 +2519,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_maestro1ActionPerformed
 
     private void aceptar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar3ActionPerformed
-        boolean avanzar = controlador.registrarEstudiante(RegENombre, RegEApellido, RegECorreo, RegEContrasena);
+        String nombre = RegENombre.getText();
+        String apellido = RegEApellido.getText();
+        String correo = RegECorreo.getText();
+        String contrasena = new String(RegEContrasena.getPassword());
+        
+        boolean avanzar = controlador.registrarUsuarioFirebase(nombre,apellido,correo,contrasena, "estudiante");
         
         if (avanzar==true){
             CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
@@ -2566,7 +2571,11 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_RegMCorreoActionPerformed
 
     private void aceptar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar4ActionPerformed
-        boolean avanzar = controlador.registrarMaestro(RegMNombre, RegMApellido, RegMCorreo, RegMContrasena);
+        String nombre = RegMNombre.getText();
+        String apellido = RegMApellido.getText();
+        String correo = RegMCorreo.getText();
+        String contrasena = new String(RegMContrasena.getPassword());
+        boolean avanzar = controlador.registrarUsuarioFirebase(nombre, apellido, correo, contrasena, "maestro");
         
         if (avanzar==true){
             CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
