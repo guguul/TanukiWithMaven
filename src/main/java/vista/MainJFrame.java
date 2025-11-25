@@ -90,12 +90,51 @@ public class MainJFrame extends javax.swing.JFrame {
             exportarPdf3, exportarExcel3, volverDeTablaEst, exportarPdf4, exportarExcel4, 
             volverDeGraficoEst
         };
+
         for (javax.swing.JButton btn : todosLosBotones) {
+            if (btn != null) {
+                btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                btn.setBorderPainted(false);
+                btn.setContentAreaFilled(false);
+                btn.setFocusPainted(false);
+
                 btn.addMouseListener(new java.awt.event.MouseAdapter() {
+                    @Override
                     public void mouseEntered(java.awt.event.MouseEvent evt) {
-                        controlador.reproducirSonido("mouseclick1.wav");
+                        // 1. Sonido
+                        controlador.reproducirSonido("mouseclick1.wav"); 
+
+                        // 2. CÁLCULO INTELIGENTE DEL RADIO
+                        // Obtenemos la altura actual de ESTE botón específico
+                        int alturaBoton = btn.getHeight();
+                        int anchoBoton = btn.getWidth();
+
+                        // Opción A: Estilo "Pastilla" (Pill Shape) - Bordes totalmente redondos
+                        // Ideal si tus diseños en Canva son muy curvos.
+                        int radio = 0; 
+
+                        // Opción B: Estilo "Tarjeta" (Esquinas suaves) - Si prefieres menos curva
+                        // Descomenta la línea de abajo si la Opción A es demasiado redonda
+                        if (btn==cerrarSesion1 || btn==cerrarSesion2 || btn==consultarInfo){
+                            radio = alturaBoton / 3;
+                        } else {
+                            radio = alturaBoton; 
+                        }
+                        
+
+                        // 3. APLICAR EL BORDE CON EL TAMAÑO CALCULADO
+                        btn.setBorderPainted(true);
+                        btn.setBorder(new FondoRedondeado(radio, new java.awt.Color(255, 255, 255, 100)));
                     }
-            });
+
+                    @Override
+                    public void mouseExited(java.awt.event.MouseEvent evt) {
+                        // 3. LIMPIAR
+                        btn.setBorderPainted(false);
+                        btn.setBorder(null); 
+                    }
+                });
+            }
         }
         
         ejercicioCorrecto.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -982,7 +1021,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 consultarInfoActionPerformed(evt);
             }
         });
-        salonEst.add(consultarInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 170, 300, 170));
+        salonEst.add(consultarInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 180, 290, 160));
 
         unirseSalon.setBorderPainted(false);
         unirseSalon.setContentAreaFilled(false);
@@ -991,7 +1030,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 unirseSalonActionPerformed(evt);
             }
         });
-        salonEst.add(unirseSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 460, 90));
+        salonEst.add(unirseSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 460, 80));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/salonEst.png"))); // NOI18N
         salonEst.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -2642,7 +2681,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void salir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir1ActionPerformed
         int confirmacion = JOptionPane.showOptionDialog(
-                        null,"¿Desea salir de Tanuki?", "",
+                        null,"¿Esta seguro que desea salir de Tanuki?", "",
                         JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
         if (confirmacion==0) 
           this.dispose();
@@ -4374,3 +4413,35 @@ public class MainJFrame extends javax.swing.JFrame {
     private modelo_tanuki.PeriodoReporte periodoParaReporte;
     private modelo_tanuki.Estudiante estudianteParaReporte;
 }
+
+// Esta clase se encarga de dibujar la figura redondeada
+    class FondoRedondeado implements javax.swing.border.Border {
+        private int radio;
+        private java.awt.Color color;
+
+        public FondoRedondeado(int radio, java.awt.Color color) {
+            this.radio = radio;
+            this.color = color;
+        }
+
+        @Override
+        public void paintBorder(java.awt.Component c, java.awt.Graphics g, int x, int y, int width, int height) {
+            java.awt.Graphics2D g2 = (java.awt.Graphics2D) g;
+            g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+
+            g2.setColor(color);
+            // Aquí dibujamos el fondo redondeado con un poco de transparencia si se desea
+            // El -1 es para ajustar bordes
+            g2.fillRoundRect(x, y, width - 1, height - 1, radio, radio); 
+        }
+
+        @Override
+        public java.awt.Insets getBorderInsets(java.awt.Component c) {
+            return new java.awt.Insets(0, 0, 0, 0); // Sin margen extra
+        }
+
+        @Override
+        public boolean isBorderOpaque() {
+            return false;
+        }
+    }
