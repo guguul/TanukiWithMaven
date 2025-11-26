@@ -1087,7 +1087,7 @@ public class MainJFrame extends javax.swing.JFrame {
         infoSalonEst.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 60, 150, 60));
 
         jLabel50.setFont(new java.awt.Font("Cy Grotesk Key", 0, 36)); // NOI18N
-        infoSalonEst.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 246, 760, 60));
+        infoSalonEst.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 760, 50));
 
         volver10.setBorderPainted(false);
         volver10.setContentAreaFilled(false);
@@ -1166,7 +1166,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 seguirPresentacionActionPerformed(evt);
             }
         });
-        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 620, 160, 60));
+        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 620, 250, 70));
 
         volver11.setBorderPainted(false);
         volver11.setContentAreaFilled(false);
@@ -1284,7 +1284,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/iniciarPractica.png"))); // NOI18N
         previaPractica.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        cardPracticaEst.add(previaPractica, "card6");
+        cardPracticaEst.add(previaPractica, "previaPractica");
 
         Tutorial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -3018,26 +3018,42 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_filtrarActionPerformed
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-        // BOTON QUE DEBERIA ACEPTAR A UN ESTUDIANTE SELECCIONADO DE LA LISTA
-        int salonN =  (int) jComboBox3.getSelectedItem();
-        Salon salonNuevo = controlador.buscarSalonID(salonN);
+        // 1. Obtener datos de la interfaz
+        int salonN = (int) jComboBox3.getSelectedItem(); // Asegúrate que el combo tenga Integers
+        
+        // (Ya no necesitamos buscar el salón aquí manualmente para modificarlo, el controlador lo hace)
+        
         jList1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         List<Estudiante> estSeleccionados = jList1.getSelectedValuesList();
-        if (estSeleccionados==null){
-            JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun estudiante para admitir","Error de selección",JOptionPane.ERROR_MESSAGE);
-        }
-        else {
-            List<Estudiante> solicitudesSalon = salonNuevo.getListaSolicitudes();
-            int cant=0;
-            for (Estudiante e: estSeleccionados){
-                e.setSalon(salonNuevo);
-                e.setGrado(salonNuevo.getGrado());
-                e.setSeccion(salonNuevo.getSeccion());
-                salonNuevo.getListaEstudiantes().add(e);
-                solicitudesSalon.remove(e);
-                cant = cant+1;
+
+        if (estSeleccionados == null || estSeleccionados.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún estudiante para admitir", "Error de selección", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int cant = 0;
+            boolean algunError = false;
+
+            // 2. Recorrer la lista y mandar a Firebase uno por uno
+            for (Estudiante e : estSeleccionados) {
+                boolean exito = controlador.aceptarSolicitud(salonN, e);
+                if (exito) {
+                    cant++;
+                } else {
+                    algunError = true;
+                }
             }
-            JOptionPane.showMessageDialog(null,"Se han admitido "+cant+" estudiantes","Solicitudes aceptadas",JOptionPane.INFORMATION_MESSAGE);
+
+            // 3. Mensaje final
+            if (cant > 0) {
+                JOptionPane.showMessageDialog(null, "Se han admitido " + cant + " estudiantes correctamente.", "Solicitudes aceptadas", JOptionPane.INFORMATION_MESSAGE);
+                
+                // 4. IMPORTANTE: Refrescar la lista visualmente
+                // Volvemos a llamar a mostrarSolicitudes para que la JList se limpie de los que ya aceptamos
+                controlador.mostrarSolicitudes(salonN, jList1); 
+            }
+            
+            if (algunError) {
+                JOptionPane.showMessageDialog(null, "Hubo un error al procesar algunos estudiantes.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
         } 
     }//GEN-LAST:event_aceptarActionPerformed
 
@@ -3924,7 +3940,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_irADescripcionActionPerformed
 
     private void seguirPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguirPresentacionActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_seguirPresentacionActionPerformed
 
     private void siguienteEjercicioEscritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteEjercicioEscritaActionPerformed
