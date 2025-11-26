@@ -11,9 +11,6 @@ import java.time.Duration;
  * @author adrif
  */
 public class Estudiante extends Usuario {
-    public static int contadorEstudiante=0;
-
-    
     private int grado;
     private char seccion;
     private Salon salon;

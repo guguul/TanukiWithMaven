@@ -8,6 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.*;
 import java.time.LocalDate;
+import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+import modelo_tanuki.Resultado;
 /**
  *
  * @author adrif
@@ -16,17 +21,20 @@ public class Progreso {
     private Estudiante estudiante;
     private ArrayList<Resultado> resultados;
     private Map<Tema, NivelDificultad> nivelesDesbloqueados;
+    private int diasRacha;
   
     public Progreso(Estudiante e) {
         this.estudiante = e;
         this.resultados = new ArrayList<>();
         this.nivelesDesbloqueados = new HashMap<>();
+        this.diasRacha = 0;
     }
     
     public Progreso(){
         estudiante = null;
         resultados = new ArrayList<>();
         nivelesDesbloqueados = new HashMap<>();
+        diasRacha = 0; 
     }
 
     public Estudiante getEstudiante() {
@@ -236,4 +244,37 @@ public class Progreso {
         return new double[]{aciertos, intentos};
     }
     
+    public int getDiasRacha(){
+        Resultado ultimoResultado = resultados.getLast();
+        if (ultimoResultado==null || resultados.isEmpty()){
+            return 0;
+        }
+        List<LocalDate> fechasDePractica = resultados.stream()
+                .filter(Resultado::isEsCorrecto) //filtra las fechas en las qeu tuvo al menos un acierto
+                .map(Resultado::getFecha)        //toma la fechas del resultado
+                .distinct().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        
+        if (fechasDePractica.isEmpty()) return 0;
+        
+        LocalDate hoy = LocalDate.now();
+        LocalDate ayer = hoy.minusDays(1);
+        
+        // Si la última vez fue antes de ayer, se pierde la racha
+        if (ultimoResultado.getFecha().isBefore(ayer)) return 0;
+        
+
+        int racha = 0;
+        LocalDate fechaEsperada = ultimoResultado.getFecha();
+
+        for (LocalDate fecha : fechasDePractica) {
+            if (fecha.isEqual(fechaEsperada)) {
+                racha++;
+                fechaEsperada = fechaEsperada.minusDays(1);
+            } else {
+                break;
+            }
+        }
+        this.diasRacha = racha;
+        return racha;
+    }
 }

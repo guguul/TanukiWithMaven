@@ -235,7 +235,7 @@ public class MainJFrame extends javax.swing.JFrame {
         tablaLogrosEstProgreso = new javax.swing.JScrollPane();
         tablaLogros = new javax.swing.JTable();
         puntos = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
+        racha = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cardSalonEst = new javax.swing.JPanel();
         salonEst = new javax.swing.JPanel();
@@ -999,11 +999,11 @@ public class MainJFrame extends javax.swing.JFrame {
         puntos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         progresoEst.add(puntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, 210, 50));
 
-        jLabel46.setFont(new java.awt.Font("Cy Grotesk Key", 0, 36)); // NOI18N
-        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel46.setText("000");
-        jLabel46.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        progresoEst.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 630, 150, 50));
+        racha.setFont(new java.awt.Font("Cy Grotesk Key", 0, 36)); // NOI18N
+        racha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        racha.setText("000");
+        racha.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        progresoEst.add(racha, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 630, 150, 50));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/progresoEst.png"))); // NOI18N
         progresoEst.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -2519,12 +2519,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_maestro1ActionPerformed
 
     private void aceptar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar3ActionPerformed
-        String nombre = RegENombre.getText();
-        String apellido = RegEApellido.getText();
-        String correo = RegECorreo.getText();
-        String contrasena = new String(RegEContrasena.getPassword());
         
-        boolean avanzar = controlador.registrarUsuarioFirebase(nombre,apellido,correo,contrasena, "estudiante");
+        boolean avanzar = controlador.registrarEstudiante(RegENombre, RegEApellido, RegECorreo, RegEContrasena);
         
         if (avanzar==true){
             CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
@@ -2575,7 +2571,7 @@ public class MainJFrame extends javax.swing.JFrame {
         String apellido = RegMApellido.getText();
         String correo = RegMCorreo.getText();
         String contrasena = new String(RegMContrasena.getPassword());
-        boolean avanzar = controlador.registrarUsuarioFirebase(nombre, apellido, correo, contrasena, "maestro");
+        boolean avanzar = controlador.registrarMaestro(RegMNombre, RegMApellido, RegMCorreo, RegMContrasena);
         
         if (avanzar==true){
             CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
@@ -2603,7 +2599,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_perfil1ActionPerformed
 
     private void progresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_progresoActionPerformed
-        controlador.mostrarProgreso(tablaLogros, puntos);
+        controlador.mostrarProgreso(tablaLogros, puntos, racha);
         JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane1;
         tabbedPane.setSelectedComponent(progresoEst);
         this.revalidate();
@@ -2735,7 +2731,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
             
             
-            boolean exito = controlador.actualizarPerfilFirebase(nombre,correo,apellido,contrasena,rol);
+            boolean exito = controlador.actualizarPerfilFirebase(correo,nombre,apellido,contrasena,rol);
             if (exito) {
                 JOptionPane.showMessageDialog(null,"Perfil actualizado en la nube!","",JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -4277,7 +4273,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
@@ -4344,6 +4339,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton progreso;
     private javax.swing.JPanel progresoEst;
     private javax.swing.JLabel puntos;
+    private javax.swing.JLabel racha;
     private javax.swing.JPanel rankingSalonReportesMaestro;
     private javax.swing.JButton registrate;
     private javax.swing.JPanel registroE;

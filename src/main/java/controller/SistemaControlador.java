@@ -187,6 +187,16 @@ public class SistemaControlador {
         }
     }
     
+    public boolean validarContrasena(JTextField clave){
+        String contrasena = clave.getText().trim();
+        if (contrasena.length()<8 || contrasena.contains(" ")){
+            JOptionPane.showMessageDialog(null,"La contraseña debe tener mínimo 8 caracteres y no debe tener espacios intermedios","Error Datos",JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else {
+            return true;
+        }
+                
+    }
     public boolean esVacio (JTextField campo, String mensaje){
             if (campo.getText().isEmpty()|| "Ingresa tu primer nombre".equals(campo.getText())|| campo.getText().equals("Ingresa tu primer apellido")||campo.getText().equals("Ingrese un nombre de usuario")|| campo.getText().equals("********"))
                { JOptionPane.showMessageDialog(null, mensaje, "Error falta un dato", JOptionPane.ERROR_MESSAGE); 
@@ -251,7 +261,7 @@ public class SistemaControlador {
     
     public boolean registrarEstudiante(JTextField nombre, JTextField apellido, JTextField correo, JPasswordField clave){
         boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true){
+        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true && validarContrasena(clave)==true){
             Usuario estudianteRegistrado = buscarUsuario(correo.getText());
             if (estudianteRegistrado == null){
                 Estudiante estudianteNuevo = new Estudiante();
@@ -260,7 +270,7 @@ public class SistemaControlador {
                 estudianteNuevo.setCorreo(correo.getText());
                 String contrasena = new String(clave.getPassword());
                 estudianteNuevo.setContrasena(contrasena);/// CONVERTIR A STRING
-                listaUsuarios.add(estudianteNuevo);
+                registrarUsuarioFirebase(nombre.getText(),apellido.getText(),correo.getText(), contrasena, "estudiante");
                 JOptionPane.showMessageDialog(null,"Usuario registrado exitosamente","",JOptionPane.INFORMATION_MESSAGE);
                 this.usuarioActual= estudianteNuevo;
                 avanzar = true;
@@ -327,7 +337,7 @@ public class SistemaControlador {
     
     public boolean registrarMaestro(JTextField nombre, JTextField apellido, JTextField correo, JPasswordField clave){
         boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un correo")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true){
+        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un nombre de usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true  && validarContrasena(clave)==true){
             Usuario maestroRegistrado = buscarUsuario(correo.getText());
             if (maestroRegistrado == null){
                 Maestro maestroNuevo = new Maestro();
@@ -336,7 +346,7 @@ public class SistemaControlador {
                 maestroNuevo.setCorreo(correo.getText());
                 String contrasena = new String(clave.getPassword());
                 maestroNuevo.setContrasena(contrasena);/// CONVERTIR A STRING
-                listaUsuarios.add(maestroNuevo);
+                registrarUsuarioFirebase(nombre.getText(),apellido.getText(),correo.getText(), contrasena, "maestro");
                 JOptionPane.showMessageDialog(null,"Usuario registrado exitosamente","",JOptionPane.INFORMATION_MESSAGE);
                 this.usuarioActual = maestroNuevo;
                 avanzar = true;
@@ -445,7 +455,7 @@ public class SistemaControlador {
     }
     
     public Usuario iniciarSesionUsuario(JTextField correo, JPasswordField clave){
-        if (esVacio(correo,"Debe indicar su correo")==false && esVacio(clave,"Debe indicar su contraseña")==false){
+        if (esVacio(correo,"Debe indicar su nombre de usuario")==false && esVacio(clave,"Debe indicar su contraseña")==false){
             String contrasena = new String(clave.getPassword());
             Usuario user = validarInicioSesion(correo.getText(),contrasena);
             if (user == null){
@@ -606,7 +616,7 @@ public class SistemaControlador {
         }
     }
     
-    public void mostrarProgreso(JTable logros, JLabel puntosE) {
+    public void mostrarProgreso(JTable logros, JLabel puntosE, JLabel racha) {
         Estudiante estudianteActual = (Estudiante) usuarioActual;
 
         // calcula los puntos totales (suma de puntos de todos los temas)
@@ -666,6 +676,10 @@ public class SistemaControlador {
         Font fuenteHeader = new Font("Cy Grotesk Key", Font.BOLD, 14);
         header.setFont(fuenteHeader);
         logros.getTableHeader().setForeground(new Color(40,66,119));
+        
+        int diasDeRacha = estudianteActual.getProgreso().getDiasRacha();
+        String dRacha = Integer.toString(diasDeRacha);
+        racha.setText(dRacha);
     }
     
     public Salon buscarSalonID(int id){
@@ -1456,6 +1470,7 @@ public class SistemaControlador {
             this.nivelSeleccionado = NivelDificultad.BAJO; 
         }
     }
+    
     
     
 }
