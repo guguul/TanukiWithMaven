@@ -243,9 +243,19 @@ public class Progreso {
         }
         return new double[]{aciertos, intentos};
     }
+
+    public void setDiasRacha(int diasRacha) {
+        this.diasRacha = diasRacha;
+    }
+    
+    
     
     public int getDiasRacha(){
-        Resultado ultimoResultado = resultados.getLast();
+        if (resultados == null || resultados.isEmpty()) {
+            return 0; // Si no hay resultados, la racha es 0
+        }
+        
+        Resultado ultimoResultado = resultados.get(resultados.size() - 1);
         if (ultimoResultado==null || resultados.isEmpty()){
             return 0;
         }
@@ -276,5 +286,12 @@ public class Progreso {
         }
         this.diasRacha = racha;
         return racha;
+    }
+    
+    public void desbloquearNivel(Tema tema, NivelDificultad nivel) {
+        if (this.nivelesDesbloqueados == null) {
+            this.nivelesDesbloqueados = new HashMap<>();
+        }
+        this.nivelesDesbloqueados.put(tema, nivel);
     }
 }
