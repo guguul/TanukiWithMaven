@@ -1094,7 +1094,7 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="jLabel46">
+                        <Component class="javax.swing.JLabel" name="racha">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Cy Grotesk Key" size="36" style="0"/>

@@ -18,8 +18,6 @@ import javax.swing.JFileChooser; // para la ventana de "Guardar como..."
  * @author adrif
  */
 public class Maestro extends Usuario{
-    public static int contadorMaestro=0;
-
     private ArrayList<Salon> salones;
     
     public Maestro (int idUsuario, String nombre, String apellido, String correo, String contrasena){
