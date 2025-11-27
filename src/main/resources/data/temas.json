@@ -1,0 +1,1011 @@
+[
+  {
+    "nombre": "Número y operaciones",
+    "temasHijos": [],
+    "descripcion": "Son las formas en que usamos los números para resolver problemas. Nos ayudan a contar, comparar cantidades y hacer cálculos como sumar, restar, multiplicar y dividir.",
+    "id": 1,
+    "personajeNombre": "",
+    "personajeRutaImagenPresentacion": "",
+    "personajeRutaImagenCelebrando": "",
+    "personajeRutaImagenCorrecto": "",
+    "personajeRutaImagenIncorrecto": "",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Comprensión del sistema de números naturales",
+    "temasHijos": [],
+    "descripcion": "Son los números que usamos para contar cosas: 1, 2, 3, 4… y así seguimos. Sirven para decir cuántos objetos hay y para ordenar cosas.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 1,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 2,
+    "personajeNombre": "Criyu",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/criyuPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/criyuCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/criyuCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/criyuIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Comprensión del sistema de números de decimales",
+    "temasHijos": [],
+    "descripcion": "Son números que tienen una parte entera y una parte “chiquita” separada por un punto o coma, como 3.5 o 7.25. Sirven para medir cosas más precisas, como el peso o la distancia.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 1,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 3,
+    "personajeNombre": "Criyu",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/criyuPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/criyuCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/criyuCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/criyuIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Comprensión de fracciones",
+    "temasHijos": [],
+    "descripcion": "Una fracción muestra que algo está dividido en partes iguales. Por ejemplo, ½ significa que tienes una de dos partes iguales. Nos ayudan a entender porciones o pedazos de algo.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 1,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 4,
+    "personajeNombre": "Criyu",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/criyuPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/criyuCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/criyuCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/criyuIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Suma",
+    "temasHijos": [],
+    "descripcion": "La suma es juntar cantidades. Si tienes 3 y luego te dan 2 más, los juntas y ahora tienes 5.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 1,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 5,
+    "personajeNombre": "Criyu",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/criyuPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/criyuCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/criyuCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/criyuIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Resta",
+    "temasHijos": [],
+    "descripcion": "La resta es quitar. Si tienes 8 y te quitan 3, te quedas con 5.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 1,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 6,
+    "personajeNombre": "Criyu",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/criyuPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/criyuCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/criyuCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/criyuIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Multiplicación",
+    "temasHijos": [],
+    "descripcion": "Es una forma rápida de sumar muchas veces lo mismo. Por ejemplo, 3 × 4 es como sumar 3 cuatro veces: 3 + 3 + 3 + 3.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 1,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 7,
+    "personajeNombre": "Criyu",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/criyuPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/criyuCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/criyuCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/criyuIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "División",
+    "temasHijos": [],
+    "descripcion": "Es repartir algo en partes iguales. Si tienes 12 y lo repartes en 4 partes iguales, a cada una le toca 3.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 1,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 8,
+    "personajeNombre": "Batis",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/batisPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/batisCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/batisCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/batisIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Sentido numérico",
+    "temasHijos": [],
+    "descripcion": "Es entender cómo funcionan los números: saber si son grandes o pequeños, si están cerca o lejos de otros, y cómo se relacionan entre sí.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 1,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 9,
+    "personajeNombre": "Batis",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/batisPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/batisCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/batisCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/batisIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Cálculo mental",
+    "temasHijos": [],
+    "descripcion": "Es resolver operaciones en tu mente sin papel. Por ejemplo, saber rápidamente que 20 + 10 es 30.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 1,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 10,
+    "personajeNombre": "Batis",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/batisPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/batisCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/batisCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/batisIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Algoritmos escritos",
+    "temasHijos": [],
+    "descripcion": "Son los pasos que seguimos para resolver operaciones en el cuaderno. Por ejemplo, acomodar los números para sumar o restar de forma ordenada.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 1,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 11,
+    "personajeNombre": "Batis",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/batisPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/batisCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/batisCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/batisIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Álgebra y pensamiento algebraico",
+    "temasHijos": [],
+    "descripcion": "Es una forma de usar símbolos, letras y reglas para entender cómo cambian los números. Nos ayuda a descubrir lo que no se ve a simple vista y a resolver problemas de forma más rápida y organizada.",
+    "id": 12,
+    "personajeNombre": "",
+    "personajeRutaImagenPresentacion": "",
+    "personajeRutaImagenCelebrando": "",
+    "personajeRutaImagenCorrecto": "",
+    "personajeRutaImagenIncorrecto": "",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Reconocimiento de patrones y regularidades",
+    "temasHijos": [],
+    "descripcion": "Un patrón es algo que se repite, como colores, figuras o números. Reconocer patrones ayuda a predecir qué sigue. Una irregularidad es cuando algo rompe ese patrón, como un número o figura que no encaja.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 12,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 13,
+    "personajeNombre": "Batis",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/batisPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/batisCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/batisCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/batisIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Resolución de problemas con incógnita simples",
+    "temasHijos": [],
+    "descripcion": "Una incógnita es algo que no sabemos, como un número escondido. Resolver problemas con incógnitas es descubrir ese número usando pistas del problema. Por ejemplo, si ___ + 3 \u003d 7, la incógnita es 4",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 12,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 14,
+    "personajeNombre": "Codrik",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/codrikPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/codrikCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/codrikCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/codrikIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Introducción. A la idea de la variable.",
+    "temasHijos": [],
+    "descripcion": "Una variable es una letra que usamos para representar un número que no conocemos. Por ejemplo, si p + 2 \u003d 5, la letra p es la variable, y su valor es 3.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 12,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 15,
+    "personajeNombre": "Codrik",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/codrikPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/codrikCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/codrikCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/codrikIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Uso de expresiones y relaciones para representar situaciones",
+    "temasHijos": [],
+    "descripcion": "Es escribir lo que pasa en un problema usando números y letras. Por ejemplo, si tienes “el doble de canicas”, lo puedes representar como 2 × n, donde n es la cantidad de canicas que tienes.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 12,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 16,
+    "personajeNombre": "Codrik",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/codrikPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/codrikCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/codrikCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/codrikIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "geometría y medida",
+    "temasHijos": [],
+    "descripcion": "Es la parte de las matemáticas que estudia las formas, el espacio y cómo medimos cosas como el largo, el tiempo o el peso.",
+    "id": 17,
+    "personajeNombre": "",
+    "personajeRutaImagenPresentacion": "",
+    "personajeRutaImagenCelebrando": "",
+    "personajeRutaImagenCorrecto": "",
+    "personajeRutaImagenIncorrecto": "",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Figuras planas",
+    "temasHijos": [],
+    "descripcion": "Son figuras que solo tienen largo y ancho, como el cuadrado, el triángulo o el círculo. Se ven “planitas”, como si estuvieran dibujadas en una hoja.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 18,
+    "personajeNombre": "Codrik",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/codrikPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/codrikCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/codrikCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/codrikIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Figuras en 3D cuerpos geométricos",
+    "temasHijos": [],
+    "descripcion": "Son figuras que tienen largo, ancho y alto, como un cubo, una esfera o un cilindro. Las puedes agarrar con la mano porque tienen volumen.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 19,
+    "personajeNombre": "Codrik",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/codrikPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/codrikCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/codrikCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/codrikIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Ángulos ",
+    "temasHijos": [],
+    "descripcion": "Un ángulo es la abertura que se forma cuando dos líneas se juntan en un punto. Pueden ser pequeños, medianos o grandes.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 20,
+    "personajeNombre": "Codrik",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/codrikPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/codrikCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/codrikCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/codrikIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Lados",
+    "temasHijos": [],
+    "descripcion": "Son las líneas que forman una figura. Por ejemplo, un cuadrado tiene 4 lados.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 21,
+    "personajeNombre": "Chepes",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/chepesPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/chepesCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/chepesCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/chepesIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Simetría",
+    "temasHijos": [],
+    "descripcion": "Una figura tiene simetría cuando la puedes dividir por la mitad y ambos lados quedan iguales, como un corazón o una mariposa.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 22,
+    "personajeNombre": "Chepes",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/chepesPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/chepesCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/chepesCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/chepesIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Perímetro",
+    "temasHijos": [],
+    "descripcion": "Es lo que mide el contorno de una figura. Es como darle una vuelta completa y medir cuánto mide esa vuelta.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 23,
+    "personajeNombre": "Chepes",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/chepesPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/chepesCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/chepesCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/chepesIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Área",
+    "temasHijos": [],
+    "descripcion": "Es lo que ocupa por dentro una figura plana. Por ejemplo, cuántos cuadritos caben dentro de un rectángulo.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 24,
+    "personajeNombre": "Chepes",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/chepesPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/chepesCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/chepesCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/chepesIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Volumen",
+    "temasHijos": [],
+    "descripcion": "Es el espacio que ocupa un cuerpo geométrico. Como cuánta agua cabe dentro de una caja o una botella.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 25,
+    "personajeNombre": "Chepes",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/chepesPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/chepesCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/chepesCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/chepesIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Longitud",
+    "temasHijos": [],
+    "descripcion": "Es la medida de qué tan largo es algo. Se mide con reglas, metros o cintas.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 26,
+    "personajeNombre": "Trux",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/truxPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/truxCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/truxCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/truxIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Masa",
+    "temasHijos": [],
+    "descripcion": "Es cuánto “pesa” un objeto, pero en realidad mide cuánta materia tiene. Se usa en kilogramos y gramos.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 27,
+    "personajeNombre": "Trux",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/truxPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/truxCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/truxCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/truxIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Capacidad de litros",
+    "temasHijos": [],
+    "descripcion": "Es cuánto líquido puede guardar un recipiente, como una botella o un vaso. Se mide en litros y mililitros.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 28,
+    "personajeNombre": "Trux",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/truxPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/truxCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/truxCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/truxIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Tiempo",
+    "temasHijos": [],
+    "descripcion": "Es cuánto duran las cosas: segundos, minutos, horas, días. Lo vemos en relojes y calendarios.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 29,
+    "personajeNombre": "Trux",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/truxPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/truxCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/truxCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/truxIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Temperatura",
+    "temasHijos": [],
+    "descripcion": "Nos dice qué tan caliente o frío está algo. Se mide en grados.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 30,
+    "personajeNombre": "Trux",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/truxPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/truxCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/truxCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/truxIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Dinero",
+    "temasHijos": [],
+    "descripcion": "Es lo que usamos para comprar cosas. Tiene diferentes valores como monedas y billetes.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 17,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 31,
+    "personajeNombre": "Trux",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/truxPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/truxCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/truxCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/truxIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Resolución de problemas(Eje transversal)",
+    "temasHijos": [],
+    "descripcion": "Significa usar las matemáticas para entender y resolver situaciones de la vida diaria. No es solo hacer cuentas, sino pensar, buscar pistas y encontrar la mejor respuesta.",
+    "id": 32,
+    "personajeNombre": "",
+    "personajeRutaImagenPresentacion": "",
+    "personajeRutaImagenCelebrando": "",
+    "personajeRutaImagenCorrecto": "",
+    "personajeRutaImagenIncorrecto": "",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "aplicación de los conocimientos matemáticos en situaciones reales",
+    "temasHijos": [],
+    "descripcion": "Es usar lo que sabes de números, operaciones, medidas o figuras para resolver cosas que pasan en el mundo real: medir un espacio, repartir comida, calcular el cambio o saber cuánto tiempo falta.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 32,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 33,
+    "personajeNombre": "Tanuki",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/tanukiPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/tanukiCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/tanukiCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/tanukiIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Estrategias diversas para resolver un mismo problema",
+    "temasHijos": [],
+    "descripcion": "Quiere decir que no hay una sola forma de resolver un problema. Puedes dibujar, hacer una tabla, usar objetos, hacer una operación rápida o pensar mentalmente; todas son formas válidas si te llevan a la respuesta.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 32,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 34,
+    "personajeNombre": "Tanuki",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/tanukiPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/tanukiCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/tanukiCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/tanukiIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Argumentación de procesos y resultados",
+    "temasHijos": [],
+    "descripcion": "Es explicar cómo resolviste un problema y por qué tu resultado tiene sentido. Es como contar los pasos que seguiste para que alguien más entienda tu forma de pensar.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 32,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 35,
+    "personajeNombre": "Tanuki",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/tanukiPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/tanukiCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/tanukiCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/tanukiIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Datos y probabilidad",
+    "temasHijos": [],
+    "descripcion": "Es la parte de las matemáticas que nos ayuda a reunir información, organizarla y entenderla, además de aprender a predecir qué cosas pueden pasar o no.",
+    "id": 36,
+    "personajeNombre": "",
+    "personajeRutaImagenPresentacion": "",
+    "personajeRutaImagenCelebrando": "",
+    "personajeRutaImagenCorrecto": "",
+    "personajeRutaImagenIncorrecto": "",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Lectura de información, estadística, sencilla",
+    "temasHijos": [],
+    "descripcion": "Es entender datos que vienen en tablas, pictogramas o gráficas de barras. Significa saber mirar cuántos hay, comparar cantidades y sacar conclusiones simples.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 36,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 37,
+    "personajeNombre": "Tanuki",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/tanukiPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/tanukiCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/tanukiCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/tanukiIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  },
+  {
+    "nombre": "Introducción a la probabilidad a partir de juegos y experiencias cotidianas",
+    "temasHijos": [],
+    "descripcion": "La probabilidad es qué tan posible es que algo ocurra. Se aprende jugando: lanzando una moneda, tirando un dado o sacando un color de una bolsa. Así entendemos si algo es seguro, posible o casi imposible.",
+    "temaPadre": {
+      "nombre": "",
+      "temasHijos": [],
+      "id": 36,
+      "ejerciciosPorDificultad": {
+        "BAJO": [],
+        "MEDIO": [],
+        "OPTIMO": [],
+        "ELEVADO": []
+      }
+    },
+    "id": 38,
+    "personajeNombre": "Tanuki",
+    "personajeRutaImagenPresentacion": "/imagenesPersonajes/personajesPresentacion/tanukiPresentacion.png",
+    "personajeRutaImagenCelebrando": "/imagenesPersonajes/personajesCelebrando/tanukiCelebrando.png",
+    "personajeRutaImagenCorrecto": "/imagenesPersonajes/personajesCorrecto/tanukiCorrecto.png",
+    "personajeRutaImagenIncorrecto": "/imagenesPersonajes/personajesIncorrecto/tanukiIncorrecto.png",
+    "ejerciciosPorDificultad": {
+      "BAJO": [],
+      "MEDIO": [],
+      "OPTIMO": [],
+      "ELEVADO": []
+    }
+  }
+]
