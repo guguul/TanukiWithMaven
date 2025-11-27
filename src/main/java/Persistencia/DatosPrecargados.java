@@ -28,8 +28,13 @@ public class DatosPrecargados {
         this.logros = new ArrayList<>();
         this.salones = new ArrayList<>();
         
+        // 1. Cargar Usuarios (Si tienes en Firebase, esto puede quedar vacío o con admin local)
+        // cargarUsuariosPrueba(); 
         
+        // 2. CARGAR LA DATA REAL DEL JSON
         cargarDatosDesdeJson(); 
+        
+        // 3. Cargar Logros (Si los tienes en JSON úsalo, sino manual aquí)
         cargarLogrosManuales(); 
     }
 
@@ -37,8 +42,11 @@ public class DatosPrecargados {
         try {
             Gson gson = new Gson();
 
+            // --- A. CARGAR TEMAS ---
+            // Nota: La ruta empieza con "/" porque está en src/main/resources
             String rutaTemas = "/data/temas.json"; 
             
+            // Verificamos si existe el archivo
             if (getClass().getResource(rutaTemas) == null) {
                 System.err.println("❌ ERROR CRÍTICO: No se encuentra /data/temas.json");
                 return;
@@ -50,9 +58,12 @@ public class DatosPrecargados {
             Type listTypeTemas = new TypeToken<ArrayList<Tema>>(){}.getType();
             this.temas = gson.fromJson(readerTemas, listTypeTemas);
             
+            // --- B. MAPEAR TEMAS (Para búsquedas rápidas por ID) ---
             Map<Integer, Tema> mapaTemas = new HashMap<>();
             for (Tema t : this.temas) {
+                // Inicializar mapas internos del tema si vinieron nulos del JSON
                 if (t.getEjercicios() == null) {
+                    // Recrear el mapa de dificultades vacío
                      Map<NivelDificultad, List<Ejercicio>> mapaVacio = new HashMap<>();
                      for (NivelDificultad n : NivelDificultad.values()) mapaVacio.put(n, new ArrayList<>());
                      t.setEjercicios(mapaVacio);
@@ -60,6 +71,7 @@ public class DatosPrecargados {
                 mapaTemas.put(t.getId(), t);
             }
 
+            // --- C. RECONSTRUIR JERARQUÍA (Padres e Hijos) ---
             for (Tema t : this.temas) {
                 if (t.getTemaPadre() != null && t.getTemaPadre().getId() > 0) {
                     Tema padreReal = mapaTemas.get(t.getTemaPadre().getId());
@@ -69,7 +81,8 @@ public class DatosPrecargados {
                     }
                 }
             }
-            
+
+            // --- D. CARGAR EJERCICIOS ---
             String rutaEjercicios = "/data/ejercicios.json";
              if (getClass().getResource(rutaEjercicios) == null) {
                 System.err.println("❌ ERROR CRÍTICO: No se encuentra /data/ejercicios.json");
@@ -82,16 +95,16 @@ public class DatosPrecargados {
             Type listTypeEjercicios = new TypeToken<ArrayList<Ejercicio>>(){}.getType();
             List<Ejercicio> todosLosEjercicios = gson.fromJson(readerEjercicios, listTypeEjercicios);
             
-            // ASIGNAR EJERCICIOS A SUS TEMAS 
+            // --- E. ASIGNAR EJERCICIOS A SUS TEMAS ---
             int contadorCargados = 0;
             for (Ejercicio ej : todosLosEjercicios) {
-                // El ejercicio viene con un Tema "dummy" que solo tiene el ID
+                // El ejercicio viene con un Tema "dummy" que solo tiene el ID.
                 // Buscamos el Tema real en el mapa.
                 if (ej.getTema() != null) {
                     Tema temaReal = mapaTemas.get(ej.getTema().getId());
                     if (temaReal != null) {
-                        ej.setTema(temaReal); // enlazamos el objeto Tema real
-                        temaReal.agregarEjercicio(ej); // esto lo mete en la lista de dificultad
+                        ej.setTema(temaReal); // Enlazamos el objeto Tema real
+                        temaReal.agregarEjercicio(ej); // ¡IMPORTANTE! Esto lo mete en la lista de dificultad
                         contadorCargados++;
                     }
                 }
@@ -106,7 +119,9 @@ public class DatosPrecargados {
     }
 
     private void cargarLogrosManuales() {
-        //faltan los logros
+        // Aquí puedes mantener tu código viejo de logros si no tienes JSON de logros aún
+        // Ejemplo:
+        // this.logros.add(new Logro("Novato de la Suma", ...));
     }
 
     // Getters

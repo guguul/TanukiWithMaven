@@ -4,7 +4,6 @@
  */
 package vista;
 
-import Persistencia.DatosPrecargados;
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
@@ -41,7 +40,9 @@ import javax.swing.ImageIcon;
 import java.time.*;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 /**
  *
@@ -70,6 +71,86 @@ public class MainJFrame extends javax.swing.JFrame {
             this.grupoOpciones.add(opcionB); 
             this.grupoOpciones.add(opcionC); 
             this.grupoOpciones.add(opcionD);
+            
+        javax.swing.JButton[] todosLosBotones = {
+            comenzar, salir1, iniciarSesion, registrate, salir2, estudiante1, maestro1, volver1, 
+            volver3, aceptar1, aceptar3, volver5, aceptar4, volver6, perfil1, progreso, salon, 
+            practica, cerrarSesion1, editarPerfil, guardar1, volver7, consultarInfo, unirseSalon, 
+            volver8, enviar, volver10, continuar_tema, seguirPresentacion, volver11, irADescripcion, 
+            volver, volver2, irAPrevia, atras, tutorial, seguir_temahijo, volverAPractica, 
+            siguiente_ejercicio, siguienteEjercicioEscrita, continuar_ejer_correcto, 
+            continuar_ejer_inco, perfil2, solicitudes, salones, reportes, cerrarSesion2, 
+            editarPerfil2, guardar2, volver9, filtrar, aceptar, crearSalon, borrarSalon, 
+            sacarEstudiante, aggEst, mostrarIdSalon, crear, volver13, guardar, volver14, 
+            volver15, eliminar, volver16, volver17, sacar, porSalon, porEstudiante, volver18, 
+            consultarReporte, volver19, tablaDesempeno, graficoDesempeno, volver20, exportarPdf1, 
+            exportarExcel1, volverDeTablaSalon, exportarPdf2, exportarExcel2, volverDeGraficoSalon, 
+            filtrarEstReporte, volver21, btnVerTablaEstudiante, graficoDesempeno2, volver22, 
+            exportarPdf3, exportarExcel3, volverDeTablaEst, exportarPdf4, exportarExcel4, 
+            volverDeGraficoEst
+        };
+
+        for (javax.swing.JButton btn : todosLosBotones) {
+            if (btn != null) {
+                btn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                btn.setBorderPainted(false);
+                btn.setContentAreaFilled(false);
+                btn.setFocusPainted(false);
+
+                btn.addMouseListener(new java.awt.event.MouseAdapter() {
+                    @Override
+                    public void mouseEntered(java.awt.event.MouseEvent evt) {
+                        // 1. Sonido
+                        controlador.reproducirSonido("mouseclick1.wav"); 
+
+                        // 2. CÁLCULO INTELIGENTE DEL RADIO
+                        // Obtenemos la altura actual de ESTE botón específico
+                        int alturaBoton = btn.getHeight();
+                        int anchoBoton = btn.getWidth();
+
+                        // Opción A: Estilo "Pastilla" (Pill Shape) - Bordes totalmente redondos
+                        // Ideal si tus diseños en Canva son muy curvos.
+                        int radio = 0; 
+
+                        // Opción B: Estilo "Tarjeta" (Esquinas suaves) - Si prefieres menos curva
+                        // Descomenta la línea de abajo si la Opción A es demasiado redonda
+                        if (btn==cerrarSesion1 || btn==cerrarSesion2 || btn==consultarInfo){
+                            radio = alturaBoton / 3;
+                        } else {
+                            radio = alturaBoton; 
+                        }
+                        
+
+                        // 3. APLICAR EL BORDE CON EL TAMAÑO CALCULADO
+                        btn.setBorderPainted(true);
+                        btn.setBorder(new FondoRedondeado(radio, new java.awt.Color(255, 255, 255, 100)));
+                    }
+
+                    @Override
+                    public void mouseExited(java.awt.event.MouseEvent evt) {
+                        // 3. LIMPIAR
+                        btn.setBorderPainted(false);
+                        btn.setBorder(null); 
+                    }
+                });
+            }
+        }
+        
+        ejercicioCorrecto.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                // Este código se ejecuta CADA VEZ que el panel se hace visible
+                controlador.reproducirSonido("CORRECTO.wav");
+            }
+        });
+        
+        ejercicioIncorrecto.addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                // Este código se ejecuta CADA VEZ que el panel se hace visible
+                controlador.reproducirSonido("INCORRECTO.wav");
+            }
+        });
     }
     
 
@@ -153,7 +234,7 @@ public class MainJFrame extends javax.swing.JFrame {
         tablaLogrosEstProgreso = new javax.swing.JScrollPane();
         tablaLogros = new javax.swing.JTable();
         puntos = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
+        racha = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         cardSalonEst = new javax.swing.JPanel();
         salonEst = new javax.swing.JPanel();
@@ -192,12 +273,12 @@ public class MainJFrame extends javax.swing.JFrame {
         imagenPresentacionPJ = new javax.swing.JLabel();
         saludoEstudiante = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
-        imagenPresentacion2 = new javax.swing.JLabel();
         descripcionTema = new javax.swing.JPanel();
         volver2 = new javax.swing.JButton();
         irAPrevia = new javax.swing.JButton();
         descripcion = new javax.swing.JLabel();
         tituloContenidoPractica = new javax.swing.JLabel();
+        imagenPresentacion2 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         previaPractica = new javax.swing.JPanel();
         atras = new javax.swing.JButton();
@@ -917,11 +998,11 @@ public class MainJFrame extends javax.swing.JFrame {
         puntos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         progresoEst.add(puntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 540, 210, 50));
 
-        jLabel46.setFont(new java.awt.Font("Cy Grotesk Key", 0, 36)); // NOI18N
-        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel46.setText("000");
-        jLabel46.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        progresoEst.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 630, 150, 50));
+        racha.setFont(new java.awt.Font("Cy Grotesk Key", 0, 36)); // NOI18N
+        racha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        racha.setText("000");
+        racha.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        progresoEst.add(racha, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 630, 150, 50));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/progresoEst.png"))); // NOI18N
         progresoEst.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -939,7 +1020,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 consultarInfoActionPerformed(evt);
             }
         });
-        salonEst.add(consultarInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 170, 300, 170));
+        salonEst.add(consultarInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 180, 290, 160));
 
         unirseSalon.setBorderPainted(false);
         unirseSalon.setContentAreaFilled(false);
@@ -948,7 +1029,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 unirseSalonActionPerformed(evt);
             }
         });
-        salonEst.add(unirseSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 460, 90));
+        salonEst.add(unirseSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, 460, 80));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/salonEst.png"))); // NOI18N
         salonEst.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -1005,7 +1086,7 @@ public class MainJFrame extends javax.swing.JFrame {
         infoSalonEst.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 60, 150, 60));
 
         jLabel50.setFont(new java.awt.Font("Cy Grotesk Key", 0, 36)); // NOI18N
-        infoSalonEst.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 246, 760, 60));
+        infoSalonEst.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 760, 50));
 
         volver10.setBorderPainted(false);
         volver10.setContentAreaFilled(false);
@@ -1084,7 +1165,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 seguirPresentacionActionPerformed(evt);
             }
         });
-        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 620, 160, 60));
+        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 620, 250, 70));
 
         volver11.setBorderPainted(false);
         volver11.setContentAreaFilled(false);
@@ -1127,13 +1208,12 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         PresentPJ.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 620, 200, 70));
-        PresentPJ.add(imagenPresentacionPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 340, 500));
+        PresentPJ.add(imagenPresentacionPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 220, 340, 500));
         PresentPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 350, 70));
 
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/PresentacionPersonaje.png"))); // NOI18N
         jLabel45.setText("jLabel45");
         PresentPJ.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-        PresentPJ.add(imagenPresentacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 350, 490));
 
         cardPracticaEst.add(PresentPJ, "PresentacionPJ");
 
@@ -1163,6 +1243,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         tituloContenidoPractica.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         descripcionTema.add(tituloContenidoPractica, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, 500, 70));
+        descripcionTema.add(imagenPresentacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 350, 490));
 
         jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/Descripcion.png"))); // NOI18N
         descripcionTema.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -1202,7 +1283,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/iniciarPractica.png"))); // NOI18N
         previaPractica.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        cardPracticaEst.add(previaPractica, "card6");
+        cardPracticaEst.add(previaPractica, "previaPractica");
 
         Tutorial.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -2328,14 +2409,14 @@ public class MainJFrame extends javax.swing.JFrame {
         
         String correoLogin = CorreoLogin.getText();
         String passLogin = new String(ContrasenaLogin.getPassword());
-        Usuario usuario = controlador.iniciarSesionFirebase(correoLogin, passLogin);
+        usuarioActual = controlador.iniciarSesionFirebase(correoLogin, passLogin);
         //lo de abajo lo comente para que funcione solo con la base de datos
-        //usuarioActual = controlador.iniciarSesionUsuario(CorreoLogin, ContrasenaLogin);
-        if (/*usuarioActual==null &&*/ usuario== null){
+        // = controlador.iniciarSesionUsuario(CorreoLogin, ContrasenaLogin);
+        if (usuarioActual==null){
             JOptionPane.showMessageDialog(null,"Falló el inicio de sesión","Error en el incio de sesion",JOptionPane.ERROR_MESSAGE);
         }
         else {
-            if (usuario instanceof Estudiante){
+            if (usuarioActual instanceof Estudiante){
                 CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
                 cardLayout.show(cardPrincipal,"cardInterfazEstudiante");
 
@@ -2345,7 +2426,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane1;
                 tabbedPane.setSelectedComponent(principalE);
             }
-            else if (usuario instanceof Maestro){
+            else if (usuarioActual instanceof Maestro){
                 CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
                 cardLayout.show(cardPrincipal,"InterfazMaestro");
 
@@ -2437,6 +2518,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_maestro1ActionPerformed
 
     private void aceptar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar3ActionPerformed
+        
         boolean avanzar = controlador.registrarEstudiante(RegENombre, RegEApellido, RegECorreo, RegEContrasena);
         
         if (avanzar==true){
@@ -2484,6 +2566,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_RegMCorreoActionPerformed
 
     private void aceptar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar4ActionPerformed
+        String nombre = RegMNombre.getText();
+        String apellido = RegMApellido.getText();
+        String correo = RegMCorreo.getText();
+        String contrasena = new String(RegMContrasena.getPassword());
         boolean avanzar = controlador.registrarMaestro(RegMNombre, RegMApellido, RegMCorreo, RegMContrasena);
         
         if (avanzar==true){
@@ -2512,7 +2598,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_perfil1ActionPerformed
 
     private void progresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_progresoActionPerformed
-        controlador.mostrarProgreso(tablaLogros, puntos);
+        controlador.mostrarProgreso(tablaLogros, puntos, racha);
         JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane1;
         tabbedPane.setSelectedComponent(progresoEst);
         this.revalidate();
@@ -2598,11 +2684,19 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarSesion2ActionPerformed
 
     private void salir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir1ActionPerformed
-        System.exit(0);
+        int confirmacion = JOptionPane.showOptionDialog(
+                        null,"¿Esta seguro que desea salir de Tanuki?", "",
+                        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+        if (confirmacion==0) 
+          this.dispose();
     }//GEN-LAST:event_salir1ActionPerformed
 
     private void salir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir2ActionPerformed
-        System.exit(0);
+        int confirmacion = JOptionPane.showOptionDialog(
+                        null,"¿Desea salir de Tanuki?", "",
+                        JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
+        if (confirmacion==0) 
+          this.dispose();
     }//GEN-LAST:event_salir2ActionPerformed
 
     private void editarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPerfilActionPerformed
@@ -2636,7 +2730,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
             
             
-            boolean exito = controlador.actualizarPerfilFirebase(nombre,correo,apellido,contrasena,rol);
+            boolean exito = controlador.actualizarPerfilFirebase(correo,nombre,apellido,contrasena,rol);
             if (exito) {
                 JOptionPane.showMessageDialog(null,"Perfil actualizado en la nube!","",JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -2923,26 +3017,42 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_filtrarActionPerformed
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-        // BOTON QUE DEBERIA ACEPTAR A UN ESTUDIANTE SELECCIONADO DE LA LISTA
-        int salonN =  (int) jComboBox3.getSelectedItem();
-        Salon salonNuevo = controlador.buscarSalonID(salonN);
+        // 1. Obtener datos de la interfaz
+        int salonN = (int) jComboBox3.getSelectedItem(); // Asegúrate que el combo tenga Integers
+        
+        // (Ya no necesitamos buscar el salón aquí manualmente para modificarlo, el controlador lo hace)
+        
         jList1.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         List<Estudiante> estSeleccionados = jList1.getSelectedValuesList();
-        if (estSeleccionados==null){
-            JOptionPane.showMessageDialog(null,"No se ha seleccionado ningun estudiante para admitir","Error de selección",JOptionPane.ERROR_MESSAGE);
-        }
-        else {
-            List<Estudiante> solicitudesSalon = salonNuevo.getListaSolicitudes();
-            int cant=0;
-            for (Estudiante e: estSeleccionados){
-                e.setSalon(salonNuevo);
-                e.setGrado(salonNuevo.getGrado());
-                e.setSeccion(salonNuevo.getSeccion());
-                salonNuevo.getListaEstudiantes().add(e);
-                solicitudesSalon.remove(e);
-                cant = cant+1;
+
+        if (estSeleccionados == null || estSeleccionados.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningún estudiante para admitir", "Error de selección", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int cant = 0;
+            boolean algunError = false;
+
+            // 2. Recorrer la lista y mandar a Firebase uno por uno
+            for (Estudiante e : estSeleccionados) {
+                boolean exito = controlador.aceptarSolicitud(salonN, e);
+                if (exito) {
+                    cant++;
+                } else {
+                    algunError = true;
+                }
             }
-            JOptionPane.showMessageDialog(null,"Se han admitido "+cant+" estudiantes","Solicitudes aceptadas",JOptionPane.INFORMATION_MESSAGE);
+
+            // 3. Mensaje final
+            if (cant > 0) {
+                JOptionPane.showMessageDialog(null, "Se han admitido " + cant + " estudiantes correctamente.", "Solicitudes aceptadas", JOptionPane.INFORMATION_MESSAGE);
+                
+                // 4. IMPORTANTE: Refrescar la lista visualmente
+                // Volvemos a llamar a mostrarSolicitudes para que la JList se limpie de los que ya aceptamos
+                controlador.mostrarSolicitudes(salonN, jList1); 
+            }
+            
+            if (algunError) {
+                JOptionPane.showMessageDialog(null, "Hubo un error al procesar algunos estudiantes.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
         } 
     }//GEN-LAST:event_aceptarActionPerformed
 
@@ -2953,6 +3063,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_crearSalonActionPerformed
 
     private void borrarSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarSalonActionPerformed
+        idEliminar.setText("");
         CardLayout cardLayout = (CardLayout) this.cardSalonesMaestro.getLayout();
         cardLayout.show(cardSalonesMaestro,"borrarSalonMaestro");
     }//GEN-LAST:event_borrarSalonActionPerformed
@@ -3829,7 +3940,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_irADescripcionActionPerformed
 
     private void seguirPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguirPresentacionActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_seguirPresentacionActionPerformed
 
     private void siguienteEjercicioEscritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteEjercicioEscritaActionPerformed
@@ -4178,7 +4289,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
@@ -4245,6 +4355,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton progreso;
     private javax.swing.JPanel progresoEst;
     private javax.swing.JLabel puntos;
+    private javax.swing.JLabel racha;
     private javax.swing.JPanel rankingSalonReportesMaestro;
     private javax.swing.JButton registrate;
     private javax.swing.JPanel registroE;
@@ -4323,3 +4434,35 @@ public class MainJFrame extends javax.swing.JFrame {
     private modelo_tanuki.PeriodoReporte periodoParaReporte;
     private modelo_tanuki.Estudiante estudianteParaReporte;
 }
+
+// Esta clase se encarga de dibujar la figura redondeada
+    class FondoRedondeado implements javax.swing.border.Border {
+        private int radio;
+        private java.awt.Color color;
+
+        public FondoRedondeado(int radio, java.awt.Color color) {
+            this.radio = radio;
+            this.color = color;
+        }
+
+        @Override
+        public void paintBorder(java.awt.Component c, java.awt.Graphics g, int x, int y, int width, int height) {
+            java.awt.Graphics2D g2 = (java.awt.Graphics2D) g;
+            g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+
+            g2.setColor(color);
+            // Aquí dibujamos el fondo redondeado con un poco de transparencia si se desea
+            // El -1 es para ajustar bordes
+            g2.fillRoundRect(x, y, width - 1, height - 1, radio, radio); 
+        }
+
+        @Override
+        public java.awt.Insets getBorderInsets(java.awt.Component c) {
+            return new java.awt.Insets(0, 0, 0, 0); // Sin margen extra
+        }
+
+        @Override
+        public boolean isBorderOpaque() {
+            return false;
+        }
+    }

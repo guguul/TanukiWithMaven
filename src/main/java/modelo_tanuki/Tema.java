@@ -33,7 +33,7 @@ public class Tema {
      */
     private Map<NivelDificultad, List<Ejercicio>> ejerciciosPorDificultad;
     
-    public Tema(int id, String nombre, Tema temaPadre) {
+    public Tema(int id, String nombre, Tema temaPadre,String nombrePersonaje, String presentacionPersonaje, String celebrandoPersonaje, String correctoPersonaje, String incorrectoPersonaje) {
         this.id = id;
         this.nombre = nombre;
         this.temaPadre = temaPadre;
@@ -47,10 +47,16 @@ public class Tema {
         for (NivelDificultad nivel : NivelDificultad.values()) {
             this.ejerciciosPorDificultad.put(nivel, new ArrayList<>());
         }
+        this.personajeNombre = nombrePersonaje;
+        this.personajeRutaImagenPresentacion = presentacionPersonaje;
+        this.personajeRutaImagenCelebrando = celebrandoPersonaje;
+        this.personajeRutaImagenCorrecto = correctoPersonaje;
+        this.personajeRutaImagenIncorrecto = incorrectoPersonaje;
     }
     
     public Tema(){
-        this(0, "", null); //llama al constructor ppal
+        this(0, "", null,"","","","",""); //llama al constructor ppal
+        
     }
     
     public void agregarTemaHijo(Tema hijo) {
@@ -122,11 +128,7 @@ public class Tema {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public String getPersonajeNombre() {
-        return personajeNombre;
-    }
-
+ 
     public void setPersonajeNombre(String personajeNombre) {
         this.personajeNombre = personajeNombre;
     }
