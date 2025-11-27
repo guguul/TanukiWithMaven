@@ -192,12 +192,12 @@ public class MainJFrame extends javax.swing.JFrame {
         imagenPresentacionPJ = new javax.swing.JLabel();
         saludoEstudiante = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
+        imagenPresentacion2 = new javax.swing.JLabel();
         descripcionTema = new javax.swing.JPanel();
         volver2 = new javax.swing.JButton();
         irAPrevia = new javax.swing.JButton();
         descripcion = new javax.swing.JLabel();
         tituloContenidoPractica = new javax.swing.JLabel();
-        imagenPresentacion2 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         previaPractica = new javax.swing.JPanel();
         atras = new javax.swing.JButton();
@@ -1127,12 +1127,13 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         PresentPJ.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 620, 200, 70));
-        PresentPJ.add(imagenPresentacionPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 220, 340, 500));
+        PresentPJ.add(imagenPresentacionPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 340, 500));
         PresentPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 350, 70));
 
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/PresentacionPersonaje.png"))); // NOI18N
         jLabel45.setText("jLabel45");
         PresentPJ.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        PresentPJ.add(imagenPresentacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 350, 490));
 
         cardPracticaEst.add(PresentPJ, "PresentacionPJ");
 
@@ -1162,7 +1163,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         tituloContenidoPractica.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         descripcionTema.add(tituloContenidoPractica, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, 500, 70));
-        descripcionTema.add(imagenPresentacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 350, 490));
 
         jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/Descripcion.png"))); // NOI18N
         descripcionTema.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

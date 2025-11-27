@@ -4,6 +4,7 @@ vista\MainJFrame$121.class
 vista\MainJFrame$47.class
 vista\MainJFrame$67.class
 vista\MainJFrame$87.class
+ConvertidorExcelAJson$1.class
 vista\MainJFrame$34.class
 modelo_tanuki\FormatoVisual.class
 modelo_tanuki\Logro.class
@@ -71,9 +72,7 @@ vista\MainJFrame$8.class
 vista\MainJFrame$39.class
 vista\MainJFrame$94.class
 modelo_tanuki\AnalizadorSalon$1.class
-Persistencia\ConvertidorExcelAJson$1.class
 modelo_tanuki\Progreso.class
-Persistencia\ConvertidorExcelAJson.class
 vista\MainJFrame$110.class
 modelo_tanuki\FiltroPractica.class
 vista\MainJFrame$89.class
@@ -92,6 +91,7 @@ controller\SistemaControlador$2.class
 vista\MainJFrame$17.class
 vista\MainJFrame$111.class
 vista\MainJFrame$131.class
+ConvertidorExcelAJson.class
 vista\MainJFrame$97.class
 vista\MainJFrame$37.class
 vista\MainJFrame$57.class

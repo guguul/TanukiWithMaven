@@ -21,7 +21,10 @@ public class Tema {
     private Tema temaPadre;
     private int id;
     private String personajeNombre;
-    private String personajeRutaImagen;
+    private String personajeRutaImagenPresentacion;
+    private String personajeRutaImagenCelebrando;
+    private String personajeRutaImagenCorrecto;
+    private String personajeRutaImagenIncorrecto;
     /**
      * ATRIBUTO CLAVE:
      * Un "diccionario" que agrupa las listas de ejercicios
@@ -128,13 +131,38 @@ public class Tema {
         this.personajeNombre = personajeNombre;
     }
 
-    public String getPersonajeRutaImagen() {
-        return personajeRutaImagen;
+    public String getPersonajeRutaImagenPresentacion() {
+        return personajeRutaImagenPresentacion;
     }
 
-    public void setPersonajeRutaImagen(String personajeRutaImagen) {
-        this.personajeRutaImagen = personajeRutaImagen;
+    public void setPersonajeRutaImagenPresentacion(String personajeRutaImagenPresentacion) {
+        this.personajeRutaImagenPresentacion = personajeRutaImagenPresentacion;
     }
+
+    public String getPersonajeRutaImagenCelebrando() {
+        return personajeRutaImagenCelebrando;
+    }
+
+    public void setPersonajeRutaImagenCelebrando(String personajeRutaImagenCelebrando) {
+        this.personajeRutaImagenCelebrando = personajeRutaImagenCelebrando;
+    }
+
+    public String getPersonajeRutaImagenCorrecto() {
+        return personajeRutaImagenCorrecto;
+    }
+
+    public void setPersonajeRutaImagenCorrecto(String personajeRutaImagenCorrecto) {
+        this.personajeRutaImagenCorrecto = personajeRutaImagenCorrecto;
+    }
+
+    public String getPersonajeRutaImagenIncorrecto() {
+        return personajeRutaImagenIncorrecto;
+    }
+
+    public void setPersonajeRutaImagenIncorrecto(String personajeRutaImagenIncorrecto) {
+        this.personajeRutaImagenIncorrecto = personajeRutaImagenIncorrecto;
+    }
+
     
     /**
      * MÉTODO CLAVE MODIFICADO (Lógica del 70%)
