@@ -32,12 +32,12 @@ public class DatosPrecargados {
     public DatosPrecargados() {
         
         //creando temas con el constructor
-        Tema operaciones_basicas = new Tema(1, "Operaciones basicas", null,null); // tema padre
-        Tema geometria = new Tema(4, "Geometria", null,null);  // otro tema padre (id,nombre,temapadre)
+        Tema operaciones_basicas = new Tema(1, "Operaciones basicas", null,"","","","",""); // tema padre
+        Tema geometria = new Tema(4, "Geometria", null,"","","","","");  // otro tema padre (id,nombre,temapadre)
 
-        Tema suma = new Tema(2, "Suma", operaciones_basicas,null); // hijo de operaciones_basicas
-        Tema resta = new Tema(3, "Resta", operaciones_basicas,null); // hijo de operaciones_basicas
-        Tema figuras = new Tema(5, "Figuras", geometria,null); // hijo de geometria
+        Tema suma = new Tema(2, "Suma", operaciones_basicas,"","","","",""); // hijo de operaciones_basicas
+        Tema resta = new Tema(3, "Resta", operaciones_basicas,"","","","",""); // hijo de operaciones_basicas
+        Tema figuras = new Tema(5, "Figuras", geometria,"","","","",""); // hijo de geometria
         
         operaciones_basicas.agregarTemaHijo(suma);
         operaciones_basicas.agregarTemaHijo(resta);
