@@ -4,7 +4,6 @@
  */
 package vista;
 
-import Persistencia.DatosPrecargados;
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
@@ -3064,6 +3063,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_crearSalonActionPerformed
 
     private void borrarSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarSalonActionPerformed
+        idEliminar.setText("");
         CardLayout cardLayout = (CardLayout) this.cardSalonesMaestro.getLayout();
         cardLayout.show(cardSalonesMaestro,"borrarSalonMaestro");
     }//GEN-LAST:event_borrarSalonActionPerformed

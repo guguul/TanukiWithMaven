@@ -20,8 +20,11 @@ public class Tema {
     private String descripcion;
     private Tema temaPadre;
     private int id;
-    private String personajeNombre;
-    private Personaje personaje;
+    private String nombrePersonaje;
+    private String presentacionPersonaje;
+    private String celebrandoPersonaje;
+    private String correctoPersonaje;
+    private String incorrectoPersonaje;
     /**
      * ATRIBUTO CLAVE:
      * Un "diccionario" que agrupa las listas de ejercicios
@@ -30,7 +33,7 @@ public class Tema {
      */
     private Map<NivelDificultad, List<Ejercicio>> ejerciciosPorDificultad;
     
-    public Tema(int id, String nombre, Tema temaPadre, Personaje personaje) {
+    public Tema(int id, String nombre, Tema temaPadre,String nombrePersonaje, String presentacionPersonaje, String celebrandoPersonaje, String correctoPersonaje, String incorrectoPersonaje) {
         this.id = id;
         this.nombre = nombre;
         this.temaPadre = temaPadre;
@@ -44,11 +47,16 @@ public class Tema {
         for (NivelDificultad nivel : NivelDificultad.values()) {
             this.ejerciciosPorDificultad.put(nivel, new ArrayList<>());
         }
-        this.personaje = personaje;
+        this.nombrePersonaje = nombrePersonaje;
+        this.presentacionPersonaje = presentacionPersonaje;
+        this.celebrandoPersonaje = celebrandoPersonaje;
+        this.correctoPersonaje = correctoPersonaje;
+        this.incorrectoPersonaje = incorrectoPersonaje;
     }
     
     public Tema(){
-        this(0, "", null,new Personaje()); //llama al constructor ppal
+        this(0, "", null,"","","","",""); //llama al constructor ppal
+        
     }
     
     public void agregarTemaHijo(Tema hijo) {
@@ -120,22 +128,48 @@ public class Tema {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getNombrePersonaje() {
+        return nombrePersonaje;
+    }
+
+    public void setNombrePersonaje(String nombrePersonaje) {
+        this.nombrePersonaje = nombrePersonaje;
+    }
+
+    public String getPresentacionPersonaje() {
+        return presentacionPersonaje;
+    }
+
+    public void setPresentacionPersonaje(String presentacionPersonaje) {
+        this.presentacionPersonaje = presentacionPersonaje;
+    }
+
+    public String getCelebrandoPersonaje() {
+        return celebrandoPersonaje;
+    }
+
+    public void setCelebrandoPersonaje(String celebrandoPersonaje) {
+        this.celebrandoPersonaje = celebrandoPersonaje;
+    }
+
+    public String getCorrectoPersonaje() {
+        return correctoPersonaje;
+    }
+
+    public void setCorrectoPersonaje(String correctoPersonaje) {
+        this.correctoPersonaje = correctoPersonaje;
+    }
+
+    public String getIncorrectoPersonaje() {
+        return incorrectoPersonaje;
+    }
+
+    public void setIncorrectoPersonaje(String incorrectoPersonaje) {
+        this.incorrectoPersonaje = incorrectoPersonaje;
+    }
     
-    public String getPersonajeNombre() {
-        return personajeNombre;
-    }
-
-    public void setPersonajeNombre(String personajeNombre) {
-        this.personajeNombre = personajeNombre;
-    }
-
-    public Personaje getPersonaje() {
-        return personaje;
-    }
-
-    public void setPersonaje(Personaje personaje) {
-        this.personaje = personaje;
-    }
+  
 
     
     
