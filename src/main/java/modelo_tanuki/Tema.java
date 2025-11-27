@@ -1,3 +1,4 @@
+//tema
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -20,11 +21,11 @@ public class Tema {
     private String descripcion;
     private Tema temaPadre;
     private int id;
-    private String nombrePersonaje;
-    private String presentacionPersonaje;
-    private String celebrandoPersonaje;
-    private String correctoPersonaje;
-    private String incorrectoPersonaje;
+    private String personajeNombre;
+    private String personajeRutaImagenPresentacion;
+    private String personajeRutaImagenCelebrando;
+    private String personajeRutaImagenCorrecto;
+    private String personajeRutaImagenIncorrecto;
     /**
      * ATRIBUTO CLAVE:
      * Un "diccionario" que agrupa las listas de ejercicios
@@ -47,11 +48,11 @@ public class Tema {
         for (NivelDificultad nivel : NivelDificultad.values()) {
             this.ejerciciosPorDificultad.put(nivel, new ArrayList<>());
         }
-        this.nombrePersonaje = nombrePersonaje;
-        this.presentacionPersonaje = presentacionPersonaje;
-        this.celebrandoPersonaje = celebrandoPersonaje;
-        this.correctoPersonaje = correctoPersonaje;
-        this.incorrectoPersonaje = incorrectoPersonaje;
+        this.personajeNombre = nombrePersonaje;
+        this.personajeRutaImagenPresentacion = presentacionPersonaje;
+        this.personajeRutaImagenCelebrando = celebrandoPersonaje;
+        this.personajeRutaImagenCorrecto = correctoPersonaje;
+        this.personajeRutaImagenIncorrecto = incorrectoPersonaje;
     }
     
     public Tema(){
@@ -128,50 +129,43 @@ public class Tema {
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getNombrePersonaje() {
-        return nombrePersonaje;
+ 
+    public void setPersonajeNombre(String personajeNombre) {
+        this.personajeNombre = personajeNombre;
     }
 
-    public void setNombrePersonaje(String nombrePersonaje) {
-        this.nombrePersonaje = nombrePersonaje;
+    public String getPersonajeRutaImagenPresentacion() {
+        return personajeRutaImagenPresentacion;
     }
 
-    public String getPresentacionPersonaje() {
-        return presentacionPersonaje;
+    public void setPersonajeRutaImagenPresentacion(String personajeRutaImagenPresentacion) {
+        this.personajeRutaImagenPresentacion = personajeRutaImagenPresentacion;
     }
 
-    public void setPresentacionPersonaje(String presentacionPersonaje) {
-        this.presentacionPersonaje = presentacionPersonaje;
+    public String getPersonajeRutaImagenCelebrando() {
+        return personajeRutaImagenCelebrando;
     }
 
-    public String getCelebrandoPersonaje() {
-        return celebrandoPersonaje;
+    public void setPersonajeRutaImagenCelebrando(String personajeRutaImagenCelebrando) {
+        this.personajeRutaImagenCelebrando = personajeRutaImagenCelebrando;
     }
 
-    public void setCelebrandoPersonaje(String celebrandoPersonaje) {
-        this.celebrandoPersonaje = celebrandoPersonaje;
+    public String getPersonajeRutaImagenCorrecto() {
+        return personajeRutaImagenCorrecto;
     }
 
-    public String getCorrectoPersonaje() {
-        return correctoPersonaje;
+    public void setPersonajeRutaImagenCorrecto(String personajeRutaImagenCorrecto) {
+        this.personajeRutaImagenCorrecto = personajeRutaImagenCorrecto;
     }
 
-    public void setCorrectoPersonaje(String correctoPersonaje) {
-        this.correctoPersonaje = correctoPersonaje;
+    public String getPersonajeRutaImagenIncorrecto() {
+        return personajeRutaImagenIncorrecto;
     }
 
-    public String getIncorrectoPersonaje() {
-        return incorrectoPersonaje;
+    public void setPersonajeRutaImagenIncorrecto(String personajeRutaImagenIncorrecto) {
+        this.personajeRutaImagenIncorrecto = personajeRutaImagenIncorrecto;
     }
 
-    public void setIncorrectoPersonaje(String incorrectoPersonaje) {
-        this.incorrectoPersonaje = incorrectoPersonaje;
-    }
-    
-  
-
-    
     
     /**
      * MÉTODO CLAVE MODIFICADO (Lógica del 70%)

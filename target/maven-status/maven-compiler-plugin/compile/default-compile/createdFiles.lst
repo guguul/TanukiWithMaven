@@ -48,9 +48,9 @@ vista\MainJFrame$108.class
 modelo_tanuki\NivelDificultad.class
 vista\MainJFrame$128.class
 modelo_tanuki\ConfiguracionReporte.class
-modelo_tanuki\Personaje.class
 vista\MainJFrame$135.class
 controller\SistemaControlador$3.class
+Persistencia\DatosPrecargados$1.class
 vista\MainJFrame$112.class
 vista\MainJFrame$16.class
 vista\MainJFrame$36.class
@@ -91,6 +91,7 @@ vista\MainJFrame$129.class
 vista\MainJFrame$95.class
 modelo_tanuki\AnalizadorSalon.class
 vista\MainJFrame$43.class
+Persistencia\DatosPrecargados$2.class
 vista\MainJFrame$134.class
 vista\MainJFrame$38.class
 vista\MainJFrame$7.class

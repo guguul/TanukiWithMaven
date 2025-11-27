@@ -1,4 +1,4 @@
-
+//controlador
 package controller;
 
 import Persistencia.DatosPrecargados;
@@ -2030,15 +2030,29 @@ public class SistemaControlador {
         }
 
         try {
-            // Carga robusta usando recursos (funciona en NetBeans y en el JAR final)
-            java.net.URL url = getClass().getResource("/imagenes/" + rutaImagen);
+            // --- AQUÍ ESTÁ EL CAMBIO CLAVE ---
+            String rutaFinal;
+
+            // CASO 1: Rutas de PERSONAJES (Vienen del Excel de Temas)
+            // Como en ese Excel ya pusiste "/imagenesPersonajes/...", detectamos si empieza con "/"
+            if (rutaImagen.startsWith("/")) {
+                rutaFinal = rutaImagen; 
+            } 
+            // CASO 2: Rutas de EJERCICIOS (Vienen del Excel de Ejercicios)
+            // Como solo pusiste "triangulo.png", le agregamos la carpeta de recursos manualmente
+            else {
+                rutaFinal = "/imagenesejercicios/" + rutaImagen;
+            }
+
+            // Buscamos el recurso usando la ruta calculada
+            java.net.URL url = getClass().getResource(rutaFinal);
 
             if (url != null) {
                 javax.swing.ImageIcon icono = new javax.swing.ImageIcon(url);
 
                 // OPCIONAL: Redimensionar imagen si es para un BOTÓN (Opciones)
                 if (componente instanceof javax.swing.AbstractButton) {
-                     // Ajusta este tamaño (ej: 100x100) según el tamaño de tus botones azules
+                     // Ajusta este tamaño (ej: 120x120)
                     java.awt.Image imgEscalada = icono.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
                     icono = new javax.swing.ImageIcon(imgEscalada);
                 }
@@ -2056,7 +2070,7 @@ public class SistemaControlador {
                     ((javax.swing.AbstractButton) componente).setIcon(icono);
                 }
             } else {
-                System.err.println("Imagen no encontrada: " + rutaImagen);
+                System.err.println("❌ Imagen no encontrada: " + rutaFinal);
             }
         } catch (Exception e) {
             System.err.println("Error cargando imagen: " + e.getMessage());
@@ -2103,5 +2117,6 @@ public class SistemaControlador {
         }
         return null;
     }
+    
     
 }
