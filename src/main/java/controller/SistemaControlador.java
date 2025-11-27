@@ -60,7 +60,7 @@ import java.util.HashMap;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 
-
+//subete
 public class SistemaControlador {
     
     private Usuario usuarioActual;
