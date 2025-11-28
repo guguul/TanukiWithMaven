@@ -134,6 +134,10 @@ public class Tema {
         this.personajeNombre = personajeNombre;
     }
 
+    public String getPersonajeNombre() {
+        return personajeNombre;
+    }
+
     public String getPersonajeRutaImagenPresentacion() {
         return personajeRutaImagenPresentacion;
     }

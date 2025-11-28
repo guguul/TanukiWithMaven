@@ -1120,7 +1120,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 cboTemaPadreActionPerformed(evt);
             }
         });
-        practicaEst.add(cboTemaPadre, new org.netbeans.lib.awtextra.AbsoluteConstraints(402, 222, 480, 70));
+        practicaEst.add(cboTemaPadre, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 530, 80));
 
         continuar_tema.setBorderPainted(false);
         continuar_tema.setContentAreaFilled(false);
@@ -1138,7 +1138,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         subtemaEst.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        temaPadreSelecc.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        temaPadreSelecc.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         temaPadreSelecc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         temaPadreSelecc.setText("tema seleccionado");
         subtemaEst.add(temaPadreSelecc, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 38, 560, 80));
@@ -1149,14 +1149,15 @@ public class MainJFrame extends javax.swing.JFrame {
                 cboTemaHijoActionPerformed(evt);
             }
         });
-        subtemaEst.add(cboTemaHijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 252, 660, 80));
+        subtemaEst.add(cboTemaHijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 252, 820, 80));
 
+        cboDificultad.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         cboDificultad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboDificultadActionPerformed(evt);
             }
         });
-        subtemaEst.add(cboDificultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 410, 650, 80));
+        subtemaEst.add(cboDificultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 410, 720, 80));
 
         seguirPresentacion.setBorderPainted(false);
         seguirPresentacion.setContentAreaFilled(false);
@@ -1183,9 +1184,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         PresentPJ.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        subtemaElegido.setFont(new java.awt.Font("Cy Grotesk Key", 0, 32)); // NOI18N
-        subtemaElegido.setText("xtema");
-        PresentPJ.add(subtemaElegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 160, 400, 60));
+        subtemaElegido.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
+        subtemaElegido.setText("xtema hhhhhhhhhhhhhhhhh");
+        PresentPJ.add(subtemaElegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 150, 380, 80));
 
         nombrePersonaje.setFont(new java.awt.Font("Cy Grotesk Key", 0, 32)); // NOI18N
         nombrePersonaje.setText("(nombre)");
@@ -1208,8 +1209,11 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         PresentPJ.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 620, 200, 70));
-        PresentPJ.add(imagenPresentacionPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 220, 340, 500));
-        PresentPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 350, 70));
+        PresentPJ.add(imagenPresentacionPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 320, 460));
+
+        saludoEstudiante.setFont(new java.awt.Font("Cy Grotesk Key", 1, 36)); // NOI18N
+        saludoEstudiante.setForeground(new java.awt.Color(255, 255, 255));
+        PresentPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 350, 60));
 
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/PresentacionPersonaje.png"))); // NOI18N
         jLabel45.setText("jLabel45");
@@ -1237,18 +1241,18 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         descripcionTema.add(irAPrevia, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 620, 250, 70));
 
-        descripcion.setFont(new java.awt.Font("Cy Grotesk Key", 0, 14)); // NOI18N
+        descripcion.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         descripcion.setForeground(new java.awt.Color(255, 255, 255));
-        descripcionTema.add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 230, 450, 350));
+        descripcionTema.add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 470, 370));
 
         tituloContenidoPractica.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         descripcionTema.add(tituloContenidoPractica, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, 500, 70));
-        descripcionTema.add(imagenPresentacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 350, 490));
+        descripcionTema.add(imagenPresentacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 210, 320, 460));
 
         jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/Descripcion.png"))); // NOI18N
         descripcionTema.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        cardPracticaEst.add(descripcionTema, "card5");
+        cardPracticaEst.add(descripcionTema, "descripcionTema");
 
         previaPractica.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1278,7 +1282,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         previaPractica.add(seguir_temahijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 600, 200, 70));
-        previaPractica.add(imagenCelebrando, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 176, 380, 540));
+        previaPractica.add(imagenCelebrando, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 370, 450));
 
         jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/iniciarPractica.png"))); // NOI18N
         previaPractica.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -1301,7 +1305,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel53.setText("jLabel53");
         Tutorial.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        cardPracticaEst.add(Tutorial, "card7");
+        cardPracticaEst.add(Tutorial, "Tutorial");
 
         jTabbedPane1.addTab("cardPracticaEst", cardPracticaEst);
 
@@ -1340,9 +1344,12 @@ public class MainJFrame extends javax.swing.JFrame {
         opcionD.setBorderPainted(false);
         EjercicioSeleccion.add(opcionD, new org.netbeans.lib.awtextra.AbsoluteConstraints(919, 500, 252, 200));
 
-        pregunta_ejercicio.setFont(new java.awt.Font("Cy Grotesk Key", 1, 36)); // NOI18N
+        pregunta_ejercicio.setFont(new java.awt.Font("Cy Grotesk Key", 1, 24)); // NOI18N
         pregunta_ejercicio.setText("pregunta ejercicio");
-        EjercicioSeleccion.add(pregunta_ejercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 360, 320));
+        EjercicioSeleccion.add(pregunta_ejercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 460, 260));
+
+        panelImagenSeleccion.setToolTipText("");
+        panelImagenSeleccion.setOpaque(false);
 
         lblImagenPreguntaSeleccion.setPreferredSize(new java.awt.Dimension(280, 280));
         panelImagenSeleccion.add(lblImagenPreguntaSeleccion);
@@ -1352,10 +1359,14 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/plantillaEjerSelecSimp.png"))); // NOI18N
         EjercicioSeleccion.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
-        cardInterfazEstudiante.add(EjercicioSeleccion, "plantillaEjercicio");
+        cardInterfazEstudiante.add(EjercicioSeleccion, "EjercicioSeleccion");
 
         EjercicioEscrito.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        EjercicioEscrito.add(preguntaEjEscrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 450, 350));
+
+        preguntaEjEscrito.setFont(new java.awt.Font("Cy Grotesk Key", 1, 36)); // NOI18N
+        EjercicioEscrito.add(preguntaEjEscrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 480, 350));
+
+        panelImagenEscrita.setOpaque(false);
 
         lblImagenPreguntaEscrita.setPreferredSize(new java.awt.Dimension(280, 280));
         panelImagenEscrita.add(lblImagenPreguntaEscrita);
@@ -1382,14 +1393,14 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/plantillaEjercicioEscrito.png"))); // NOI18N
         EjercicioEscrito.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        cardInterfazEstudiante.add(EjercicioEscrito, "card6");
+        cardInterfazEstudiante.add(EjercicioEscrito, "EjercicioEscrito");
 
         ejercicioCorrecto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         frase_correcto.setBackground(new java.awt.Color(255, 255, 255));
         frase_correcto.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         frase_correcto.setText("Frase Motivadora");
-        ejercicioCorrecto.add(frase_correcto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 230, 90));
+        ejercicioCorrecto.add(frase_correcto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 230, 160));
         frase_correcto.getAccessibleContext().setAccessibleName("frase_correcto");
 
         continuar_ejer_correcto.setBorderPainted(false);
@@ -1412,7 +1423,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblImagenPanelCorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ejercicioCorrecto.add(lblImagenPanelCorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 340, 310, 260));
-        ejercicioCorrecto.add(imagenPJCorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, 420, 340));
+        ejercicioCorrecto.add(imagenPJCorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 380, 250, 320));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setOpaque(true);
@@ -1457,8 +1468,8 @@ public class MainJFrame extends javax.swing.JFrame {
         frase_incorrecto.setBackground(new java.awt.Color(255, 255, 255));
         frase_incorrecto.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         frase_incorrecto.setText("Frase Motivadora");
-        ejercicioIncorrecto.add(frase_incorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 220, 130));
-        ejercicioIncorrecto.add(imagenPJIncorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 430, 350));
+        ejercicioIncorrecto.add(frase_incorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 260, 180));
+        ejercicioIncorrecto.add(imagenPJIncorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 250, 320));
 
         jLabel42.setBackground(new java.awt.Color(255, 255, 255));
         jLabel42.setOpaque(true);
@@ -2821,22 +2832,33 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_volver11ActionPerformed
 
     private void siguiente_ejercicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguiente_ejercicioActionPerformed
-        // 0. Seguridad
+    // 0. Seguridad
         if (this.ejercicioActual == null) return;
 
         String respuestaElegida = null;
 
-        // --- PASO 1: OBTENER RESPUESTA (Lógica Híbrida) ---
-        if (this.ejercicioActual.getOpciones() != null && this.ejercicioActual.getOpciones().length == 4) {
-            // CASO SELECCIÓN: Usamos el índice del botón seleccionado
-            String[] opcionesReales = this.ejercicioActual.getOpciones();
+        // --- PASO 1: DETECTAR EL MODO (CORREGIDO) ---
+        // El truco de oro: Preguntamos si el campo de texto está visible en pantalla.
+        // Si 'isShowing()' es true, significa que el usuario está viendo el panel escrito.
+
+        boolean esModoEscrito = respuestaEscrita.isShowing(); 
+
+        if (esModoEscrito) {
+            // === MODO ESCRITO ===
+            System.out.println("Modo detectado: ESCRITO"); // Debug
+            respuestaElegida = respuestaEscrita.getText().trim();
+
+        } else {
+            // === MODO SELECCIÓN ===
+            System.out.println("Modo detectado: SELECCIÓN"); // Debug
+
+            // Usamos las opciones guardadas en el objeto
+            String[] opcionesReales = this.ejercicioActual.getOpciones(); 
+
             if (opcionA.isSelected()) respuestaElegida = opcionesReales[0];
             else if (opcionB.isSelected()) respuestaElegida = opcionesReales[1];
             else if (opcionC.isSelected()) respuestaElegida = opcionesReales[2];
             else if (opcionD.isSelected()) respuestaElegida = opcionesReales[3];
-        } else {
-            // CASO ESCRITO: Leemos el texto
-            respuestaElegida = respuestaEscrita.getText().trim();
         }
 
         // --- PASO 2: VALIDACIÓN ---
@@ -2846,48 +2868,57 @@ public class MainJFrame extends javax.swing.JFrame {
         }
 
         // --- PASO 3: REGISTRAR ---
-        Resultado res = controlador.registrarRespuesta(this.ejercicioActual, respuestaElegida);
+        modelo_tanuki.Resultado res = controlador.registrarRespuesta(this.ejercicioActual, respuestaElegida);
 
-        // --- PASO 4: MOSTRAR FEEDBACK (Manejo de Imagen Condicional) ---
-
-        // Obtenemos los datos para mostrar
+        // --- PASO 4: MOSTRAR FEEDBACK ---
         String retro = res.getEjercicio().getRetroalimentacion();
         String respCorrecta = res.getEjercicio().getRespuestaCorrecta();
 
-        // ¡AQUÍ ESTÁ LA CLAVE! Obtenemos la ruta. Si es null (ejercicio de texto), el helper lo sabrá.
-        String rutaImg = res.getEjercicio().getRutaImagen(); 
-
-        CardLayout cardLayout = (CardLayout) this.interfazEstudiante.getLayout();
+        // Obtenemos el layout correcto (IMPORTANTE: Verifica que sea cardInterfazEstudiante o cardPracticaEst)
+        java.awt.CardLayout cardLayout = (java.awt.CardLayout) this.cardInterfazEstudiante.getLayout(); 
 
         if (res.isEsCorrecto()) {
             // --- 4.1 PANEL CORRECTO ---
-            frase_correcto.setText("<html><center>" + modelo_tanuki.FrasesMotivacionales.getFraseCorrecta() + "</center></html>");
+           String fraseHtml = "<html><div style='width: 550px; text-align: center; font-size: 18px;'>" 
+                                + modelo_tanuki.FrasesMotivacionales.getFraseCorrecta() 
+                                + "</div></html>";
+
+            frase_correcto.setText(fraseHtml);
             retroali_Pcorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
-            respuesta_correc.setText("<html><b>¡Correcto!</b> Respuesta: " + respCorrecta + "</html>");
+            respuesta_correc.setText("<html><b>¡Muy bien!</b></html>");
 
-            // Condicional: Si rutaImg existe, se muestra. Si no, se oculta el label.
-            cargarImagenEnLabel(rutaImg, lblImagenPanelCorrecto);
+            // CARGAR PERSONAJE FELIZ (250x320)
+            controlador.cargarDatosFeedback(true, imagenPJCorrecto);
 
-            cardLayout.show(interfazEstudiante, "ejercicioCorrecto");
+            cardLayout.show(cardInterfazEstudiante, "ejercicioCorrecto");
 
         } else {
             // --- 4.2 PANEL INCORRECTO ---
-            frase_incorrecto.setText("<html><center>" + modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta() + "</center></html>");
+            String fraseHtml = "<html><div style='width: 550px; text-align: center; font-size: 18px;'>" 
+                           + modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta() 
+                           + "</div></html>";
+                           
+            frase_incorrecto.setText(fraseHtml);
             retroali_Pincorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
-            respuesta_correc1.setText("<html>La respuesta era: <b>" + respCorrecta + "</b></html>");
 
-            // Condicional: Si rutaImg existe, se muestra. Si no, se oculta el label.
-            cargarImagenEnLabel(rutaImg, lblImagenPanelIncorrecto);
+            if (respCorrecta.toLowerCase().endsWith(".png") || respCorrecta.toLowerCase().endsWith(".jpg")) {
+                 respuesta_correc1.setText("<html>La respuesta correcta era la imagen mostrada.</html>");
+            } else {
+                 respuesta_correc1.setText("<html>La respuesta correcta era: <b>" + respCorrecta + "</b></html>");
+            }
 
-            cardLayout.show(interfazEstudiante, "ejercicioIncorrecto");
+            // CARGAR PERSONAJE TRISTE (250x320)
+            controlador.cargarDatosFeedback(false, imagenPJIncorrecto);
+
+            cardLayout.show(cardInterfazEstudiante, "ejercicioIncorrecto");
         }
     }//GEN-LAST:event_siguiente_ejercicioActionPerformed
 
     private void continuar_ejer_correctoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuar_ejer_correctoActionPerformed
             this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista(
             // A. CONTROL DE FLUJO
-            (java.awt.CardLayout) interfazEstudiante.getLayout(),
-            interfazEstudiante,
+            (java.awt.CardLayout) cardInterfazEstudiante.getLayout(),
+            cardInterfazEstudiante,
 
             // B. PANELES DE IMAGEN DE PREGUNTA
             lblImagenPreguntaSeleccion, panelImagenSeleccion,
@@ -2907,11 +2938,11 @@ public class MainJFrame extends javax.swing.JFrame {
             // AHORA NOS TOCA NAVEGAR DE VUELTA AL MENÚ (Selección de Tema)
 
             // Paso A: Volver a mostrar el TabbedPane principal dentro de interfazEstudiante
-            java.awt.CardLayout mainLayout = (java.awt.CardLayout) interfazEstudiante.getLayout();
+            java.awt.CardLayout mainLayout = (java.awt.CardLayout) cardInterfazEstudiante.getLayout();
             // NOTA: Revisa en el Navigator qué "Nombre de Tarjeta" le diste al jTabbedPane1.
             // Por defecto suele ser el nombre de la variable, o algo como "cardTabs".
             // Asumiré que la tarjeta se llama "jTabbedPane1" o la que usabas antes.
-            mainLayout.show(interfazEstudiante, "jTabbedPane1"); 
+            mainLayout.show(cardInterfazEstudiante, "jTabbedPane1"); 
 
             // Paso B: Seleccionar la pestaña de "Práctica"
             jTabbedPane1.setSelectedComponent(cardPracticaEst);
@@ -2933,8 +2964,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private void continuar_ejer_incoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuar_ejer_incoActionPerformed
         this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista(
             // A. CONTROL DE FLUJO
-            (java.awt.CardLayout) interfazEstudiante.getLayout(),
-            interfazEstudiante,
+            (java.awt.CardLayout) cardInterfazEstudiante.getLayout(),
+            cardInterfazEstudiante,
 
             // B. PANELES DE IMAGEN DE PREGUNTA
             lblImagenPreguntaSeleccion, panelImagenSeleccion,
@@ -2954,11 +2985,11 @@ public class MainJFrame extends javax.swing.JFrame {
             // AHORA NOS TOCA NAVEGAR DE VUELTA AL MENÚ (Selección de Tema)
 
             // Paso A: Volver a mostrar el TabbedPane principal dentro de interfazEstudiante
-            java.awt.CardLayout mainLayout = (java.awt.CardLayout) interfazEstudiante.getLayout();
+            java.awt.CardLayout mainLayout = (java.awt.CardLayout) cardInterfazEstudiante.getLayout();
             // NOTA: Revisa en el Navigator qué "Nombre de Tarjeta" le diste al jTabbedPane1.
             // Por defecto suele ser el nombre de la variable, o algo como "cardTabs".
             // Asumiré que la tarjeta se llama "jTabbedPane1" o la que usabas antes.
-            mainLayout.show(interfazEstudiante, "jTabbedPane1"); 
+            mainLayout.show(cardInterfazEstudiante, "jTabbedPane1"); 
 
             // Paso B: Seleccionar la pestaña de "Práctica"
             jTabbedPane1.setSelectedComponent(cardPracticaEst);
@@ -3834,9 +3865,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_volver2ActionPerformed
 
     private void irAPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irAPreviaActionPerformed
-        // TODO add your handling code here:
-        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
-        cardLayout.show(cardPracticaEst,"previaPractica");
+        controlador.cargarDatosPreviaPractica(imagenCelebrando);
+
+        java.awt.CardLayout cl = (java.awt.CardLayout) cardPracticaEst.getLayout();
+        cl.show(cardPracticaEst, "previaPractica");
     }//GEN-LAST:event_irAPreviaActionPerformed
 
     private void volverAPracticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverAPracticaActionPerformed
@@ -3881,17 +3913,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private void seguir_temahijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguir_temahijoActionPerformed
         boolean puedeEmpezar = controlador.iniciarNuevaPractica();
 
-        // Si hubo un error (ej: no hay ejercicios), el controlador ya mostró el mensaje. Salimos.
         if (!puedeEmpezar) {
             return; 
         }
 
-        // 3. CARGAR LA PRIMERA PREGUNTA
-        // En lugar de hacer cardLayout.show() manualmente, dejamos que el
-        // "Director de Orquesta" decida qué panel mostrar (Selección o Escrito).
-
-        this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista((java.awt.CardLayout) interfazEstudiante.getLayout(), // El layout
-            interfazEstudiante,                                   // El panel padre
+        this.ejercicioActual = controlador.mostrarSiguientePreguntaEnVista((java.awt.CardLayout) cardInterfazEstudiante.getLayout(), // El layout
+            cardInterfazEstudiante,                                   // El panel padre
 
             // B. PANELES DE IMAGEN DE PREGUNTA (Los que creamos para ocultar/mostrar)
             lblImagenPreguntaSeleccion, panelImagenSeleccion,
@@ -3934,34 +3961,71 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_volverActionPerformed
 
     private void irADescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irADescripcionActionPerformed
-        // TODO add your handling code here:
-        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
-        cardLayout.show(cardPracticaEst,"descripcionTema");
+        controlador.cargarDatosDescripcionTema(
+            tituloContenidoPractica, 
+            descripcion,         
+            imagenPresentacion2 
+        );
+  
+        java.awt.CardLayout cl = (java.awt.CardLayout) cardPracticaEst.getLayout();
+        cl.show(cardPracticaEst, "descripcionTema");
     }//GEN-LAST:event_irADescripcionActionPerformed
 
     private void seguirPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguirPresentacionActionPerformed
-        
+
+        Object temaObj = cboTemaHijo.getSelectedItem();
+        Object nivelObj = cboDificultad.getSelectedItem();
+
+        if (temaObj == null || nivelObj == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, selecciona un tema y un nivel.");
+            return;
+        }
+
+        Tema temaSeleccionado = (Tema) temaObj;
+        String nivelSeleccionado = (String) nivelObj;
+
+        controlador.configurarPractica(temaSeleccionado, nivelSeleccionado);
+        controlador.cargarDatosPresentacion(
+                subtemaElegido,
+                nombrePersonaje,       
+                saludoEstudiante,        
+                imagenPresentacionPJ
+        );
+
+        java.awt.CardLayout cl = (java.awt.CardLayout) cardPracticaEst.getLayout();
+        cl.show(cardPracticaEst, "PresentacionPJ"); 
+
     }//GEN-LAST:event_seguirPresentacionActionPerformed
 
     private void siguienteEjercicioEscritaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteEjercicioEscritaActionPerformed
-    
 
-        // 0. Seguridad
+    // 0. Seguridad
         if (this.ejercicioActual == null) return;
 
         String respuestaElegida = null;
 
-        // --- PASO 1: OBTENER RESPUESTA (Lógica Híbrida) ---
-        if (this.ejercicioActual.getOpciones() != null && this.ejercicioActual.getOpciones().length == 4) {
-            // CASO SELECCIÓN: Usamos el índice del botón seleccionado
-            String[] opcionesReales = this.ejercicioActual.getOpciones();
+        // --- PASO 1: DETECTAR EL MODO (CORREGIDO) ---
+        // El truco de oro: Preguntamos si el campo de texto está visible en pantalla.
+        // Si 'isShowing()' es true, significa que el usuario está viendo el panel escrito.
+
+        boolean esModoEscrito = respuestaEscrita.isShowing(); 
+
+        if (esModoEscrito) {
+            // === MODO ESCRITO ===
+            System.out.println("Modo detectado: ESCRITO"); // Debug
+            respuestaElegida = respuestaEscrita.getText().trim();
+
+        } else {
+            // === MODO SELECCIÓN ===
+            System.out.println("Modo detectado: SELECCIÓN"); // Debug
+
+            // Usamos las opciones guardadas en el objeto
+            String[] opcionesReales = this.ejercicioActual.getOpciones(); 
+
             if (opcionA.isSelected()) respuestaElegida = opcionesReales[0];
             else if (opcionB.isSelected()) respuestaElegida = opcionesReales[1];
             else if (opcionC.isSelected()) respuestaElegida = opcionesReales[2];
             else if (opcionD.isSelected()) respuestaElegida = opcionesReales[3];
-        } else {
-            // CASO ESCRITO: Leemos el texto
-            respuestaElegida = respuestaEscrita.getText().trim();
         }
 
         // --- PASO 2: VALIDACIÓN ---
@@ -3971,42 +4035,48 @@ public class MainJFrame extends javax.swing.JFrame {
         }
 
         // --- PASO 3: REGISTRAR ---
-        Resultado res = controlador.registrarRespuesta(this.ejercicioActual, respuestaElegida);
+        modelo_tanuki.Resultado res = controlador.registrarRespuesta(this.ejercicioActual, respuestaElegida);
 
-        // --- PASO 4: MOSTRAR FEEDBACK (Manejo de Imagen Condicional) ---
-
-        // Obtenemos los datos para mostrar
+        // --- PASO 4: MOSTRAR FEEDBACK ---
         String retro = res.getEjercicio().getRetroalimentacion();
         String respCorrecta = res.getEjercicio().getRespuestaCorrecta();
 
-        // ¡AQUÍ ESTÁ LA CLAVE! Obtenemos la ruta. Si es null (ejercicio de texto), el helper lo sabrá.
-        String rutaImg = res.getEjercicio().getRutaImagen(); 
-
-        CardLayout cardLayout = (CardLayout) this.interfazEstudiante.getLayout();
+        // Obtenemos el layout correcto (IMPORTANTE: Verifica que sea cardInterfazEstudiante o cardPracticaEst)
+        java.awt.CardLayout cardLayout = (java.awt.CardLayout) this.cardInterfazEstudiante.getLayout(); 
 
         if (res.isEsCorrecto()) {
             // --- 4.1 PANEL CORRECTO ---
-            frase_correcto.setText("<html><center>" + modelo_tanuki.FrasesMotivacionales.getFraseCorrecta() + "</center></html>");
+            String fraseHtml = "<html><body style='width: 205px; text-align: center;'>" 
+                   + modelo_tanuki.FrasesMotivacionales.getFraseCorrecta() + "</body></html>";
+            frase_correcto.setText(fraseHtml);
+            frase_correcto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             retroali_Pcorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
-            respuesta_correc.setText("<html><b>¡Correcto!</b> Respuesta: " + respCorrecta + "</html>");
+            respuesta_correc.setText("<html><b>¡Muy bien!</b></html>");
 
-            // Condicional: Si rutaImg existe, se muestra. Si no, se oculta el label.
-            cargarImagenEnLabel(rutaImg, lblImagenPanelCorrecto);
+            // CARGAR PERSONAJE FELIZ (250x320)
+            controlador.cargarDatosFeedback(true, imagenPJCorrecto);
 
-            cardLayout.show(interfazEstudiante, "ejercicioCorrecto");
+            cardLayout.show(cardInterfazEstudiante, "ejercicioCorrecto");
 
         } else {
             // --- 4.2 PANEL INCORRECTO ---
-            frase_incorrecto.setText("<html><center>" + modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta() + "</center></html>");
+            String fraseHtmlMal = "<html><body style='width: 205px; text-align: center;'>" 
+                   + modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta() + "</body></html>";
+            frase_incorrecto.setText(fraseHtmlMal);
+            frase_incorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             retroali_Pincorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
-            respuesta_correc1.setText("<html>La respuesta era: <b>" + respCorrecta + "</b></html>");
 
-            // Condicional: Si rutaImg existe, se muestra. Si no, se oculta el label.
-            cargarImagenEnLabel(rutaImg, lblImagenPanelIncorrecto);
+            if (respCorrecta.toLowerCase().endsWith(".png") || respCorrecta.toLowerCase().endsWith(".jpg")) {
+                 respuesta_correc1.setText("<html>La respuesta correcta era la imagen mostrada.</html>");
+            } else {
+                 respuesta_correc1.setText("<html>La respuesta correcta era: <b>" + respCorrecta + "</b></html>");
+            }
 
-            cardLayout.show(interfazEstudiante, "ejercicioIncorrecto");
+            // CARGAR PERSONAJE TRISTE (250x320)
+            controlador.cargarDatosFeedback(false, imagenPJIncorrecto);
+
+            cardLayout.show(cardInterfazEstudiante, "ejercicioIncorrecto");
         }
-
     }//GEN-LAST:event_siguienteEjercicioEscritaActionPerformed
 
     private void cboDificultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDificultadActionPerformed

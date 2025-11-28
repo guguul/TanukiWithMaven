@@ -1598,7 +1598,8 @@ public class SistemaControlador {
 
         Ejercicio ej = getSiguientePregunta();
         if (ej == null) {
-            finalizarPractica(); 
+            // CAMBIO AQUÍ: LE PASAMOS EL LAYOUT Y EL PANEL QUE YA RECIBIMOS EN ESTE MÉTODO
+            finalizarPractica(cardLayoutPrincipal, panelContenedor); 
             return null;
         }
 
@@ -1619,6 +1620,8 @@ public class SistemaControlador {
             panelImagenEscrita.setVisible(false);
         }
 
+        String preguntaHtml = "<html><div style='width: 350px; text-align: center;'>" 
+                          + ej.getPregunta() + "</div></html>";
         // Decisión de Tipo de Ejercicio (Escrito vs Selección)
         java.util.Random rnd = new java.util.Random();
         boolean esEscrito = rnd.nextBoolean();
@@ -1630,12 +1633,12 @@ public class SistemaControlador {
 
         if (esEscrito) {
             // MODO ESCRITO
-            lblPreguntaEscrita.setText(ej.getPregunta());
+            lblPreguntaEscrita.setText(preguntaHtml);
             txtRespuestaEscrita.setText("");
             cardLayoutPrincipal.show(panelContenedor, "EjercicioEscrito");
         } else {
             // MODO SELECCION
-            lblPreguntaTexto.setText(ej.getPregunta());
+            lblPreguntaTexto.setText(preguntaHtml);
             grupoOpciones.clearSelection();
 
             if (ej.tieneOpcionesConImagen()) {
@@ -1653,7 +1656,7 @@ public class SistemaControlador {
                 String[] textos = ej.getOpciones();
                 for (int i = 0; i < 4; i++) {
                     botones[i].setIcon(null); // Borramos icono (IMPORTANTE)
-                    botones[i].setText(textos[i]); // Ponemos texto
+                    botones[i].setText("<html><center>" + textos[i] + "</center></html>");
                 }
             }
             cardLayoutPrincipal.show(panelContenedor, "EjercicioSeleccion");
@@ -1665,25 +1668,33 @@ public class SistemaControlador {
     private void actualizarNivelEnNube(Estudiante est, Tema tema) {
         Firestore db = FirestoreClient.getFirestore();
         try {
-            // Obtenemos el nuevo nivel que acaba de ganar
             NivelDificultad nivelActual = est.getProgreso().getNivelActual(tema);
-            
-            // En Firebase, podemos guardar esto como un mapa: "niveles.MATEMATICAS" = "INTERMEDIO"
-            // Nota: Asumo que en Firebase el campo se llamará "progresoNiveles"
-            
+
             DocumentReference estRef = db.collection("usuarios").document(est.getCorreo());
-            
-            // Actualizamos el campo específico de ese tema
-            // Usamos la sintaxis de punto para actualizar campos anidados en un mapa
-            estRef.update("progresoNiveles." + tema.getNombre(), nivelActual.toString());
-            
+
+            // Si el tema se llama "Núm. Decimales", le quitamos el punto para que quede "Núm Decimales"
+            // Esto evita que Firebase crea que el punto es un separador de carpetas.
+            String nombreSanitizado = tema.getNombre().replace(".", ""); 
+            // ---------------------------------------
+
+            ApiFuture<WriteResult> future = estRef.update("progresoNiveles." + nombreSanitizado, nivelActual.toString());
+
+            System.out.println("✅ Nube actualizada: " + nombreSanitizado + " -> " + nivelActual);
+
         } catch (Exception e) {
+            System.err.println("Error guardando en Firebase: " + e.getMessage());
             e.printStackTrace();
         }
     }
     
-    public void finalizarPractica() {
-        if (this.resultadosTemporales.isEmpty()) return;
+    public void finalizarPractica(java.awt.CardLayout cardLayout, javax.swing.JPanel panelContenedor) {
+        if (this.resultadosTemporales.isEmpty()) {
+            // Si no hubo respuestas, regresamos directo
+            if (cardLayout != null && panelContenedor != null) {
+                cardLayout.show(panelContenedor, "interfazEstudiante"); 
+            }
+            return;
+        }
 
         Estudiante est = (Estudiante) this.usuarioActual;
         Tema tema = this.resultadosTemporales.get(0).getEjercicio().getTema();
@@ -1707,11 +1718,6 @@ public class SistemaControlador {
         // Convertir a formato 0-100 para mostrar, pero usar 0.0-1.0 para lógica
         boolean aprobo = porcentaje >= 0.70; // 70% para aprobar
 
-        // --- MENSAJES Y SUBIDA DE NIVEL ---
-
-        // Formatear porcentaje para que se vea bonito (ej: "85%")
-        String porcentajeTexto = String.format("%.0f%%", porcentaje * 100);
-
         if (aprobo) {
             // Lógica para subir de nivel en el Progreso del estudiante
             // (Asume que tu clase Progreso tiene este método)
@@ -1721,7 +1727,7 @@ public class SistemaControlador {
                 actualizarNivelEnNube(est, tema); // <--- Llamada a función auxiliar
             }
             
-            String mensaje = "¡Felicidades!\nAprobaste la práctica con " + porcentajeTexto + " de aciertos.";
+            String mensaje = "¡Felicidades!\nAprobaste la práctica.";
             if (subioNivel) {
                 mensaje += "\n\n¡HAS SUBIDO DE NIVEL EN " + tema.getNombre().toUpperCase() + "!";
             } else {
@@ -1732,14 +1738,15 @@ public class SistemaControlador {
 
         } else {
             // Mensaje de ánimo
-            // Calculamos cuántos aciertos hubieran sido necesarios para el 70%
-            int necesarios = (int) Math.ceil(totalIntentos * 0.7);
 
-            String mensaje = "¡Buen intento!\nObtuviste " + porcentajeTexto + " de aciertos.";
-            mensaje += "\nNecesitas al menos 70% (" + necesarios + " aciertos) para avanzar de nivel.";
+            String mensaje = "¡Buen intento!";
             mensaje += "\n\n¡Sigue practicando, tú puedes!";
 
             JOptionPane.showMessageDialog(null, mensaje, "Práctica Finalizada", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        if (cardLayout != null && panelContenedor != null) {
+            cardLayout.show(panelContenedor, "interfazEstudiante");
         }
     }
 
@@ -2030,40 +2037,29 @@ public class SistemaControlador {
         }
 
         try {
-            // --- AQUÍ ESTÁ EL CAMBIO CLAVE ---
             String rutaFinal;
-
-            // CASO 1: Rutas de PERSONAJES (Vienen del Excel de Temas)
-            // Como en ese Excel ya pusiste "/imagenesPersonajes/...", detectamos si empieza con "/"
             if (rutaImagen.startsWith("/")) {
                 rutaFinal = rutaImagen; 
             } 
-            // CASO 2: Rutas de EJERCICIOS (Vienen del Excel de Ejercicios)
-            // Como solo pusiste "triangulo.png", le agregamos la carpeta de recursos manualmente
             else {
                 rutaFinal = "/imagenesejercicios/" + rutaImagen;
             }
-
-            // Buscamos el recurso usando la ruta calculada
             java.net.URL url = getClass().getResource(rutaFinal);
 
             if (url != null) {
                 javax.swing.ImageIcon icono = new javax.swing.ImageIcon(url);
 
-                // OPCIONAL: Redimensionar imagen si es para un BOTÓN (Opciones)
                 if (componente instanceof javax.swing.AbstractButton) {
-                     // Ajusta este tamaño (ej: 120x120)
+                
                     java.awt.Image imgEscalada = icono.getImage().getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
                     icono = new javax.swing.ImageIcon(imgEscalada);
                 }
-                // OPCIONAL: Redimensionar si es para la PREGUNTA (JLabel)
+                
                 else if (componente instanceof javax.swing.JLabel) {
-                    // Las preguntas suelen ser más grandes
                     java.awt.Image imgEscalada = icono.getImage().getScaledInstance(250, 200, java.awt.Image.SCALE_SMOOTH);
                     icono = new javax.swing.ImageIcon(imgEscalada);
                 }
 
-                // Asignar el icono
                 if (componente instanceof javax.swing.JLabel) {
                     ((javax.swing.JLabel) componente).setIcon(icono);
                 } else if (componente instanceof javax.swing.AbstractButton) {
@@ -2080,7 +2076,6 @@ public class SistemaControlador {
     public void configurarPractica(Tema tema, String nombreNivel) {
         this.temaSeleccionado = tema;
 
-        // convertir el string del ComboBox al enum NivelDificultad
         try {
             this.nivelSeleccionado = NivelDificultad.valueOf(nombreNivel); 
         } catch (IllegalArgumentException e) {
@@ -2118,5 +2113,186 @@ public class SistemaControlador {
         return null;
     }
     
+    public void cargarDatosPresentacion(
+        javax.swing.JLabel lblSubtema, 
+        javax.swing.JLabel lblNombrePersonaje, 
+        javax.swing.JLabel lblSaludoEstudiante,
+        javax.swing.JLabel lblImagenPersonaje) {
+    
+        if (this.temaSeleccionado == null || this.usuarioActual == null) return;
+
+        if (lblSubtema != null) {
+            lblSubtema.setText("<html><div style='text-align: left; width: 350px;'>" + this.temaSeleccionado.getNombre()+ "</div></html>");
+        }
+
+        if (lblNombrePersonaje != null) {
+            lblNombrePersonaje.setText(this.temaSeleccionado.getPersonajeNombre());
+        }
+        if (lblSaludoEstudiante != null) {
+            String nombreCompleto = this.usuarioActual.getNombre();
+            String primerNombre = "";
+
+            if (nombreCompleto != null && !nombreCompleto.isEmpty()) {
+                primerNombre = nombreCompleto.split(" ")[0]; 
+            }
+
+            lblSaludoEstudiante.setText(primerNombre);
+        }
+        if (lblImagenPersonaje != null) {
+            cargarImagenPersonaje(this.temaSeleccionado.getPersonajeRutaImagenPresentacion(), lblImagenPersonaje, 320, 460);
+        }
+    }
+    
+    public void cargarDatosDescripcionTema(
+        javax.swing.JLabel lblTitulo, 
+        javax.swing.JLabel lblDescripcion, 
+        javax.swing.JLabel lblImagen) {
+    
+        if (this.temaSeleccionado == null) return;
+
+        // 1. Título
+        if (lblTitulo != null) {
+            String nombreTema = this.temaSeleccionado.getNombre();
+            lblTitulo.setText("<html><div style='text-align: center; width: 350px;'>" + nombreTema + "</div></html>");
+        }
+
+        // 2. DESCRIPCIÓN (CORREGIDO PARA QUE QUEPA)
+        if (lblDescripcion != null) {
+            String textoDesc = this.temaSeleccionado.getDescripcion();
+            if (textoDesc == null) textoDesc = "Sin descripción disponible.";
+
+            // CAMBIOS:
+            // - width: 360px (Un poco más angosto para que no roce los bordes)
+            // - font-size: 14px (Controlamos el tamaño de la letra)
+            // - text-align: justify (Se ve más ordenado)
+            String htmlTexto = "<html><div style='text-align: justify; width: 360px; font-size: 24px;'>" 
+                               + textoDesc + "</div></html>";
+
+            lblDescripcion.setText(htmlTexto);
+
+            // TRUCO DE ORO: Forzar que el texto empiece desde ARRIBA del label
+            lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        }
+
+        // 3. Imagen del Personaje
+        if (lblImagen != null) {
+            cargarImagenPersonaje(this.temaSeleccionado.getPersonajeRutaImagenPresentacion(), lblImagen, 320, 460);
+        }
+    }
+    
+    public void cargarDatosPreviaPractica(javax.swing.JLabel lblImagenCelebrando) {
+        if (this.temaSeleccionado == null) return;
+
+        if (lblImagenCelebrando != null) {
+            // Forzamos 320x460 para que se vea igual de bien que en la presentación
+            cargarImagenPersonaje(
+                this.temaSeleccionado.getPersonajeRutaImagenCelebrando(), 
+                lblImagenCelebrando, 
+                320, 
+                460
+            );
+        }
+    }
+    
+    public void cargarImagenPersonaje(String rutaImagen, javax.swing.JLabel lblImagen, int ancho, int alto) {
+        // 1. Validaciones básicas
+        if (rutaImagen == null || rutaImagen.isEmpty() || lblImagen == null) {
+            if (lblImagen != null) lblImagen.setIcon(null);
+            return;
+        }
+
+        try {
+            // 2. Lógica de ruta
+            String rutaFinal;
+            if (rutaImagen.startsWith("/")) {
+                rutaFinal = rutaImagen; 
+            } else {
+                rutaFinal = "/imagenesPersonajes/" + rutaImagen; 
+            }
+
+            java.net.URL url = getClass().getResource(rutaFinal);
+
+            if (url != null) {
+                javax.swing.ImageIcon icono = new javax.swing.ImageIcon(url);
+
+                // 3. AQUÍ USAMOS TUS VARIABLES DE TAMAÑO
+                java.awt.Image imgEscalada = icono.getImage().getScaledInstance(ancho, alto, java.awt.Image.SCALE_SMOOTH);
+
+                lblImagen.setIcon(new javax.swing.ImageIcon(imgEscalada));
+                lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+            } else {
+                System.err.println("❌ Imagen personaje no encontrada: " + rutaFinal);
+                lblImagen.setIcon(null);
+            }
+        } catch (Exception e) {
+            System.err.println("Error cargando personaje: " + e.getMessage());
+        }
+    }
+    
+    public void cargarDatosFeedback(boolean esCorrecto, javax.swing.JLabel lblPersonaje) {
+        if (this.temaSeleccionado == null || lblPersonaje == null) return;
+
+        if (esCorrecto) {
+            cargarImagenAjustada(this.temaSeleccionado.getPersonajeRutaImagenCorrecto(), lblPersonaje);
+        } else {
+            cargarImagenAjustada(this.temaSeleccionado.getPersonajeRutaImagenIncorrecto(), lblPersonaje);
+        }
+    }
+    
+    public void cargarImagenAjustada(String rutaImagen, javax.swing.JLabel lblImagen) {
+        if (rutaImagen == null || rutaImagen.isEmpty() || lblImagen == null) return;
+
+        try {
+            String rutaFinal = rutaImagen.startsWith("/") ? rutaImagen : "/imagenesPersonajes/" + rutaImagen;
+            java.net.URL url = getClass().getResource(rutaFinal);
+
+            if (url != null) {
+                javax.swing.ImageIcon iconoOriginal = new javax.swing.ImageIcon(url);
+
+                // 1. OBTENER TAMAÑO DEL CONTENEDOR (LABEL)
+                // Intentamos obtener el tamaño real, si es 0 (aún no se ve), usamos el "PreferredSize" del diseño
+                int anchoDestino = lblImagen.getWidth();
+                int altoDestino = lblImagen.getHeight();
+
+                if (anchoDestino == 0 || altoDestino == 0) {
+                    anchoDestino = lblImagen.getPreferredSize().width;
+                    altoDestino = lblImagen.getPreferredSize().height;
+                }
+
+                // Si por alguna razón sigue siendo 0, usamos un default seguro
+                if (anchoDestino == 0) anchoDestino = 250;
+                if (altoDestino == 0) altoDestino = 350;
+
+                // 2. CALCULAR PROPORCIÓN PARA NO DEFORMAR (ASPECT RATIO)
+                // Esto evita que el personaje se vea "gordo" o "flaco"
+                float propImagen = (float) iconoOriginal.getIconWidth() / iconoOriginal.getIconHeight();
+                float propDestino = (float) anchoDestino / altoDestino;
+
+                int anchoFinal = anchoDestino;
+                int altoFinal = altoDestino;
+
+                if (propDestino > propImagen) {
+                    // El destino es más ancho: limitamos por alto
+                    anchoFinal = (int) (altoDestino * propImagen);
+                } else {
+                    // El destino es más alto: limitamos por ancho
+                    altoFinal = (int) (anchoDestino / propImagen);
+                }
+
+                // 3. ESCALAR
+                java.awt.Image imgEscalada = iconoOriginal.getImage().getScaledInstance(anchoFinal, altoFinal, java.awt.Image.SCALE_SMOOTH);
+
+                lblImagen.setIcon(new javax.swing.ImageIcon(imgEscalada));
+                lblImagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER); // Centrar imagen
+
+            } else {
+                System.err.println("❌ Imagen no encontrada: " + rutaFinal);
+                lblImagen.setIcon(null);
+            }
+        } catch (Exception e) {
+            System.err.println("Error ajustando imagen: " + e.getMessage());
+        }
+    }
     
 }

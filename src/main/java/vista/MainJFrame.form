@@ -1398,7 +1398,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="402" y="222" width="480" height="70"/>
+                                  <AbsoluteConstraints x="380" y="220" width="530" height="80"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1444,7 +1444,7 @@
                             <Component class="javax.swing.JLabel" name="temaPadreSelecc">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="36" style="0"/>
+                                  <Font name="Cy Grotesk Key" size="24" style="0"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="tema seleccionado"/>
@@ -1472,12 +1472,15 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="490" y="252" width="660" height="80"/>
+                                  <AbsoluteConstraints x="420" y="252" width="820" height="80"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JComboBox" name="cboDificultad">
                               <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Cy Grotesk Key" size="24" style="0"/>
+                                </Property>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                                   <StringArray count="0"/>
                                 </Property>
@@ -1490,7 +1493,7 @@
                               </AuxValues>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="492" y="410" width="650" height="80"/>
+                                  <AbsoluteConstraints x="422" y="410" width="720" height="80"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1550,13 +1553,13 @@
                             <Component class="javax.swing.JLabel" name="subtemaElegido">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Cy Grotesk Key" size="32" style="0"/>
+                                  <Font name="Cy Grotesk Key" size="24" style="0"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="xtema"/>
+                                <Property name="text" type="java.lang.String" value="xtema hhhhhhhhhhhhhhhhh"/>
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="830" y="160" width="400" height="60"/>
+                                  <AbsoluteConstraints x="830" y="150" width="380" height="80"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1604,14 +1607,22 @@
                             <Component class="javax.swing.JLabel" name="imagenPresentacionPJ">
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="383" y="220" width="340" height="500"/>
+                                  <AbsoluteConstraints x="410" y="180" width="320" height="460"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
                             <Component class="javax.swing.JLabel" name="saludoEstudiante">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Cy Grotesk Key" size="36" style="1"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                              </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="400" y="110" width="350" height="70"/>
+                                  <AbsoluteConstraints x="400" y="90" width="350" height="60"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1633,7 +1644,7 @@
                         <Container class="javax.swing.JPanel" name="descripcionTema">
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                              <CardConstraints cardName="card5"/>
+                              <CardConstraints cardName="descripcionTema"/>
                             </Constraint>
                           </Constraints>
 
@@ -1672,7 +1683,7 @@
                             <Component class="javax.swing.JLabel" name="descripcion">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Cy Grotesk Key" size="14" style="0"/>
+                                  <Font name="Cy Grotesk Key" size="24" style="0"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1680,7 +1691,7 @@
                               </Properties>
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="790" y="230" width="450" height="350"/>
+                                  <AbsoluteConstraints x="780" y="220" width="470" height="370"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1699,7 +1710,7 @@
                             <Component class="javax.swing.JLabel" name="imagenPresentacion2">
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="380" y="230" width="350" height="490"/>
+                                  <AbsoluteConstraints x="410" y="210" width="320" height="460"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1773,7 +1784,7 @@
                             <Component class="javax.swing.JLabel" name="imagenCelebrando">
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="373" y="176" width="380" height="540"/>
+                                  <AbsoluteConstraints x="390" y="200" width="370" height="450"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1794,7 +1805,7 @@
                         <Container class="javax.swing.JPanel" name="Tutorial">
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                              <CardConstraints cardName="card7"/>
+                              <CardConstraints cardName="Tutorial"/>
                             </Constraint>
                           </Constraints>
 
@@ -1841,7 +1852,7 @@
             <Container class="javax.swing.JPanel" name="EjercicioSeleccion">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="plantillaEjercicio"/>
+                  <CardConstraints cardName="EjercicioSeleccion"/>
                 </Constraint>
               </Constraints>
 
@@ -1922,17 +1933,21 @@
                 <Component class="javax.swing.JLabel" name="pregunta_ejercicio">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Cy Grotesk Key" size="36" style="1"/>
+                      <Font name="Cy Grotesk Key" size="24" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="pregunta ejercicio"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="80" y="220" width="360" height="320"/>
+                      <AbsoluteConstraints x="30" y="170" width="460" height="260"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Container class="javax.swing.JPanel" name="panelImagenSeleccion">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
+                    <Property name="opaque" type="boolean" value="false"/>
+                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="120" y="280" width="290" height="290"/>
@@ -1967,7 +1982,7 @@
             <Container class="javax.swing.JPanel" name="EjercicioEscrito">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
-                  <CardConstraints cardName="card6"/>
+                  <CardConstraints cardName="EjercicioEscrito"/>
                 </Constraint>
               </Constraints>
 
@@ -1976,13 +1991,21 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="preguntaEjEscrito">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Cy Grotesk Key" size="36" style="1"/>
+                    </Property>
+                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="40" y="180" width="450" height="350"/>
+                      <AbsoluteConstraints x="20" y="170" width="480" height="350"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Container class="javax.swing.JPanel" name="panelImagenEscrita">
+                  <Properties>
+                    <Property name="opaque" type="boolean" value="false"/>
+                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="120" y="290" width="290" height="290"/>
@@ -2069,7 +2092,7 @@
                   </AccessibilityProperties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="50" y="210" width="230" height="90"/>
+                      <AbsoluteConstraints x="50" y="170" width="230" height="160"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -2127,7 +2150,7 @@
                 <Component class="javax.swing.JLabel" name="imagenPJCorrecto">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="50" y="380" width="420" height="340"/>
+                      <AbsoluteConstraints x="110" y="380" width="250" height="320"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -2258,14 +2281,14 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="70" y="190" width="220" height="130"/>
+                      <AbsoluteConstraints x="50" y="160" width="260" height="180"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JLabel" name="imagenPJIncorrecto">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="50" y="370" width="430" height="350"/>
+                      <AbsoluteConstraints x="100" y="380" width="250" height="320"/>
                     </Constraint>
                   </Constraints>
                 </Component>

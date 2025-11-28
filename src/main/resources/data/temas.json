@@ -426,7 +426,7 @@
     }
   },
   {
-    "nombre": "geometría y medida",
+    "nombre": "Geometría y medida",
     "temasHijos": [],
     "descripcion": "Es la parte de las matemáticas que estudia las formas, el espacio y cómo medimos cosas como el largo, el tiempo o el peso.",
     "id": 17,
@@ -835,7 +835,7 @@
     }
   },
   {
-    "nombre": "Resolución de problemas(Eje transversal)",
+    "nombre": "Resolución de problemas (Eje transversal)",
     "temasHijos": [],
     "descripcion": "Significa usar las matemáticas para entender y resolver situaciones de la vida diaria. No es solo hacer cuentas, sino pensar, buscar pistas y encontrar la mejor respuesta.",
     "id": 32,
@@ -852,7 +852,7 @@
     }
   },
   {
-    "nombre": "aplicación de los conocimientos matemáticos en situaciones reales",
+    "nombre": "Aplicación de los conocimientos matemáticos en situaciones reales",
     "temasHijos": [],
     "descripcion": "Es usar lo que sabes de números, operaciones, medidas o figuras para resolver cosas que pasan en el mundo real: medir un espacio, repartir comida, calcular el cambio o saber cuánto tiempo falta.",
     "temaPadre": {
