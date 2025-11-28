@@ -383,7 +383,7 @@ public class SistemaControlador {
         boolean avanzar;
         if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(username,"Debe indicar un nombre de usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true  && validarContrasena(clave)==true){
             String contrasena = new String(clave.getPassword());
-            registrarUsuarioFirebase(nombre.getText(),apellido.getText(),username.getText(), contrasena, "estudiante");
+            registrarUsuarioFirebase(nombre.getText(),apellido.getText(),username.getText(), contrasena, "maestro");
 
             if (existe==false){
                 Maestro maestroNuevo = new Maestro();
@@ -1255,7 +1255,7 @@ public class SistemaControlador {
         
         if (existeSalon(g, s)) {
             javax.swing.JOptionPane.showMessageDialog(null, 
-                "El salón de " + grado + "° grado sección '" + seccion + "' ya existe.\nNo se puede crear duplicado.", 
+                "El salón de " + g + "° grado sección '" + s + "' ya existe.\nNo se puede crear duplicado.", 
                 "Salón Duplicado", 
                 javax.swing.JOptionPane.ERROR_MESSAGE);
             return false; 
@@ -1326,54 +1326,7 @@ public class SistemaControlador {
         }
     }
     
-    /* SUPRIMIR SUPRIMIR
-    public void crearSalon(JComboBox grado, JComboBox seccion){
-        Maestro maestroActual = (Maestro) usuarioActual;
-        Salon nuevoSalon = new Salon();
-        nuevoSalon.setGrado((int) grado.getSelectedItem());
-        nuevoSalon.setSeccion((char) seccion.getSelectedItem());
-        nuevoSalon.setMaestro(maestroActual);
-        
-        Salon ultimoSalonAgregado = listaSalones.get(listaSalones.size()-1);
-        if (ultimoSalonAgregado==null){
-            nuevoSalon.setIdSalon(0);
-        }
-        else {
-            nuevoSalon.setIdSalon(ultimoSalonAgregado.getIdSalon()+1);
-        }
-        
-        listaSalones.add(nuevoSalon);
-        maestroActual.getSalones().add(nuevoSalon);
-        JOptionPane.showMessageDialog(null,"Nuevo Salon creado: "+nuevoSalon.getGrado()+"° '"+nuevoSalon.getSeccion()+"'","Creacion exitosa",JOptionPane.INFORMATION_MESSAGE);
-    }
     
-    public boolean eliminarSalon(JTextField idSalon){
-        boolean encontrado;
-        Maestro maestroActual = (Maestro) usuarioActual;
-        int id =  Integer.parseInt(idSalon.getText());
-        Salon salonEliminar = new Salon();
-        for (Salon s : listaSalones){
-            if (s.getIdSalon()==id){
-                salonEliminar = s;
-            }
-        }
-        if (salonEliminar != null){
-            for (Estudiante est : salonEliminar.getListaEstudiantes()){
-                est.setSalon(null);
-                est.setGrado(0);
-                est.setSeccion(' ');
-            }
-            listaSalones.remove(salonEliminar);
-            maestroActual.getSalones().remove(salonEliminar);
-            encontrado = true;
-
-        }
-        else{
-            encontrado = false;
-        }
-        return encontrado;
-    }
-    */
     
     
     private int getGrupoDeGrado(Estudiante est) { // obtener 1 si el estudiante es de 1er a 3er grado, 4 si es de 4to a 6to grado
