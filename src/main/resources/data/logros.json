@@ -1,0 +1,530 @@
+[
+  {
+    "id": 1,
+    "nombre": "Iniciado en Naturales",
+    "descripcion": "Gana 150 puntos en Números Naturales",
+    "puntosNecesarios": 150,
+    "rutaIcono": "iniciadoennaturales.png",
+    "idTema": 2
+  },
+  {
+    "id": 2,
+    "nombre": "Maestro de Naturales",
+    "descripcion": "Gana 500 puntos en Números Naturales",
+    "puntosNecesarios": 500,
+    "rutaIcono": "maestrodenaturales.png",
+    "idTema": 2
+  },
+  {
+    "id": 3,
+    "nombre": "Explorador Decimal",
+    "descripcion": "Gana 150 puntos en Decimales",
+    "puntosNecesarios": 150,
+    "rutaIcono": "exploradorDecimal.png",
+    "idTema": 3
+  },
+  {
+    "id": 4,
+    "nombre": "Genio del Punto",
+    "descripcion": "Gana 500 puntos en Decimales",
+    "puntosNecesarios": 500,
+    "rutaIcono": "geniodelPunto.png",
+    "idTema": 3
+  },
+  {
+    "id": 5,
+    "nombre": "Aprendiz de Fracciones",
+    "descripcion": "Gana 150 puntos en Fracciones",
+    "puntosNecesarios": 150,
+    "rutaIcono": "aprendizdelFracciones.png",
+    "idTema": 4
+  },
+  {
+    "id": 6,
+    "nombre": "Chef de Partes",
+    "descripcion": "Gana 500 puntos en Fracciones",
+    "puntosNecesarios": 500,
+    "rutaIcono": "chefdelPartes.png",
+    "idTema": 4
+  },
+  {
+    "id": 7,
+    "nombre": "Novato de la Suma",
+    "descripcion": "Gana 150 puntos en Suma",
+    "puntosNecesarios": 150,
+    "rutaIcono": "novatoSuma.png",
+    "idTema": 5
+  },
+  {
+    "id": 8,
+    "nombre": "Experto de la Suma",
+    "descripcion": "Gana 500 puntos en Suma",
+    "puntosNecesarios": 500,
+    "rutaIcono": "expertoSuma.png",
+    "idTema": 5
+  },
+  {
+    "id": 9,
+    "nombre": "Restador Veloz",
+    "descripcion": "Gana 150 puntos en Resta",
+    "puntosNecesarios": 150,
+    "rutaIcono": "restadorVeloz.png",
+    "idTema": 6
+  },
+  {
+    "id": 10,
+    "nombre": "Agente Cero",
+    "descripcion": "Gana 500 puntos en Resta",
+    "puntosNecesarios": 500,
+    "rutaIcono": "agenteCero.png",
+    "idTema": 6
+  },
+  {
+    "id": 11,
+    "nombre": "Multiplicador Novato",
+    "descripcion": "Gana 150 puntos en Multiplicación",
+    "puntosNecesarios": 150,
+    "rutaIcono": "multiplicadorNovato.png",
+    "idTema": 7
+  },
+  {
+    "id": 12,
+    "nombre": "Multimáquina",
+    "descripcion": "Gana 500 puntos en Multiplicación",
+    "puntosNecesarios": 500,
+    "rutaIcono": "multimaquina.png",
+    "idTema": 7
+  },
+  {
+    "id": 13,
+    "nombre": "Repartidor Justo",
+    "descripcion": "Gana 150 puntos en División",
+    "puntosNecesarios": 150,
+    "rutaIcono": "repartidorJusto.png",
+    "idTema": 8
+  },
+  {
+    "id": 14,
+    "nombre": "Juez de la División",
+    "descripcion": "Gana 500 puntos en División",
+    "puntosNecesarios": 500,
+    "rutaIcono": "juezdelaDivision.png",
+    "idTema": 8
+  },
+  {
+    "id": 15,
+    "nombre": "Observador Numérico",
+    "descripcion": "Gana 150 puntos en Sentido Numérico",
+    "puntosNecesarios": 150,
+    "rutaIcono": "observadorNumerico.png",
+    "idTema": 9
+  },
+  {
+    "id": 16,
+    "nombre": "Maestro de las Cantidades",
+    "descripcion": "Gana 500 puntos en Sentido Numérico",
+    "puntosNecesarios": 500,
+    "rutaIcono": "maestrodelasCantidades.png",
+    "idTema": 9
+  },
+  {
+    "id": 17,
+    "nombre": "Mente Rápida",
+    "descripcion": "Gana 150 puntos en Cálculo Mental",
+    "puntosNecesarios": 150,
+    "rutaIcono": "menteRapida.png",
+    "idTema": 10
+  },
+  {
+    "id": 18,
+    "nombre": "Cerebro Cuántico",
+    "descripcion": "Gana 500 puntos en Cálculo Mental",
+    "puntosNecesarios": 500,
+    "rutaIcono": "cerebroCuantico.png",
+    "idTema": 10
+  },
+  {
+    "id": 19,
+    "nombre": "Escritor de Cuentas",
+    "descripcion": "Gana 150 puntos en Algoritmos",
+    "puntosNecesarios": 150,
+    "rutaIcono": "escritordeCuentas.png",
+    "idTema": 11
+  },
+  {
+    "id": 20,
+    "nombre": "Arquitecto Matemático",
+    "descripcion": "Gana 500 puntos en Algoritmos",
+    "puntosNecesarios": 500,
+    "rutaIcono": "arquitectoMatemático.png",
+    "idTema": 11
+  },
+  {
+    "id": 21,
+    "nombre": "Detective en Patrones",
+    "descripcion": "Gana 150 puntos en Patrones",
+    "puntosNecesarios": 150,
+    "rutaIcono": "detectiveenPatrones.png",
+    "idTema": 13
+  },
+  {
+    "id": 22,
+    "nombre": "Vidente de Series",
+    "descripcion": "Gana 500 puntos en Patrones",
+    "puntosNecesarios": 500,
+    "rutaIcono": "videntedeSeries.png",
+    "idTema": 13
+  },
+  {
+    "id": 23,
+    "nombre": "Buscador de Incógnitas",
+    "descripcion": "Gana 150 puntos en Incógnitas Simples",
+    "puntosNecesarios": 150,
+    "rutaIcono": "buscadorIncognitas.png",
+    "idTema": 14
+  },
+  {
+    "id": 24,
+    "nombre": "Sherlock de Números",
+    "descripcion": "Gana 500 puntos en Incógnitas Simples",
+    "puntosNecesarios": 500,
+    "rutaIcono": "sherlockdeNumeros.png",
+    "idTema": 14
+  },
+  {
+    "id": 25,
+    "nombre": "Amigo de la X",
+    "descripcion": "Gana 150 puntos en Variables",
+    "puntosNecesarios": 150,
+    "rutaIcono": "amigodelaX.png",
+    "idTema": 15
+  },
+  {
+    "id": 26,
+    "nombre": "Domador de Letras",
+    "descripcion": "Gana 500 puntos en Variables",
+    "puntosNecesarios": 500,
+    "rutaIcono": "domadordeLetras.png",
+    "idTema": 15
+  },
+  {
+    "id": 27,
+    "nombre": "Traductor Matemático",
+    "descripcion": "Gana 150 puntos en Expresiones",
+    "puntosNecesarios": 150,
+    "rutaIcono": "traductorMatematico.png",
+    "idTema": 16
+  },
+  {
+    "id": 28,
+    "nombre": "Poeta de Fórmulas",
+    "descripcion": "Gana 500 puntos en Expresiones",
+    "puntosNecesarios": 500,
+    "rutaIcono": "poetadeFormulas.png",
+    "idTema": 16
+  },
+  {
+    "id": 29,
+    "nombre": "Dibujante de Formas",
+    "descripcion": "Gana 150 puntos en Figuras Planas",
+    "puntosNecesarios": 150,
+    "rutaIcono": "dibujantedeFormas.png",
+    "idTema": 18
+  },
+  {
+    "id": 30,
+    "nombre": "Artista Geométrico",
+    "descripcion": "Gana 500 puntos en Figuras Planas",
+    "puntosNecesarios": 500,
+    "rutaIcono": "artistaGeometrico.png",
+    "idTema": 18
+  },
+  {
+    "id": 31,
+    "nombre": "Constructor 3D",
+    "descripcion": "Gana 150 puntos en Figuras 3D",
+    "puntosNecesarios": 150,
+    "rutaIcono": "constructor3D.png",
+    "idTema": 19
+  },
+  {
+    "id": 32,
+    "nombre": "Ingenio Espacial",
+    "descripcion": "Gana 500 puntos en Figuras 3D",
+    "puntosNecesarios": 500,
+    "rutaIcono": "ingenioEspacial.png",
+    "idTema": 19
+  },
+  {
+    "id": 33,
+    "nombre": "Cazador de Ángulos",
+    "descripcion": "Gana 150 puntos en Ángulos",
+    "puntosNecesarios": 150,
+    "rutaIcono": "cazadordeAngulos.png",
+    "idTema": 20
+  },
+  {
+    "id": 34,
+    "nombre": "Transportador Humano",
+    "descripcion": "Gana 500 puntos en Ángulos",
+    "puntosNecesarios": 500,
+    "rutaIcono": "transportadorHumano.png",
+    "idTema": 20
+  },
+  {
+    "id": 35,
+    "nombre": "Contador de Lados",
+    "descripcion": "Gana 150 puntos en Lados",
+    "puntosNecesarios": 150,
+    "rutaIcono": "contadordeLados.png",
+    "idTema": 21
+  },
+  {
+    "id": 36,
+    "nombre": "Experto en Polígonos",
+    "descripcion": "Gana 500 puntos en Lados",
+    "puntosNecesarios": 500,
+    "rutaIcono": "expertoenPoligonos.png",
+    "idTema": 21
+  },
+  {
+    "id": 37,
+    "nombre": "Reflejo Perfecto",
+    "descripcion": "Gana 150 puntos en Simetría",
+    "puntosNecesarios": 150,
+    "rutaIcono": "reflejoPerfecto.png",
+    "idTema": 22
+  },
+  {
+    "id": 38,
+    "nombre": "Amo del Espejo",
+    "descripcion": "Gana 500 puntos en Simetría",
+    "puntosNecesarios": 500,
+    "rutaIcono": "amodelEspejo.png",
+    "idTema": 22
+  },
+  {
+    "id": 39,
+    "nombre": "Caminando por el Borde",
+    "descripcion": "Gana 150 puntos en Perímetro",
+    "puntosNecesarios": 150,
+    "rutaIcono": "caminandoBorde.png",
+    "idTema": 23
+  },
+  {
+    "id": 40,
+    "nombre": "Guardián de Cercas",
+    "descripcion": "Gana 500 puntos en Perímetro",
+    "puntosNecesarios": 500,
+    "rutaIcono": "guardiandeCercas.png",
+    "idTema": 23
+  },
+  {
+    "id": 41,
+    "nombre": "Pintor de Áreas",
+    "descripcion": "Gana 150 puntos en Área",
+    "puntosNecesarios": 150,
+    "rutaIcono": "pintordeAreas.png",
+    "idTema": 24
+  },
+  {
+    "id": 42,
+    "nombre": "Área Despejada",
+    "descripcion": "Gana 500 puntos en Área",
+    "puntosNecesarios": 500,
+    "rutaIcono": "areaDespejada.png",
+    "idTema": 24
+  },
+  {
+    "id": 43,
+    "nombre": "Descubriendo Otros Espacios",
+    "descripcion": "Gana 150 puntos en Volumen",
+    "puntosNecesarios": 150,
+    "rutaIcono": "descubriendoOtrosEspacios.png",
+    "idTema": 25
+  },
+  {
+    "id": 44,
+    "nombre": "Rey del Volumen",
+    "descripcion": "Gana 500 puntos en Volumen",
+    "puntosNecesarios": 500,
+    "rutaIcono": "reyVolumen.png",
+    "idTema": 25
+  },
+  {
+    "id": 45,
+    "nombre": "Medidor Novato",
+    "descripcion": "Gana 150 puntos en Longitud",
+    "puntosNecesarios": 150,
+    "rutaIcono": "medidorNovato.png",
+    "idTema": 26
+  },
+  {
+    "id": 46,
+    "nombre": "Regla de Oro",
+    "descripcion": "Gana 500 puntos en Longitud",
+    "puntosNecesarios": 500,
+    "rutaIcono": "regladeOro.png",
+    "idTema": 26
+  },
+  {
+    "id": 47,
+    "nombre": "Balanza Humana",
+    "descripcion": "Gana 150 puntos en Masa",
+    "puntosNecesarios": 150,
+    "rutaIcono": "balanzaHumana.png",
+    "idTema": 27
+  },
+  {
+    "id": 48,
+    "nombre": "Peso Pesado",
+    "descripcion": "Gana 500 puntos en Masa",
+    "puntosNecesarios": 500,
+    "rutaIcono": "pesoPesado.png",
+    "idTema": 27
+  },
+  {
+    "id": 49,
+    "nombre": "Aguador",
+    "descripcion": "Gana 150 puntos en Capacidad (Litros)",
+    "puntosNecesarios": 150,
+    "rutaIcono": "aguador.png",
+    "idTema": 28
+  },
+  {
+    "id": 50,
+    "nombre": "Océano de Sabiduría",
+    "descripcion": "Gana 500 puntos en Capacidad (Litros)",
+    "puntosNecesarios": 500,
+    "rutaIcono": "oceanodelaSabiduria.png",
+    "idTema": 28
+  },
+  {
+    "id": 51,
+    "nombre": "Vigilante del Tiempo",
+    "descripcion": "Gana 150 puntos en Tiempo",
+    "puntosNecesarios": 150,
+    "rutaIcono": "vigilantedelTiempo.png",
+    "idTema": 29
+  },
+  {
+    "id": 52,
+    "nombre": "Señor del Cronos",
+    "descripcion": "Gana 500 puntos en Tiempo",
+    "puntosNecesarios": 500,
+    "rutaIcono": "senordelCronos.png",
+    "idTema": 29
+  },
+  {
+    "id": 53,
+    "nombre": "Termómetro Viviente",
+    "descripcion": "Gana 150 puntos en Temperatura",
+    "puntosNecesarios": 150,
+    "rutaIcono": "termometroViviente.png",
+    "idTema": 30
+  },
+  {
+    "id": 54,
+    "nombre": "Climaster",
+    "descripcion": "Gana 500 puntos en Temperatura",
+    "puntosNecesarios": 500,
+    "rutaIcono": "climaster.png",
+    "idTema": 30
+  },
+  {
+    "id": 55,
+    "nombre": "Ahorrador",
+    "descripcion": "Gana 150 puntos en Dinero",
+    "puntosNecesarios": 150,
+    "rutaIcono": "ahorrador.png",
+    "idTema": 31
+  },
+  {
+    "id": 56,
+    "nombre": "Magnate Matemático",
+    "descripcion": "Gana 500 puntos en Dinero",
+    "puntosNecesarios": 500,
+    "rutaIcono": "magnateMatematico.png",
+    "idTema": 31
+  },
+  {
+    "id": 57,
+    "nombre": "Solucionador Real",
+    "descripcion": "Gana 150 puntos en Situaciones Reales",
+    "puntosNecesarios": 150,
+    "rutaIcono": "solucionadorReal.png",
+    "idTema": 33
+  },
+  {
+    "id": 58,
+    "nombre": "Héroe Cotidiano",
+    "descripcion": "Gana 500 puntos en Situaciones Reales",
+    "puntosNecesarios": 500,
+    "rutaIcono": "heroeCotidiano.png",
+    "idTema": 33
+  },
+  {
+    "id": 59,
+    "nombre": "Estratega",
+    "descripcion": "Gana 150 puntos en Estrategias Diversas",
+    "puntosNecesarios": 150,
+    "rutaIcono": "estratega.png",
+    "idTema": 34
+  },
+  {
+    "id": 60,
+    "nombre": "Mente Maestra",
+    "descripcion": "Gana 500 puntos en Estrategias Diversas",
+    "puntosNecesarios": 500,
+    "rutaIcono": "menteMaestra.png",
+    "idTema": 34
+  },
+  {
+    "id": 61,
+    "nombre": "Debatiente",
+    "descripcion": "Gana 150 puntos en Argumentación",
+    "puntosNecesarios": 150,
+    "rutaIcono": "debatiente.png",
+    "idTema": 35
+  },
+  {
+    "id": 62,
+    "nombre": "Filósofo Matemático",
+    "descripcion": "Gana 500 puntos en Argumentación",
+    "puntosNecesarios": 500,
+    "rutaIcono": "filosofoMatematico.png",
+    "idTema": 35
+  },
+  {
+    "id": 63,
+    "nombre": "Lector de Gráficas",
+    "descripcion": "Gana 150 puntos en Estadística",
+    "puntosNecesarios": 150,
+    "rutaIcono": "lectordeGraficas.png",
+    "idTema": 37
+  },
+  {
+    "id": 64,
+    "nombre": "Analista de Datos",
+    "descripcion": "Gana 500 puntos en Estadística",
+    "puntosNecesarios": 500,
+    "rutaIcono": "analistadeDatos.png",
+    "idTema": 37
+  },
+  {
+    "id": 65,
+    "nombre": "Adivino Novato",
+    "descripcion": "Gana 150 puntos en Probabilidad",
+    "puntosNecesarios": 150,
+    "rutaIcono": "adivinoNovato.png",
+    "idTema": 38
+  },
+  {
+    "id": 66,
+    "nombre": "Profeta de la Suerte",
+    "descripcion": "Gana 500 puntos en Probabilidad",
+    "puntosNecesarios": 500,
+    "rutaIcono": "profetadelaSuerte.png",
+    "idTema": 38
+  }
+]

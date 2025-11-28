@@ -25,27 +25,22 @@ public class DatosPrecargados {
         this.logros = new ArrayList<>();
         this.salones = new ArrayList<>();
         
-        // 1. Cargar Usuarios (Si tienes en Firebase, esto puede quedar vacío o con admin local)
-        // cargarUsuariosPrueba(); 
-        
-        // 2. CARGAR LA DATA REAL DEL JSON
+       
         cargarDatosDesdeJson(); 
         
-        // 3. Cargar Logros (Si los tienes en JSON úsalo, sino manual aquí)
-        cargarLogrosManuales(); 
     }
 
     private void cargarDatosDesdeJson() {
         try {
             Gson gson = new Gson();
 
-            // --- A. CARGAR TEMAS ---
-            // Nota: La ruta empieza con "/" porque está en src/main/resources
+            // ==========================================
+            //           A. CARGAR TEMAS
+            // ==========================================
             String rutaTemas = "/data/temas.json"; 
             
-            // Verificamos si existe el archivo
             if (getClass().getResource(rutaTemas) == null) {
-                System.err.println("❌ ERROR CRÍTICO: No se encuentra /data/temas.json");
+                System.err.println("❌ ERROR CRÍTICO: No se encuentra " + rutaTemas);
                 return;
             }
 
@@ -55,20 +50,19 @@ public class DatosPrecargados {
             Type listTypeTemas = new TypeToken<ArrayList<Tema>>(){}.getType();
             this.temas = gson.fromJson(readerTemas, listTypeTemas);
             
-            // --- B. MAPEAR TEMAS (Para búsquedas rápidas por ID) ---
+            // --- MAPEO DE TEMAS (Para búsquedas rápidas por ID) ---
             Map<Integer, Tema> mapaTemas = new HashMap<>();
             for (Tema t : this.temas) {
-                // Inicializar mapas internos del tema si vinieron nulos del JSON
+                // Inicializar mapas internos si vienen nulos
                 if (t.getEjercicios() == null) {
-                    // Recrear el mapa de dificultades vacío
-                     Map<NivelDificultad, List<Ejercicio>> mapaVacio = new HashMap<>();
-                     for (NivelDificultad n : NivelDificultad.values()) mapaVacio.put(n, new ArrayList<>());
-                     t.setEjercicios(mapaVacio);
+                      Map<NivelDificultad, List<Ejercicio>> mapaVacio = new HashMap<>();
+                      for (NivelDificultad n : NivelDificultad.values()) mapaVacio.put(n, new ArrayList<>());
+                      t.setEjercicios(mapaVacio);
                 }
                 mapaTemas.put(t.getId(), t);
             }
 
-            // --- C. RECONSTRUIR JERARQUÍA (Padres e Hijos) ---
+            // --- RECONSTRUIR JERARQUÍA (Padres e Hijos) ---
             for (Tema t : this.temas) {
                 if (t.getTemaPadre() != null && t.getTemaPadre().getId() > 0) {
                     Tema padreReal = mapaTemas.get(t.getTemaPadre().getId());
@@ -79,35 +73,67 @@ public class DatosPrecargados {
                 }
             }
 
-            // --- D. CARGAR EJERCICIOS ---
+            // ==========================================
+            //           B. CARGAR EJERCICIOS
+            // ==========================================
             String rutaEjercicios = "/data/ejercicios.json";
              if (getClass().getResource(rutaEjercicios) == null) {
-                System.err.println("❌ ERROR CRÍTICO: No se encuentra /data/ejercicios.json");
-                return;
-            }
-            
-            Reader readerEjercicios = new InputStreamReader(
-                getClass().getResourceAsStream(rutaEjercicios), StandardCharsets.UTF_8);
-            
-            Type listTypeEjercicios = new TypeToken<ArrayList<Ejercicio>>(){}.getType();
-            List<Ejercicio> todosLosEjercicios = gson.fromJson(readerEjercicios, listTypeEjercicios);
-            
-            // --- E. ASIGNAR EJERCICIOS A SUS TEMAS ---
-            int contadorCargados = 0;
-            for (Ejercicio ej : todosLosEjercicios) {
-                // El ejercicio viene con un Tema "dummy" que solo tiene el ID.
-                // Buscamos el Tema real en el mapa.
-                if (ej.getTema() != null) {
-                    Tema temaReal = mapaTemas.get(ej.getTema().getId());
-                    if (temaReal != null) {
-                        ej.setTema(temaReal); // Enlazamos el objeto Tema real
-                        temaReal.agregarEjercicio(ej); // ¡IMPORTANTE! Esto lo mete en la lista de dificultad
-                        contadorCargados++;
+                System.err.println("❌ ERROR CRÍTICO: No se encuentra " + rutaEjercicios);
+                // No retornamos, intentamos cargar logros al menos
+            } else {
+                Reader readerEjercicios = new InputStreamReader(
+                    getClass().getResourceAsStream(rutaEjercicios), StandardCharsets.UTF_8);
+                
+                Type listTypeEjercicios = new TypeToken<ArrayList<Ejercicio>>(){}.getType();
+                List<Ejercicio> todosLosEjercicios = gson.fromJson(readerEjercicios, listTypeEjercicios);
+                
+                // --- ASIGNAR EJERCICIOS A SUS TEMAS ---
+                int contadorEjer = 0;
+                for (Ejercicio ej : todosLosEjercicios) {
+                    if (ej.getTema() != null) {
+                        Tema temaReal = mapaTemas.get(ej.getTema().getId());
+                        if (temaReal != null) {
+                            ej.setTema(temaReal); 
+                            temaReal.agregarEjercicio(ej); 
+                            contadorEjer++;
+                        }
                     }
                 }
+                System.out.println("✅ Ejercicios cargados: " + contadorEjer);
             }
             
-            System.out.println("✅ SISTEMA CARGADO: " + temas.size() + " Temas y " + contadorCargados + " Ejercicios listos.");
+            // ==========================================
+            //           C. CARGAR LOGROS 
+            // ==========================================
+            String rutaLogros = "/data/logros.json";
+            
+            if (getClass().getResource(rutaLogros) != null) {
+                Reader readerLogros = new InputStreamReader(
+                    getClass().getResourceAsStream(rutaLogros), StandardCharsets.UTF_8);
+                
+                Type listTypeLogros = new TypeToken<ArrayList<Logro>>(){}.getType();
+                List<Logro> listaLogrosTemp = gson.fromJson(readerLogros, listTypeLogros);
+                
+                // --- VINCULAR LOGROS CON TEMAS REALES ---
+                for (Logro l : listaLogrosTemp) {
+                    // El logro viene con idTema (int). Buscamos el objeto Tema real.
+                    Tema temaAsociado = mapaTemas.get(l.getIdTema());
+                    
+                    if (temaAsociado != null) {
+                        l.setTema(temaAsociado); // ¡Conexión vital para el juego!
+                    } else {
+                        // System.err.println("⚠️ Advertencia: Logro '" + l.getNombre() + "' apunta a tema ID " + l.getIdTema() + " que no existe.");
+                    }
+                    this.logros.add(l);
+                }
+                System.out.println("✅ Logros cargados: " + this.logros.size());
+                
+            } else {
+                System.err.println("⚠️ Advertencia: No se encontró " + rutaLogros + ". Cargando manuales...");
+                cargarLogrosManuales(); // Fallback por si acaso
+            }
+            
+            System.out.println("✅ SISTEMA CARGADO COMPLETAMENTE: " + temas.size() + " Temas activos.");
 
         } catch (Exception e) {
             System.err.println("❌ Error fatal cargando JSONs: " + e.getMessage());
@@ -116,9 +142,7 @@ public class DatosPrecargados {
     }
 
     private void cargarLogrosManuales() {
-        // Aquí puedes mantener tu código viejo de logros si no tienes JSON de logros aún
-        // Ejemplo:
-        // this.logros.add(new Logro("Novato de la Suma", ...));
+        // de emergencia por si falla el JSON
     }
 
     // Getters

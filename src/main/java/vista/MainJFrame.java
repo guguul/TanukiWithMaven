@@ -62,6 +62,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
             this.setSize(1280, 720);
+            this.getContentPane().setBackground(new Color(40, 66, 119));
             
             controlador = new SistemaControlador();
             
@@ -272,6 +273,7 @@ public class MainJFrame extends javax.swing.JFrame {
         volver = new javax.swing.JButton();
         imagenPresentacionPJ = new javax.swing.JLabel();
         saludoEstudiante = new javax.swing.JLabel();
+        imagenPresentacionPJ1 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         descripcionTema = new javax.swing.JPanel();
         volver2 = new javax.swing.JButton();
@@ -1186,7 +1188,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         subtemaElegido.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         subtemaElegido.setText("xtema hhhhhhhhhhhhhhhhh");
-        PresentPJ.add(subtemaElegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 150, 380, 80));
+        PresentPJ.add(subtemaElegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 150, 380, 90));
 
         nombrePersonaje.setFont(new java.awt.Font("Cy Grotesk Key", 0, 32)); // NOI18N
         nombrePersonaje.setText("(nombre)");
@@ -1209,11 +1211,17 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
         PresentPJ.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 620, 200, 70));
+
+        imagenPresentacionPJ.setBackground(new java.awt.Color(255, 255, 255));
         PresentPJ.add(imagenPresentacionPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 320, 460));
 
         saludoEstudiante.setFont(new java.awt.Font("Cy Grotesk Key", 1, 36)); // NOI18N
         saludoEstudiante.setForeground(new java.awt.Color(255, 255, 255));
         PresentPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 350, 60));
+
+        imagenPresentacionPJ1.setBackground(new java.awt.Color(40, 66, 119));
+        imagenPresentacionPJ1.setOpaque(true);
+        PresentPJ.add(imagenPresentacionPJ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 320, 460));
 
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/PresentacionPersonaje.png"))); // NOI18N
         jLabel45.setText("jLabel45");
@@ -1337,6 +1345,11 @@ public class MainJFrame extends javax.swing.JFrame {
         opcionC.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         opcionC.setText("opcion C");
         opcionC.setBorderPainted(false);
+        opcionC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionCActionPerformed(evt);
+            }
+        });
         EjercicioSeleccion.add(opcionC, new org.netbeans.lib.awtextra.AbsoluteConstraints(649, 500, 251, 200));
 
         opcionD.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
@@ -1345,12 +1358,13 @@ public class MainJFrame extends javax.swing.JFrame {
         EjercicioSeleccion.add(opcionD, new org.netbeans.lib.awtextra.AbsoluteConstraints(919, 500, 252, 200));
 
         pregunta_ejercicio.setFont(new java.awt.Font("Cy Grotesk Key", 1, 24)); // NOI18N
-        pregunta_ejercicio.setText("pregunta ejercicio");
         EjercicioSeleccion.add(pregunta_ejercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 460, 260));
 
         panelImagenSeleccion.setToolTipText("");
         panelImagenSeleccion.setOpaque(false);
 
+        lblImagenPreguntaSeleccion.setBackground(new java.awt.Color(166, 205, 229));
+        lblImagenPreguntaSeleccion.setOpaque(true);
         lblImagenPreguntaSeleccion.setPreferredSize(new java.awt.Dimension(280, 280));
         panelImagenSeleccion.add(lblImagenPreguntaSeleccion);
 
@@ -1368,6 +1382,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
         panelImagenEscrita.setOpaque(false);
 
+        lblImagenPreguntaEscrita.setBackground(new java.awt.Color(166, 205, 229));
+        lblImagenPreguntaEscrita.setOpaque(true);
         lblImagenPreguntaEscrita.setPreferredSize(new java.awt.Dimension(280, 280));
         panelImagenEscrita.add(lblImagenPreguntaEscrita);
 
@@ -1382,7 +1398,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         EjercicioEscrito.add(siguienteEjercicioEscrita, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 630, 250, 70));
 
-        respuestaEscrita.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
+        respuestaEscrita.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         respuestaEscrita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 respuestaEscritaActionPerformed(evt);
@@ -1400,7 +1416,7 @@ public class MainJFrame extends javax.swing.JFrame {
         frase_correcto.setBackground(new java.awt.Color(255, 255, 255));
         frase_correcto.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         frase_correcto.setText("Frase Motivadora");
-        ejercicioCorrecto.add(frase_correcto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 230, 160));
+        ejercicioCorrecto.add(frase_correcto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 240, 120));
         frase_correcto.getAccessibleContext().setAccessibleName("frase_correcto");
 
         continuar_ejer_correcto.setBorderPainted(false);
@@ -1468,7 +1484,7 @@ public class MainJFrame extends javax.swing.JFrame {
         frase_incorrecto.setBackground(new java.awt.Color(255, 255, 255));
         frase_incorrecto.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         frase_incorrecto.setText("Frase Motivadora");
-        ejercicioIncorrecto.add(frase_incorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 260, 180));
+        ejercicioIncorrecto.add(frase_incorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 230, 130));
         ejercicioIncorrecto.add(imagenPJIncorrecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 250, 320));
 
         jLabel42.setBackground(new java.awt.Color(255, 255, 255));
@@ -2873,16 +2889,14 @@ public class MainJFrame extends javax.swing.JFrame {
         // --- PASO 4: MOSTRAR FEEDBACK ---
         String retro = res.getEjercicio().getRetroalimentacion();
         String respCorrecta = res.getEjercicio().getRespuestaCorrecta();
-
+        String rutaImg = res.getEjercicio().getRutaImagen();
         // Obtenemos el layout correcto (IMPORTANTE: Verifica que sea cardInterfazEstudiante o cardPracticaEst)
         java.awt.CardLayout cardLayout = (java.awt.CardLayout) this.cardInterfazEstudiante.getLayout(); 
 
         if (res.isEsCorrecto()) {
             // --- 4.1 PANEL CORRECTO ---
-           String fraseHtml = "<html><div style='width: 550px; text-align: center; font-size: 18px;'>" 
-                                + modelo_tanuki.FrasesMotivacionales.getFraseCorrecta() 
-                                + "</div></html>";
-
+            String fraseHtml = "<html>"+ modelo_tanuki.FrasesMotivacionales.getFraseCorrecta() + "<html>";
+            cargarImagenEnLabel(rutaImg, lblImagenPanelCorrecto);
             frase_correcto.setText(fraseHtml);
             retroali_Pcorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
             respuesta_correc.setText("<html><b>¡Muy bien!</b></html>");
@@ -2894,11 +2908,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         } else {
             // --- 4.2 PANEL INCORRECTO ---
-            String fraseHtml = "<html><div style='width: 550px; text-align: center; font-size: 18px;'>" 
-                           + modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta() 
-                           + "</div></html>";
-                           
-            frase_incorrecto.setText(fraseHtml);
+            String fraseHtmlMal = "<html>"+ modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta() + "<html>";
+            cargarImagenEnLabel(rutaImg, lblImagenPanelIncorrecto);
+            frase_incorrecto.setText(fraseHtmlMal);
             retroali_Pincorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
 
             if (respCorrecta.toLowerCase().endsWith(".png") || respCorrecta.toLowerCase().endsWith(".jpg")) {
@@ -4040,16 +4052,15 @@ public class MainJFrame extends javax.swing.JFrame {
         // --- PASO 4: MOSTRAR FEEDBACK ---
         String retro = res.getEjercicio().getRetroalimentacion();
         String respCorrecta = res.getEjercicio().getRespuestaCorrecta();
-
+        String rutaImg = res.getEjercicio().getRutaImagen();
         // Obtenemos el layout correcto (IMPORTANTE: Verifica que sea cardInterfazEstudiante o cardPracticaEst)
         java.awt.CardLayout cardLayout = (java.awt.CardLayout) this.cardInterfazEstudiante.getLayout(); 
 
         if (res.isEsCorrecto()) {
             // --- 4.1 PANEL CORRECTO ---
-            String fraseHtml = "<html><body style='width: 205px; text-align: center;'>" 
-                   + modelo_tanuki.FrasesMotivacionales.getFraseCorrecta() + "</body></html>";
+            String fraseHtml = "<html>"+ modelo_tanuki.FrasesMotivacionales.getFraseCorrecta() + "<html>";
+            cargarImagenEnLabel(rutaImg, lblImagenPanelCorrecto);
             frase_correcto.setText(fraseHtml);
-            frase_correcto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             retroali_Pcorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
             respuesta_correc.setText("<html><b>¡Muy bien!</b></html>");
 
@@ -4060,12 +4071,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         } else {
             // --- 4.2 PANEL INCORRECTO ---
-            String fraseHtmlMal = "<html><body style='width: 205px; text-align: center;'>" 
-                   + modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta() + "</body></html>";
-            frase_incorrecto.setText(fraseHtmlMal);
-            frase_incorrecto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            retroali_Pincorrecto.setText("<html>" + (retro != null ? retro : "") + "</html>");
+            String fraseHtmlMal = "<html>" + modelo_tanuki.FrasesMotivacionales.getFraseIncorrecta() + "<html>";
 
+            frase_incorrecto.setText(fraseHtmlMal);
+            retroali_Pincorrecto.setText("<html>" + (retro != null ? retro : "") + "<html>");
+            cargarImagenEnLabel(rutaImg, lblImagenPanelIncorrecto);
             if (respCorrecta.toLowerCase().endsWith(".png") || respCorrecta.toLowerCase().endsWith(".jpg")) {
                  respuesta_correc1.setText("<html>La respuesta correcta era la imagen mostrada.</html>");
             } else {
@@ -4082,6 +4092,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private void cboDificultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboDificultadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboDificultadActionPerformed
+
+    private void opcionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_opcionCActionPerformed
     
     private modelo_tanuki.PeriodoReporte getPeriodoEnumFromString(String s) {
         if (s == null) return modelo_tanuki.PeriodoReporte.COMPLETO;
@@ -4310,6 +4324,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel imagenPJIncorrecto;
     private javax.swing.JLabel imagenPresentacion2;
     private javax.swing.JLabel imagenPresentacionPJ;
+    private javax.swing.JLabel imagenPresentacionPJ1;
     private javax.swing.JPanel infoSalonEst;
     private javax.swing.JButton iniciarSesion;
     private javax.swing.JPanel inicioSesion;

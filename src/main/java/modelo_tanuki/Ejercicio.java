@@ -22,6 +22,7 @@ public class Ejercicio {
     private String retroalimentacion;
     private String[] rutasOpciones;
     private boolean forzarSeleccion;
+    private boolean imagenEnPregunta;
     
     public Ejercicio(String pregunta, String[] opciones, String respuestaCorrecta, NivelDificultad dificultad, Tema tema, int valorPuntos, int grado, int idEjercicio, String rutaImagen, String retroalimentacion){
         this.pregunta = pregunta;
@@ -139,6 +140,14 @@ public class Ejercicio {
         return rutasOpciones;
     }
     
+    public boolean isImagenEnPregunta() {
+    return imagenEnPregunta;
+    }
+
+    public void setImagenEnPregunta(boolean imagenEnPregunta) {
+        this.imagenEnPregunta = imagenEnPregunta;
+    }
+
     /**
      * Valida la respuesta del usuario.
      * Funciona tanto para respuesta escrita como múltiple.
@@ -149,8 +158,7 @@ public class Ejercicio {
         if (respuestaUsuario == null) {
             return false;
         }
-        // Compara la respuesta (ignorando mayúsculas/minúsculas)
-        return this.respuestaCorrecta.equalsIgnoreCase(respuestaUsuario.trim());
+        return this.respuestaCorrecta.trim().equalsIgnoreCase(respuestaUsuario.trim());
     }
     
     public boolean tieneImagen() {

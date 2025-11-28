@@ -13,7 +13,7 @@ public class FrasesMotivacionales {
     private static final List<String> FRASES_CORRECTAS = List.of(
         "¡Muy bien! Se nota que estás aprendiendo mucho.",
         "¡Excelente trabajo! Sigue así.",
-        "¡Perfecto! Estás pensando como un verdadero matemático.",
+        "¡Perfecto! Piensas como un verdadero matemático.",
         "¡Eso fue brillante!",
         "¡Increíble! Has logrado resolverlo correctamente.",
         "¡Qué gran avance! Estás mejorando cada vez más.",
