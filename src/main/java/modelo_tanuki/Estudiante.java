@@ -6,10 +6,12 @@ package modelo_tanuki;
 import java.util.*;
 import java.time.LocalDate;
 import java.time.Duration;
+import com.google.cloud.firestore.annotation.IgnoreExtraProperties;
 /**
  *
  * @author adrif
  */
+@IgnoreExtraProperties
 public class Estudiante extends Usuario {
     private int grado;
     private char seccion;
@@ -17,8 +19,8 @@ public class Estudiante extends Usuario {
     private Progreso progreso;
     private ArrayList<Logro> logros;
     
-    public Estudiante (int idUsuario, String nombre, String apellido, String correo, String contrasena, int grado, char seccion, Salon salon, Progreso progreso, ArrayList<Logro> logros){
-        super(idUsuario,nombre,apellido,correo,contrasena);
+    public Estudiante (int idUsuario, String nombre, String apellido, String username, String contrasena, int grado, char seccion, Salon salon, Progreso progreso, ArrayList<Logro> logros){
+        super(idUsuario,nombre,apellido,username,contrasena);
         this.grado = grado;
         this.seccion = seccion;
         this.salon = null; // empieza sin salon

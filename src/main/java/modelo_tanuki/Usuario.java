@@ -12,20 +12,20 @@ public abstract class Usuario {
     protected int idUsuario;
     protected String nombre;
     protected String apellido;
-    protected String correo;
+    protected String username;
     protected String contrasena;
     
-    public Usuario (int idUsuario, String nombre, String apellido, String correo, String contrasena){
+    public Usuario (int idUsuario, String nombre, String apellido, String username, String contrasena){
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.correo = correo;
+        this.username = username;
         this.contrasena = contrasena;
     }
     
     public Usuario(){
         idUsuario = 0;
-        nombre = apellido = correo = contrasena = "";
+        nombre = apellido = username = contrasena = "";
     }
 
     public int getIdUsuario() {
@@ -52,12 +52,12 @@ public abstract class Usuario {
         this.apellido = apellido;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getUsername() {
+        return username;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getContrasena() {
@@ -68,8 +68,8 @@ public abstract class Usuario {
         this.contrasena = contrasena;
     }
     
-    public boolean validarDatosAcceso(String correo, String contrasena){
-        return (this.correo.equals(correo) && this.contrasena.equals(contrasena));
+    public boolean validarDatosAcceso(String username, String contrasena){
+        return (this.username.equals(username) && this.contrasena.equals(contrasena));
     }
     
     
