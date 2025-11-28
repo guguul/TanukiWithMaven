@@ -16,6 +16,7 @@ vista\MainJFrame$41.class
 vista\MainJFrame$62.class
 vista\MainJFrame$82.class
 vista\RoundedPanel.class
+Persistencia\ConvertidorLogros$1.class
 vista\MainJFrame$119.class
 vista\MainJFrame$2.class
 modelo_tanuki\PeriodoReporte.class
@@ -71,6 +72,7 @@ modelo_tanuki\Ejercicio.class
 vista\MainJFrame$106.class
 vista\MainJFrame$71.class
 vista\MainJFrame$42.class
+Persistencia\ConvertidorLogros.class
 vista\MainJFrame$8.class
 vista\MainJFrame$133.class
 vista\MainJFrame$39.class
@@ -99,6 +101,7 @@ controller\SistemaControlador$2.class
 vista\MainJFrame$17.class
 vista\MainJFrame$111.class
 vista\MainJFrame$131.class
+Persistencia\DatosPrecargados$3.class
 vista\MainJFrame$97.class
 vista\MainJFrame$37.class
 vista\MainJFrame$57.class
@@ -115,6 +118,7 @@ vista\MainJFrame$85.class
 vista\MainJFrame$12.class
 vista\MainJFrame$91.class
 modelo_tanuki\Estudiante.class
+vista\MainJFrame$136.class
 vista\MainJFrame$103.class
 vista\MainJFrame$29.class
 vista\MainJFrame$51.class
