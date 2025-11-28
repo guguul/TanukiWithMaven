@@ -16,6 +16,7 @@ import controller.SistemaControlador;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -152,6 +153,19 @@ public class MainJFrame extends javax.swing.JFrame {
                 controlador.reproducirSonido("INCORRECTO.wav");
             }
         });
+        // Bloquear edicion de tablas
+        tablaLogros.getTableHeader().setReorderingAllowed(false);
+        tablaLogros.getTableHeader().setResizingAllowed(false);
+        SalonesAsignados.getTableHeader().setReorderingAllowed(false);
+        SalonesAsignados.getTableHeader().setResizingAllowed(false);
+        jTable2.getTableHeader().setResizingAllowed(false);
+        jTable2.getTableHeader().setReorderingAllowed(false);
+        tablaRankingSalon.getTableHeader().setResizingAllowed(false);
+        tablaRankingSalon.getTableHeader().setReorderingAllowed(false);
+        tablaReporteSalon.getTableHeader().setReorderingAllowed(false);
+        tablaReporteSalon.getTableHeader().setResizingAllowed(false);
+        tablaReporteEstudiante.getTableHeader().setReorderingAllowed(false);
+        tablaReporteEstudiante.getTableHeader().setResizingAllowed(false);
     }
     
 
@@ -181,7 +195,7 @@ public class MainJFrame extends javax.swing.JFrame {
         volver1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         inicioSesion = new javax.swing.JPanel();
-        CorreoLogin = new javax.swing.JTextField();
+        UsernameLogin = new javax.swing.JTextField();
         ContrasenaLogin = new javax.swing.JPasswordField();
         volver3 = new javax.swing.JButton();
         aceptar1 = new javax.swing.JButton();
@@ -189,7 +203,7 @@ public class MainJFrame extends javax.swing.JFrame {
         registroE = new javax.swing.JPanel();
         RegENombre = new javax.swing.JTextField();
         RegEApellido = new javax.swing.JTextField();
-        RegECorreo = new javax.swing.JTextField();
+        RegEusername = new javax.swing.JTextField();
         RegEContrasena = new javax.swing.JPasswordField();
         aceptar3 = new javax.swing.JButton();
         volver5 = new javax.swing.JButton();
@@ -197,7 +211,7 @@ public class MainJFrame extends javax.swing.JFrame {
         registroM = new javax.swing.JPanel();
         RegMNombre = new javax.swing.JTextField();
         RegMApellido = new javax.swing.JTextField();
-        RegMCorreo = new javax.swing.JTextField();
+        RegMusername = new javax.swing.JTextField();
         RegMContrasena = new javax.swing.JPasswordField();
         aceptar4 = new javax.swing.JButton();
         volver6 = new javax.swing.JButton();
@@ -220,14 +234,14 @@ public class MainJFrame extends javax.swing.JFrame {
         PESeccion = new javax.swing.JLabel();
         PENombre = new javax.swing.JLabel();
         PEApellido = new javax.swing.JLabel();
-        PECorreo = new javax.swing.JLabel();
+        PEusername = new javax.swing.JLabel();
         PEContrasena = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         editPerfilEst = new javax.swing.JPanel();
         guardar1 = new javax.swing.JButton();
         volver7 = new javax.swing.JButton();
         EPEContrasena = new javax.swing.JTextField();
-        EPECorreo = new javax.swing.JTextField();
+        EPEusername = new javax.swing.JTextField();
         EPEApellido = new javax.swing.JTextField();
         EPENombre = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -348,14 +362,14 @@ public class MainJFrame extends javax.swing.JFrame {
         SalonesAsignados = new javax.swing.JTable();
         PMNombre = new javax.swing.JLabel();
         PMApellido = new javax.swing.JLabel();
-        PMCorreo = new javax.swing.JLabel();
+        PMusername = new javax.swing.JLabel();
         PMContrasena = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         editPerfilMaestro = new javax.swing.JPanel();
         guardar2 = new javax.swing.JButton();
         volver9 = new javax.swing.JButton();
         EPMContrasena = new javax.swing.JTextField();
-        EPMCorreo = new javax.swing.JTextField();
+        EPMusername = new javax.swing.JTextField();
         EPMApellido = new javax.swing.JTextField();
         EPMNombre = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
@@ -540,7 +554,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 registrateActionPerformed(evt);
             }
         });
-        Bienvenido.add(registrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 250, 460, 70));
+        Bienvenido.add(registrate, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 260, 460, 60));
 
         salir2.setBorderPainted(false);
         salir2.setContentAreaFilled(false);
@@ -574,7 +588,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 maestro1ActionPerformed(evt);
             }
         });
-        OcupacionR.add(maestro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 383, 460, 70));
+        OcupacionR.add(maestro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 393, 450, 60));
 
         volver1.setBorderPainted(false);
         volver1.setContentAreaFilled(false);
@@ -583,7 +597,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 volver1ActionPerformed(evt);
             }
         });
-        OcupacionR.add(volver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(815, 583, 210, 80));
+        OcupacionR.add(volver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 590, 200, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/ocupacionR.png"))); // NOI18N
         OcupacionR.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -592,22 +606,22 @@ public class MainJFrame extends javax.swing.JFrame {
 
         inicioSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        CorreoLogin.setBackground(new java.awt.Color(151, 211, 255));
-        CorreoLogin.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
-        CorreoLogin.setForeground(new java.awt.Color(255, 255, 255));
-        CorreoLogin.setText("Ingrese un nombre de usuario");
-        CorreoLogin.setBorder(null);
-        CorreoLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+        UsernameLogin.setBackground(new java.awt.Color(151, 211, 255));
+        UsernameLogin.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
+        UsernameLogin.setForeground(new java.awt.Color(255, 255, 255));
+        UsernameLogin.setText("Ingrese un nombre de usuario");
+        UsernameLogin.setBorder(null);
+        UsernameLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                CorreoLoginMousePressed(evt);
+                UsernameLoginMousePressed(evt);
             }
         });
-        CorreoLogin.addActionListener(new java.awt.event.ActionListener() {
+        UsernameLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CorreoLoginActionPerformed(evt);
+                usernameLoginActionPerformed(evt);
             }
         });
-        inicioSesion.add(CorreoLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 290, 280, 40));
+        inicioSesion.add(UsernameLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 290, 280, 40));
 
         ContrasenaLogin.setBackground(new java.awt.Color(151, 211, 255));
         ContrasenaLogin.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
@@ -685,22 +699,22 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         registroE.add(RegEApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 305, 280, 40));
 
-        RegECorreo.setBackground(new java.awt.Color(151, 211, 255));
-        RegECorreo.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
-        RegECorreo.setForeground(new java.awt.Color(255, 255, 255));
-        RegECorreo.setText("Ingrese un nombre de usuario");
-        RegECorreo.setBorder(null);
-        RegECorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+        RegEusername.setBackground(new java.awt.Color(151, 211, 255));
+        RegEusername.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
+        RegEusername.setForeground(new java.awt.Color(255, 255, 255));
+        RegEusername.setText("Ingrese un nombre de usuario");
+        RegEusername.setBorder(null);
+        RegEusername.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                RegECorreoMousePressed(evt);
+                RegEusernameMousePressed(evt);
             }
         });
-        RegECorreo.addActionListener(new java.awt.event.ActionListener() {
+        RegEusername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegECorreoActionPerformed(evt);
+                RegEusernameActionPerformed(evt);
             }
         });
-        registroE.add(RegECorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 405, 280, 40));
+        registroE.add(RegEusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 405, 280, 40));
 
         RegEContrasena.setBackground(new java.awt.Color(151, 211, 255));
         RegEContrasena.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
@@ -726,7 +740,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 aceptar3ActionPerformed(evt);
             }
         });
-        registroE.add(aceptar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 610, 260, 70));
+        registroE.add(aceptar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 610, 270, 70));
 
         volver5.setBorderPainted(false);
         volver5.setContentAreaFilled(false);
@@ -778,22 +792,22 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         registroM.add(RegMApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 305, 280, 40));
 
-        RegMCorreo.setBackground(new java.awt.Color(151, 211, 255));
-        RegMCorreo.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
-        RegMCorreo.setForeground(new java.awt.Color(255, 255, 255));
-        RegMCorreo.setText("Ingrese un nombre de usuario");
-        RegMCorreo.setBorder(null);
-        RegMCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+        RegMusername.setBackground(new java.awt.Color(151, 211, 255));
+        RegMusername.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
+        RegMusername.setForeground(new java.awt.Color(255, 255, 255));
+        RegMusername.setText("Ingrese un nombre de usuario");
+        RegMusername.setBorder(null);
+        RegMusername.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                RegMCorreoMousePressed(evt);
+                RegMusernameMousePressed(evt);
             }
         });
-        RegMCorreo.addActionListener(new java.awt.event.ActionListener() {
+        RegMusername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegMCorreoActionPerformed(evt);
+                RegMusernameActionPerformed(evt);
             }
         });
-        registroM.add(RegMCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 405, 280, 40));
+        registroM.add(RegMusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 405, 280, 40));
 
         RegMContrasena.setBackground(new java.awt.Color(151, 211, 255));
         RegMContrasena.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
@@ -918,8 +932,8 @@ public class MainJFrame extends javax.swing.JFrame {
         PEApellido.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         perfilEst.add(PEApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 410, 40));
 
-        PECorreo.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        perfilEst.add(PECorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 455, 750, 40));
+        PEusername.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
+        perfilEst.add(PEusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 455, 750, 40));
 
         PEContrasena.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         perfilEst.add(PEContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 570, 750, 40));
@@ -951,15 +965,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
         EPEContrasena.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         EPEContrasena.setBorder(null);
-        editPerfilEst.add(EPEContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 565, 770, 50));
+        editPerfilEst.add(EPEContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 565, 750, 50));
 
-        EPECorreo.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        EPECorreo.setBorder(null);
-        editPerfilEst.add(EPECorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 450, 770, 50));
+        EPEusername.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
+        EPEusername.setBorder(null);
+        editPerfilEst.add(EPEusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 450, 750, 50));
 
         EPEApellido.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         EPEApellido.setBorder(null);
-        editPerfilEst.add(EPEApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 335, 420, 50));
+        editPerfilEst.add(EPEApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 335, 410, 50));
 
         EPENombre.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         EPENombre.setBorder(null);
@@ -968,7 +982,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 EPENombreActionPerformed(evt);
             }
         });
-        editPerfilEst.add(EPENombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 222, 420, 50));
+        editPerfilEst.add(EPENombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 222, 410, 50));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/editPerfilEst.png"))); // NOI18N
         editPerfilEst.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -989,7 +1003,15 @@ public class MainJFrame extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaLogrosEstProgreso.setViewportView(tablaLogros);
 
         progresoEst.add(tablaLogrosEstProgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 247, 470, 250));
@@ -1067,7 +1089,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 enviarActionPerformed(evt);
             }
         });
-        unirseSalonEst.add(enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 550, 220, 70));
+        unirseSalonEst.add(enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 560, 220, 50));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/unirseSalonEst.png"))); // NOI18N
         unirseSalonEst.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -1168,7 +1190,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 seguirPresentacionActionPerformed(evt);
             }
         });
-        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 620, 250, 70));
+        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 620, 240, 70));
 
         volver11.setBorderPainted(false);
         volver11.setContentAreaFilled(false);
@@ -1190,7 +1212,7 @@ public class MainJFrame extends javax.swing.JFrame {
         subtemaElegido.setText("xtema hhhhhhhhhhhhhhhhh");
         PresentPJ.add(subtemaElegido, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 150, 380, 90));
 
-        nombrePersonaje.setFont(new java.awt.Font("Cy Grotesk Key", 0, 32)); // NOI18N
+        nombrePersonaje.setFont(new java.awt.Font("Cy Grotesk Key", 0, 36)); // NOI18N
         nombrePersonaje.setText("(nombre)");
         PresentPJ.add(nombrePersonaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 60, 240, 50));
 
@@ -1217,7 +1239,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         saludoEstudiante.setFont(new java.awt.Font("Cy Grotesk Key", 1, 36)); // NOI18N
         saludoEstudiante.setForeground(new java.awt.Color(255, 255, 255));
-        PresentPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 350, 60));
+        PresentPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 310, 60));
 
         imagenPresentacionPJ1.setBackground(new java.awt.Color(40, 66, 119));
         imagenPresentacionPJ1.setOpaque(true);
@@ -1307,7 +1329,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 volverAPracticaActionPerformed(evt);
             }
         });
-        Tutorial.add(volverAPractica, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 170, 60));
+        Tutorial.add(volverAPractica, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 160, 60));
 
         jLabel53.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/tutorialPractica.png"))); // NOI18N
         jLabel53.setText("jLabel53");
@@ -1595,23 +1617,31 @@ public class MainJFrame extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         SalonesAsignados.setSelectionForeground(new java.awt.Color(204, 204, 204));
         jScrollPane6.setViewportView(SalonesAsignados);
 
         perfilMaestro.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(912, 220, 300, 150));
 
         PMNombre.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        perfilMaestro.add(PMNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 410, 40));
+        perfilMaestro.add(PMNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 400, 40));
 
         PMApellido.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        perfilMaestro.add(PMApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 337, 410, 40));
+        perfilMaestro.add(PMApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 337, 400, 40));
 
-        PMCorreo.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        perfilMaestro.add(PMCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, 750, 40));
+        PMusername.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
+        perfilMaestro.add(PMusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, 750, 40));
 
         PMContrasena.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        perfilMaestro.add(PMContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 565, 750, 40));
+        perfilMaestro.add(PMContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 565, 740, 40));
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/perfilMaestro.png"))); // NOI18N
         perfilMaestro.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -1640,20 +1670,20 @@ public class MainJFrame extends javax.swing.JFrame {
 
         EPMContrasena.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         EPMContrasena.setBorder(null);
-        editPerfilMaestro.add(EPMContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(455, 562, 760, 50));
+        editPerfilMaestro.add(EPMContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 560, 760, 50));
 
-        EPMCorreo.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
-        EPMCorreo.setBorder(null);
-        EPMCorreo.addActionListener(new java.awt.event.ActionListener() {
+        EPMusername.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
+        EPMusername.setBorder(null);
+        EPMusername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EPMCorreoActionPerformed(evt);
+                EPMusernameActionPerformed(evt);
             }
         });
-        editPerfilMaestro.add(EPMCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 447, 760, 50));
+        editPerfilMaestro.add(EPMusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, 750, 50));
 
         EPMApellido.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         EPMApellido.setBorder(null);
-        editPerfilMaestro.add(EPMApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 332, 410, 50));
+        editPerfilMaestro.add(EPMApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, 400, 50));
 
         EPMNombre.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         EPMNombre.setBorder(null);
@@ -1662,7 +1692,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 EPMNombreActionPerformed(evt);
             }
         });
-        editPerfilMaestro.add(EPMNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 217, 410, 50));
+        editPerfilMaestro.add(EPMNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 410, 60));
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/editPerfilMaestro.png"))); // NOI18N
         editPerfilMaestro.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -1712,7 +1742,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jList1.setFont(new java.awt.Font("Cy Grotesk Key", 0, 18)); // NOI18N
         jScrollPane2.setViewportView(jList1);
 
-        solicitudesMaestro.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, 760, 230));
+        solicitudesMaestro.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 760, 230));
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/solicitudesMaestro.png"))); // NOI18N
         solicitudesMaestro.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -1765,7 +1795,15 @@ public class MainJFrame extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(jTable2);
 
         salonesMaestro.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 750, 360));
@@ -1784,7 +1822,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 aggEstActionPerformed(evt);
             }
         });
-        crearSalonMaestro.add(aggEst, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 460, 590, 90));
+        crearSalonMaestro.add(aggEst, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 470, 540, 70));
 
         mostrarIdSalon.setBorderPainted(false);
         mostrarIdSalon.setContentAreaFilled(false);
@@ -1793,7 +1831,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 mostrarIdSalonActionPerformed(evt);
             }
         });
-        crearSalonMaestro.add(mostrarIdSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 562, 590, 90));
+        crearSalonMaestro.add(mostrarIdSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 572, 540, 70));
 
         crear.setBorderPainted(false);
         crear.setContentAreaFilled(false);
@@ -1802,7 +1840,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 crearActionPerformed(evt);
             }
         });
-        crearSalonMaestro.add(crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(925, 340, 240, 70));
+        crearSalonMaestro.add(crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(935, 340, 230, 60));
 
         volver13.setBorderPainted(false);
         volver13.setContentAreaFilled(false);
@@ -1811,7 +1849,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 volver13ActionPerformed(evt);
             }
         });
-        crearSalonMaestro.add(volver13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 158, 180, 70));
+        crearSalonMaestro.add(volver13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 168, 180, 50));
 
         comboBoxSeccion.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         crearSalonMaestro.add(comboBoxSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(661, 290, 230, 80));
@@ -1950,7 +1988,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 sacarActionPerformed(evt);
             }
         });
-        borrarEstMaestro.add(sacar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 610, 240, 70));
+        borrarEstMaestro.add(sacar, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 620, 230, 60));
 
         jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/borrarEstudianteMaestro.png"))); // NOI18N
         borrarEstMaestro.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -1970,7 +2008,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 porSalonActionPerformed(evt);
             }
         });
-        reportesMaestro.add(porSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, 520, 100));
+        reportesMaestro.add(porSalon, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 470, 80));
 
         porEstudiante.setBorderPainted(false);
         porEstudiante.setContentAreaFilled(false);
@@ -1979,7 +2017,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 porEstudianteActionPerformed(evt);
             }
         });
-        reportesMaestro.add(porEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 400, 660, 100));
+        reportesMaestro.add(porEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 600, 80));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/reportesMaestro.png"))); // NOI18N
         reportesMaestro.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -2087,7 +2125,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 tablaDesempenoActionPerformed(evt);
             }
         });
-        detalleSalonReportesMaestro.add(tablaDesempeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 333, 370, 140));
+        detalleSalonReportesMaestro.add(tablaDesempeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 343, 310, 120));
 
         graficoDesempeno.setBorderPainted(false);
         graficoDesempeno.setContentAreaFilled(false);
@@ -2096,7 +2134,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 graficoDesempenoActionPerformed(evt);
             }
         });
-        detalleSalonReportesMaestro.add(graficoDesempeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 340, 370, 140));
+        detalleSalonReportesMaestro.add(graficoDesempeno, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 340, 320, 130));
 
         volver20.setBorderPainted(false);
         volver20.setContentAreaFilled(false);
@@ -2121,7 +2159,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 exportarPdf1ActionPerformed(evt);
             }
         });
-        tablaSalonReportesMaestro.add(exportarPdf1, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 603, 390, 90));
+        tablaSalonReportesMaestro.add(exportarPdf1, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 613, 370, 70));
 
         exportarExcel1.setBorderPainted(false);
         exportarExcel1.setContentAreaFilled(false);
@@ -2130,7 +2168,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 exportarExcel1ActionPerformed(evt);
             }
         });
-        tablaSalonReportesMaestro.add(exportarExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, 390, 90));
+        tablaSalonReportesMaestro.add(exportarExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 610, 380, 70));
 
         tablaReporteSalon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2142,7 +2180,15 @@ public class MainJFrame extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(tablaReporteSalon);
 
         tablaSalonReportesMaestro.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 780, 360));
@@ -2182,7 +2228,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 exportarPdf2ActionPerformed(evt);
             }
         });
-        graficoSalonReportesMaestro.add(exportarPdf2, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 603, 390, 90));
+        graficoSalonReportesMaestro.add(exportarPdf2, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 613, 370, 70));
 
         exportarExcel2.setBorderPainted(false);
         exportarExcel2.setContentAreaFilled(false);
@@ -2191,7 +2237,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 exportarExcel2ActionPerformed(evt);
             }
         });
-        graficoSalonReportesMaestro.add(exportarExcel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, 390, 90));
+        graficoSalonReportesMaestro.add(exportarExcel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 610, 380, 70));
 
         volverDeGraficoSalon.setBorderPainted(false);
         volverDeGraficoSalon.setContentAreaFilled(false);
@@ -2279,7 +2325,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 btnVerTablaEstudianteActionPerformed(evt);
             }
         });
-        detalleEstReportesMaestro.add(btnVerTablaEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 310, 130));
+        detalleEstReportesMaestro.add(btnVerTablaEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 490, 290, 110));
 
         graficoDesempeno2.setBorderPainted(false);
         graficoDesempeno2.setContentAreaFilled(false);
@@ -2288,7 +2334,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 graficoDesempeno2ActionPerformed(evt);
             }
         });
-        detalleEstReportesMaestro.add(graficoDesempeno2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 480, 310, 130));
+        detalleEstReportesMaestro.add(graficoDesempeno2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 490, 310, 110));
 
         volver22.setBorderPainted(false);
         volver22.setContentAreaFilled(false);
@@ -2313,7 +2359,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 exportarPdf3ActionPerformed(evt);
             }
         });
-        tablaEstReportesMaestro.add(exportarPdf3, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 603, 390, 90));
+        tablaEstReportesMaestro.add(exportarPdf3, new org.netbeans.lib.awtextra.AbsoluteConstraints(425, 613, 370, 70));
 
         exportarExcel3.setBorderPainted(false);
         exportarExcel3.setContentAreaFilled(false);
@@ -2322,7 +2368,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 exportarExcel3ActionPerformed(evt);
             }
         });
-        tablaEstReportesMaestro.add(exportarExcel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, 390, 90));
+        tablaEstReportesMaestro.add(exportarExcel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 610, 370, 70));
 
         tablaReporteEstudiante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2334,7 +2380,15 @@ public class MainJFrame extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane7.setViewportView(tablaReporteEstudiante);
 
         tablaEstReportesMaestro.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 780, 360));
@@ -2374,7 +2428,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 exportarPdf4ActionPerformed(evt);
             }
         });
-        graficoEstReportesMaestro.add(exportarPdf4, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 603, 390, 90));
+        graficoEstReportesMaestro.add(exportarPdf4, new org.netbeans.lib.awtextra.AbsoluteConstraints(415, 613, 390, 70));
 
         exportarExcel4.setBorderPainted(false);
         exportarExcel4.setContentAreaFilled(false);
@@ -2383,7 +2437,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 exportarExcel4ActionPerformed(evt);
             }
         });
-        graficoEstReportesMaestro.add(exportarExcel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, 390, 90));
+        graficoEstReportesMaestro.add(exportarExcel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 610, 380, 70));
 
         volverDeGraficoEst.setBorderPainted(false);
         volverDeGraficoEst.setContentAreaFilled(false);
@@ -2430,38 +2484,74 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_volver5ActionPerformed
 
     private void aceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar1ActionPerformed
-        //CONDICIONAL QUE DETERMINE SEGUN LOS DATOS SI ES ESTUDIANTE O MAESTRO
-        
-        
-        
-        String correoLogin = CorreoLogin.getText();
-        String passLogin = new String(ContrasenaLogin.getPassword());
-        usuarioActual = controlador.iniciarSesionFirebase(correoLogin, passLogin);
-        //lo de abajo lo comente para que funcione solo con la base de datos
-        // = controlador.iniciarSesionUsuario(CorreoLogin, ContrasenaLogin);
-        if (usuarioActual==null){
-            JOptionPane.showMessageDialog(null,"Falló el inicio de sesión","Error en el incio de sesion",JOptionPane.ERROR_MESSAGE);
-        }
-        else {
-            if (usuarioActual instanceof Estudiante){
-                CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
-                cardLayout.show(cardPrincipal,"cardInterfazEstudiante");
 
-                CardLayout card2Layout = (CardLayout) this.cardInterfazEstudiante.getLayout();
-                card2Layout.show(cardInterfazEstudiante,"interfazEstudiante");
+        PantallaCarga cargando = new PantallaCarga(this); 
 
-                JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane1;
-                tabbedPane.setSelectedComponent(principalE);
+        Thread hiloLogin = new Thread(() -> {
+
+            Usuario resultadoUsuario = null;
+            String errorTecnico = null;
+
+            try {
+               
+                resultadoUsuario = controlador.iniciarSesionUsuario(UsernameLogin, ContrasenaLogin);
+
+            } catch (Exception e) {
+                errorTecnico = e.getMessage(); // Guardamos el error para mostrarlo luego
+                e.printStackTrace();
             }
-            else if (usuarioActual instanceof Maestro){
-                CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
-                cardLayout.show(cardPrincipal,"InterfazMaestro");
 
-                JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane2;
-                tabbedPane.setSelectedComponent(principalM);
+    
+            final Usuario usuarioFinal = resultadoUsuario;
+            final String errorFinal = errorTecnico;
+
             
-            }
-        }
+            SwingUtilities.invokeLater(() -> {
+                //Cerrar la barra de carga
+                cargando.cerrar();
+                
+                //Verificar si hubo error de conexión (Excepción)
+                if (errorFinal != null) {
+                    JOptionPane.showMessageDialog(null, 
+                        "Error de conexión con el servidor:\n" + errorFinal, 
+                        "Error Técnico", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (usuarioFinal == null) {
+                    JOptionPane.showMessageDialog(null, 
+                        "Usuario o contraseña incorrectos.", 
+                        "Falló el inicio de sesión", JOptionPane.ERROR_MESSAGE);
+                } 
+                else {
+                    JOptionPane.showMessageDialog(null,"Inicio de sesion exitoso","BIENVENIDO!",JOptionPane.INFORMATION_MESSAGE);
+
+                    this.usuarioActual = usuarioFinal;
+
+                    if (usuarioActual instanceof Estudiante) {
+                        CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
+                        cardLayout.show(cardPrincipal, "cardInterfazEstudiante");
+
+                        CardLayout card2Layout = (CardLayout) this.cardInterfazEstudiante.getLayout();
+                        card2Layout.show(cardInterfazEstudiante, "interfazEstudiante");
+
+                        JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane1;
+                        tabbedPane.setSelectedComponent(principalE);
+
+                    } else if (usuarioActual instanceof Maestro) {
+                        CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
+                        cardLayout.show(cardPrincipal, "InterfazMaestro");
+
+                        JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane2;
+                        tabbedPane.setSelectedComponent(principalM);
+                    }
+                }
+            });
+        });
+
+        // 5. ARRANCAR EL HILO Y MOSTRAR VENTANA (Esto bloquea la interacción visual hasta que cargando.cerrar() se ejecute)
+        hiloLogin.start();
+        cargando.setVisible(true);
         
         
     }//GEN-LAST:event_aceptar1ActionPerformed
@@ -2471,9 +2561,9 @@ public class MainJFrame extends javax.swing.JFrame {
         card.show(cardPrincipal,"Bienvenido");
     }//GEN-LAST:event_volver3ActionPerformed
 
-    private void CorreoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorreoLoginActionPerformed
+    private void usernameLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CorreoLoginActionPerformed
+    }//GEN-LAST:event_usernameLoginActionPerformed
 
     private void volver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver1ActionPerformed
         card = (CardLayout) this.cardPrincipal.getLayout();
@@ -2481,8 +2571,8 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_volver1ActionPerformed
 
     private void iniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarSesionActionPerformed
-        CorreoLogin.setText("Ingrese un nombre de usuario");
-        CorreoLogin.setForeground(Color.WHITE);
+        UsernameLogin.setText("Ingrese un nombre de usuario");
+        UsernameLogin.setForeground(Color.WHITE);
         ContrasenaLogin.setText("********");
         ContrasenaLogin.setForeground(Color.WHITE);
         card = (CardLayout) this.cardPrincipal.getLayout();
@@ -2495,8 +2585,8 @@ public class MainJFrame extends javax.swing.JFrame {
         RegENombre.setForeground(Color.WHITE);
         RegEApellido.setText("Ingresa tu primer apellido");
         RegEApellido.setForeground(Color.WHITE);
-        RegECorreo.setText("Ingrese un nombre de usuario");
-        RegECorreo.setForeground(Color.WHITE);
+        RegEusername.setText("Ingrese un nombre de usuario");
+        RegEusername.setForeground(Color.WHITE);
         RegEContrasena.setText("********");
         RegEContrasena.setForeground(Color.WHITE);
         
@@ -2504,8 +2594,8 @@ public class MainJFrame extends javax.swing.JFrame {
         RegMNombre.setForeground(Color.WHITE);
         RegMApellido.setText("Ingresa tu primer apellido");
         RegMApellido.setForeground(Color.WHITE);
-        RegMCorreo.setText("Ingrese un nombre de usuario");
-        RegMCorreo.setForeground(Color.WHITE);
+        RegMusername.setText("Ingrese un nombre de usuario");
+        RegMusername.setForeground(Color.WHITE);
         RegMContrasena.setText("********");
         RegMContrasena.setForeground(Color.WHITE);
         
@@ -2523,8 +2613,8 @@ public class MainJFrame extends javax.swing.JFrame {
         RegENombre.setForeground(Color.WHITE);
         RegEApellido.setText("Ingresa tu primer apellido");
         RegEApellido.setForeground(Color.WHITE);
-        RegECorreo.setText("Ingrese un nombre de usuario");
-        RegECorreo.setForeground(Color.WHITE);
+        RegEusername.setText("Ingrese un nombre de usuario");
+        RegEusername.setForeground(Color.WHITE);
         RegEContrasena.setText("********");
         RegEContrasena.setForeground(Color.WHITE);
         card = (CardLayout) this.cardPrincipal.getLayout();
@@ -2536,8 +2626,8 @@ public class MainJFrame extends javax.swing.JFrame {
         RegMNombre.setForeground(Color.WHITE);
         RegMApellido.setText("Ingresa tu primer apellido");
         RegMApellido.setForeground(Color.WHITE);
-        RegMCorreo.setText("Ingrese un nombre de usuario");
-        RegMCorreo.setForeground(Color.WHITE);
+        RegMusername.setText("Ingrese un nombre de usuario");
+        RegMusername.setForeground(Color.WHITE);
         RegMContrasena.setText("********");
         RegMContrasena.setForeground(Color.WHITE);
         card = (CardLayout) this.cardPrincipal.getLayout();
@@ -2546,7 +2636,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void aceptar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar3ActionPerformed
         
-        boolean avanzar = controlador.registrarEstudiante(RegENombre, RegEApellido, RegECorreo, RegEContrasena);
+        boolean avanzar = controlador.registrarEstudiante(RegENombre, RegEApellido, RegEusername, RegEContrasena);
         
         if (avanzar==true){
             CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
@@ -2568,9 +2658,9 @@ public class MainJFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_aceptar3ActionPerformed
 
-    private void RegECorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegECorreoActionPerformed
+    private void RegEusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegEusernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RegECorreoActionPerformed
+    }//GEN-LAST:event_RegEusernameActionPerformed
 
     private void RegEApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegEApellidoActionPerformed
         // TODO add your handling code here:
@@ -2588,16 +2678,16 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RegMApellidoActionPerformed
 
-    private void RegMCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegMCorreoActionPerformed
+    private void RegMusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegMusernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RegMCorreoActionPerformed
+    }//GEN-LAST:event_RegMusernameActionPerformed
 
     private void aceptar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar4ActionPerformed
         String nombre = RegMNombre.getText();
         String apellido = RegMApellido.getText();
-        String correo = RegMCorreo.getText();
+        String username = RegMusername.getText();
         String contrasena = new String(RegMContrasena.getPassword());
-        boolean avanzar = controlador.registrarMaestro(RegMNombre, RegMApellido, RegMCorreo, RegMContrasena);
+        boolean avanzar = controlador.registrarMaestro(RegMNombre, RegMApellido, RegMusername, RegMContrasena);
         
         if (avanzar==true){
             CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
@@ -2620,7 +2710,7 @@ public class MainJFrame extends javax.swing.JFrame {
     
         CardLayout cardLayout = (CardLayout) this.cardPerfilEst.getLayout();
         cardLayout.show(cardPerfilEst,"perfilEst");
-        controlador.MostrarPerfilEstudiante(PENombre, PEApellido, PECorreo, PEContrasena, PEGrado, PESeccion);
+        controlador.MostrarPerfilEstudiante(PENombre, PEApellido, PEusername, PEContrasena, PEGrado, PESeccion);
 
     }//GEN-LAST:event_perfil1ActionPerformed
 
@@ -2671,7 +2761,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void perfil2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfil2ActionPerformed
         JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane2;
         tabbedPane.setSelectedComponent(cardPerfilMaestro);
-        controlador.MostrarPerfilMaestro(PMNombre, PMApellido, PMCorreo, PMContrasena, SalonesAsignados);
+        controlador.MostrarPerfilMaestro(PMNombre, PMApellido, PMusername, PMContrasena, SalonesAsignados);
     }//GEN-LAST:event_perfil2ActionPerformed
 
     private void solicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitudesActionPerformed
@@ -2687,7 +2777,7 @@ public class MainJFrame extends javax.swing.JFrame {
         JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane2;
         tabbedPane.setSelectedComponent(cardSalonesMaestro);
         
-        controlador.MostrarPerfilMaestro(PMNombre, PMApellido, PMCorreo, PMContrasena, jTable2);
+        controlador.MostrarPerfilMaestro(PMNombre, PMApellido, PMusername, PMContrasena, jTable2);
         
         CardLayout cardLayout = (CardLayout) this.cardSalonesMaestro.getLayout();
         cardLayout.show(cardSalonesMaestro,"salonesMaestro");
@@ -2727,7 +2817,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_salir2ActionPerformed
 
     private void editarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPerfilActionPerformed
-        controlador.establecerDatosDelPerfil(EPENombre, EPEApellido, EPECorreo, EPEContrasena);
+        controlador.establecerDatosDelPerfil(EPENombre, EPEApellido, EPEusername, EPEContrasena);
         
         CardLayout cardLayout = (CardLayout) this.cardPerfilEst.getLayout();
         cardLayout.show(cardPerfilEst,"editPerfilEst");
@@ -2739,32 +2829,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_volver7ActionPerformed
 
     private void guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar1ActionPerformed
-        boolean avanzar = controlador.editarPerfil(EPENombre, EPEApellido, EPECorreo, EPEContrasena);
+        boolean avanzar = controlador.guardarCambiosPerfil(EPENombre, EPEApellido, EPEusername, EPEContrasena);
         
         if (avanzar){
-            controlador.establecerDatosDelPerfil(PENombre, PEApellido, PECorreo, PEContrasena);
-            
-            String nombre = EPENombre.getText();
-            String correo = EPECorreo.getText();
-            String apellido = EPEApellido.getText();
-            String contrasena = EPEContrasena.getText();
-            // REVISAR
-            String rol;
-            if (usuarioActual instanceof Estudiante) {
-                rol = "estudiante";
-            } else {
-                rol = "maestro";
-            }
-            
-            
-            boolean exito = controlador.actualizarPerfilFirebase(correo,nombre,apellido,contrasena,rol);
-            if (exito) {
-                JOptionPane.showMessageDialog(null,"Perfil actualizado en la nube!","",JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null,"Error al guardar el perfil.","",JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-
+            controlador.establecerDatosDelPerfil(PENombre, PEApellido, PEusername, PEContrasena);
+            JOptionPane.showMessageDialog(null,"Perfil actualizado en la nube!","",JOptionPane.INFORMATION_MESSAGE);
+ 
             CardLayout cardLayout = (CardLayout) this.cardPerfilEst.getLayout();
             cardLayout.show(cardPerfilEst,"perfilEst");
         }
@@ -3021,7 +3091,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void editarPerfil2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPerfil2ActionPerformed
 
-        controlador.establecerDatosDelPerfil(EPMNombre, EPMApellido, EPMCorreo, EPMContrasena);
+        controlador.establecerDatosDelPerfil(EPMNombre, EPMApellido, EPMusername, EPMContrasena);
         CardLayout cardLayout = (CardLayout) this.cardPerfilMaestro.getLayout();
         cardLayout.show(cardPerfilMaestro,"editPerfilMaestro");
         
@@ -3029,16 +3099,14 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_editarPerfil2ActionPerformed
 
     private void guardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardar2ActionPerformed
-        boolean avanzar = controlador.editarPerfil(EPMNombre, EPMApellido, EPMCorreo, EPMContrasena);
+        boolean avanzar = controlador.guardarCambiosPerfil(EPMNombre, EPMApellido, EPMusername, EPMContrasena);
         
         if (avanzar){
-            controlador.establecerDatosDelPerfil(PMNombre, PMApellido, PMCorreo, PMContrasena);
+            controlador.establecerDatosDelPerfil(PMNombre, PMApellido, PMusername, PMContrasena);
             JOptionPane.showMessageDialog(null,"Su perfil ha sido editado con exito!","",JOptionPane.INFORMATION_MESSAGE);
 
             CardLayout cardLayout = (CardLayout) this.cardPerfilMaestro.getLayout();
-            cardLayout.show(cardPerfilMaestro,"perfilMaestro");
-            
-            
+            cardLayout.show(cardPerfilMaestro,"perfilMaestro");    
         }
         else {
             JOptionPane.showMessageDialog(null,"No se ha podido editar el perfil","Error en editar su perfil",JOptionPane.ERROR_MESSAGE);
@@ -3124,10 +3192,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_volver13ActionPerformed
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
-        controlador.crearSalon(comboBoxGrado, comboBoxSeccion);
-        controlador.MostrarPerfilMaestro(PMNombre, PMApellido, PMCorreo, PMContrasena, jTable2);
-
-    // BOTON PARA CREAR EL SALON CON LOS DATOS ASIGNADOS EN LOS COMBOBOX
+        boolean avanzar = controlador.crearSalon(comboBoxGrado, comboBoxSeccion);
+        if (avanzar){
+            controlador.MostrarPerfilMaestro(PMNombre, PMApellido, PMusername, PMContrasena, jTable2);
+        }
     }//GEN-LAST:event_crearActionPerformed
 
     private void aggEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aggEstActionPerformed
@@ -3195,7 +3263,7 @@ public class MainJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"No se ha encontrado el salon con la ID proporcionada","Error al eliminar salon",JOptionPane.ERROR_MESSAGE);
         }
         // BOTON PARA ELIMINAR EL SALON SEGUN EL ID INTRODUCIDO
-        controlador.MostrarPerfilMaestro(PMNombre, PMApellido, PMCorreo, PMContrasena, jTable2);
+        controlador.MostrarPerfilMaestro(PMNombre, PMApellido, PMusername, PMContrasena, jTable2);
 
     }//GEN-LAST:event_eliminarActionPerformed
 
@@ -3575,19 +3643,6 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comenzarMouseExited
 
-    private void CorreoLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CorreoLoginMousePressed
-        // TODO add your handling code here:
-        if (CorreoLogin.getText().equals("Ingrese un nombre de usuario")){
-            CorreoLogin.setText("");
-            CorreoLogin.setForeground(new Color(40,66,119));
-        }
-        if (String.valueOf(ContrasenaLogin.getPassword()).isEmpty()){
-            ContrasenaLogin.setText("********");
-            ContrasenaLogin.setForeground(Color.WHITE);
-        }
-        
-    }//GEN-LAST:event_CorreoLoginMousePressed
-
     private void ContrasenaLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContrasenaLoginMousePressed
         // TODO add your handling code here:
         if (String.valueOf(ContrasenaLogin.getPassword()).equals("********")){
@@ -3595,9 +3650,9 @@ public class MainJFrame extends javax.swing.JFrame {
             ContrasenaLogin.setForeground(new Color(40,66,119));
             
         }
-        if (CorreoLogin.getText().isEmpty()) {
-            CorreoLogin.setText("Ingrese un nombre de usuario");
-            CorreoLogin.setForeground(Color.WHITE);
+        if (UsernameLogin.getText().isEmpty()) {
+            UsernameLogin.setText("Ingrese un nombre de usuario");
+            UsernameLogin.setForeground(Color.WHITE);
         }   
     }//GEN-LAST:event_ContrasenaLoginMousePressed
 
@@ -3611,9 +3666,9 @@ public class MainJFrame extends javax.swing.JFrame {
             RegEApellido.setText("Ingresa tu primer apellido");
             RegEApellido.setForeground(Color.WHITE);
         }
-        if (RegECorreo.getText().isEmpty()){
-            RegECorreo.setText("Ingrese un nombre de usuario");
-            RegECorreo.setForeground(Color.WHITE);
+        if (RegEusername.getText().isEmpty()){
+            RegEusername.setText("Ingrese un nombre de usuario");
+            RegEusername.setForeground(Color.WHITE);
         }
         if (String.valueOf(RegEContrasena.getPassword()).isEmpty()){
             RegEContrasena.setText("********");
@@ -3632,9 +3687,9 @@ public class MainJFrame extends javax.swing.JFrame {
             RegENombre.setText("Ingresa tu primer nombre");
             RegENombre.setForeground(Color.WHITE);
         }
-        if (RegECorreo.getText().isEmpty()){
-            RegECorreo.setText("Ingrese un nombre de usuario");
-            RegECorreo.setForeground(Color.WHITE);
+        if (RegEusername.getText().isEmpty()){
+            RegEusername.setText("Ingrese un nombre de usuario");
+            RegEusername.setForeground(Color.WHITE);
         }
         if (String.valueOf(RegEContrasena.getPassword()).isEmpty()){
             RegEContrasena.setText("********");
@@ -3642,11 +3697,11 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RegEApellidoMousePressed
 
-    private void RegECorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegECorreoMousePressed
+    private void RegEusernameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegEusernameMousePressed
         // TODO add your handling code here:
-        if (RegECorreo.getText().equals("Ingrese un nombre de usuario")){
-            RegECorreo.setText("");
-            RegECorreo.setForeground(new Color(40,66,119));
+        if (RegEusername.getText().equals("Ingrese un nombre de usuario")){
+            RegEusername.setText("");
+            RegEusername.setForeground(new Color(40,66,119));
         }
         if (RegENombre.getText().isEmpty()){
             RegENombre.setText("Ingresa tu primer nombre");
@@ -3661,7 +3716,7 @@ public class MainJFrame extends javax.swing.JFrame {
             RegEContrasena.setForeground(Color.WHITE);
         }
         
-    }//GEN-LAST:event_RegECorreoMousePressed
+    }//GEN-LAST:event_RegEusernameMousePressed
 
     private void RegEContrasenaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegEContrasenaMousePressed
         // TODO add your handling code here:
@@ -3678,9 +3733,9 @@ public class MainJFrame extends javax.swing.JFrame {
             RegEApellido.setText("Ingresa tu primer apellido");
             RegEApellido.setForeground(Color.WHITE);
         }
-        if (RegECorreo.getText().isEmpty()){
-            RegECorreo.setText("Ingrese un nombre de usuario");
-            RegECorreo.setForeground(Color.WHITE);
+        if (RegEusername.getText().isEmpty()){
+            RegEusername.setText("Ingrese un nombre de usuario");
+            RegEusername.setForeground(Color.WHITE);
         }
     }//GEN-LAST:event_RegEContrasenaMousePressed
 
@@ -3694,9 +3749,9 @@ public class MainJFrame extends javax.swing.JFrame {
             RegMApellido.setText("Ingresa tu primer apellido");
             RegMApellido.setForeground(Color.WHITE);
         }
-        if (RegMCorreo.getText().isEmpty()){
-            RegMCorreo.setText("Ingrese un nombre de usuario");
-            RegMCorreo.setForeground(Color.WHITE);
+        if (RegMusername.getText().isEmpty()){
+            RegMusername.setText("Ingrese un nombre de usuario");
+            RegMusername.setForeground(Color.WHITE);
         }
         if (String.valueOf(RegMContrasena.getPassword()).isEmpty()){
             RegMContrasena.setText("********");
@@ -3714,9 +3769,9 @@ public class MainJFrame extends javax.swing.JFrame {
             RegMNombre.setText("Ingresa tu primer nombre");
             RegMNombre.setForeground(Color.WHITE);
         }
-        if (RegMCorreo.getText().isEmpty()){
-            RegMCorreo.setText("Ingrese un nombre de usuario");
-            RegMCorreo.setForeground(Color.WHITE);
+        if (RegMusername.getText().isEmpty()){
+            RegMusername.setText("Ingrese un nombre de usuario");
+            RegMusername.setForeground(Color.WHITE);
         }
         if (String.valueOf(RegMContrasena.getPassword()).isEmpty()){
             RegMContrasena.setText("********");
@@ -3724,11 +3779,11 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RegMApellidoMousePressed
 
-    private void RegMCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegMCorreoMousePressed
+    private void RegMusernameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegMusernameMousePressed
         // TODO add your handling code here:
-        if (RegMCorreo.getText().equals("Ingrese un nombre de usuario")){
-            RegMCorreo.setText("");
-            RegMCorreo.setForeground(new Color(40,66,119));
+        if (RegMusername.getText().equals("Ingrese un nombre de usuario")){
+            RegMusername.setText("");
+            RegMusername.setForeground(new Color(40,66,119));
         }
         if (RegMNombre.getText().isEmpty()){
             RegMNombre.setText("Ingresa tu primer nombre");
@@ -3743,11 +3798,11 @@ public class MainJFrame extends javax.swing.JFrame {
             RegMContrasena.setForeground(Color.WHITE);
         }
         
-    }//GEN-LAST:event_RegMCorreoMousePressed
+    }//GEN-LAST:event_RegMusernameMousePressed
 
     private void RegMContrasenaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegMContrasenaMousePressed
         // TODO add your handling code here:
-        if (String.valueOf(RegEContrasena.getPassword()).equals("********")){
+        if (String.valueOf(RegMContrasena.getPassword()).equals("********")){
             RegMContrasena.setText("");
             RegMContrasena.setForeground(new Color(40,66,119));
         }
@@ -3759,9 +3814,9 @@ public class MainJFrame extends javax.swing.JFrame {
             RegMApellido.setText("Ingresa tu primer apellido");
             RegMApellido.setForeground(Color.WHITE);
         }
-        if (RegMCorreo.getText().isEmpty()){
-            RegMCorreo.setText("Ingrese un nombre de usuario");
-            RegMCorreo.setForeground(Color.WHITE);
+        if (RegMusername.getText().isEmpty()){
+            RegMusername.setText("Ingrese un nombre de usuario");
+            RegMusername.setForeground(Color.WHITE);
         }
     }//GEN-LAST:event_RegMContrasenaMousePressed
 
@@ -3893,9 +3948,9 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_respuestaEscritaActionPerformed
 
-    private void EPMCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EPMCorreoActionPerformed
+    private void EPMusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EPMusernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EPMCorreoActionPerformed
+    }//GEN-LAST:event_EPMusernameActionPerformed
 
     private void volverDeTablaEstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverDeTablaEstActionPerformed
 
@@ -4096,6 +4151,19 @@ public class MainJFrame extends javax.swing.JFrame {
     private void opcionCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionCActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_opcionCActionPerformed
+
+    private void UsernameLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsernameLoginMousePressed
+        // TODO add your handling code here:
+        if (UsernameLogin.getText().equals("Ingrese un nombre de usuario")){
+            UsernameLogin.setText("");
+            UsernameLogin.setForeground(new Color(40,66,119));
+        }
+        if (String.valueOf(ContrasenaLogin.getPassword()).isEmpty()){
+            ContrasenaLogin.setText("********");
+            ContrasenaLogin.setForeground(Color.WHITE);
+        }
+        
+    }//GEN-LAST:event_UsernameLoginMousePressed
     
     private modelo_tanuki.PeriodoReporte getPeriodoEnumFromString(String s) {
         if (s == null) return modelo_tanuki.PeriodoReporte.COMPLETO;
@@ -4166,7 +4234,14 @@ public class MainJFrame extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+        configurarDisenoTanuki(); 
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainJFrame().setVisible(true);
+            }
+        });
         try {
             // 1. Ruta a tu llave. 
             //    (Usa el nombre de archivo que elegiste)
@@ -4202,15 +4277,14 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Bienvenido;
     private javax.swing.JPasswordField ContrasenaLogin;
-    private javax.swing.JTextField CorreoLogin;
     private javax.swing.JTextField EPEApellido;
     private javax.swing.JTextField EPEContrasena;
-    private javax.swing.JTextField EPECorreo;
     private javax.swing.JTextField EPENombre;
+    private javax.swing.JTextField EPEusername;
     private javax.swing.JTextField EPMApellido;
     private javax.swing.JTextField EPMContrasena;
-    private javax.swing.JTextField EPMCorreo;
     private javax.swing.JTextField EPMNombre;
+    private javax.swing.JTextField EPMusername;
     private javax.swing.JPanel EjercicioEscrito;
     private javax.swing.JPanel EjercicioSeleccion;
     private javax.swing.JLabel InstruccionSelec;
@@ -4220,26 +4294,27 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel OcupacionR;
     private javax.swing.JLabel PEApellido;
     private javax.swing.JLabel PEContrasena;
-    private javax.swing.JLabel PECorreo;
     private javax.swing.JLabel PEGrado;
     private javax.swing.JLabel PENombre;
     private javax.swing.JLabel PESeccion;
+    private javax.swing.JLabel PEusername;
     private javax.swing.JLabel PMApellido;
     private javax.swing.JLabel PMContrasena;
-    private javax.swing.JLabel PMCorreo;
     private javax.swing.JLabel PMNombre;
+    private javax.swing.JLabel PMusername;
     private javax.swing.JPanel Portada;
     private javax.swing.JPanel PresentPJ;
     private javax.swing.JTextField RegEApellido;
     private javax.swing.JPasswordField RegEContrasena;
-    private javax.swing.JTextField RegECorreo;
     private javax.swing.JTextField RegENombre;
+    private javax.swing.JTextField RegEusername;
     private javax.swing.JTextField RegMApellido;
     private javax.swing.JPasswordField RegMContrasena;
-    private javax.swing.JTextField RegMCorreo;
     private javax.swing.JTextField RegMNombre;
+    private javax.swing.JTextField RegMusername;
     private javax.swing.JTable SalonesAsignados;
     private javax.swing.JPanel Tutorial;
+    private javax.swing.JTextField UsernameLogin;
     private javax.swing.JButton aceptar;
     private javax.swing.JButton aceptar1;
     private javax.swing.JButton aceptar3;
@@ -4518,6 +4593,90 @@ public class MainJFrame extends javax.swing.JFrame {
     private LocalDate fechaFinReporte;
     private modelo_tanuki.PeriodoReporte periodoParaReporte;
     private modelo_tanuki.Estudiante estudianteParaReporte;
+    
+    private static void configurarDisenoTanuki() {
+        try {
+            java.awt.Font fuenteTexto = new java.awt.Font("Cy Grotesk Key", java.awt.Font.PLAIN, 14);
+            java.awt.Font fuenteBoton = new java.awt.Font("Cy Grotesk Key", java.awt.Font.BOLD, 12);
+            java.awt.Color azulTanuki = new java.awt.Color(40, 66, 119); // Tu azul oscuro
+            java.awt.Color blanco = java.awt.Color.WHITE;
+
+            // 3. CONFIGURAR EL TEXTO DEL MENSAJE
+            javax.swing.UIManager.put("OptionPane.messageFont", fuenteTexto);
+            javax.swing.UIManager.put("OptionPane.messageForeground", azulTanuki); // Texto Azul
+
+            javax.swing.UIManager.put("Button.background", blanco);
+            javax.swing.UIManager.put("Button.font", fuenteBoton);
+            javax.swing.UIManager.put("Button.foreground", java.awt.Color.BLACK);
+            
+            javax.swing.UIManager.put("OptionPane.background", blanco);
+            javax.swing.UIManager.put("Panel.background", blanco); // Intenta esto de nuevo, si rompe algo lo quitamos
+            javax.swing.UIManager.put("OptionPane.messageForeground", azulTanuki);
+
+
+            javax.swing.UIManager.put("nimbusBase", blanco);
+            javax.swing.UIManager.put("nimbusBlueGrey", blanco);
+            javax.swing.UIManager.put("control", blanco); 
+
+        } catch (Exception e) {}
+    }
+    public void mostrarMensaje(String mensaje, String titulo, String nombreIcono) {
+    
+        java.awt.Color blanco = java.awt.Color.WHITE;
+        java.awt.Color azulTanuki = new java.awt.Color(40, 66, 119);
+
+        javax.swing.JPanel panelPrincipal = new javax.swing.JPanel();
+        panelPrincipal.setLayout(new javax.swing.BoxLayout(panelPrincipal, javax.swing.BoxLayout.Y_AXIS));
+        panelPrincipal.setBackground(blanco); // Panel blanco
+
+        javax.swing.JLabel etiquetaTitulo = new javax.swing.JLabel(titulo);
+
+        etiquetaTitulo.setFont(new java.awt.Font("Cy Grotesk Key", java.awt.Font.BOLD, 18)); 
+        etiquetaTitulo.setForeground(azulTanuki);
+        etiquetaTitulo.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT); // Alinear a la izquierda
+
+        javax.swing.JTextArea areaTexto = new javax.swing.JTextArea(mensaje);
+        areaTexto.setFont(new java.awt.Font("Cy Grotesk Key", java.awt.Font.PLAIN, 14));
+        areaTexto.setForeground(azulTanuki);
+        areaTexto.setBackground(blanco); 
+
+        areaTexto.setEditable(false);
+        areaTexto.setHighlighter(null);
+        areaTexto.setLineWrap(true);
+        areaTexto.setWrapStyleWord(true);
+        areaTexto.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT); // Alinear a la izquierda
+        
+        // Tamaño fijo para que no se deforme
+        areaTexto.setSize(new java.awt.Dimension(350, 1)); 
+        // Un pequeño margen interno en el texto
+        areaTexto.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 0, 5, 0));
+
+        // --- 5. ARMAR EL PANEL ---
+        panelPrincipal.add(etiquetaTitulo);
+        panelPrincipal.add(javax.swing.Box.createVerticalStrut(10)); // Espacio de 10px entre título y texto
+        panelPrincipal.add(areaTexto);
+
+        panelPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        
+        javax.swing.ImageIcon icono = null;
+        try {
+            java.net.URL url = getClass().getResource("/Recursos/Imagenes/iconos/" + nombreIcono);
+            if (url != null) {
+                java.awt.Image img = new javax.swing.ImageIcon(url).getImage();
+                icono = new javax.swing.ImageIcon(img.getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH));
+            }
+        } catch (Exception e) {}
+
+        
+        javax.swing.JOptionPane.showMessageDialog(
+            this, 
+            panelPrincipal, 
+            "",             
+            javax.swing.JOptionPane.PLAIN_MESSAGE, 
+            icono
+        );
+    }
 }
 
 // Esta clase se encarga de dibujar la figura redondeada

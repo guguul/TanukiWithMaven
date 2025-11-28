@@ -13,15 +13,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileOutputStream;
 import java.io.File;
 import javax.swing.JFileChooser; // para la ventana de "Guardar como..."
+import com.google.cloud.firestore.annotation.IgnoreExtraProperties;
 /**
  *
  * @author adrif
  */
+@IgnoreExtraProperties
+
 public class Maestro extends Usuario{
     private ArrayList<Salon> salones;
     
-    public Maestro (int idUsuario, String nombre, String apellido, String correo, String contrasena){
-        super(idUsuario, nombre, apellido, correo, contrasena);
+    public Maestro (int idUsuario, String nombre, String apellido, String username, String contrasena){
+        super(idUsuario, nombre, apellido, username, contrasena);
         this.salones = new ArrayList<>();
     }
     

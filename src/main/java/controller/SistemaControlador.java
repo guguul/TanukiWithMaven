@@ -253,9 +253,7 @@ public class SistemaControlador {
         }
         return tieneSalon;
     }
-    
-    
-    
+
     public void iniciaVentana(JFrame ventana, String ruta){
         ventana.setLocationRelativeTo(null); //permite centrar la ventana
         ventana.setIconImage(new ImageIcon(ruta).getImage()); 
@@ -264,28 +262,19 @@ public class SistemaControlador {
         //para evitar cerrar con la "X", solo se sale de la ventana a través
         // del botón Salir del Sistema.
     }
-    
-    public Usuario buscarUsuario(String correo){
-        for (Usuario user : listaUsuarios){
-            if (user.getCorreo().equalsIgnoreCase(correo)) {
-                return user;
-            }
-        }
-        return null;
-    }
-    
-    public boolean registrarEstudiante(JTextField nombre, JTextField apellido, JTextField correo, JPasswordField clave){
+
+    public boolean registrarEstudiante(JTextField nombre, JTextField apellido, JTextField username, JPasswordField clave){
         boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true && validarContrasena(clave)==true){
-            Usuario estudianteRegistrado = buscarUsuario(correo.getText());
-            if (estudianteRegistrado == null){
+        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(username,"Debe indicar un usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true && validarContrasena(clave)==true){
+            String contrasena = new String(clave.getPassword());
+            registrarUsuarioFirebase(nombre.getText(),apellido.getText(),username.getText(), contrasena, "estudiante");
+
+            if (existe==false){
                 Estudiante estudianteNuevo = new Estudiante();
                 estudianteNuevo.setNombre(nombre.getText());
                 estudianteNuevo.setApellido(apellido.getText());
-                estudianteNuevo.setCorreo(correo.getText());
-                String contrasena = new String(clave.getPassword());
-                estudianteNuevo.setContrasena(contrasena);/// CONVERTIR A STRING
-                registrarUsuarioFirebase(nombre.getText(),apellido.getText(),correo.getText(), contrasena, "estudiante");
+                estudianteNuevo.setUsername(username.getText());
+                estudianteNuevo.setContrasena(contrasena);
                 JOptionPane.showMessageDialog(null,"Usuario registrado exitosamente","",JOptionPane.INFORMATION_MESSAGE);
                 this.usuarioActual= estudianteNuevo;
                 avanzar = true;
@@ -301,13 +290,14 @@ public class SistemaControlador {
         return avanzar;
     }
     
-    public boolean registrarUsuarioFirebase(String nombre, String apellido, String correo, String password, String rolSeleccionado){
+    boolean existe;
+    public boolean registrarUsuarioFirebase(String nombre, String apellido, String username, String password, String rolSeleccionado){
         Firestore db = FirestoreClient.getFirestore();
-
+        
         try {
             // 1. Referencia al contador y al futuro documento del usuario
             DocumentReference contadorRef = db.collection("config").document("contadores");
-            DocumentReference usuarioRef = db.collection("usuarios").document(correo);
+            DocumentReference usuarioRef = db.collection("usuarios").document(username);
 
             // 2. EJECUTAR TRANSACCIÓN (Atómica)
             // Esto asegura que nadie más tome el ID mientras lo leemos
@@ -322,18 +312,21 @@ public class SistemaControlador {
                     // B. Calcular el nuevo ID (+1)
                     Long siguienteId = ultimoId + 1;
 
-                    // C. Verificar que el correo no exista ya (opcional pero recomendado)
+                    // C. Verificar que el username no exista ya (opcional pero recomendado)
                     DocumentSnapshot usuarioSnapshot = transaction.get(usuarioRef).get();
                     if (usuarioSnapshot.exists()) {
-                        throw new Exception("El correo ya está registrado.");
+                        existe=true;
+                        throw new Exception("El username ya está registrado.");
+                        
                     }
+                    existe = false;
 
                     // D. Preparar los datos del usuario para guardar
                     Map<String, Object> datos = new HashMap<>();
                     datos.put("idUsuario", siguienteId); // ¡Aquí va el ID numérico!
                     datos.put("nombre", nombre);
                     datos.put("apellido", apellido);
-                    datos.put("correo", correo);
+                    datos.put("username", username);
                     datos.put("password", password);
                     datos.put("rol", rolSeleccionado);
 
@@ -360,9 +353,9 @@ public class SistemaControlador {
             // 3. ACTUALIZAR ESTADO LOCAL (this.usuarioActual)
             // Ya tenemos el ID generado (nuevoId), creamos el objeto Java
             if ("estudiante".equals(rolSeleccionado)) {
-                // Constructor: id, nombre, apellido, correo, pass, grado, seccion, salon, progreso, logros
+                // Constructor: id, nombre, apellido, username, pass, grado, seccion, salon, progreso, logros
                 Estudiante nuevoEst = new Estudiante(
-                    nuevoId.intValue(), nombre, apellido, correo, password, 
+                    nuevoId.intValue(), nombre, apellido, username, password, 
                     0, ' ', null, null, new ArrayList<>()
                 );
                 // Inicializar progreso (tu clase lo pide en constructor o setter)
@@ -372,7 +365,7 @@ public class SistemaControlador {
 
             } else {
                 Maestro nuevoMstro = new Maestro(
-                    nuevoId.intValue(), nombre, apellido, correo, password
+                    nuevoId.intValue(), nombre, apellido, username, password
                 );
                 this.usuarioActual = nuevoMstro;
             }
@@ -386,18 +379,18 @@ public class SistemaControlador {
         }
     }
     
-    public boolean registrarMaestro(JTextField nombre, JTextField apellido, JTextField correo, JPasswordField clave){
+    public boolean registrarMaestro(JTextField nombre, JTextField apellido, JTextField username, JPasswordField clave){
         boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un nombre de usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true  && validarContrasena(clave)==true){
-            Usuario maestroRegistrado = buscarUsuario(correo.getText());
-            if (maestroRegistrado == null){
+        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(username,"Debe indicar un nombre de usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false && validarCampoTexto(nombre)==true && validarCampoTexto(apellido)==true  && validarContrasena(clave)==true){
+            String contrasena = new String(clave.getPassword());
+            registrarUsuarioFirebase(nombre.getText(),apellido.getText(),username.getText(), contrasena, "estudiante");
+
+            if (existe==false){
                 Maestro maestroNuevo = new Maestro();
                 maestroNuevo.setNombre(nombre.getText());
                 maestroNuevo.setApellido(apellido.getText());
-                maestroNuevo.setCorreo(correo.getText());
-                String contrasena = new String(clave.getPassword());
-                maestroNuevo.setContrasena(contrasena);/// CONVERTIR A STRING
-                registrarUsuarioFirebase(nombre.getText(),apellido.getText(),correo.getText(), contrasena, "maestro");
+                maestroNuevo.setUsername(username.getText());
+                maestroNuevo.setContrasena(contrasena);
                 JOptionPane.showMessageDialog(null,"Usuario registrado exitosamente","",JOptionPane.INFORMATION_MESSAGE);
                 this.usuarioActual = maestroNuevo;
                 avanzar = true;
@@ -413,43 +406,10 @@ public class SistemaControlador {
         return avanzar;
     }
     
-    public Usuario validarInicioSesion(String correo, String contrasena){
-        for (Usuario user : listaUsuarios){
-            if (user.getCorreo().equalsIgnoreCase(correo) && user.getContrasena().equals(contrasena)) {
-                return user;
-            }
-        }
-        return null;
-    }
-    
-    public List<Estudiante> getEstudiantes(){
-        
-        List<Estudiante> listaFiltrada = new ArrayList<>();
-        
-        for (Usuario user : this.listaUsuarios){
-            if (user instanceof Estudiante){
-                listaFiltrada.add((Estudiante)user);
-            }
-        }
-        return listaFiltrada;
-    }
-    
-    public List<Maestro> getMaestro(){
-        
-        List<Maestro> listaFiltrada = new ArrayList<>();
-        
-        for (Usuario user : this.listaUsuarios){
-            if (user instanceof Maestro){
-                listaFiltrada.add((Maestro)user);
-            }
-        }
-        return listaFiltrada;
-    }
-    
-    public Usuario iniciarSesionFirebase(String correoLogin, String passLogin) {
+    public Usuario iniciarSesionFirebase(String usernameLogin, String passLogin) {
         try {
             Firestore db = FirestoreClient.getFirestore();
-            DocumentReference docRef = db.collection("usuarios").document(correoLogin);
+            DocumentReference docRef = db.collection("usuarios").document(usernameLogin);
 
             ApiFuture<DocumentSnapshot> futuro = docRef.get();
             DocumentSnapshot documento = futuro.get();
@@ -472,7 +432,7 @@ public class SistemaControlador {
                     est.setIdUsuario(idLeido);
                     est.setNombre(documento.getString("nombre"));
                     est.setApellido(documento.getString("apellido")); // Asegúrate de guardar apellido en el registro
-                    est.setCorreo(correoLogin);
+                    est.setUsername(usernameLogin);
                     est.setContrasena(passReal);
                     
                     // Llenar datos de Estudiante
@@ -509,7 +469,7 @@ public class SistemaControlador {
                                 mInfo.setNombre(partes[0]);
                                 mInfo.setApellido(partes.length > 1 ? partes[1] : "");
                             }
-                            //mInfo.setCorreo("Contactar maestro"); // Opcional
+                            //mInfo.setusername("Contactar maestro"); // Opcional
 
                             s.setMaestro(mInfo); // Asignamos el maestro al salón
                             est.setSalon(s);     // Asignamos el salón al estudiante
@@ -525,17 +485,11 @@ public class SistemaControlador {
                             String nombreNivel = (String) entry.getValue(); // Ej: "MEDIO"
                             
                             try {
-                                // 1. Buscar el objeto Tema real usando el nombre
                                 Tema temaObjeto = buscarTemaPorNombre(nombreTemaGuardado);
                                 
-                                // 2. Convertir el nivel a Enum
                                 NivelDificultad nivelEnum = NivelDificultad.valueOf(nombreNivel);
                                 
-                                // 3. Si encontramos el tema, lo agregamos al progreso local
                                 if (temaObjeto != null) {
-                                    // Asumiendo que Progreso tiene un mapa público o un método setter
-                                    // Si 'nivelesDesbloqueados' es privado, necesitas un método en Progreso.java:
-                                    // public void desbloquearNivel(Tema t, NivelDificultad n) { this.nivelesDesbloqueados.put(t, n); }
                                     est.getProgreso().desbloquearNivel(temaObjeto, nivelEnum); 
                                 } else {
                                     System.err.println("Advertencia: Se encontró progreso para el tema '" + nombreTemaGuardado + "' pero ese tema no existe en la app.");
@@ -587,7 +541,7 @@ public class SistemaControlador {
                     mstro.setIdUsuario(idLeido);
                     mstro.setNombre(documento.getString("nombre"));
                     mstro.setApellido(documento.getString("apellido"));
-                    mstro.setCorreo(correoLogin);
+                    mstro.setUsername(usernameLogin);
                     mstro.setContrasena(passReal);
                     
                     this.usuarioActual = mstro;
@@ -612,9 +566,7 @@ public class SistemaControlador {
                         );
                         misSalones.add(s);
                     
-                    // También agregarlo a la lista global "listaSalones" si la usas
-                    if (this.listaSalones == null) this.listaSalones = new ArrayList<>();
-                    this.listaSalones.add(s);
+                    
                     }
                 
                     mstro.setSalones(misSalones);
@@ -629,17 +581,16 @@ public class SistemaControlador {
             return null;
         }
     }
-    /* SUPRIMIR SUPRIMIR
-    public Usuario iniciarSesionUsuario(JTextField correo, JPasswordField clave){
-        if (esVacio(correo,"Debe indicar su nombre de usuario")==false && esVacio(clave,"Debe indicar su contraseña")==false){
+    
+    public Usuario iniciarSesionUsuario(JTextField username, JPasswordField clave){
+        if (esVacio(username,"Debe indicar su nombre de usuario")==false && esVacio(clave,"Debe indicar su contraseña")==false){
             String contrasena = new String(clave.getPassword());
-            Usuario user = validarInicioSesion(correo.getText(),contrasena);
+            Usuario user = iniciarSesionFirebase(username.getText(),contrasena);
             if (user == null){
                 JOptionPane.showMessageDialog(null,"Verifique los datos ingresados","Usuario no encontrado",JOptionPane.ERROR_MESSAGE);
                 return user;
             }
             else {
-                JOptionPane.showMessageDialog(null,"Inicio de sesion exitoso","BIENVENIDO!",JOptionPane.INFORMATION_MESSAGE);
                 this.usuarioActual = user;
                 return user;
                 
@@ -650,12 +601,12 @@ public class SistemaControlador {
         }   
         
     }
-    */
-    public void MostrarPerfilEstudiante(JLabel nombre, JLabel apellido, JLabel correo, JLabel clave, JLabel grado, JLabel seccion){
+    
+    public void MostrarPerfilEstudiante(JLabel nombre, JLabel apellido, JLabel username, JLabel clave, JLabel grado, JLabel seccion){
         Estudiante estudianteActual = (Estudiante) usuarioActual;
         nombre.setText(estudianteActual.getNombre());
         apellido.setText(estudianteActual.getApellido());
-        correo.setText(estudianteActual.getCorreo());
+        username.setText(estudianteActual.getUsername());
         clave.setText(String.valueOf(estudianteActual.getContrasena()));
         if (estudianteActual.getGrado()==0){
             grado.setFont(new Font("Cy Grotesk Key", Font.ITALIC, 14));
@@ -672,11 +623,11 @@ public class SistemaControlador {
     }
     
     
-    public void MostrarPerfilMaestro(JLabel nombre, JLabel apellido, JLabel correo, JLabel clave, JTable salones){
+    public void MostrarPerfilMaestro(JLabel nombre, JLabel apellido, JLabel username, JLabel clave, JTable salones){
         Maestro maestroActual = (Maestro) usuarioActual;
         nombre.setText(maestroActual.getNombre());
         apellido.setText(maestroActual.getApellido());
-        correo.setText(maestroActual.getCorreo());
+        username.setText(maestroActual.getUsername());
         clave.setText(String.valueOf(maestroActual.getContrasena()));
         
         List<Salon> listaS = maestroActual.getSalones();
@@ -702,74 +653,116 @@ public class SistemaControlador {
         salones.getTableHeader().setForeground(new Color(40,66,119));
     }
     
-    public void establecerDatosDelPerfil(JTextField nombre, JTextField apellido, JTextField correo, JTextField contrasena){
+    public void establecerDatosDelPerfil(JTextField nombre, JTextField apellido, JTextField username, JTextField contrasena){
         nombre.setText(usuarioActual.getNombre());
         apellido.setText(usuarioActual.getApellido());
-        correo.setText(usuarioActual.getCorreo());
+        username.setText(usuarioActual.getUsername());
         contrasena.setText(String.valueOf(usuarioActual.getContrasena()));
     }
     
-    public void establecerDatosDelPerfil(JLabel nombre, JLabel apellido, JLabel correo, JLabel contrasena){
+    public void establecerDatosDelPerfil(JLabel nombre, JLabel apellido, JLabel username, JLabel contrasena){
         nombre.setText(usuarioActual.getNombre());
         apellido.setText(usuarioActual.getApellido());
-        correo.setText(usuarioActual.getCorreo());
+        username.setText(usuarioActual.getUsername());
         contrasena.setText(String.valueOf(usuarioActual.getContrasena()));
     }
     
-    public boolean actualizarPerfilFirebase(String correo, String nombre, String apellido, String contrasena, String rol) {
-        Firestore db = FirestoreClient.getFirestore();
-        Map<String, Object> datos = new HashMap<>();
-        datos.put("nombre", nombre);
-        datos.put("apellido", apellido);
-        datos.put("correo", correo);
-        datos.put("contrasena", contrasena);
-        datos.put("rol", rol);
-            
-        try {
-            ApiFuture<WriteResult> resultado = db.collection("usuarios").document(correo).set(datos);
-            resultado.get();
-            System.out.println("Datos guardados en Firebase a las: " + resultado.get().getUpdateTime());
-            JOptionPane.showMessageDialog(null, "¡Perfil actualizado en la nube!");  
-            return true;
+    public boolean guardarCambiosPerfil(JTextField txtNombre, JTextField txtApellido, JTextField txtUser, JTextField txtClave) {
+    
+            if (esVacio(txtNombre, "Debe indicar su nombre") ||
+                esVacio(txtApellido, "Debe indicar su apellido") ||
+                esVacio(txtUser, "Debe indicar un usuario") ||
+                esVacio(txtClave, "Debe indicar una contraseña")) {
+                return false;
+            }
+
+            String nuevoNombre = txtNombre.getText().trim();
+            String nuevoApellido = txtApellido.getText().trim();
+            String nuevoUser = txtUser.getText().trim();
+            String nuevaClave = txtClave.getText().trim();
+
+
+            String viejoUser = this.usuarioActual.getUsername(); 
+            Firestore db = FirestoreClient.getFirestore();
+
+            try {
+
+                if (nuevoUser.equals(viejoUser)) {
+
+
+                    Map<String, Object> actualizaciones = new HashMap<>();
+                    actualizaciones.put("nombre", nuevoNombre);
+                    actualizaciones.put("apellido", nuevoApellido);
+                    actualizaciones.put("password", nuevaClave);
+                    
+                    db.collection("usuarios").document(viejoUser).update(actualizaciones).get();
+
+                    // Actualizamos la memoria RAM
+                    actualizarObjetoLocal(nuevoNombre, nuevoApellido, nuevaClave, nuevoUser);
+
+                    javax.swing.JOptionPane.showMessageDialog(null, "Datos actualizados correctamente.");
+                    return true;
+                }
+                else {
+
+                      
+                        DocumentReference refNuevo = db.collection("usuarios").document(nuevoUser);
+                        DocumentSnapshot checkNuevo = refNuevo.get().get();
+
+                        if (checkNuevo.exists()) {
+                            // ¡ALERTA ROJA! El documento ya existe. FRENAMOS TODO.
+                            javax.swing.JOptionPane.showMessageDialog(null, 
+                                "El usuario '" + nuevoUser + "' ya está registrado por otra persona.\nNo puedes usar ese nombre.", 
+                                "Usuario Ocupado", 
+                                javax.swing.JOptionPane.ERROR_MESSAGE);
+                            return false;
+                        }
+
+                       
+                        DocumentReference docViejo = db.collection("usuarios").document(viejoUser);
+
+                     
+                        DocumentSnapshot snapshotViejo = docViejo.get().get();
+
+                        if (snapshotViejo.exists()) {
+                            Map<String, Object> datosClonados = snapshotViejo.getData();
+
+                            datosClonados.put("nombre", nuevoNombre);
+                            datosClonados.put("apellido", nuevoApellido);
+                            datosClonados.put("password", nuevaClave);
+                            datosClonados.put("username", nuevoUser); 
+
+                            refNuevo.set(datosClonados).get(); 
+
+                            docViejo.delete();
+
+                            actualizarObjetoLocal(nuevoNombre, nuevoApellido, nuevaClave, nuevoUser);
+
+                            javax.swing.JOptionPane.showMessageDialog(null, 
+                                "¡Perfil registrado a: " + nuevoUser + "!");
+                            return true;
+                        } else {
+                             javax.swing.JOptionPane.showMessageDialog(null, "Error: No se encontraron tus datos originales.");
+                             return false;
+                        }
+                }
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error al guardar el perfil en la nube.");
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                "Error al guardar en la nube: " + e.getMessage(), "Error", 0);
             return false;
         }
-    }
+    }   
     
-    public boolean editarPerfil(JTextField nombre, JTextField apellido, JTextField correo, JTextField clave){
-        boolean avanzar;
-        if (esVacio(nombre,"Debe indicar su nombre")==false && esVacio(apellido,"Debe indicar su apellido")==false && esVacio(correo,"Debe indicar un usuario")==false && esVacio(clave,"Debe indicar una contraseña")==false){
-            if (correo.getText().equals(usuarioActual.getCorreo())){
-                usuarioActual.setNombre(nombre.getText());
-                usuarioActual.setApellido(apellido.getText());
-                usuarioActual.setContrasena(clave.getText());
-                avanzar = true;
-            }
-            else {
-                Usuario user = buscarUsuario(correo.getText());
-                if (user == null){
-                    usuarioActual.setNombre(nombre.getText());
-                    usuarioActual.setApellido(apellido.getText());
-                    usuarioActual.setContrasena(clave.getText());
-                    usuarioActual.setCorreo(correo.getText());
-                    avanzar = true;
-                }
-                else{
-                    JOptionPane.showMessageDialog(null,"El correo proporcionado coincide con uno ya registrado, por favor ingrese otro.","Usuario ya registrado",JOptionPane.ERROR_MESSAGE);
-                    avanzar = false;
-                }
-            
-            }
+    private void actualizarObjetoLocal(String n, String a, String c, String u) {
+        if (this.usuarioActual != null) {
+            this.usuarioActual.setNombre(n);
+            this.usuarioActual.setApellido(a);
+            this.usuarioActual.setContrasena(c);
+            this.usuarioActual.setUsername(u);
             
         }
-        else {
-            avanzar = false;
-        }
-        return avanzar;
     }
-    
     private void verificarYAsignarLogros(Estudiante est) {
         Progreso prog = est.getProgreso();
 
@@ -857,7 +850,7 @@ public class SistemaControlador {
         String dRacha = Integer.toString(diasDeRacha);
         racha.setText(dRacha);
     }
-    //DADDY
+    
     public Salon buscarSalonID(int id){
         Firestore db = FirestoreClient.getFirestore();
         try {
@@ -918,7 +911,7 @@ public class SistemaControlador {
         }
     }
     
-    public void consultarInfoSalon(JLabel grado, JLabel seccion, JLabel maestro, JLabel correoMaestro){
+    public void consultarInfoSalon(JLabel grado, JLabel seccion, JLabel maestro, JLabel usernameMaestro){
         Estudiante est = (Estudiante) usuarioActual;
         if (est.getGrado()==0){
             grado.setFont(new Font("Cy Grotesk Key", Font.ITALIC, 18));
@@ -927,7 +920,7 @@ public class SistemaControlador {
             seccion.setText("No asignado");
             maestro.setFont(new Font("Cy Grotesk Key", Font.ITALIC, 18));
             maestro.setText("No asignado");
-            correoMaestro.setText(" ");
+            usernameMaestro.setText(" ");
         }
         else {
             grado.setFont(new Font("Cy Grotesk Key", Font.PLAIN,36));
@@ -939,7 +932,7 @@ public class SistemaControlador {
             String apellidoM = est.getSalon().getMaestro().getApellido();
             maestro.setFont(new Font("Cy Grotesk Key", Font.PLAIN,36));
             maestro.setText(nombreM +" "+ apellidoM);
-            correoMaestro.setText(est.getSalon().getMaestro().getCorreo());
+            usernameMaestro.setText(est.getSalon().getMaestro().getUsername());
         }
     }
     
@@ -980,7 +973,7 @@ public class SistemaControlador {
                         est.setIdUsuario(idEst);
                         est.setNombre(userDoc.getString("nombre"));
                         est.setApellido(userDoc.getString("apellido"));
-                        est.setCorreo(userDoc.getString("correo"));
+                        est.setUsername(userDoc.getString("username"));
                         
                         dtm.addElement(est);
                     }
@@ -1055,7 +1048,7 @@ public class SistemaControlador {
                         est.setIdUsuario(idLong.intValue());
                         est.setNombre(userDoc.getString("nombre"));
                         est.setApellido(userDoc.getString("apellido"));
-                        est.setCorreo(userDoc.getString("correo"));
+                        est.setUsername(userDoc.getString("username"));
                         est.setSalon(salon);
                         
                         // Agregamos a la lista local del salón
@@ -1080,7 +1073,7 @@ public class SistemaControlador {
             
             // Referencias
             DocumentReference salonRef = db.collection("salones").document(String.valueOf(idSalon));
-            DocumentReference estudianteRef = db.collection("usuarios").document(est.getCorreo()); // Usamos correo como ID del documento usuario
+            DocumentReference estudianteRef = db.collection("usuarios").document(est.getUsername()); // Usamos username como ID del documento usuario
 
             // 1. Eliminar ID del estudiante de la lista del salón
             salonRef.update("listaEstudiantesIds", FieldValue.arrayRemove(est.getIdUsuario()));
@@ -1120,7 +1113,7 @@ public class SistemaControlador {
         try {
             // Referencias a documentos
             DocumentReference salonRef = db.collection("salones").document(String.valueOf(idSalon));
-            DocumentReference estudianteRef = db.collection("usuarios").document(estudiante.getCorreo());
+            DocumentReference estudianteRef = db.collection("usuarios").document(estudiante.getUsername());
             
             // 1. Obtener datos del salón para saber grado y sección correctos
             DocumentSnapshot salonSnap = salonRef.get().get();
@@ -1168,7 +1161,7 @@ public class SistemaControlador {
         }
     }
     
-    //YANKE
+   
     
     public void llenarDatosCrearSalon(JComboBox grado, JComboBox seccion){
         int num = 1;
@@ -1232,25 +1225,45 @@ public class SistemaControlador {
         }
     }
     
-    public void crearSalon(JComboBox grado, JComboBox seccion) {
-        // 1. Verificación de seguridad
-        if (!(usuarioActual instanceof Maestro)) return;
-        
-        Maestro maestroActual = (Maestro) usuarioActual;
+    public boolean existeSalon(int grado, char seccion) {
+        try {
+            Firestore db = FirestoreClient.getFirestore();
+            String seccionStr = String.valueOf(seccion);
+            
+            // Buscamos los salones que cumplan LAS DOS condiciones al mismo tiempo
+            Query query = db.collection("salones")
+                    .whereEqualTo("grado", grado)
+                    .whereEqualTo("seccion", seccionStr);
 
-        // 2. Obtener datos de la vista
+            ApiFuture<QuerySnapshot> querySnapshot = query.get();
+            List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+
+            // Si la lista NO está vacía, significa que encontramos al menos uno -> YA EXISTE
+            return !documents.isEmpty();
+
+        } catch (Exception e) {
+            System.err.println("Error al validar existencia del salón: " + e.getMessage());
+            e.printStackTrace();
+            return true;
+        }
+    }
+    
+    public boolean crearSalon(JComboBox grado, JComboBox seccion) {
+        Maestro maestroActual = (Maestro) usuarioActual;
         int g = (int) grado.getSelectedItem();
         char s = (char) seccion.getSelectedItem();
-
-        // 3. LLAMADA A FIREBASE (Aquí es donde cambia)
-        // En lugar de calcular el ID a mano, dejamos que el método de arriba lo haga
+        
+        if (existeSalon(g, s)) {
+            javax.swing.JOptionPane.showMessageDialog(null, 
+                "El salón de " + grado + "° grado sección '" + seccion + "' ya existe.\nNo se puede crear duplicado.", 
+                "Salón Duplicado", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+            return false; 
+        }
+      
         Salon nuevoSalon = registrarSalonEnFirebase(maestroActual, g, s);
 
         if (nuevoSalon != null) {
-            // 4. Actualizar listas LOCALES (para que se vea en la app sin reiniciar)
-            // (Asegurarse de que las listas no sean null)
-            if (listaSalones == null) listaSalones = new ArrayList<>();
-            listaSalones.add(nuevoSalon);
             
             if (maestroActual.getSalones() == null) maestroActual.setSalones(new ArrayList<>());
             maestroActual.getSalones().add(nuevoSalon);
@@ -1259,8 +1272,11 @@ public class SistemaControlador {
                 "Nuevo Salon creado: " + nuevoSalon.getGrado() + "° '" + nuevoSalon.getSeccion() + "'\nID Asignado: " + nuevoSalon.getIdSalon(), 
                 "Creacion exitosa", 
                 JOptionPane.INFORMATION_MESSAGE);
+            return true;
+            
         } else {
             JOptionPane.showMessageDialog(null, "Error al conectar con la nube.", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
         }
     }
     
@@ -1441,7 +1457,7 @@ public class SistemaControlador {
         return null;
     }
 
-//DADDY 2    
+   
     private void verificarLogrosGanados(Tema tema) {
         Estudiante est = (Estudiante) this.usuarioActual;
         int puntosActuales = est.getProgreso().getPuntajeTotalPorTema(tema); // Asegúrate que este método funcione con lo que cargamos
@@ -1483,7 +1499,7 @@ public class SistemaControlador {
     private void guardarLogroEnNube(Estudiante est, Logro logro) {
         try {
             Firestore db = FirestoreClient.getFirestore();
-            db.collection("usuarios").document(est.getCorreo())
+            db.collection("usuarios").document(est.getUsername())
               .update("logrosIds", FieldValue.arrayUnion(logro.getId())); // Guardamos solo el ID
         } catch (Exception e) {
             System.err.println("Error guardando logro: " + e.getMessage());
@@ -1496,7 +1512,7 @@ public class SistemaControlador {
         Firestore db = FirestoreClient.getFirestore();
         try {
             // Referencia al documento del estudiante
-            DocumentReference estudianteRef = db.collection("usuarios").document(usuarioActual.getCorreo());
+            DocumentReference estudianteRef = db.collection("usuarios").document(usuarioActual.getUsername());
             
             // Referencia a la nueva SUB-COLECCIÓN "resultados" (se crea sola)
             // Usamos un ID automático (.document()) porque son muchos resultados
@@ -1698,7 +1714,7 @@ public class SistemaControlador {
         try {
             NivelDificultad nivelActual = est.getProgreso().getNivelActual(tema);
 
-            DocumentReference estRef = db.collection("usuarios").document(est.getCorreo());
+            DocumentReference estRef = db.collection("usuarios").document(est.getUsername());
 
             // Si el tema se llama "Núm. Decimales", le quitamos el punto para que quede "Núm Decimales"
             // Esto evita que Firebase crea que el punto es un separador de carpetas.
@@ -1778,7 +1794,7 @@ public class SistemaControlador {
         }
     }
 
-//YANKE 2    
+ 
     public List<Salon> getSalonesDelMaestro() {
         List<Salon> salonesMaestro = new ArrayList<>();
         if (usuarioActual instanceof Maestro) {
