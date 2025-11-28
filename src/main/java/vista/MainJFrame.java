@@ -828,7 +828,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 aceptar4ActionPerformed(evt);
             }
         });
-        registroM.add(aceptar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 610, 260, 70));
+        registroM.add(aceptar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 610, 270, 70));
 
         volver6.setBorderPainted(false);
         volver6.setContentAreaFilled(false);
@@ -2683,10 +2683,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_RegMusernameActionPerformed
 
     private void aceptar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptar4ActionPerformed
-        String nombre = RegMNombre.getText();
-        String apellido = RegMApellido.getText();
-        String username = RegMusername.getText();
-        String contrasena = new String(RegMContrasena.getPassword());
+        
         boolean avanzar = controlador.registrarMaestro(RegMNombre, RegMApellido, RegMusername, RegMContrasena);
         
         if (avanzar==true){
@@ -2802,18 +2799,22 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void salir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir1ActionPerformed
         int confirmacion = JOptionPane.showOptionDialog(
-                        null,"¿Esta seguro que desea salir de Tanuki?", "",
+                        null,"¿Está seguro que desea salir de Tanuki?", "",
                         JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
-        if (confirmacion==0) 
-          this.dispose();
+        if (confirmacion==0){
+            this.dispose();
+            System.exit(0);
+        } 
     }//GEN-LAST:event_salir1ActionPerformed
 
     private void salir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir2ActionPerformed
         int confirmacion = JOptionPane.showOptionDialog(
-                        null,"¿Desea salir de Tanuki?", "",
+                        null,"¿Está seguro que desea salir de Tanuki?", "",
                         JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
-        if (confirmacion==0) 
-          this.dispose();
+        if (confirmacion==0) {
+            this.dispose();
+            System.exit(0);
+        }
     }//GEN-LAST:event_salir2ActionPerformed
 
     private void editarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPerfilActionPerformed

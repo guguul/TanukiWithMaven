@@ -9,6 +9,7 @@ vista\PantallaCarga$BarraPersonalizada.class
 vista\MainJFrame$41.class
 vista\MainJFrame$62.class
 vista\MainJFrame$119.class
+vista\MainJFrame$141.class
 modelo_tanuki\PeriodoReporte.class
 modelo_tanuki\Reporte.class
 vista\MainJFrame$35.class
@@ -111,6 +112,7 @@ vista\MainJFrame$82.class
 vista\RoundedPanel.class
 Persistencia\ConvertidorLogros$1.class
 vista\MainJFrame$2.class
+vista\MainJFrame$139.class
 modelo_tanuki\ReporteDatosIndividual.class
 Persistencia\DatosPrecargados.class
 vista\MainJFrame$126.class
@@ -118,8 +120,10 @@ vista\MainJFrame$113.class
 modelo_tanuki\Tema$1.class
 vista\MainJFrame$74.class
 vista\MainJFrame$102.class
+vista\MainJFrame$142.class
 vista\MainJFrame$93.class
 vista\MainJFrame$9.class
+vista\MainJFrame$140.class
 vista\MainJFrame$128.class
 modelo_tanuki\ConfiguracionReporte.class
 controller\SistemaControlador$3.class
@@ -170,6 +174,7 @@ vista\MainJFrame$18.class
 vista\MainJFrame$40.class
 vista\MainJFrame$83.class
 vista\MainJFrame$30.class
+vista\MainJFrame$138.class
 vista\MainJFrame$100.class
 vista\MainJFrame$79.class
 vista\MainJFrame$76.class
