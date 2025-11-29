@@ -1802,7 +1802,7 @@
                             <Component class="javax.swing.JLabel" name="imagenCelebrando">
                               <Constraints>
                                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                  <AbsoluteConstraints x="390" y="200" width="370" height="450"/>
+                                  <AbsoluteConstraints x="380" y="220" width="410" height="500"/>
                                 </Constraint>
                               </Constraints>
                             </Component>
@@ -1900,6 +1900,9 @@
                     <Property name="text" type="java.lang.String" value="opcion A"/>
                     <Property name="borderPainted" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opcionAActionPerformed"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="649" y="231" width="251" height="200"/>
@@ -2111,9 +2114,11 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Cy Grotesk Key" size="24" style="0"/>
+                      <Font name="Cy Grotesk Key" size="18" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Frase Motivadora"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="q"/>
+                    <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
                   <AccessibilityProperties>
                     <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="frase_correcto"/>
@@ -2161,7 +2166,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="580" y="250" width="660" height="130"/>
+                      <AbsoluteConstraints x="590" y="230" width="660" height="120"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -2169,6 +2174,10 @@
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="lblImagenPanelCorrecto"/>
+                    <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+                  </AccessibilityProperties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="760" y="340" width="310" height="260"/>
@@ -2178,7 +2187,7 @@
                 <Component class="javax.swing.JLabel" name="imagenPJCorrecto">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="110" y="380" width="250" height="320"/>
+                      <AbsoluteConstraints x="110" y="370" width="360" height="350"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -2283,7 +2292,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="580" y="250" width="660" height="180"/>
+                      <AbsoluteConstraints x="580" y="230" width="660" height="140"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -2291,6 +2300,9 @@
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                   </Properties>
+                  <AccessibilityProperties>
+                    <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="lblImagenPanelIncorrecto"/>
+                  </AccessibilityProperties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="760" y="320" width="300" height="280"/>
@@ -2303,9 +2315,11 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Cy Grotesk Key" size="24" style="0"/>
+                      <Font name="Cy Grotesk Key" size="18" style="0"/>
                     </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="Frase Motivadora"/>
+                    <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2316,7 +2330,7 @@
                 <Component class="javax.swing.JLabel" name="imagenPJIncorrecto">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="100" y="380" width="250" height="320"/>
+                      <AbsoluteConstraints x="80" y="370" width="360" height="350"/>
                     </Constraint>
                   </Constraints>
                 </Component>

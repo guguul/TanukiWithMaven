@@ -1718,49 +1718,45 @@ public class SistemaControlador {
 
         Ejercicio ej = getSiguientePregunta();
         if (ej == null) {
-            // LE PASAMOS EL LAYOUT Y EL PANEL QUE YA RECIBIMOS EN ESTE MÉTODO
             finalizarPractica(cardLayoutPrincipal, panelContenedor); 
             return null;
         }
 
         this.tiempoInicioPregunta = java.time.Instant.now();
         javax.swing.JToggleButton[] botones = {btnA, btnB, btnC, btnD};
-
-        // --- LÓGICA DINÁMICA DE IMAGEN Y ALINEACIÓN ---
-
-        // 1. Decidir si mostramos la imagen AHORA (depende del Excel columna nueva)
         boolean mostrarImagenAhora = ej.tieneImagen() && ej.isImagenEnPregunta();
 
-        // 2. Variables para controlar la posición del texto
         int alineacionVertical;
         String margenHtml;
+        String tamanoLetra;
 
         if (mostrarImagenAhora) {
-            // CASO A: SI MOSTRAMOS IMAGEN
-            // Usamos cargarImagenAjustada para que no se deforme
-            cargarImagenAjustada(ej.getRutaImagen(), lblImagenPreguntaSeleccion);
-            cargarImagenAjustada(ej.getRutaImagen(), lblImagenPreguntaEscrita);
+           
+            cargarImagen(ej.getRutaImagen(), lblImagenPreguntaSeleccion);
+            cargarImagen(ej.getRutaImagen(), lblImagenPreguntaEscrita);
 
             panelImagenSeleccion.setVisible(true);
             panelImagenEscrita.setVisible(true);
 
-            // El texto se alinea ARRIBA para dejar espacio a la imagen
+            // Alineación ARRIBA
             alineacionVertical = javax.swing.SwingConstants.TOP;
-            margenHtml = "margin-top: 10px;";
+            margenHtml = "margin-top: 5px;";
+
+            // CAMBIO: Letra más pequeña para que quepa con la imagen
+            tamanoLetra = "font-size: 16px;"; 
 
         } else {
-            // CASO B: NO MOSTRAMOS IMAGEN (Solo texto o imagen reservada para feedback)
             panelImagenSeleccion.setVisible(false);
             panelImagenEscrita.setVisible(false);
 
-            // El texto se alinea al CENTRO total para que se vea elegante
+           
             alineacionVertical = javax.swing.SwingConstants.CENTER;
-            margenHtml = ""; // Sin margen
+            margenHtml = ""; 
+
+            tamanoLetra = "font-size: 22px;"; 
         }
 
-        // --- CONSTRUCCIÓN DEL HTML ---
-        // Inyectamos el 'margenHtml' dinámicamente
-        String preguntaHtml = "<html><div style='width: 280px; text-align: center; font-size: 20px; " + margenHtml + "'>" 
+        String preguntaHtml = "<html><div style='width: 280px; text-align: center; " + tamanoLetra + " " + margenHtml + " color: black;'>" 
                               + ej.getPregunta() + "</div></html>";
 
         // --- TIPO DE EJERCICIO ---
@@ -1768,7 +1764,7 @@ public class SistemaControlador {
         boolean esEscrito = rnd.nextBoolean();
 
         if (ej.isForzarSeleccion()) {
-            esEscrito = false; //debe ser de seleccion
+            esEscrito = false; 
         }
         if (ej.getOpciones() == null || ej.getOpciones().length < 4) esEscrito = true;
 
@@ -1776,8 +1772,6 @@ public class SistemaControlador {
             // MODO ESCRITO
             lblPreguntaEscrita.setText(preguntaHtml);
             lblPreguntaEscrita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-            // APLICAMOS ALINEACIÓN DINÁMICA (TOP o CENTER)
             lblPreguntaEscrita.setVerticalAlignment(alineacionVertical);
 
             txtRespuestaEscrita.setText("");
@@ -1786,8 +1780,6 @@ public class SistemaControlador {
             // MODO SELECCIÓN
             lblPreguntaTexto.setText(preguntaHtml);
             lblPreguntaTexto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-            // APLICAMOS ALINEACIÓN DINÁMICA (TOP o CENTER)
             lblPreguntaTexto.setVerticalAlignment(alineacionVertical);
 
             grupoOpciones.clearSelection();
@@ -1795,15 +1787,14 @@ public class SistemaControlador {
             if (ej.tieneOpcionesConImagen()) {
                 String[] rutas = ej.getRutasOpciones();
                 for (int i = 0; i < 4; i++) {
-                    botones[i].setText(""); // Borramos texto
-                    cargarImagen(rutas[i], botones[i]); // Ponemos icono (usa cargarImagen para iconos pequeños)
+                    botones[i].setText(""); 
+                    cargarImagen(rutas[i], botones[i]); 
                     botones[i].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 }
             } else {
-                // cuando las opciones son texto
                 String[] textos = ej.getOpciones();
                 for (int i = 0; i < 4; i++) {
-                    botones[i].setIcon(null); // Borramos icono
+                    botones[i].setIcon(null); 
                     botones[i].setText("<html><center>" + textos[i] + "</center></html>");
                 }
             }
@@ -1812,7 +1803,6 @@ public class SistemaControlador {
 
         return ej;
     }
-
     private void actualizarNivelEnNube(Estudiante est, Tema tema) {
         Firestore db = FirestoreClient.getFirestore();
         try {
@@ -2250,78 +2240,78 @@ public class SistemaControlador {
         cboDificultad.setSelectedItem(nivelMaximoAlcanzado.toString());
     }
     
-    private void cargarImagen(String rutaImagen, javax.swing.JComponent componente) {
-        // 1. Limpieza si no hay ruta
+    public void cargarImagen(String rutaImagen, javax.swing.JComponent componente) {
+        // 1. SEGURIDAD Y VISIBILIDAD
+        // Si el componente es nulo, no hacemos nada
+        if (componente == null) return;
+        componente.setOpaque(false); 
+        componente.setBackground(new java.awt.Color(0,0,0,0));
+
+        // Si no hay ruta, limpiamos y ocultamos el componente
         if (rutaImagen == null || rutaImagen.isEmpty()) {
             if (componente instanceof javax.swing.JLabel) {
                 ((javax.swing.JLabel) componente).setIcon(null);
             } else if (componente instanceof javax.swing.AbstractButton) {
                 ((javax.swing.AbstractButton) componente).setIcon(null);
             }
+            componente.setVisible(false); // SE OCULTA
             return;
         }
 
         try {
-            // 2. Ruta fija para ejercicios
             String rutaFinal = "/imagenesejercicios/" + rutaImagen;
             java.net.URL url = getClass().getResource(rutaFinal);
 
             if (url != null) {
                 javax.swing.ImageIcon iconoOriginal = new javax.swing.ImageIcon(url);
 
-                // --- CÁLCULO PROPORCIONAL ---
+                // 2. OBTENER LAS DIMENSIONES DEL CONTENEDOR REAL
+                int anchoMax = componente.getWidth();
+                int altoMax = componente.getHeight();
+                if (anchoMax <= 0) anchoMax = 250; // Valor por defecto seguro
+                if (altoMax <= 0) altoMax = 200;  // Valor por defecto seguro
 
-                // A. Definimos la "caja máxima" disponible
-                int anchoMax, altoMax;
-                if (componente instanceof javax.swing.AbstractButton) {
-                    // Para botones de opciones (pequeños)
-                    anchoMax = 120;
-                    altoMax = 120;
-                } else {
-                    // Para Labels de pregunta (medianos)
-                    // Usamos 250x200 como límite, pero sin forzarlo
-                    anchoMax = 250;
-                    altoMax = 200;
-                }
-
-                // B. Calculamos las proporciones (Aspect Ratio)
+                // 3. CÁLCULO PROPORCIONAL (Matemática para no deformar)
                 float propImagen = (float) iconoOriginal.getIconWidth() / iconoOriginal.getIconHeight();
                 float propDestino = (float) anchoMax / altoMax;
 
                 int anchoFinal = anchoMax;
                 int altoFinal = altoMax;
 
-                // C. Decidimos qué lado manda para no deformar
+                // Si el destino es más "apaisado" que la imagen, la altura es el límite.
                 if (propDestino > propImagen) {
-                    // El destino es más ancho -> la altura manda
                     anchoFinal = (int) (altoMax * propImagen);
-                } else {
-                    // El destino es más alto -> el ancho manda
+                } 
+                // Si el destino es más "alto" que la imagen, el ancho es el límite.
+                else {
                     altoFinal = (int) (anchoMax / propImagen);
                 }
-                // -----------------------------
 
-                // 3. Escalar con las medidas calculadas
+                // 4. ESCALAR LA IMAGEN
                 java.awt.Image imgEscalada = iconoOriginal.getImage().getScaledInstance(anchoFinal, altoFinal, java.awt.Image.SCALE_SMOOTH);
                 javax.swing.ImageIcon iconoFinal = new javax.swing.ImageIcon(imgEscalada);
 
-                // 4. Asignar y Centrar
+                // 5. ASIGNAR, CENTRAR Y MOSTRAR
                 if (componente instanceof javax.swing.JLabel) {
                     ((javax.swing.JLabel) componente).setIcon(iconoFinal);
-                    // Importante: Centramos la imagen por si sobró espacio a los lados
+                    // Centrado horizontal y vertical
                     ((javax.swing.JLabel) componente).setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                     ((javax.swing.JLabel) componente).setVerticalAlignment(javax.swing.SwingConstants.CENTER);
                 } else if (componente instanceof javax.swing.AbstractButton) {
                     ((javax.swing.AbstractButton) componente).setIcon(iconoFinal);
+                    // Los botones suelen centrar el icono por defecto, pero esto asegura
+                     ((javax.swing.AbstractButton) componente).setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
                 }
 
+                componente.setVisible(true); // SE MUESTRA
+
             } else {
-                System.err.println("❌ Imagen ejercicio no encontrada: " + rutaFinal);
-                 // Limpiar si falla la carga
-                if (componente instanceof javax.swing.JLabel) ((javax.swing.JLabel) componente).setIcon(null);
+                System.err.println("❌ Imagen no encontrada: " + rutaFinal);
+                componente.setVisible(false); // Si falla, se oculta
             }
         } catch (Exception e) {
-            System.err.println("Error cargando imagen ejercicio: " + e.getMessage());
+            System.err.println("Error cargando imagen: " + e.getMessage());
+            componente.setVisible(false);
         }
     }
     
@@ -2425,12 +2415,14 @@ public class SistemaControlador {
         if (this.temaSeleccionado == null) return;
 
         if (lblImagenCelebrando != null) {
-            // Forzamos 320x460 para que se vea igual de bien que en la presentación
+            // CAMBIO AQUÍ:
+            // Usamos cargarImagenPersonaje con medidas GRANDES (320 ancho, 460 alto)
+            // para que se vea imponente antes de empezar a jugar.
             cargarImagenPersonaje(
                 this.temaSeleccionado.getPersonajeRutaImagenCelebrando(), 
                 lblImagenCelebrando, 
-                320, 
-                460
+                410, 
+                500
             );
         }
     }
@@ -2472,15 +2464,18 @@ public class SistemaControlador {
     }
     
     public void cargarDatosFeedback(boolean esCorrecto, javax.swing.JLabel lblPersonaje) {
-        if (this.temaSeleccionado == null || lblPersonaje == null) return;
+    if (this.temaSeleccionado == null || lblPersonaje == null) return;
+
+        int w = 360; 
+        int h = 350;
+        // -----------------------------
 
         if (esCorrecto) {
-            cargarImagenAjustada(this.temaSeleccionado.getPersonajeRutaImagenCorrecto(), lblPersonaje);
+            cargarImagenPersonaje(this.temaSeleccionado.getPersonajeRutaImagenCorrecto(), lblPersonaje, w, h);
         } else {
-            cargarImagenAjustada(this.temaSeleccionado.getPersonajeRutaImagenIncorrecto(), lblPersonaje);
+            cargarImagenPersonaje(this.temaSeleccionado.getPersonajeRutaImagenIncorrecto(), lblPersonaje, w, h);
         }
     }
-    
     public void cargarImagenAjustada(String rutaImagen, javax.swing.JLabel lblImagen) {
         if (rutaImagen == null || rutaImagen.isEmpty()) {
             System.out.println("⚠️ Aviso: Ruta de imagen nula o vacía.");

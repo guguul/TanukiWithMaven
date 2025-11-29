@@ -21836,7 +21836,7 @@
     "valorPuntos": 10,
     "grado": 1,
     "idEjercicio": 1335,
-    "rutaImagen": "ninosmochila_38.png",
+    "rutaImagen": "mochilasRojas.png",
     "retroalimentacion": "Contaste correctamente los niños con mochila roja.",
     "forzarSeleccion": false,
     "imagenEnPregunta": true
@@ -21870,7 +21870,7 @@
     "valorPuntos": 10,
     "grado": 1,
     "idEjercicio": 1336,
-    "rutaImagen": "lluvia_38.png",
+    "rutaImagen": "Lluvia1336.png",
     "retroalimentacion": "Analizaste correctamente la altura de las barras.",
     "forzarSeleccion": true,
     "imagenEnPregunta": true
@@ -21904,7 +21904,7 @@
     "valorPuntos": 10,
     "grado": 1,
     "idEjercicio": 1337,
-    "rutaImagen": "animales_38.png",
+    "rutaImagen": "mascotaFavorita.png",
     "retroalimentacion": "Identificaste la barra más alta correctamente.",
     "forzarSeleccion": true,
     "imagenEnPregunta": true
@@ -21938,10 +21938,10 @@
     "valorPuntos": 10,
     "grado": 1,
     "idEjercicio": 1338,
-    "rutaImagen": "autos_38.png",
+    "rutaImagen": "carrosAzules.png",
     "retroalimentacion": "Contaste correctamente los coches azules.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Si tenemos 5 caramelos y comemos 2, ¿cuántos quedan?",
@@ -21972,10 +21972,10 @@
     "valorPuntos": 10,
     "grado": 1,
     "idEjercicio": 1339,
-    "rutaImagen": "",
+    "rutaImagen": "restaCaramelos.png",
     "retroalimentacion": "Restaste correctamente los caramelos consumidos.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "¿Qué fruta es la que más aparece en la canasta?",
@@ -22006,7 +22006,7 @@
     "valorPuntos": 20,
     "grado": 1,
     "idEjercicio": 1340,
-    "rutaImagen": "manzanas_38.png",
+    "rutaImagen": "canastaFrutas.png",
     "retroalimentacion": "Identificaste correctamente la fruta más frecuente.",
     "forzarSeleccion": true,
     "imagenEnPregunta": true
@@ -22040,10 +22040,10 @@
     "valorPuntos": 20,
     "grado": 1,
     "idEjercicio": 1341,
-    "rutaImagen": "deportes_38.png",
+    "rutaImagen": "futbol.png",
     "retroalimentacion": "Sumaste correctamente los valores indicados en la tabla.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Mira el diagrama de pastel: ¿qué color representa al 25%?",
@@ -22074,10 +22074,10 @@
     "valorPuntos": 20,
     "grado": 1,
     "idEjercicio": 1342,
-    "rutaImagen": "",
+    "rutaImagen": "diagramaPastelColores.png",
     "retroalimentacion": "Identificaste el sector correspondiente al 25%.",
     "forzarSeleccion": true,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "¿Cuál es la fruta menos elegida según el gráfico?",
@@ -22108,10 +22108,10 @@
     "valorPuntos": 20,
     "grado": 1,
     "idEjercicio": 1343,
-    "rutaImagen": "",
-    "retroalimentacion": "Observaste correctamente la barra más BAJO.",
+    "rutaImagen": "frutaMenosElegida.png",
+    "retroalimentacion": "La fruta pera tiene la barra más BAJA, por eso es la menos elegida.",
     "forzarSeleccion": true,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa la tabla: ¿cuál es la comida más elegida?",
@@ -22142,10 +22142,10 @@
     "valorPuntos": 20,
     "grado": 1,
     "idEjercicio": 1344,
-    "rutaImagen": "",
+    "rutaImagen": "comidaMasElegida.png",
     "retroalimentacion": "Identificaste correctamente el alimento con mayor frecuencia.",
     "forzarSeleccion": true,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa la gráfica de barras: ¿cuántos niños participaron en total?",
@@ -22176,10 +22176,10 @@
     "valorPuntos": 25,
     "grado": 1,
     "idEjercicio": 1345,
-    "rutaImagen": "",
+    "rutaImagen": "participacion.png",
     "retroalimentacion": "Sumaste correctamente los participantes de todas las categorías.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Si sumamos los alumnos que prefieren leer y dibujar, ¿cuántos son?",
@@ -22210,10 +22210,10 @@
     "valorPuntos": 25,
     "grado": 1,
     "idEjercicio": 1346,
-    "rutaImagen": "",
+    "rutaImagen": "sumarLeerDibujar.png",
     "retroalimentacion": "Combinaste correctamente los valores indicados para obtener el total.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa el gráfico de barras: ¿qué cantidad representa el punto medio?",
@@ -22244,10 +22244,10 @@
     "valorPuntos": 25,
     "grado": 1,
     "idEjercicio": 1347,
-    "rutaImagen": "",
+    "rutaImagen": "puntoMedio.png",
     "retroalimentacion": "Localizaste correctamente la MEDIOna del gráfico.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Si restamos los niños que prefieren perros a los que prefieren gatos, ¿cuál es el resultado?",
@@ -22278,10 +22278,10 @@
     "valorPuntos": 25,
     "grado": 1,
     "idEjercicio": 1348,
-    "rutaImagen": "",
+    "rutaImagen": "preferirPerrosGatos.png",
     "retroalimentacion": "Calculaste correctamente la diferencia entre ambos valores.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Planea dos formas de sumar 18 usando tres números diferentes según la tabla de preferencias.",
@@ -22346,10 +22346,10 @@
     "valorPuntos": 30,
     "grado": 1,
     "idEjercicio": 1350,
-    "rutaImagen": "",
+    "rutaImagen": "porcentajeFutbol.png",
     "retroalimentacion": "Identificaste correctamente el sector correspondiente al 40%.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa la gráfica: ¿cuál es la diferencia entre la actividad más popular y la menos popular?",
@@ -22380,10 +22380,10 @@
     "valorPuntos": 30,
     "grado": 1,
     "idEjercicio": 1351,
-    "rutaImagen": "",
+    "rutaImagen": "popularidad.png",
     "retroalimentacion": "Restaste correctamente los valores máximo y mínimo.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa el gráfico de barras: ¿cuántos alumnos en total practican deportes?",
@@ -22414,10 +22414,10 @@
     "valorPuntos": 30,
     "grado": 1,
     "idEjercicio": 1352,
-    "rutaImagen": "",
+    "rutaImagen": "deportes.png",
     "retroalimentacion": "Sumaste correctamente los alumnos de todas las categorías.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Según el diagrama de pastel, ¿cuál actividad representa un cuarto del total?",
@@ -22448,10 +22448,10 @@
     "valorPuntos": 30,
     "grado": 1,
     "idEjercicio": 1353,
-    "rutaImagen": "",
-    "retroalimentacion": "Identificaste correctamente la actividad correspondiente a 25%.",
+    "rutaImagen": "unCuarto.png",
+    "retroalimentacion": "La respuesta correcta era la actividad correspondiente a 25%, la cual es CORRER.",
     "forzarSeleccion": true,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa la tabla: si sumamos todos los niños que prefieren frutas rojas, ¿cuántos son?",
@@ -22482,10 +22482,10 @@
     "valorPuntos": 30,
     "grado": 1,
     "idEjercicio": 1354,
-    "rutaImagen": "",
+    "rutaImagen": "frutasRojas.png",
     "retroalimentacion": "Sumaste correctamente los valores de los niños que prefieren frutas rojas.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Lanzamos una moneda. ¿Qué puede salir?",
@@ -34124,7 +34124,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 301,
-    "rutaImagen": "esfera.png",
+    "rutaImagen": "esfera.jpeg",
     "retroalimentacion": "La esfera es un cuerpo redondo sin caras planas, vértices ni aristas.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34158,7 +34158,7 @@
     "valorPuntos": 15,
     "grado": 4,
     "idEjercicio": 302,
-    "rutaImagen": "cubo.png",
+    "rutaImagen": "cubo.jpeg",
     "retroalimentacion": "El cubo tiene 6 caras cuadradas del mismo tamaño.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34192,7 +34192,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 303,
-    "rutaImagen": "cilindro.png",
+    "rutaImagen": "cilindro.jpeg",
     "retroalimentacion": "El cilindro tiene dos bases circulares y un lado curvo, como una lata.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34226,7 +34226,7 @@
     "valorPuntos": 15,
     "grado": 4,
     "idEjercicio": 304,
-    "rutaImagen": "cono.png",
+    "rutaImagen": "cono.jpeg",
     "retroalimentacion": "El cono termina en un vértice y su base es circular.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34260,7 +34260,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 305,
-    "rutaImagen": "esfera.png",
+    "rutaImagen": "esfera.jpeg",
     "retroalimentacion": "La esfera es completamente curva; no tiene caras planas.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34294,7 +34294,7 @@
     "valorPuntos": 15,
     "grado": 4,
     "idEjercicio": 306,
-    "rutaImagen": "piramide.png",
+    "rutaImagen": "piramide.jpeg",
     "retroalimentacion": "La pirámide cuadrangular tiene 1 base cuadrada y 4 caras triangulares.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34328,7 +34328,7 @@
     "valorPuntos": 15,
     "grado": 4,
     "idEjercicio": 307,
-    "rutaImagen": "cilindro.png",
+    "rutaImagen": "cilindro.jpeg",
     "retroalimentacion": "El cilindro tiene dos círculos como bases y un lado curvo que las une.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34362,7 +34362,7 @@
     "valorPuntos": 20,
     "grado": 4,
     "idEjercicio": 308,
-    "rutaImagen": "cubo.png",
+    "rutaImagen": "cubo.jpeg",
     "retroalimentacion": "El cubo tiene 8 vértices, 12 aristas y 6 caras cuadradas.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34396,7 +34396,7 @@
     "valorPuntos": 15,
     "grado": 4,
     "idEjercicio": 309,
-    "rutaImagen": "prismarectangular.png",
+    "rutaImagen": "prismarectangular.jpeg",
     "retroalimentacion": "El prisma rectangular tiene todas sus caras rectangulares.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34430,7 +34430,7 @@
     "valorPuntos": 15,
     "grado": 4,
     "idEjercicio": 310,
-    "rutaImagen": "piramide.png",
+    "rutaImagen": "piramide.jpeg",
     "retroalimentacion": "La pirámide triangular tiene una base de 3 lados.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34464,7 +34464,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 311,
-    "rutaImagen": "cono.png",
+    "rutaImagen": "cono.jpeg",
     "retroalimentacion": "El cono es puntiagudo y su base es circular, como un sombrero de fiesta.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34498,7 +34498,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 312,
-    "rutaImagen": "esfera.png",
+    "rutaImagen": "esfera.jpeg",
     "retroalimentacion": "La esfera es completamente redonda, igual que una pelota.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34532,7 +34532,7 @@
     "valorPuntos": 20,
     "grado": 4,
     "idEjercicio": 313,
-    "rutaImagen": "piramidecuadrangular.png",
+    "rutaImagen": "piramidecuadrangular.jpeg",
     "retroalimentacion": "La pirámide cuadrangular tiene una base cuadrada y 4 caras triangulares.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34566,7 +34566,7 @@
     "valorPuntos": 15,
     "grado": 4,
     "idEjercicio": 314,
-    "rutaImagen": "piramidecuadrangular.png",
+    "rutaImagen": "piramidecuadrangular.jpeg",
     "retroalimentacion": "Este cuerpo combina una base cuadrada y lados triangulares.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34600,7 +34600,7 @@
     "valorPuntos": 20,
     "grado": 4,
     "idEjercicio": 315,
-    "rutaImagen": "prismarectangular.png",
+    "rutaImagen": "prismarectangular.jpeg",
     "retroalimentacion": "El prisma rectangular tiene todas sus caras en forma de rectángulo.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34634,7 +34634,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 316,
-    "rutaImagen": "esfera.png",
+    "rutaImagen": "esfera.jpeg",
     "retroalimentacion": "La esfera no tiene esquinas ni bordes, solo una superficie curva.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34668,7 +34668,7 @@
     "valorPuntos": 15,
     "grado": 4,
     "idEjercicio": 317,
-    "rutaImagen": "cono.png",
+    "rutaImagen": "cono.jpeg",
     "retroalimentacion": "El cono se caracteriza por tener una sola base circular y un vértice.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34702,7 +34702,7 @@
     "valorPuntos": 30,
     "grado": 4,
     "idEjercicio": 318,
-    "rutaImagen": "prismarectangular.png",
+    "rutaImagen": "prismarectangular.jpeg",
     "retroalimentacion": "Un prisma rectangular alargado puede tener varias caras rectangulares iguales.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -34736,7 +34736,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 319,
-    "rutaImagen": "cilindro.png",
+    "rutaImagen": "cilindro.jpeg",
     "retroalimentacion": "El cilindro puede rodar gracias a su superficie curva.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
@@ -45616,7 +45616,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 639,
-    "rutaImagen": "ninosmochila_38.png",
+    "rutaImagen": "mochilasRojas.png",
     "retroalimentacion": "Contaste correctamente los niños con mochila roja.",
     "forzarSeleccion": false,
     "imagenEnPregunta": true
@@ -45650,7 +45650,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 640,
-    "rutaImagen": "lluvia_38.png",
+    "rutaImagen": "Lluvia640.png",
     "retroalimentacion": "Analizaste correctamente la altura de las barras.",
     "forzarSeleccion": true,
     "imagenEnPregunta": true
@@ -45684,7 +45684,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 641,
-    "rutaImagen": "animales_38.png",
+    "rutaImagen": "641.png",
     "retroalimentacion": "Identificaste el porcentaje correctamente.",
     "forzarSeleccion": true,
     "imagenEnPregunta": true
@@ -45718,7 +45718,7 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 642,
-    "rutaImagen": "autos_38.png",
+    "rutaImagen": "carrosAzules.png",
     "retroalimentacion": "Contaste correctamente los coches azules.",
     "forzarSeleccion": false,
     "imagenEnPregunta": true
@@ -45752,10 +45752,10 @@
     "valorPuntos": 10,
     "grado": 4,
     "idEjercicio": 643,
-    "rutaImagen": "",
+    "rutaImagen": "restaCaramelos.png",
     "retroalimentacion": "Restaste correctamente los caramelos consumidos.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "¿Qué fruta es la que más aparece en la canasta?",
@@ -45786,8 +45786,8 @@
     "valorPuntos": 20,
     "grado": 4,
     "idEjercicio": 644,
-    "rutaImagen": "manzanas_38.png",
-    "retroalimentacion": "Identificaste correctamente la fruta más frecuente.",
+    "rutaImagen": "canastaFrutas.png",
+    "retroalimentacion": "La manzana es la fruta más frecuente.",
     "forzarSeleccion": true,
     "imagenEnPregunta": true
   },
@@ -45820,7 +45820,7 @@
     "valorPuntos": 20,
     "grado": 4,
     "idEjercicio": 645,
-    "rutaImagen": "deportes_38.png",
+    "rutaImagen": "futbol.png",
     "retroalimentacion": "Analizaste correctamente los valores indicados en la tabla.",
     "forzarSeleccion": false,
     "imagenEnPregunta": true
@@ -45854,10 +45854,10 @@
     "valorPuntos": 20,
     "grado": 4,
     "idEjercicio": 646,
-    "rutaImagen": "",
+    "rutaImagen": "diagramaPastelColores.png",
     "retroalimentacion": "Identificaste el sector correspondiente al 25%.",
     "forzarSeleccion": true,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "¿Cuál es la fruta menos elegida según el gráfico?",
@@ -45888,10 +45888,10 @@
     "valorPuntos": 20,
     "grado": 4,
     "idEjercicio": 647,
-    "rutaImagen": "",
+    "rutaImagen": "frutaMenosElegida.png",
     "retroalimentacion": "Observaste correctamente la barra más BAJO.",
     "forzarSeleccion": true,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa la tabla: ¿cuál es la comida más elegida?",
@@ -45922,10 +45922,10 @@
     "valorPuntos": 20,
     "grado": 4,
     "idEjercicio": 648,
-    "rutaImagen": "",
+    "rutaImagen": "comidaMasElegida.png",
     "retroalimentacion": "Identificaste correctamente el alimento con mayor frecuencia.",
     "forzarSeleccion": true,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa la gráfica de barras: ¿cuántos niños participaron en total?",
@@ -45956,10 +45956,10 @@
     "valorPuntos": 25,
     "grado": 4,
     "idEjercicio": 649,
-    "rutaImagen": "",
+    "rutaImagen": "participacion.png",
     "retroalimentacion": "Sumaste correctamente los participantes de todas las categorías.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Si sumamos los alumnos que prefieren leer y dibujar, ¿cuántos son?",
@@ -45990,10 +45990,10 @@
     "valorPuntos": 25,
     "grado": 4,
     "idEjercicio": 650,
-    "rutaImagen": "",
+    "rutaImagen": "sumarLeerDibujar.png",
     "retroalimentacion": "Combinaste correctamente los valores indicados para obtener el total.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa el gráfico de barras: ¿qué cantidad representa el punto medio?",
@@ -46024,10 +46024,10 @@
     "valorPuntos": 25,
     "grado": 4,
     "idEjercicio": 651,
-    "rutaImagen": "",
+    "rutaImagen": "puntoMedio.png",
     "retroalimentacion": "Localizaste correctamente la MEDIOna del gráfico.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Si restamos los niños que prefieren perros a los que prefieren gatos, ¿cuál es el resultado?",
@@ -46058,10 +46058,10 @@
     "valorPuntos": 25,
     "grado": 4,
     "idEjercicio": 652,
-    "rutaImagen": "",
+    "rutaImagen": "preferirPerrosGatos.png",
     "retroalimentacion": "Calculaste correctamente la diferencia entre ambos valores.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Planea dos formas de sumar 18 usando tres números diferentes según la tabla de preferencias.",
@@ -46126,10 +46126,10 @@
     "valorPuntos": 30,
     "grado": 4,
     "idEjercicio": 654,
-    "rutaImagen": "",
+    "rutaImagen": "porcentajeFutbol.png",
     "retroalimentacion": "Identificaste correctamente el sector correspondiente al 40%.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa la gráfica: ¿cuál es la diferencia entre la actividad más popular y la menos popular?",
@@ -46160,10 +46160,10 @@
     "valorPuntos": 30,
     "grado": 4,
     "idEjercicio": 655,
-    "rutaImagen": "",
+    "rutaImagen": "popularidad.png",
     "retroalimentacion": "Restaste correctamente los valores máximo y mínimo.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa el gráfico de barras: ¿cuántos alumnos en total practican deportes?",
@@ -46194,10 +46194,10 @@
     "valorPuntos": 30,
     "grado": 4,
     "idEjercicio": 656,
-    "rutaImagen": "",
+    "rutaImagen": "deportes.png",
     "retroalimentacion": "Sumaste correctamente los alumnos de todas las categorías.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Según el diagrama de pastel, ¿cuál actividad representa un cuarto del total?",
@@ -46228,10 +46228,10 @@
     "valorPuntos": 30,
     "grado": 4,
     "idEjercicio": 657,
-    "rutaImagen": "",
+    "rutaImagen": "unCuarto.png",
     "retroalimentacion": "Identificaste correctamente la actividad correspondiente a 25%.",
     "forzarSeleccion": true,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Observa la tabla: si sumamos todos los niños que prefieren frutas rojas, ¿cuántos son?",
@@ -46262,10 +46262,10 @@
     "valorPuntos": 30,
     "grado": 4,
     "idEjercicio": 658,
-    "rutaImagen": "",
+    "rutaImagen": "frutasRojas.png",
     "retroalimentacion": "Sumaste correctamente los valores de los niños que prefieren frutas rojas.",
     "forzarSeleccion": false,
-    "imagenEnPregunta": false
+    "imagenEnPregunta": true
   },
   {
     "pregunta": "Lanzamos una moneda. ¿Qué puede salir?",
