@@ -22,12 +22,15 @@ public class Progreso {
     private ArrayList<Resultado> resultados;
     private Map<Tema, NivelDificultad> nivelesDesbloqueados;
     private int diasRacha;
+    private int puntosAcumulados; //para guardar lo que se lea del firebase
+    private int puntosAcumuladosCloud;
   
     public Progreso(Estudiante e) {
         this.estudiante = e;
         this.resultados = new ArrayList<>();
         this.nivelesDesbloqueados = new HashMap<>();
         this.diasRacha = 0;
+        this.puntosAcumulados = 0;
     }
     
     public Progreso(){
@@ -35,6 +38,19 @@ public class Progreso {
         resultados = new ArrayList<>();
         nivelesDesbloqueados = new HashMap<>();
         diasRacha = 0; 
+        puntosAcumulados = 0;
+    }
+    
+    public void setPuntosAcumuladosCloud(int puntos) {
+        this.puntosAcumuladosCloud = puntos;
+    }
+    
+    public int getPuntosAcumulados() {
+        return puntosAcumulados;
+    }
+
+    public void setPuntosAcumulados(int puntosAcumulados) {
+        this.puntosAcumulados = puntosAcumulados;
     }
 
     public Estudiante getEstudiante() {
@@ -213,12 +229,19 @@ public class Progreso {
     * @return El puntaje total general del estudiante.
     */
     public int getPuntajeTotalGeneral() {
-        int puntajeTotal = 0;
-        // itera sobre la lista de todos los resultados y los va sumando
-        for (Resultado res : this.resultados) {
-            puntajeTotal += res.getPuntos();
+        // Si hay historial local cargado (estoy jugando), súmalo
+        if (resultados != null && !resultados.isEmpty()) {
+            int suma = 0;
+            for (Resultado r : resultados) {
+                suma += r.getPuntos();
+            }
+            // Actualizamos la variable de respaldo
+            this.puntosAcumuladosCloud = suma; 
+            return suma;
         }
-        return puntajeTotal;
+        
+        // Si no hay historial (es un reporte o acabo de loguearme), devuelve lo de Firebase
+        return this.puntosAcumuladosCloud;
     }
     
     public int getPuntajeTotalGeneral(LocalDate inicio, LocalDate fin) { //sobrecarga
@@ -250,42 +273,60 @@ public class Progreso {
     
     
     
-    public int getDiasRacha(){
-        if (resultados == null || resultados.isEmpty()) {
-            return 0; // Si no hay resultados, la racha es 0
+    public int getDiasRacha() {
+        // 1. SEGURIDAD: Si la lista está vacía o es nula...
+        if (this.resultados == null || this.resultados.isEmpty()) {
+            // ... devolvemos el valor que recuperamos de Firebase al iniciar sesión.
+            
+            return this.diasRacha; 
         }
-        
-        Resultado ultimoResultado = resultados.get(resultados.size() - 1);
-        if (ultimoResultado==null || resultados.isEmpty()){
-            return 0;
-        }
-        List<LocalDate> fechasDePractica = resultados.stream()
-                .filter(Resultado::isEsCorrecto) //filtra las fechas en las qeu tuvo al menos un acierto
-                .map(Resultado::getFecha)        //toma la fechas del resultado
-                .distinct().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-        
-        if (fechasDePractica.isEmpty()) return 0;
-        
-        LocalDate hoy = LocalDate.now();
-        LocalDate ayer = hoy.minusDays(1);
-        
-        // Si la última vez fue antes de ayer, se pierde la racha
-        if (ultimoResultado.getFecha().isBefore(ayer)) return 0;
-        
 
-        int racha = 0;
-        LocalDate fechaEsperada = ultimoResultado.getFecha();
+        // 2. Si la lista SÍ tiene datos (porque el alumno hizo un ejercicio ahorita):
+        try {
+            // Obtenemos el último para comparar fechas
+            Resultado ultimoResultado = resultados.get(resultados.size() - 1);
+            
+            if (ultimoResultado == null) return this.diasRacha;
 
-        for (LocalDate fecha : fechasDePractica) {
-            if (fecha.isEqual(fechaEsperada)) {
-                racha++;
-                fechaEsperada = fechaEsperada.minusDays(1);
-            } else {
-                break;
+            // --- LÓGICA DE CÁLCULO ORIGINAL ---
+            List<LocalDate> fechasDePractica = resultados.stream()
+                    .filter(Resultado::isEsCorrecto)
+                    .map(Resultado::getFecha)
+                    .distinct()
+                    .sorted(Comparator.reverseOrder())
+                    .collect(Collectors.toList());
+            
+            if (fechasDePractica.isEmpty()) return this.diasRacha; // O return 0;
+            
+            LocalDate hoy = LocalDate.now();
+            LocalDate ayer = hoy.minusDays(1);
+            
+            // Si la última vez fue antes de ayer, se pierde la racha
+            if (ultimoResultado.getFecha().isBefore(ayer) && !ultimoResultado.getFecha().isEqual(hoy)) {
+                 return 0;
             }
+
+            int rachaCalculada = 0;
+            LocalDate fechaEsperada = ultimoResultado.getFecha(); // Empezamos desde la última fecha válida
+
+            for (LocalDate fecha : fechasDePractica) {
+                if (fecha.isEqual(fechaEsperada)) {
+                    rachaCalculada++;
+                    fechaEsperada = fechaEsperada.minusDays(1);
+                } else {
+                    break;
+                }
+            }
+            
+            // Actualizamos la variable local con el nuevo cálculo
+            this.diasRacha = rachaCalculada;
+            return rachaCalculada;
+
+        } catch (Exception e) {
+            // Si algo falla en el cálculo matemático, devolvemos el valor seguro
+            System.err.println("Error calculando racha: " + e.getMessage());
+            return this.diasRacha;
         }
-        this.diasRacha = racha;
-        return racha;
     }
     
     public void desbloquearNivel(Tema tema, NivelDificultad nivel) {
