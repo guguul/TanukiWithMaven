@@ -33,6 +33,17 @@ import modelo_tanuki.Usuario;
 import modelo_tanuki.Ejercicio;
 import modelo_tanuki.Progreso;
 import modelo_tanuki.Resultado;
+
+import java.util.stream.Collectors;
+import modelo_tanuki.ConfiguracionReporte;
+import modelo_tanuki.FormatoVisual;
+import modelo_tanuki.PeriodoReporte;
+import modelo_tanuki.RankingEntry;
+import modelo_tanuki.Reporte;
+import modelo_tanuki.ReporteDatosIndividual;
+import modelo_tanuki.ReporteDatosPorTema;
+import modelo_tanuki.ReporteDetalleTemaEstudiante;
+
 import javax.swing.*;
 import java.util.*;
 import java.time.LocalDate;
@@ -50,6 +61,8 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import java.time.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.cloud.FirestoreClient;
@@ -75,9 +88,17 @@ import com.google.cloud.firestore.FieldValue;
 import com.google.cloud.firestore.Query;
 import com.google.cloud.firestore.QuerySnapshot;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.lang.reflect.Type;
+
 import javax.sound.sampled.*; 
 import java.io.IOException;
 import java.net.URL;
+
+import org.jfree.chart.ChartPanel;
 
 public class SistemaControlador {
     
@@ -100,16 +121,20 @@ public class SistemaControlador {
     private Tema temaSeleccionado;
     private NivelDificultad nivelSeleccionado;
     private FiltroPractica filtroPractica;
+    private Reporte reporteActualEnPantalla;
     
     public SistemaControlador(){
         DatosPrecargados datos = new DatosPrecargados();
-
+        
+        
             
         this.listaUsuarios = datos.getUsuarios();
         this.listaTemas = datos.getTemas();
         this.listaLogros = datos.getLogros();
         this.listaSalones = datos.getSalones();
         this.filtroPractica = new FiltroPractica();
+        this.listaLogros = new ArrayList<>(); // Inicializar por seguridad
+        cargarLogrosMaestros();
         
         for (Usuario user: listaUsuarios){
             if (user instanceof Estudiante){
@@ -119,6 +144,10 @@ public class SistemaControlador {
         
     }
 
+    public Reporte getReporteActualEnPantalla() {
+        return reporteActualEnPantalla;
+    }
+    
     public Usuario getUsuarioActual() {
         return usuarioActual;
     }
@@ -437,8 +466,10 @@ public class SistemaControlador {
                     
                     // Llenar datos de Estudiante
                     Long pts = documento.getLong("puntos");
-                    // est.setPuntos(...) -> Tu clase Estudiante NO tiene atributo puntos visible en el archivo que pasaste, 
-                    // parece que lo maneja la clase Progreso. Lo dejaremos pendiente para el punto 3.
+                    int puntosTotales = (pts != null) ? pts.intValue() : 0;
+                    
+                    // GUARDAMOS EN LA NUEVA VARIABLE
+                    est.getProgreso().setPuntosAcumulados(puntosTotales);
                     
                     Long idSalonLong = documento.getLong("idSalon");
                     if (idSalonLong != null && idSalonLong != 0) {
@@ -535,6 +566,8 @@ public class SistemaControlador {
                     }
                     
                     this.usuarioActual = est;
+                    
+                    cargarHistorialDeResultados(est);
 
                 } else if ("maestro".equals(rol)) {
                     Maestro mstro = new Maestro();
@@ -763,39 +796,29 @@ public class SistemaControlador {
             
         }
     }
-    private void verificarYAsignarLogros(Estudiante est) {
-        Progreso prog = est.getProgreso();
 
-        // itera sobre los logros que existen en el juego
-        for (Logro logro : this.listaLogros) { 
-
-            // revisa si el estudiante YA tiene este logro
-            if (est.getLogros().contains(logro)) {
-                continue; //si ya lo tiene al siguiente
-            }
-            Tema temaDelLogro = logro.getTema();
-            int puntosNecesarios = logro.getPuntosNecesarios();
-
-            int puntosDelEstudianteEnEseTema = prog.getPuntajeTotalPorTema(temaDelLogro);
-
-            if (puntosDelEstudianteEnEseTema >= puntosNecesarios) {
-                est.agregarLogro(logro);
-                JOptionPane.showMessageDialog(null, "¡Nuevo logro desbloqueado: " + logro.getNombre() + "!");
-            }
-        }
-    }
+    //DADDY
     
     public void mostrarProgreso(JTable logros, JLabel puntosE, JLabel racha) {
         Estudiante estudianteActual = (Estudiante) usuarioActual;
 
-        // calcula los puntos totales (suma de puntos de todos los temas)
-        int puntosTotales = estudianteActual.getProgreso().getPuntajeTotalGeneral();
-        puntosE.setText(String.valueOf(puntosTotales) + " Puntos");
+        // 1. NUEVO: Descargar historial si está vacío
+        // (Esto asegura que los cálculos de abajo funcionen)
+        if (estudianteActual.getProgreso().getResultados().isEmpty()) {
+            cargarHistorialDeResultados(estudianteActual);
+            
+            // También asegurarnos de que la racha y puntos totales estén sincronizados
+            // (Si ya los cargaste en iniciarSesion, esto es redundante pero seguro)
+        }
 
-        
-        // actualiza la lista de logros del estudiante
+        // 2. Ahora sí, tus cálculos funcionarán porque la lista ya tiene datos
+        int puntosTotales = estudianteActual.getProgreso().getPuntajeTotalGeneral();
+        puntosE.setText(puntosTotales + " Puntos");
+
+        // 3. Verificar Logros (Esto también funcionará ahora)
         verificarYAsignarLogros(estudianteActual);
 
+        // 4. Llenar la Tabla (Tu código original de iconos y filas)
         List<Logro> listaL = estudianteActual.getLogros();
 
         ImageIcon expertoResta = new ImageIcon(getClass().getResource("/imagenes/iconos/experto_resta.png"));
@@ -818,18 +841,33 @@ public class SistemaControlador {
         };
 
         Object [] row = new Object[5];
-        for (Logro logro : listaL)
-        {            
-            if (logro.getNombre().equals("Novato de la Suma")){
-                row[0] = novatoSuma;
-            } else if (logro.getNombre().equals("Maestro de la Suma")){
-                row[0] = maestroSuma;
-            } else if (logro.getNombre().equals("Geómetra")){
-                row[0] = geometraFiguras;
-            } else if (logro.getNombre().equals("Experto en Restas")){
-                row[0] = expertoResta;
+        for (Logro logro : listaL) {
+            String nombreArchivo = logro.getRutaIcono(); 
+            String rutaCompleta = "/imagenes/iconos/" + nombreArchivo;
+            
+            // --- DIAGNÓSTICO ---
+            System.out.println("--------------------------------------------------");
+            System.out.println("Logro: " + logro.getNombre());
+            System.out.println("Intentando cargar: " + rutaCompleta);
+            
+            java.net.URL imgUrl = getClass().getResource(rutaCompleta);
+            
+            if (imgUrl != null) {
+                System.out.println("✅ IMAGEN ENCONTRADA: " + imgUrl.toString());
+                
+                ImageIcon iconoOriginal = new ImageIcon(imgUrl);
+                // Verificamos si la imagen tiene tamaño real (a veces existen pero pesan 0 bytes)
+                if (iconoOriginal.getIconWidth() > 0) {
+                     java.awt.Image img = iconoOriginal.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
+                     row[0] = new ImageIcon(img);
+                } else {
+                     System.err.println("⚠️ La imagen existe pero parece estar vacía o corrupta.");
+                     row[0] = null;
+                }
             } else {
-                row[0] = null; // O un icono por defecto
+                System.err.println("❌ ERROR: Java no encuentra el archivo en esa ruta.");
+                System.err.println("   Consejo: Verifica mayúsculas/minúsculas o haz Clean & Build.");
+                row[0] = null; 
             }
 
             row[1] = logro.getTema().getNombre(); 
@@ -841,15 +879,92 @@ public class SistemaControlador {
         }
         logros.setModel(dtm);
 
+        // Estética de la tabla
         JTableHeader header = logros.getTableHeader();
         Font fuenteHeader = new Font("Cy Grotesk Key", Font.BOLD, 14);
         header.setFont(fuenteHeader);
         logros.getTableHeader().setForeground(new Color(40,66,119));
         
+        // 5. Racha (Usamos el getter que arreglamos antes)
         int diasDeRacha = estudianteActual.getProgreso().getDiasRacha();
-        String dRacha = Integer.toString(diasDeRacha);
-        racha.setText(dRacha);
+        racha.setText(Integer.toString(diasDeRacha));
     }
+    
+        private void verificarLogrosGanados(Tema tema) {
+        Estudiante est = (Estudiante) this.usuarioActual;
+        int puntosActuales = est.getProgreso().getPuntajeTotalPorTema(tema); // Asegúrate que este método funcione con lo que cargamos
+        
+        // Nota: Como no descargamos TODOS los resultados al login, el puntaje total
+        // debería venir del campo "puntos" que cargamos en iniciarSesion.
+        // Si 'getPuntajeTotalPorTema' calcula sumando la lista vacía, dará 0.
+        // *Corrección rápida*: Usaremos los puntos totales del estudiante para logros generales
+        // o asumiremos que la lógica local funciona para la sesión actual.
+        
+        for (Logro logro : this.listaLogros) { 
+            // Verificamos si es del tema y si NO lo tiene ya
+            if (logro.getTema() == null) continue;
+            
+            if (logro.getTema().equals(tema)) {
+                // Verificamos en la lista local (que llenaremos al login)
+                boolean yaLoTiene = false;
+                for(Logro l : (ArrayList<Logro>)est.getLogros()){ // Casteo si es necesario
+                    if(l.getId() == logro.getId()){
+                        yaLoTiene = true;
+                        break;
+                    }
+                }
+
+                if (!yaLoTiene) {
+                    if (puntosActuales >= logro.getPuntosNecesarios()) {
+                        // 1. Agregar Localmente
+                        est.agregarLogro(logro);
+                        
+                        // 2. NUEVO: Guardar en Firebase (ArrayUnion para no repetir)
+                        guardarLogroEnNube(est, logro);
+
+                        JOptionPane.showMessageDialog(null, "¡Nuevo Logro Desbloqueado!\n\n" + logro.getNombre(), "¡Logro Obtenido!", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        }
+    }
+        
+    private void verificarYAsignarLogros(Estudiante est) {
+        Progreso prog = est.getProgreso();
+
+        // itera sobre los logros que existen en el juego
+        for (Logro logro : this.listaLogros) { 
+
+            // revisa si el estudiante YA tiene este logro
+            if (est.getLogros().contains(logro)) {
+                continue; //si ya lo tiene al siguiente
+            }
+            Tema temaDelLogro = logro.getTema();
+            int puntosNecesarios = logro.getPuntosNecesarios();
+
+            int puntosDelEstudianteEnEseTema = prog.getPuntajeTotalPorTema(temaDelLogro);
+
+            if (puntosDelEstudianteEnEseTema >= puntosNecesarios) {
+                est.agregarLogro(logro);
+                JOptionPane.showMessageDialog(null, "¡Nuevo logro desbloqueado: " + logro.getNombre() + "!");
+            }
+        }
+    }
+    
+    // Método auxiliar para buscar un Logro por su ID numérico
+    public Logro buscarLogroPorId(int id) {
+        // Asumo que tienes una lista maestra llamada 'listaLogros' en el controlador
+        if (this.listaLogros != null) {
+            for (Logro l : this.listaLogros) {
+                if (l.getId() == id) {
+                    return l;
+                }
+            }
+        }
+        return null;
+    }
+        
+    //YANKE
     
     public Salon buscarSalonID(int id){
         Firestore db = FirestoreClient.getFirestore();
@@ -944,46 +1059,114 @@ public class SistemaControlador {
         }
     }
     
-    public void mostrarSolicitudes(int idSalon, JList listaSolicitudes) {
+    public void mostrarSolicitudes(JList listaSolicitudes) {
         Firestore db = FirestoreClient.getFirestore();
         DefaultListModel<Estudiante> dtm = new DefaultListModel<>();
         dtm.clear();
-
+        
+        Set<Integer> idsYaAgregados = new HashSet<>();
+        
         try {
-            // 1. Obtener el documento del salón para ver la lista de IDs
-            DocumentSnapshot salonDoc = db.collection("salones").document(String.valueOf(idSalon)).get().get();
-            
-            // Leemos el array de IDs de Firebase
-            List<Long> idsSolicitantes = (List<Long>) salonDoc.get("solicitudesIds");
+            List<QueryDocumentSnapshot> estudiantesLibres = db.collection("usuarios")
+                    .whereEqualTo("rol", "estudiante")
+                    .whereEqualTo("idSalon", null)
+                    .get().get().getDocuments();
 
-            if (idsSolicitantes != null && !idsSolicitantes.isEmpty()) {
-                // 2. Por cada ID, buscar al estudiante en la colección "usuarios"
-                for (Long idLong : idsSolicitantes) {
-                    int idEst = idLong.intValue();
-                    
-                    // Buscamos el usuario donde idUsuario == idEst
-                    Query query = db.collection("usuarios").whereEqualTo("idUsuario", idEst);
-                    QuerySnapshot querySnapshot = query.get().get();
+            for (DocumentSnapshot doc : estudiantesLibres) {
+                Long idLong = doc.getLong("idUsuario");
+                if (idLong == null) continue;
+                
+                int idEst = idLong.intValue();
 
-                    if (!querySnapshot.isEmpty()) {
-                        DocumentSnapshot userDoc = querySnapshot.getDocuments().get(0);
-                        
-                        // Crear objeto Estudiante temporal para mostrarlo en la lista
-                        Estudiante est = new Estudiante();
-                        est.setIdUsuario(idEst);
-                        est.setNombre(userDoc.getString("nombre"));
-                        est.setApellido(userDoc.getString("apellido"));
-                        est.setUsername(userDoc.getString("username"));
-                        
-                        dtm.addElement(est);
-                    }
+                // TRUCO: Solo lo agregamos si NO estaba ya en la lista de solicitudes
+                // (Para evitar duplicados si alguien solicitó y a la vez es null)
+                if (!idsYaAgregados.contains(idEst)) {
+                    Estudiante est = reconstruirEstudianteDesdeDoc(doc);
+                    dtm.addElement(est);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.err.println("Error cargando lista de candidatos: " + e.getMessage());
+        }
+        listaSolicitudes.setModel(dtm);
+    }
+    
+    public void mostrarSolicitudes(int idSalon, JList listaSolicitudes) {
+        Firestore db = FirestoreClient.getFirestore();
+        DefaultListModel<Estudiante> dtm = new DefaultListModel<>();
+        dtm.clear();
+        
+        // Usamos un Set para guardar los IDs que ya metimos a la lista visual
+        // y así evitar que un estudiante salga repetido.
+        Set<Integer> idsYaAgregados = new HashSet<>();
+
+        try {
+            // --- PASO 1: TRAER LOS QUE HICIERON SOLICITUD EXPLÍCITA ---
+            DocumentSnapshot salonDoc = db.collection("salones").document(String.valueOf(idSalon)).get().get();
+            
+            List<Long> idsSolicitantes = (List<Long>) salonDoc.get("solicitudesIds");
+
+            if (idsSolicitantes != null && !idsSolicitantes.isEmpty()) {
+                for (Long idLong : idsSolicitantes) {
+                    int idEst = idLong.intValue();
+                    
+                    // Buscar al estudiante
+                    QuerySnapshot q = db.collection("usuarios").whereEqualTo("idUsuario", idEst).get().get();
+                    if (!q.isEmpty()) {
+                        DocumentSnapshot userDoc = q.getDocuments().get(0);
+                        Estudiante est = reconstruirEstudianteDesdeDoc(userDoc); // (Ver nota abajo*)
+                        
+                        // Agregar a la lista y al Set de control
+                        dtm.addElement(est);
+                        idsYaAgregados.add(est.getIdUsuario());
+                    }
+                }
+            }
+
+            // --- PASO 2: TRAER A LOS ESTUDIANTES "LIBRES" (SIN SALÓN) ---
+            // Buscamos: rol == estudiante Y idSalon == null
+            List<QueryDocumentSnapshot> estudiantesLibres = db.collection("usuarios")
+                    .whereEqualTo("rol", "estudiante")
+                    .whereEqualTo("idSalon", null)
+                    .get().get().getDocuments();
+
+            for (DocumentSnapshot doc : estudiantesLibres) {
+                Long idLong = doc.getLong("idUsuario");
+                if (idLong == null) continue;
+                
+                int idEst = idLong.intValue();
+
+                // TRUCO: Solo lo agregamos si NO estaba ya en la lista de solicitudes
+                // (Para evitar duplicados si alguien solicitó y a la vez es null)
+                if (!idsYaAgregados.contains(idEst)) {
+                    Estudiante est = reconstruirEstudianteDesdeDoc(doc);
+                    dtm.addElement(est);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error cargando lista de candidatos: " + e.getMessage());
         }
 
         listaSolicitudes.setModel(dtm);
+    }
+
+    // *NOTA: He creado este pequeño método auxiliar para no repetir código 
+    // al sacar los datos del DocumentSnapshot. Puedes ponerlo privado en el controlador.
+    private Estudiante reconstruirEstudianteDesdeDoc(DocumentSnapshot doc) {
+        Estudiante est = new Estudiante();
+        Long idVal = doc.getLong("idUsuario");
+        est.setIdUsuario(idVal != null ? idVal.intValue() : 0);
+        
+        est.setNombre(doc.getString("nombre"));
+        est.setApellido(doc.getString("apellido"));
+        est.setUsername(doc.getString("username"));
+        
+        // Opcional: Podrías marcar visualmente quién solicitó y quién no, 
+        // pero por ahora devolvemos el objeto limpio.
+        return est;
     }
     
     public void mostrarIDSalon(JLabel idNuevoSalon){
@@ -1048,10 +1231,20 @@ public class SistemaControlador {
                         est.setIdUsuario(idLong.intValue());
                         est.setNombre(userDoc.getString("nombre"));
                         est.setApellido(userDoc.getString("apellido"));
-                        est.setUsername(userDoc.getString("username"));
+                        String usernameLeido = userDoc.getString("username");
+                        if (usernameLeido == null || usernameLeido.isEmpty()) {
+                            // Si el campo está vacío, usamos el ID del documento como respaldo
+                            usernameLeido = userDoc.getId(); 
+                        }
+                        est.setUsername(usernameLeido);
                         est.setSalon(salon);
                         
-                        // Agregamos a la lista local del salón
+                        // --- CORRECCIÓN PARA EL RANKING ---
+                        Long puntosCloud = userDoc.getLong("puntos");
+                        // Inyectamos los puntos directamente al Progreso
+                        est.getProgreso().setPuntosAcumuladosCloud(puntosCloud != null ? puntosCloud.intValue() : 0);
+                        
+                        
                         salon.getListaEstudiantes().add(est);
                     }
                 }
@@ -1411,42 +1604,7 @@ public class SistemaControlador {
     }
 
    
-    private void verificarLogrosGanados(Tema tema) {
-        Estudiante est = (Estudiante) this.usuarioActual;
-        int puntosActuales = est.getProgreso().getPuntajeTotalPorTema(tema); // Asegúrate que este método funcione con lo que cargamos
-        
-        // Nota: Como no descargamos TODOS los resultados al login, el puntaje total
-        // debería venir del campo "puntos" que cargamos en iniciarSesion.
-        // Si 'getPuntajeTotalPorTema' calcula sumando la lista vacía, dará 0.
-        // *Corrección rápida*: Usaremos los puntos totales del estudiante para logros generales
-        // o asumiremos que la lógica local funciona para la sesión actual.
-        
-        for (Logro logro : this.listaLogros) { 
-            // Verificamos si es del tema y si NO lo tiene ya
-            if (logro.getTema().equals(tema)) {
-                // Verificamos en la lista local (que llenaremos al login)
-                boolean yaLoTiene = false;
-                for(Logro l : (ArrayList<Logro>)est.getLogros()){ // Casteo si es necesario
-                    if(l.getId() == logro.getId()){
-                        yaLoTiene = true;
-                        break;
-                    }
-                }
 
-                if (!yaLoTiene) {
-                    if (puntosActuales >= logro.getPuntosNecesarios()) {
-                        // 1. Agregar Localmente
-                        est.agregarLogro(logro);
-                        
-                        // 2. NUEVO: Guardar en Firebase (ArrayUnion para no repetir)
-                        guardarLogroEnNube(est, logro);
-
-                        JOptionPane.showMessageDialog(null, "¡Nuevo Logro Desbloqueado!\n\n" + logro.getNombre(), "¡Logro Obtenido!", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                }
-            }
-        }
-    }
 
     // Método pequeño para escribir en Firebase
     private void guardarLogroEnNube(Estudiante est, Logro logro) {
@@ -1760,17 +1918,15 @@ public class SistemaControlador {
         return salonesMaestro;
     }
     
-    public Salon buscarSalon(int grado, String seccion) {
-        if (seccion == null || seccion.isEmpty()) {
-            return null;
-        }
-
-        for (Salon s : this.listaSalones) {
-            boolean gradoCoincide = (s.getGrado() == grado);
-            boolean seccionCoincide = (Character.toUpperCase(s.getSeccion()) == Character.toUpperCase(seccion.charAt(0)));
-
-            if (gradoCoincide && seccionCoincide) {
-                return s; // se encontro
+    
+    public Salon buscarSalon(int grado, String seccionStr) {
+        if (usuarioActual instanceof Maestro) {
+            Maestro m = (Maestro) usuarioActual;
+            char seccion = seccionStr.charAt(0);
+            for (Salon s : m.getSalones()) {
+                if (s.getGrado() == grado && s.getSeccion() == seccion) {
+                    return s;
+                }
             }
         }
         return null;
@@ -1795,179 +1951,258 @@ public class SistemaControlador {
         return datos;
     }
 
-    public boolean mostrarRankingSalon(Salon salon, PeriodoReporte periodo, JTable tabla) {
-        Reporte datos = generarReporte(salon, periodo, null);
-        if (datos == null) return false;
-        DefaultTableModel model = new DefaultTableModel(
-            new String[]{"Posición", "Nombre", "Apellido", "Puntos (Período)"}, 0
-        );
-        int posicion = 1;
-        for (RankingEntry entry : datos.getRanking()) {
-            model.addRow(new Object[]{
-                posicion,
-                entry.getEstudiante().getNombre(),
-                entry.getEstudiante().getApellido(),
-                entry.getPuntaje()
-            });
-            posicion++;
-        }
-        tabla.setModel(model);
-        return true;
-    }
+    //DADDY
     
-    public boolean mostrarTablaDetalladaSalon(Salon salon, PeriodoReporte periodo, JTable tabla) {
-        // 1. Obtiene los datos
-        Reporte datos = generarReporte(salon, periodo, null);
-        if (datos == null || datos.getDatosPorTema() == null || datos.getDatosPorTema().isEmpty()) return false;
+    // ==========================================
+    // MÉTODOS PUENTE PARA LA VISTA (MainJFrame)
+    // ==========================================
 
-        // 2. Construye la tabla (coincide con tu imagen)
-        DefaultTableModel model = new DefaultTableModel(
-            new String[]{"Tema", "Intentos Totales", "% Aciertos", "Puntos Generados"}, 0
-        );
+    /**
+     * CASO 1: RANKING SALÓN
+     * Genera el reporte, guarda en memoria y llena la tabla.
+     */
+    public boolean mostrarRankingSalon(Salon salon, PeriodoReporte periodo, JTable tablaRanking) {
+        // 1. Crear configuración
+        ConfiguracionReporte config = ConfiguracionReporte.paraReporteSalon(salon)
+                .conPeriodo(periodo)
+                .conFormatoVisual(FormatoVisual.TABLA);
 
-        for (ReporteDatosPorTema d : datos.getDatosPorTema().values()) {
-            String porcFormateado = String.format("%.2f%%", d.getPorcentajeAciertos());
-            model.addRow(new Object[]{
-                d.getNombreTema(),
-                d.getIntentosTotales(),
-                porcFormateado,
-                d.getPuntosTotales()
-            });
+        // 2. Generar reporte desde Firebase
+        if (prepararReporte(config)) {
+            // 3. Llenar la tabla visualmente
+            List<RankingEntry> ranking = this.reporteActualEnPantalla.getRanking();
+            
+            DefaultTableModel dtm = new DefaultTableModel(new Object[]{"Puesto", "Estudiante", "Puntos"}, 0);
+            int puesto = 1;
+            for (RankingEntry r : ranking) {
+                dtm.addRow(new Object[]{
+                    puesto++, 
+                    r.getEstudiante().getNombre() + " " + r.getEstudiante().getApellido(),
+                    r.getPuntaje()
+                });
+            }
+            tablaRanking.setModel(dtm);
+            return true;
         }
-        tabla.setModel(model);
-        return true;
+        return false;
     }
-    
+
+    /**
+     * CASO 2: TABLA DETALLADA SALÓN
+     */
+    public boolean mostrarTablaDetalladaSalon(Salon salon, PeriodoReporte periodo, JTable tablaDetalle) {
+        // Pedimos GRAFICO para obligar al motor a calcular las estadísticas por tema,
+        // en lugar de darnos un Ranking de alumnos.
+        ConfiguracionReporte config = ConfiguracionReporte.paraReporteSalon(salon)
+                .conPeriodo(periodo)
+                .conFormatoVisual(FormatoVisual.GRAFICO);
+
+        if (prepararReporte(config)) {
+            Map<String, ReporteDatosPorTema> datos = this.reporteActualEnPantalla.getDatosPorTema();
+            
+            DefaultTableModel dtm = new DefaultTableModel(new Object[]{"Tema", "Intentos", "Aciertos", "Puntos", "% Efectividad"}, 0);
+            
+            if (datos != null) {
+                for (ReporteDatosPorTema d : datos.values()) {
+                    double valorRaw = d.getPorcentajeAciertos(); // Obtenemos el valor crudo
+
+                    // Corrección automática de escala
+                    double valorFinal;
+                    if (valorRaw <= 1.0) {
+                        // Si es 0.5, 0.8, etc. -> Multiplicamos por 100
+                        valorFinal = valorRaw * 100.0;
+                    } else {
+                        // Si ya viene como 50, 80, etc. -> Lo dejamos así
+                        valorFinal = valorRaw;
+                    }
+                    
+                    dtm.addRow(new Object[]{
+                        d.getNombreTema(),
+                        d.getIntentosTotales(),
+                        d.getAciertosTotales(),
+                        d.getPuntosTotales(),
+                        String.format("%.1f%%", valorFinal)
+                    });
+                }
+            }
+            tablaDetalle.setModel(dtm);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * CASO 3: GRÁFICO SALÓN
+     */
     public boolean mostrarGraficoDetalladoSalon(Salon salon, PeriodoReporte periodo, JPanel panelContenedor) {
-        // 1. Obtiene los datos
-        Reporte datos = generarReporte(salon, periodo, null);
-        if (datos == null || datos.getDatosPorTema() == null || datos.getDatosPorTema().isEmpty()) return false;
+        ConfiguracionReporte config = ConfiguracionReporte.paraReporteSalon(salon)
+                .conPeriodo(periodo)
+                .conFormatoVisual(FormatoVisual.GRAFICO);
 
-        // 2. CREAR EL SET DE DATOS
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (ReporteDatosPorTema d : datos.getDatosPorTema().values()) {
-            dataset.addValue(d.getPorcentajeAciertos(), "% Aciertos", d.getNombreTema());
+        if (prepararReporte(config)) {
+            Map<String, ReporteDatosPorTema> datos = this.reporteActualEnPantalla.getDatosPorTema();
+            
+            // Crear Dataset para JFreeChart
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            if (datos != null) {
+                for (ReporteDatosPorTema d : datos.values()) {
+                    double valorRaw = d.getPorcentajeAciertos();
+
+                    double valorGrafico;
+                    if (valorRaw <= 1.0) {
+                        valorGrafico = valorRaw * 100.0;
+                    } else {
+                        valorGrafico = valorRaw;
+                    }
+                    dataset.addValue(valorGrafico, "Efectividad", d.getNombreTema());
+                }
+            }
+
+            // Crear Gráfico de Barras
+            JFreeChart barChart = ChartFactory.createBarChart(
+                    "Desempeño Promedio por Tema",
+                    "Tema",
+                    "Porcentaje de Aciertos (%)",
+                    dataset,
+                    PlotOrientation.VERTICAL,
+                    true, true, false);
+
+            // Mostrar en el Panel
+            ChartPanel chartPanel = new ChartPanel(barChart);
+            chartPanel.setPreferredSize(new java.awt.Dimension(panelContenedor.getWidth(), panelContenedor.getHeight()));
+            
+            panelContenedor.removeAll();
+            panelContenedor.setLayout(new BorderLayout());
+            panelContenedor.add(chartPanel, BorderLayout.CENTER);
+            panelContenedor.validate();
+            
+            return true;
         }
-
-        // 3. GENERAR EL GRÁFICO (como en tu GeneradorExcel)
-        JFreeChart barChart = ChartFactory.createBarChart(
-            "Desempeño Promedio: Salón " + salon.getGrado() + "-" + salon.getSeccion(),
-            "Temas", "% Aciertos", dataset,
-            PlotOrientation.VERTICAL, true, true, false
-        );
-
-        // 4. MOSTRAR EL PANEL
-        ChartPanel chartPanel = new ChartPanel(barChart);
-        chartPanel.setMouseWheelEnabled(true);
-        panelContenedor.removeAll();
-        panelContenedor.add(chartPanel, BorderLayout.CENTER); // (Tu panel debe tener BorderLayout)
-        panelContenedor.revalidate();
-        panelContenedor.repaint();
-        return true;
+        return false;
     }
-    
+
+    /**
+     * CASO 4: TABLA ESTUDIANTE INDIVIDUAL
+     */
     public boolean mostrarTablaDetalladaEstudiante(Salon salon, PeriodoReporte periodo, Estudiante est, JTable tabla) {
-        // 1. Obtiene los datos
-        Reporte datos = generarReporte(salon, periodo, est); // ¡Pasa el Estudiante!
+        ConfiguracionReporte config = ConfiguracionReporte.paraReporteEstudiante(salon, est) 
+                .conPeriodo(periodo)
+                .conFormatoVisual(FormatoVisual.TABLA);
 
-        if (datos == null || datos.getDatosIndividuales() == null) return false;
+        if (prepararReporte(config)) {
+            ReporteDatosIndividual datos = this.reporteActualEnPantalla.getDatosIndividuales();
+            
+            DefaultTableModel dtm = new DefaultTableModel(new Object[]{"Tema", "Nivel", "Intentos", "Puntos", "% Aciertos"}, 0);
+            
+            if (datos != null && datos.getDetallePorTema() != null) {
+                for (ReporteDetalleTemaEstudiante d : datos.getDetallePorTema()) {
+                    double valorRaw = d.getPorcentajeAciertos(); // Obtenemos el valor crudo
 
-        // 2. Obtiene los resultados del progreso del estudiante (ya filtrados por el Analizador)
-        List<Resultado> historial = est.getProgreso().getResultados(
-                                        datos.getFechaInicio(), 
-                                        datos.getFechaFin()
-                                    );
-
-        if (historial.isEmpty()) return false;
-
-        // 3. Construye la tabla (solo UI)
-        DefaultTableModel model = new DefaultTableModel(
-            new String[]{"Fecha", "Tema", "Pregunta", "Respuesta", "Correcta", "Puntos"}, 0
-        );
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        for (Resultado res : historial) {
-            model.addRow(new Object[]{
-                res.getFecha().format(formatter),
-                res.getEjercicio().getTema().getNombre(),
-                res.getEjercicio().getPregunta(),
-                res.getRespuestaUsuario(), 
-                res.isEsCorrecto() ? "Sí" : "No",
-                res.getPuntos() 
-            });
+                    // Corrección automática de escala
+                    double valorFinal;
+                    if (valorRaw <= 1.0) {
+                        // Si es 0.5, 0.8, etc. -> Multiplicamos por 100
+                        valorFinal = valorRaw * 100.0;
+                    } else {
+                        // Si ya viene como 50, 80, etc. -> Lo dejamos así
+                        valorFinal = valorRaw;
+                    }
+                    
+                    dtm.addRow(new Object[]{
+                        d.getNombreTema(),
+                        d.getNivelActual(),
+                        d.getIntentosEnPeriodo(),
+                        d.getPuntosEnPeriodo(),
+                        String.format("%.1f%%", valorFinal)
+                    });
+                }
+            }
+            tabla.setModel(dtm);
+            return true;
         }
-        tabla.setModel(model);
-        return true;
+        return false;
     }
-    
+
+    /**
+     * CASO 5: GRÁFICO ESTUDIANTE INDIVIDUAL
+     */
     public boolean mostrarGraficoIndividual(Salon salon, PeriodoReporte periodo, Estudiante est, JPanel panelContenedor) {
-    
-        // 1. Obtiene los datos (esta vez SÍ pasamos el estudiante)
-        Reporte datos = generarReporte(salon, periodo, est);
+        ConfiguracionReporte config = ConfiguracionReporte.paraReporteEstudiante(salon, est)
+                .conPeriodo(periodo)
+                .conFormatoVisual(FormatoVisual.GRAFICO);
 
-        if (datos == null || datos.getDatosIndividuales() == null) return false;
+        if (prepararReporte(config)) {
+            ReporteDatosIndividual datos = this.reporteActualEnPantalla.getDatosIndividuales();
+            
+            DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+            if (datos != null && datos.getPromedioPorTema() != null) {
+                for (Map.Entry<String, Double> entry : datos.getPromedioPorTema().entrySet()) {
+                    double valorRaw = entry.getValue();
 
-        Map<String, Double> promedios = datos.getDatosIndividuales().getPromedioPorTema();
+                    double valorGrafico;
+                    if (valorRaw <= 1.0) {
+                        valorGrafico = valorRaw * 100.0;
+                    } else {
+                        valorGrafico = valorRaw;
+                    }
+                    dataset.addValue(valorGrafico, "Estudiante", entry.getKey());
+                }
+            }
 
-        if (promedios == null || promedios.isEmpty()) {
-            return false; // No hay datos de temas para graficar
+            JFreeChart barChart = ChartFactory.createBarChart(
+                    "Desempeño de " + est.getNombre(),
+                    "Tema",
+                    "Aciertos (%)",
+                    dataset,
+                    PlotOrientation.VERTICAL,
+                    false, true, false);
+
+            ChartPanel chartPanel = new ChartPanel(barChart);
+            chartPanel.setPreferredSize(new java.awt.Dimension(panelContenedor.getWidth(), panelContenedor.getHeight()));
+            
+            panelContenedor.removeAll();
+            panelContenedor.setLayout(new BorderLayout());
+            panelContenedor.add(chartPanel, BorderLayout.CENTER);
+            panelContenedor.validate();
+            
+            return true;
         }
-
-        // 2. CREAR EL SET DE DATOS
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (Map.Entry<String, Double> entry : promedios.entrySet()) {
-            dataset.addValue(entry.getValue(), "% Aciertos", entry.getKey());
-        }
-
-        // 3. GENERAR EL GRÁFICO
-        JFreeChart barChart = ChartFactory.createBarChart(
-            "Desempeño por Tema de " + est.getNombre(), // Título
-            "Temas", "% Aciertos", dataset,
-            PlotOrientation.VERTICAL, true, true, false
-        );
-
-        // 4. MOSTRAR EL PANEL
-        // (Asegúrate que tu panel 'graficoEstReportesMaestro' tenga BorderLayout)
-        ChartPanel chartPanel = new ChartPanel(barChart);
-        chartPanel.setMouseWheelEnabled(true);
-        panelContenedor.removeAll();
-        panelContenedor.add(chartPanel, BorderLayout.CENTER); 
-        panelContenedor.revalidate();
-        panelContenedor.repaint();
-        return true;
+        return false;
     }
-    
-    public void exportarReporte(
-        Salon salon, 
-        PeriodoReporte periodo, 
-        Estudiante est, 
-        FormatoArchivo formato, 
-        FormatoVisual visual
-) {
-    
-        // 1. Genera los datos (usando el helper que YA tenemos)
-        Reporte datos = generarReporte(salon, periodo, est);
 
-        if (datos == null) {
-            JOptionPane.showMessageDialog(null, "No se encontraron datos para exportar en este período.", "Error", JOptionPane.WARNING_MESSAGE);
-            return;
+    /**
+     * CASO 6: EXPORTAR (Genérico)
+     * Este lo llamarán tus botones de exportar PDF/Excel.
+     */
+    public void exportarReporte(Salon s, PeriodoReporte p, Estudiante e, FormatoArchivo arch, FormatoVisual vis) {
+        // Si el reporte en pantalla coincide con lo que piden, lo usamos.
+        // Si no (o es null), lo regeneramos rápido.
+        if (this.reporteActualEnPantalla == null) {
+            ConfiguracionReporte config;
+            if (e != null) {
+                config = ConfiguracionReporte.paraReporteEstudiante(s,e).conPeriodo(p);
+            } else {
+                config = ConfiguracionReporte.paraReporteSalon(s).conPeriodo(p);
+            }
+            prepararReporte(config);
         }
-
-        // 2. Crea el 'trabajador' (Generador)
-        IGeneradorReporte generador;
-
-        if (formato == FormatoArchivo.PDF) {
-            generador = new GeneradorPDF(visual);
+        
+        if (this.reporteActualEnPantalla != null) {
+            try {
+                IGeneradorReporte gen;
+                if (arch == FormatoArchivo.EXCEL) {
+                    gen = new GeneradorExcel(vis);
+                } else {
+                    gen = new GeneradorPDF(vis);
+                }
+                gen.guardar(this.reporteActualEnPantalla);
+                JOptionPane.showMessageDialog(null, "Archivo exportado con éxito.");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al exportar: " + ex.getMessage());
+            }
         } else {
-            generador = new GeneradorExcel(visual);
-        }
-
-        // 3. Guarda el archivo (y maneja cualquier error)
-        try {
-            generador.guardar(datos);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al exportar el archivo: " + e.getMessage(), "Error de Exportación", JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace(); // Muestra el error en la consola
+            JOptionPane.showMessageDialog(null, "No hay datos para exportar.");
         }
     }
     
@@ -2124,18 +2359,7 @@ public class SistemaControlador {
         return null; // No se encontró
     }
     
-    // Método auxiliar para buscar un Logro por su ID numérico
-    public Logro buscarLogroPorId(int id) {
-        // Asumo que tienes una lista maestra llamada 'listaLogros' en el controlador
-        if (this.listaLogros != null) {
-            for (Logro l : this.listaLogros) {
-                if (l.getId() == id) {
-                    return l;
-                }
-            }
-        }
-        return null;
-    }
+    
     
     public void cargarDatosPresentacion(
         javax.swing.JLabel lblSubtema, 
@@ -2325,4 +2549,351 @@ public class SistemaControlador {
         }
     }
     
+    public void cargarLogrosMaestros() {
+        try {
+            // 1. Crear el mapa de temas para búsqueda rápida
+            // (IMPORTANTE: Asegúrate de que 'this.listaTemas' ya esté cargada antes de llamar a esto)
+            Map<Integer, Tema> mapaTemas = crearMapaDeTemas();
+            
+            // 2. Cargar el JSON de Logros
+            String ruta = "/data/logros.json"; 
+            Reader reader = new InputStreamReader(getClass().getResourceAsStream(ruta), "UTF-8");
+            
+            Gson gson = new Gson();
+            Type tipoLista = new TypeToken<ArrayList<Logro>>(){}.getType();
+            
+            this.listaLogros = gson.fromJson(reader, tipoLista);
+            
+            // 3. VINCULACIÓN AUTOMÁTICA
+            // Recorremos los logros y usamos el 'idTema' para encontrar su pareja
+            for (Logro l : this.listaLogros) {
+                int idBuscado = l.getIdTema(); // El número que vino del JSON (ej: 34)
+                
+                Tema temaEncontrado = mapaTemas.get(idBuscado);
+                
+                if (temaEncontrado != null) {
+                    l.setTema(temaEncontrado); // ¡Conexión exitosa!
+                } else {
+                    System.err.println("Advertencia: El logro '" + l.getNombre() + "' apunta al tema ID " + idBuscado + " pero no existe.");
+                }
+            }
+            
+            System.out.println("Logros cargados y vinculados dinámicamente: " + this.listaLogros.size());
+            reader.close();
+            
+        } catch (Exception e) {
+            System.err.println("Error cargando logros.json: " + e.getMessage());
+            e.printStackTrace();
+            this.listaLogros = new ArrayList<>();
+        }
+    }
+    
+    // Este método aplana la estructura de árbol en un Mapa simple: ID -> Objeto Tema
+    private Map<Integer, Tema> crearMapaDeTemas() {
+        Map<Integer, Tema> mapa = new HashMap<>();
+        
+        // Recorremos la lista maestra de temas (suponiendo que ya está cargada)
+        if (this.listaTemas != null) {
+            for (Tema t : this.listaTemas) {
+                agregarTemaYHijosAlMapa(t, mapa);
+            }
+        }
+        return mapa;
+    }
+
+    // Método recursivo para buscar dentro de los hijos, nietos, etc.
+    private void agregarTemaYHijosAlMapa(Tema t, Map<Integer, Tema> mapa) {
+        mapa.put(t.getId(), t); // Guardamos el tema actual
+        
+        // Si tiene hijos, nos metemos en cada uno (Recursividad)
+        if (t.getTemasHijos() != null) {
+            for (Tema hijo : t.getTemasHijos()) {
+                agregarTemaYHijosAlMapa(hijo, mapa);
+            }
+        }
+    }
+    
+    // Método para descargar el historial completo de ejercicios
+    public void cargarHistorialDeResultados(Estudiante est) {
+        if (est == null) return;
+        
+        Firestore db = FirestoreClient.getFirestore();
+        try {
+            // Buscamos en la subcolección: usuarios -> username -> resultados
+            List<QueryDocumentSnapshot> docs = db.collection("usuarios")
+                    .document(est.getUsername())
+                    .collection("resultados")
+                    .get().get().getDocuments(); // .get() futuro -> .get() lista
+            
+            // Limpiamos la lista local para no duplicar si llamamos esto dos veces
+            // (Asumiendo que Progreso tiene un getter para la lista o un método clear)
+            // Si 'resultados' es privado, necesitas agregar un método public void limpiarResultados() en Progreso.java
+            est.getProgreso().getResultados().clear(); 
+
+            for (DocumentSnapshot doc : docs) {
+                // Reconstruir objeto Resultado
+                Resultado res = new Resultado();
+                
+                // Fecha
+                String fechaStr = doc.getString("fecha");
+                if (fechaStr != null) res.setFecha(LocalDate.parse(fechaStr));
+                
+                // Datos básicos
+                Boolean esCorrecto = doc.getBoolean("esCorrecto");
+                res.setEsCorrecto(esCorrecto != null ? esCorrecto : false);
+                
+                Long ptos = doc.getLong("puntos");
+                res.setPuntos(ptos != null ? ptos.intValue() : 0);
+                
+                res.setRespuestaUsuario(doc.getString("respuestaUsuario"));
+                
+                // Reconstruir Ejercicio (Parcial)
+                // No necesitamos todo el ejercicio, solo el TEMA para que funcionen los cálculos de logros
+                String nombreTema = doc.getString("tema");
+                Tema temaObj = buscarTemaPorNombre(nombreTema); // Usamos tu método de búsqueda
+                
+                Ejercicio ejFalso = new Ejercicio();
+                ejFalso.setTema(temaObj);
+                // Si guardaste el ID del ejercicio, podrías buscarlo completo si quisieras
+                
+                res.setEjercicio(ejFalso);
+                
+                // Agregar al progreso local
+                est.getProgreso().agregarResultado(res);
+            }
+            
+            System.out.println("Historial cargado: " + docs.size() + " ejercicios.");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // Calcula la fecha de inicio según el Enum seleccionado
+    private LocalDate calcularFechaInicio(PeriodoReporte periodo) {
+        LocalDate hoy = LocalDate.now();
+        switch (periodo) {
+            case SEMANA:
+                return hoy.minusWeeks(1);
+            case MES:
+                return hoy.minusMonths(1);
+            case TRIMESTRE:
+                return hoy.minusMonths(3);
+            case COMPLETO:
+                return LocalDate.of(2020, 1, 1); // Una fecha muy antigua
+            default:
+                return hoy.minusMonths(1);
+        }
+    }
+    
+    /**
+     * MOTOR DE REPORTES:
+     * Toma una configuración, va a Firebase, descarga los datos necesarios,
+     * hace los cálculos matemáticos y devuelve el objeto Reporte listo.
+     */
+    public Reporte generarReporteDesdeFirebase(ConfiguracionReporte config) {
+        Firestore db = FirestoreClient.getFirestore();
+        
+        // 1. Preparar Fechas
+        LocalDate fechaFin = LocalDate.now();
+        LocalDate fechaInicio = calcularFechaInicio(config.getPeriodo()); // Usamos el helper
+        
+        // Creamos el objeto Reporte base
+        Reporte reporteFinal = new Reporte(config.getSalon(), fechaInicio, fechaFin);
+
+        try {
+            
+            // CASO A: REPORTE INDIVIDUAL (Un solo estudiante)
+            
+            if (config.esReporteIndividual()) {
+                Estudiante est = config.getEstudiante();
+                
+                if (est.getUsername() == null || est.getUsername().isEmpty()) {
+                    System.err.println("Error: Estudiante sin correo, no se puede generar reporte.");
+                    return null; 
+                }
+                
+                // Descargamos el mapa "progresoNiveles" de este estudiante específico
+                DocumentSnapshot userDoc = db.collection("usuarios").document(est.getUsername()).get().get();
+                Map<String, Object> nivelesMap = (Map<String, Object>) userDoc.get("progresoNiveles");
+
+                if (nivelesMap != null) {
+                    for (Map.Entry<String, Object> entry : nivelesMap.entrySet()) {
+                        String nombreTema = entry.getKey();
+                        String nombreNivel = (String) entry.getValue();
+                        
+                        Tema t = buscarTemaPorNombre(nombreTema);
+                        if (t != null) {
+                            try {
+                                NivelDificultad n = NivelDificultad.valueOf(nombreNivel);
+                                est.getProgreso().desbloquearNivel(t, n);
+                            } catch (Exception ex) { /* Ignorar error de conversión */ }
+                        }
+                    }
+                }
+                
+                // 1. Descargar resultados filtrados por fecha
+                // Nota: Guardamos fecha como String ISO-8601 ("2023-11-29"), así que la comparación de Strings funciona
+                List<QueryDocumentSnapshot> docs = db.collection("usuarios")
+                        .document(est.getUsername())
+                        .collection("resultados")
+                        .whereGreaterThanOrEqualTo("fecha", fechaInicio.toString())
+                        .get().get().getDocuments();
+
+                // 2. Agrupar datos por tema
+                // Mapa temporal: "Matemáticas" -> {puntos: 50, intentos: 5, aciertos: 3}
+                Map<String, ReporteDatosPorTema> acumulador = new HashMap<>();
+                int puntajeTotalPeriodo = 0;
+                
+                for (DocumentSnapshot doc : docs) {
+                    String nombreTema = doc.getString("tema");
+                    boolean esCorrecto = doc.getBoolean("esCorrecto");
+                    int puntos = doc.getLong("puntos").intValue();
+                    
+                    // Inicializar si no existe el tema en el mapa
+                    acumulador.putIfAbsent(nombreTema, new ReporteDatosPorTema(nombreTema));
+                    
+                    // Crear un objeto Resultado temporal para usar tu método 'agregarResultado'
+                    Resultado resTemp = new Resultado();
+                    resTemp.setEsCorrecto(esCorrecto);
+                    resTemp.setPuntos(puntos);
+                    
+                    acumulador.get(nombreTema).agregarResultado(resTemp);
+                    puntajeTotalPeriodo += puntos;
+                }
+
+                // 3. Convertir al formato que pide ReporteDatosIndividual
+                List<ReporteDetalleTemaEstudiante> detalles = new ArrayList<>();
+                Map<String, Double> promedios = new HashMap<>();
+                String temaMasDificil = "Ninguno";
+                double menorPorcentaje = 101.0;
+
+                for (ReporteDatosPorTema datos : acumulador.values()) {
+                    datos.calcularPorcentaje(); // Método de tu clase
+                    
+                    // Buscar nivel actual (lo sacamos del estudiante en memoria)
+                    Tema tObj = buscarTemaPorNombre(datos.getNombreTema());
+                    NivelDificultad nivel = est.getProgreso().getNivelActual(tObj);
+
+                    detalles.add(new ReporteDetalleTemaEstudiante(
+                            datos.getNombreTema(),
+                            nivel,
+                            datos.getPuntosTotales(),
+                            datos.getPorcentajeAciertos(),
+                            datos.getIntentosTotales()
+                    ));
+                    
+                    promedios.put(datos.getNombreTema(), datos.getPorcentajeAciertos());
+
+                    // Calcular tema más difícil
+                    if (datos.getPorcentajeAciertos() < menorPorcentaje) {
+                        menorPorcentaje = datos.getPorcentajeAciertos();
+                        temaMasDificil = datos.getNombreTema();
+                    }
+                }
+                
+                // Calcular porcentaje global
+                double porcentajeGlobal = docs.isEmpty() ? 0 : 
+                        (double) docs.stream().filter(d -> d.getBoolean("esCorrecto")).count() / docs.size();
+
+                // 4. Empaquetar todo
+                ReporteDatosIndividual datosInd = new ReporteDatosIndividual(
+                        puntajeTotalPeriodo,
+                        porcentajeGlobal,
+                        temaMasDificil,
+                        promedios,
+                        detalles
+                );
+                
+                reporteFinal.setDatosIndividuales(est, datosInd);
+
+
+            // =================================================================
+            // CASO B: REPORTE DE SALÓN (Todos los estudiantes)
+            // =================================================================
+            } else {
+                // Primero necesitamos la lista de estudiantes REALES del salón
+                // (Usamos el método que hicimos antes para asegurar que la lista esté llena)
+                cargarEstudiantesDelSalon(config.getSalon()); 
+                List<Estudiante> estudiantesDelSalon = config.getSalon().getListaEstudiantes();
+
+                // --- SUB-CASO B1: RANKING (Tabla de Posiciones) ---
+                if (config.getFormatoVisual() == FormatoVisual.TABLA) { // Asumimos que Tabla = Ranking en tu lógica
+                    
+                    List<RankingEntry> ranking = new ArrayList<>();
+                    
+                    for (Estudiante e : estudiantesDelSalon) {
+                        // Para ranking usamos los puntos TOTALES (históricos) que ya están cargados en el perfil
+                        ranking.add(new RankingEntry(e, e.getProgreso().getPuntajeTotalGeneral())); // O e.getPuntos() si tienes el atributo directo
+                    }
+                    
+                    // Ordenar de Mayor a Menor
+                    ranking.sort((r1, r2) -> Integer.compare(r2.getPuntaje(), r1.getPuntaje()));
+                    
+                    reporteFinal.setRanking(ranking);
+                    
+                } 
+                // --- SUB-CASO B2: DETALLADO/GRÁFICO (Estadísticas del Salón) ---
+                else {
+                    Map<String, ReporteDatosPorTema> acumuladorSalon = new HashMap<>();
+                    
+                    // Recorremos CADA estudiante y bajamos sus resultados del periodo
+                    // (Esto puede tardar unos segundos si son muchos alumnos)
+                    for (Estudiante e : estudiantesDelSalon) {
+                        if (e.getUsername() == null || e.getUsername().isEmpty()) {
+                            System.err.println("Saltando estudiante sin correo (ID: " + e.getIdUsuario() + ")");
+                            continue; // Saltamos al siguiente sin romper el programa
+                        }
+                        
+                        List<QueryDocumentSnapshot> resultadosEst = db.collection("usuarios")
+                                .document(e.getUsername())
+                                .collection("resultados")
+                                .whereGreaterThanOrEqualTo("fecha", fechaInicio.toString())
+                                .get().get().getDocuments();
+                        
+                        for (DocumentSnapshot doc : resultadosEst) {
+                            String tema = doc.getString("tema");
+                            boolean correcto = doc.getBoolean("esCorrecto");
+                            int puntos = doc.getLong("puntos").intValue();
+                            
+                            acumuladorSalon.putIfAbsent(tema, new ReporteDatosPorTema(tema));
+                            
+                            Resultado r = new Resultado();
+                            r.setEsCorrecto(correcto);
+                            r.setPuntos(puntos);
+                            
+                            acumuladorSalon.get(tema).agregarResultado(r);
+                        }
+                    }
+                    
+                    // Calcular porcentajes finales por tema
+                    for (ReporteDatosPorTema dt : acumuladorSalon.values()) {
+                        dt.calcularPorcentaje();
+                    }
+                    
+                    reporteFinal.setDatosPorTema(acumuladorSalon);
+                }
+            }
+
+            return reporteFinal;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error generando reporte: " + e.getMessage());
+            return null;
+        }
+    }
+    
+    public boolean prepararReporte(ConfiguracionReporte config) {
+        try {
+            // Llamamos a la lógica pesada que te pasé antes
+            // (Asegúrate de que el método generarReporteDesdeFirebase devuelva un Reporte)
+            this.reporteActualEnPantalla = generarReporteDesdeFirebase(config);
+            
+            return this.reporteActualEnPantalla != null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

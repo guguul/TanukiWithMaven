@@ -2766,6 +2766,7 @@ public class MainJFrame extends javax.swing.JFrame {
         controlador.llenarComboSalones(jComboBox3);
         JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane2;
         tabbedPane.setSelectedComponent(solicitudesMaestro);
+        controlador.mostrarSolicitudes(jList1);
     }//GEN-LAST:event_solicitudesActionPerformed
 
     private void salonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salonesActionPerformed
@@ -3479,6 +3480,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Salón no encontrado.");
                 return;
             }
+            
+            controlador.cargarEstudiantesDelSalon(salon);
             
             String periodoStr = (String) cboPeriodoEst.getSelectedItem(); 
             this.periodoParaReporte = getPeriodoEnumFromString(periodoStr);
@@ -4710,4 +4713,14 @@ public class MainJFrame extends javax.swing.JFrame {
         public boolean isBorderOpaque() {
             return false;
         }
+        
+        private PeriodoReporte getPeriodoEnumFromString(String textoCombo) {
+        // Ajusta los textos según tu ComboBox real
+        switch (textoCombo) {
+            case "Última Semana": return PeriodoReporte.SEMANA;
+            case "Último Mes": return PeriodoReporte.MES;
+            case "Último Trimestre": return PeriodoReporte.TRIMESTRE;
+            default: return PeriodoReporte.COMPLETO; // Histórico
+        }
+    }
     }
