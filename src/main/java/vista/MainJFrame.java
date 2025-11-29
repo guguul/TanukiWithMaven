@@ -656,7 +656,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 aceptar1ActionPerformed(evt);
             }
         });
-        inicioSesion.add(aceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 610, 260, 70));
+        inicioSesion.add(aceptar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 610, 270, 70));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/inicioSesion.png"))); // NOI18N
         inicioSesion.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
@@ -1190,7 +1190,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 seguirPresentacionActionPerformed(evt);
             }
         });
-        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 620, 240, 70));
+        subtemaEst.add(seguirPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 630, 210, 50));
 
         volver11.setBorderPainted(false);
         volver11.setContentAreaFilled(false);
@@ -1223,7 +1223,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 irADescripcionActionPerformed(evt);
             }
         });
-        PresentPJ.add(irADescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 620, 250, 70));
+        PresentPJ.add(irADescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 630, 230, 50));
 
         volver.setBorderPainted(false);
         volver.setContentAreaFilled(false);
@@ -1237,7 +1237,7 @@ public class MainJFrame extends javax.swing.JFrame {
         imagenPresentacionPJ.setBackground(new java.awt.Color(255, 255, 255));
         PresentPJ.add(imagenPresentacionPJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 320, 460));
 
-        saludoEstudiante.setFont(new java.awt.Font("Cy Grotesk Key", 1, 36)); // NOI18N
+        saludoEstudiante.setFont(new java.awt.Font("Cy Grotesk Key", 1, 40)); // NOI18N
         saludoEstudiante.setForeground(new java.awt.Color(255, 255, 255));
         PresentPJ.add(saludoEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 310, 60));
 
@@ -1273,7 +1273,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         descripcion.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         descripcion.setForeground(new java.awt.Color(255, 255, 255));
-        descripcionTema.add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 470, 370));
+        descripcionTema.add(descripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 230, 450, 350));
 
         tituloContenidoPractica.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         descripcionTema.add(tituloContenidoPractica, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, 500, 70));
@@ -1302,7 +1302,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 tutorialActionPerformed(evt);
             }
         });
-        previaPractica.add(tutorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 600, 210, 70));
+        previaPractica.add(tutorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 610, 190, 60));
 
         seguir_temahijo.setBorderPainted(false);
         seguir_temahijo.setContentAreaFilled(false);
@@ -1311,7 +1311,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 seguir_temahijoActionPerformed(evt);
             }
         });
-        previaPractica.add(seguir_temahijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 600, 200, 70));
+        previaPractica.add(seguir_temahijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 610, 190, 60));
         previaPractica.add(imagenCelebrando, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 370, 450));
 
         jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/iniciarPractica.png"))); // NOI18N
@@ -2524,7 +2524,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         "Falló el inicio de sesión", JOptionPane.ERROR_MESSAGE);
                 } 
                 else {
-                    JOptionPane.showMessageDialog(null,"Inicio de sesion exitoso","BIENVENIDO!",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Inicio de sesión exitoso","¡BIENVENIDO!",JOptionPane.INFORMATION_MESSAGE);
 
                     this.usuarioActual = usuarioFinal;
 
@@ -2855,7 +2855,7 @@ public class MainJFrame extends javax.swing.JFrame {
             cardLayout.show(cardSalonEst,"unirseSalonEst");
         }
         else {
-            JOptionPane.showMessageDialog(null,"Su usuario ya se encuentra admitido en un salon","Salon registrado",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Su usuario ya se encuentra admitido en un salón","Salón registrado",JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_unirseSalonActionPerformed
@@ -3259,10 +3259,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         boolean encontrado = controlador.eliminarSalon(idEliminar);
         if (encontrado){
-            JOptionPane.showMessageDialog(null,"Su salon ha sido eliminado con exito","Salon eliminado",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Su salón ha sido eliminado con éxito","Salon eliminado",JOptionPane.INFORMATION_MESSAGE);
         }
         else {
-            JOptionPane.showMessageDialog(null,"No se ha encontrado el salon con la ID proporcionada","Error al eliminar salon",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"No se ha encontrado el salón con la ID proporcionada","Error al eliminar salón",JOptionPane.ERROR_MESSAGE);
         }
         // BOTON PARA ELIMINAR EL SALON SEGUN EL ID INTRODUCIDO
         controlador.MostrarPerfilMaestro(PMNombre, PMApellido, PMusername, PMContrasena, jTable2);
@@ -3273,10 +3273,10 @@ public class MainJFrame extends javax.swing.JFrame {
         boolean sacar = controlador.sacarEstudiante(jComboBox8, jComboBox9);
         
         if (sacar){
-            JOptionPane.showMessageDialog(null,"Se ha removido al estudiante del salon exitosamente","Estudiante eliminado",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Se ha removido al estudiante del salón exitosamente","Estudiante eliminado",JOptionPane.INFORMATION_MESSAGE);
         }
         else{
-            JOptionPane.showMessageDialog(null,"No se encontro al estudiante","Error en sacar al estudiante",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"No se encontró al estudiante","Error en sacar al estudiante",JOptionPane.ERROR_MESSAGE);
         }
         // BOTON PARA SACAR AL ESTUDIANTE SEGUN ID 
     }//GEN-LAST:event_sacarActionPerformed
@@ -4240,12 +4240,12 @@ public class MainJFrame extends javax.swing.JFrame {
         //</editor-fold>
         configurarDisenoTanuki(); 
 
-        /* Create and display the form */
+        /* Create and display the form 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainJFrame().setVisible(true);
             }
-        });
+        });*/
         try {
             // 1. Ruta a tu llave. 
             //    (Usa el nombre de archivo que elegiste)
