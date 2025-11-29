@@ -797,12 +797,12 @@ public class SistemaControlador {
         }
     }
 
-    //DADDY
+   
     
     public void mostrarProgreso(JTable logros, JLabel puntosE, JLabel racha) {
         Estudiante estudianteActual = (Estudiante) usuarioActual;
 
-        // 1. NUEVO: Descargar historial si está vacío
+        // NUEVO: Descargar historial si está vacío
         // (Esto asegura que los cálculos de abajo funcionen)
         if (estudianteActual.getProgreso().getResultados().isEmpty()) {
             cargarHistorialDeResultados(estudianteActual);
@@ -811,22 +811,17 @@ public class SistemaControlador {
             // (Si ya los cargaste en iniciarSesion, esto es redundante pero seguro)
         }
 
-        // 2. Ahora sí, tus cálculos funcionarán porque la lista ya tiene datos
         int puntosTotales = estudianteActual.getProgreso().getPuntajeTotalGeneral();
-        puntosE.setText(puntosTotales + " Puntos");
+        puntosE.setText(String.valueOf(puntosTotales));
 
-        // 3. Verificar Logros (Esto también funcionará ahora)
+        // Verificar Logros 
         verificarYAsignarLogros(estudianteActual);
 
-        // 4. Llenar la Tabla (Tu código original de iconos y filas)
+        // Llenar la Tabla 
         List<Logro> listaL = estudianteActual.getLogros();
 
-        ImageIcon expertoResta = new ImageIcon(getClass().getResource("/imagenes/iconos/experto_resta.png"));
-        ImageIcon geometraFiguras = new ImageIcon(getClass().getResource("/imagenes/iconos/geometra_figuras.png"));
-        ImageIcon maestroSuma = new ImageIcon(getClass().getResource("/imagenes/iconos/maestro_suma.png"));
-        ImageIcon novatoSuma = new ImageIcon(getClass().getResource("/imagenes/iconos/novato_suma.png"));
 
-        String[] columna = {"MEDALLA","TEMA","NOMBRE","DESCRIPCION","PUNTOS"};
+        String[] columna = {"MEDALLA","TEMA","NOMBRE","DESCRIPCIÓN","PUNTOS"};
 
         DefaultTableModel dtm = new DefaultTableModel(null, columna) {
             @Override
@@ -845,7 +840,6 @@ public class SistemaControlador {
             String nombreArchivo = logro.getRutaIcono(); 
             String rutaCompleta = "/imagenes/iconos/" + nombreArchivo;
             
-            // --- DIAGNÓSTICO ---
             System.out.println("--------------------------------------------------");
             System.out.println("Logro: " + logro.getNombre());
             System.out.println("Intentando cargar: " + rutaCompleta);
@@ -853,19 +847,19 @@ public class SistemaControlador {
             java.net.URL imgUrl = getClass().getResource(rutaCompleta);
             
             if (imgUrl != null) {
-                System.out.println("✅ IMAGEN ENCONTRADA: " + imgUrl.toString());
+                System.out.println("IMAGEN ENCONTRADA: " + imgUrl.toString());
                 
                 ImageIcon iconoOriginal = new ImageIcon(imgUrl);
-                // Verificamos si la imagen tiene tamaño real (a veces existen pero pesan 0 bytes)
+               
                 if (iconoOriginal.getIconWidth() > 0) {
                      java.awt.Image img = iconoOriginal.getImage().getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
                      row[0] = new ImageIcon(img);
                 } else {
-                     System.err.println("⚠️ La imagen existe pero parece estar vacía o corrupta.");
+                     System.err.println("La imagen existe pero parece estar vacía o corrupta.");
                      row[0] = null;
                 }
             } else {
-                System.err.println("❌ ERROR: Java no encuentra el archivo en esa ruta.");
+                System.err.println("ERROR: Java no encuentra el archivo en esa ruta.");
                 System.err.println("   Consejo: Verifica mayúsculas/minúsculas o haz Clean & Build.");
                 row[0] = null; 
             }
@@ -928,7 +922,7 @@ public class SistemaControlador {
             }
         }
     }
-        
+       
     private void verificarYAsignarLogros(Estudiante est) {
         Progreso prog = est.getProgreso();
 
@@ -964,7 +958,7 @@ public class SistemaControlador {
         return null;
     }
         
-    //YANKE
+    
     
     public Salon buscarSalonID(int id){
         Firestore db = FirestoreClient.getFirestore();
@@ -999,7 +993,7 @@ public class SistemaControlador {
             int idSalonSolicitado = Integer.parseInt(idField.getText());
             Firestore db = FirestoreClient.getFirestore();
             
-            // 1. Verificar si el salón existe
+            // Verificar si el salón existe
             DocumentReference salonRef = db.collection("salones").document(String.valueOf(idSalonSolicitado));
             DocumentSnapshot salonDoc = salonRef.get().get();
             
@@ -1008,7 +1002,7 @@ public class SistemaControlador {
                 return false;
             }
 
-            // 2. AGREGAR SOLICITUD (Atomicamente)
+            // AGREGAR SOLICITUD (Atomicamente)
             // Esto agrega mi ID a la lista "solicitudesIds" SOLO si no está ya ahí.
             ApiFuture<WriteResult> writeResult = salonRef.update("solicitudesIds", FieldValue.arrayUnion(usuarioActual.getIdUsuario()));
             writeResult.get(); // Esperar a que se guarde
@@ -1078,7 +1072,7 @@ public class SistemaControlador {
                 
                 int idEst = idLong.intValue();
 
-                // TRUCO: Solo lo agregamos si NO estaba ya en la lista de solicitudes
+                // Solo lo agregamos si NO estaba ya en la lista de solicitudes
                 // (Para evitar duplicados si alguien solicitó y a la vez es null)
                 if (!idsYaAgregados.contains(idEst)) {
                     Estudiante est = reconstruirEstudianteDesdeDoc(doc);
@@ -1102,7 +1096,7 @@ public class SistemaControlador {
         Set<Integer> idsYaAgregados = new HashSet<>();
 
         try {
-            // --- PASO 1: TRAER LOS QUE HICIERON SOLICITUD EXPLÍCITA ---
+            // TRAER LOS QUE HICIERON SOLICITUD EXPLÍCITA
             DocumentSnapshot salonDoc = db.collection("salones").document(String.valueOf(idSalon)).get().get();
             
             List<Long> idsSolicitantes = (List<Long>) salonDoc.get("solicitudesIds");
@@ -1124,7 +1118,7 @@ public class SistemaControlador {
                 }
             }
 
-            // --- PASO 2: TRAER A LOS ESTUDIANTES "LIBRES" (SIN SALÓN) ---
+            //TRAER A LOS ESTUDIANTES SIN SALÓN
             // Buscamos: rol == estudiante Y idSalon == null
             List<QueryDocumentSnapshot> estudiantesLibres = db.collection("usuarios")
                     .whereEqualTo("rol", "estudiante")
@@ -1137,7 +1131,7 @@ public class SistemaControlador {
                 
                 int idEst = idLong.intValue();
 
-                // TRUCO: Solo lo agregamos si NO estaba ya en la lista de solicitudes
+                // Solo lo agregamos si NO estaba ya en la lista de solicitudes
                 // (Para evitar duplicados si alguien solicitó y a la vez es null)
                 if (!idsYaAgregados.contains(idEst)) {
                     Estudiante est = reconstruirEstudianteDesdeDoc(doc);
@@ -1164,8 +1158,7 @@ public class SistemaControlador {
         est.setApellido(doc.getString("apellido"));
         est.setUsername(doc.getString("username"));
         
-        // Opcional: Podrías marcar visualmente quién solicitó y quién no, 
-        // pero por ahora devolvemos el objeto limpio.
+        
         return est;
     }
     
@@ -1213,7 +1206,7 @@ public class SistemaControlador {
         
         Firestore db = FirestoreClient.getFirestore();
         try {
-            // 1. Buscamos el documento del salón para obtener la lista actualizada de IDs
+            // Buscamos el documento del salón para obtener la lista actualizada de IDs
             DocumentSnapshot salonDoc = db.collection("salones").document(String.valueOf(salon.getIdSalon())).get().get();
             List<Long> idsEstudiantes = (List<Long>) salonDoc.get("listaEstudiantesIds");
 
@@ -1221,7 +1214,7 @@ public class SistemaControlador {
             salon.getListaEstudiantes().clear();
 
             if (idsEstudiantes != null && !idsEstudiantes.isEmpty()) {
-                // 2. Por cada ID, buscamos al estudiante real
+                // Por cada ID, buscamos al estudiante real
                 for (Long idLong : idsEstudiantes) {
                     QuerySnapshot q = db.collection("usuarios").whereEqualTo("idUsuario", idLong).get().get();
                     if (!q.isEmpty()) {
@@ -1315,7 +1308,7 @@ public class SistemaControlador {
             Long grado = salonSnap.getLong("grado");
             String seccion = salonSnap.getString("seccion");
 
-            // 2. ACTUALIZAR FIREBASE (Batch/Lote para que sea seguro)
+            // 2. ACTUALIZAR FIREBASE 
             // a. Quitar de solicitudes y agregar a inscritos en el SALÓN
             salonRef.update("solicitudesIds", FieldValue.arrayRemove(estudiante.getIdUsuario()));
             salonRef.update("listaEstudiantesIds", FieldValue.arrayUnion(estudiante.getIdUsuario()));
@@ -2404,12 +2397,12 @@ public class SistemaControlador {
             lblTitulo.setText("<html><div style='text-align: center; width: 350px;'>" + nombreTema + "</div></html>");
         }
 
-        // 2. DESCRIPCIÓN (CORREGIDO PARA QUE QUEPA)
+        // 2. DESCRIPCIÓN
         if (lblDescripcion != null) {
             String textoDesc = this.temaSeleccionado.getDescripcion();
             if (textoDesc == null) textoDesc = "Sin descripción disponible.";
 
-            // CAMBIOS:
+            
             // - width: 360px (Un poco más angosto para que no roce los bordes)
             // - font-size: 14px (Controlamos el tamaño de la letra)
             // - text-align: justify (Se ve más ordenado)
@@ -2418,7 +2411,7 @@ public class SistemaControlador {
 
             lblDescripcion.setText(htmlTexto);
 
-            // TRUCO DE ORO: Forzar que el texto empiece desde ARRIBA del label
+            //Forzar que el texto empiece desde ARRIBA del label
             lblDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         }
 
@@ -2504,11 +2497,10 @@ public class SistemaControlador {
                 rutaFinal = rutaImagen; 
             } else {
                 // Viene del Excel de Ejercicios (ej: triangulo.png)
-                // ASEGÚRATE QUE ESTA CARPETA COINCIDA CON LA TUYA EN RESOURCES
                 rutaFinal = "/imagenesejercicios/" + rutaImagen; 
             }
 
-            // --- EL CHISMOSO (DEBUG) ---
+          
             System.out.println("🔍 Buscando imagen en: [" + rutaFinal + "]");
 
             java.net.URL url = getClass().getResource(rutaFinal);
@@ -2703,7 +2695,7 @@ public class SistemaControlador {
 
         try {
             
-            // CASO A: REPORTE INDIVIDUAL (Un solo estudiante)
+            // REPORTE INDIVIDUAL (Un solo estudiante)
             
             if (config.esReporteIndividual()) {
                 Estudiante est = config.getEstudiante();
@@ -2808,9 +2800,9 @@ public class SistemaControlador {
                 reporteFinal.setDatosIndividuales(est, datosInd);
 
 
-            // =================================================================
-            // CASO B: REPORTE DE SALÓN (Todos los estudiantes)
-            // =================================================================
+            
+            // REPORTE DE SALÓN (Todos los estudiantes de un salon)
+           
             } else {
                 // Primero necesitamos la lista de estudiantes REALES del salón
                 // (Usamos el método que hicimos antes para asegurar que la lista esté llena)
@@ -2833,12 +2825,11 @@ public class SistemaControlador {
                     reporteFinal.setRanking(ranking);
                     
                 } 
-                // --- SUB-CASO B2: DETALLADO/GRÁFICO (Estadísticas del Salón) ---
+                //  DETALLADO/GRÁFICO (Estadísticas del Salón) ---
                 else {
                     Map<String, ReporteDatosPorTema> acumuladorSalon = new HashMap<>();
                     
-                    // Recorremos CADA estudiante y bajamos sus resultados del periodo
-                    // (Esto puede tardar unos segundos si son muchos alumnos)
+                    
                     for (Estudiante e : estudiantesDelSalon) {
                         if (e.getUsername() == null || e.getUsername().isEmpty()) {
                             System.err.println("Saltando estudiante sin correo (ID: " + e.getIdUsuario() + ")");
