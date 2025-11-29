@@ -2779,7 +2779,7 @@ public class MainJFrame extends javax.swing.JFrame {
         controlador.llenarComboSalones(jComboBox3);
         JTabbedPane tabbedPane = (JTabbedPane) this.jTabbedPane2;
         tabbedPane.setSelectedComponent(solicitudesMaestro);
-        controlador.mostrarSolicitudes(jList1);
+        
     }//GEN-LAST:event_solicitudesActionPerformed
 
     private void salonesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salonesActionPerformed
@@ -3217,6 +3217,7 @@ public class MainJFrame extends javax.swing.JFrame {
         controlador.mostrarEstudiantesSinSalon(jList2);
         CardLayout cardLayout = (CardLayout) this.cardSalonesMaestro.getLayout();
         cardLayout.show(cardSalonesMaestro,"aggEstSalonMaestro");
+        controlador.mostrarSolicitudes(jList2);
     }//GEN-LAST:event_aggEstActionPerformed
 
     private void mostrarIdSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarIdSalonActionPerformed
