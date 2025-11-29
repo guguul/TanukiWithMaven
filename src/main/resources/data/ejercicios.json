@@ -30,7 +30,7 @@
     "idEjercicio": 695,
     "rutaImagen": "",
     "retroalimentacion": "9 es el número mayor.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -268,7 +268,7 @@
     "idEjercicio": 702,
     "rutaImagen": "",
     "retroalimentacion": "21 es un número impar.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -336,7 +336,7 @@
     "idEjercicio": 704,
     "rutaImagen": "",
     "retroalimentacion": "46 es mayor que 45 y menor que 50.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -404,7 +404,7 @@
     "idEjercicio": 706,
     "rutaImagen": "",
     "retroalimentacion": "18 es múltiplo de 6.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -574,7 +574,7 @@
     "idEjercicio": 711,
     "rutaImagen": "",
     "retroalimentacion": "480 es el número más cercano a 500.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -676,7 +676,7 @@
     "idEjercicio": 714,
     "rutaImagen": "",
     "retroalimentacion": "1,250 está entre 1,245 y 1,255.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -710,7 +710,7 @@
     "idEjercicio": 715,
     "rutaImagen": "",
     "retroalimentacion": "0.5 está entre 0.3 y 0.6.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -778,7 +778,7 @@
     "idEjercicio": 717,
     "rutaImagen": "",
     "retroalimentacion": "2.49 se redondea a 2.5.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -812,7 +812,7 @@
     "idEjercicio": 718,
     "rutaImagen": "",
     "retroalimentacion": "0.70 y 0.7 tienen el mismo valor.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -948,7 +948,7 @@
     "idEjercicio": 722,
     "rutaImagen": "",
     "retroalimentacion": "5.65 está entre 5.6 y 5.8.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1152,7 +1152,7 @@
     "idEjercicio": 728,
     "rutaImagen": "",
     "retroalimentacion": "1.26 está entre 1.25 y 1.3.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1220,7 +1220,7 @@
     "idEjercicio": 730,
     "rutaImagen": "",
     "retroalimentacion": "4.59 se redondea a 4.6.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1254,7 +1254,7 @@
     "idEjercicio": 731,
     "rutaImagen": "",
     "retroalimentacion": "2.50 y 2.5 tienen el mismo valor.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1322,7 +1322,7 @@
     "idEjercicio": 733,
     "rutaImagen": "",
     "retroalimentacion": "5.9 es el más cercano a 6.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1390,7 +1390,7 @@
     "idEjercicio": 735,
     "rutaImagen": "",
     "retroalimentacion": "1/3 representa una parte de tres.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1628,7 +1628,7 @@
     "idEjercicio": 742,
     "rutaImagen": "",
     "retroalimentacion": "4/8 simplifica a 1/2.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1662,7 +1662,7 @@
     "idEjercicio": 743,
     "rutaImagen": "",
     "retroalimentacion": "1/5 es una parte de cinco.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1696,7 +1696,7 @@
     "idEjercicio": 744,
     "rutaImagen": "",
     "retroalimentacion": "3/4 es mayor que 3/5.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1730,7 +1730,7 @@
     "idEjercicio": 745,
     "rutaImagen": "",
     "retroalimentacion": "2/4 simplifica a 1/2.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1832,7 +1832,7 @@
     "idEjercicio": 748,
     "rutaImagen": "",
     "retroalimentacion": "7/8 ≈ 0.875, la más cercana a 1.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1866,7 +1866,7 @@
     "idEjercicio": 749,
     "rutaImagen": "",
     "retroalimentacion": "6/12 simplifica a 1/2.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1900,7 +1900,7 @@
     "idEjercicio": 750,
     "rutaImagen": "",
     "retroalimentacion": "1/2 \u003c 3/5.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -1934,7 +1934,7 @@
     "idEjercicio": 751,
     "rutaImagen": "",
     "retroalimentacion": "8/12 simplifica a 2/3.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -7489,7 +7489,7 @@
     "grado": 1,
     "idEjercicio": 913,
     "rutaImagen": "",
-    "retroalimentacion": "Cada término se duplica: 32 × 2 \u003d 64.",
+    "retroalimentacion": "Cada término se duplica: 32 × 2 = 64.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7523,7 +7523,7 @@
     "grado": 1,
     "idEjercicio": 914,
     "rutaImagen": "",
-    "retroalimentacion": "Diferencias crecientes: +3, +5, +7, +9… siguiente +11 → 26 + 11 \u003d 37.",
+    "retroalimentacion": "Diferencias crecientes: +3, +5, +7, +9… siguiente +11 → 26 + 11 = 37.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7557,7 +7557,7 @@
     "grado": 1,
     "idEjercicio": 915,
     "rutaImagen": "",
-    "retroalimentacion": "Suma: 4 + 3 \u003d 7 galletas en total.",
+    "retroalimentacion": "Suma: 4 + 3 = 7 galletas en total.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7591,7 +7591,7 @@
     "grado": 1,
     "idEjercicio": 916,
     "rutaImagen": "",
-    "retroalimentacion": "Resta: 10 − 6 \u003d 4 lápices restantes.",
+    "retroalimentacion": "Resta: 10 − 6 = 4 lápices restantes.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7625,12 +7625,12 @@
     "grado": 1,
     "idEjercicio": 917,
     "rutaImagen": "",
-    "retroalimentacion": "Suma: 7 + 8 \u003d 15 frutas.",
+    "retroalimentacion": "Suma: 7 + 8 = 15 frutas.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si 9 + □ \u003d 14, ¿qué número falta?",
+    "pregunta": "Si 9 + □ = 14, ¿qué número falta?",
     "opciones": [
       "4",
       "5",
@@ -7659,7 +7659,7 @@
     "grado": 1,
     "idEjercicio": 918,
     "rutaImagen": "",
-    "retroalimentacion": "Despeja: 14 − 9 \u003d 5.",
+    "retroalimentacion": "Despeja: 14 − 9 = 5.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7693,7 +7693,7 @@
     "grado": 1,
     "idEjercicio": 919,
     "rutaImagen": "",
-    "retroalimentacion": "Resta: 12 − 4 \u003d 8 globos.",
+    "retroalimentacion": "Resta: 12 − 4 = 8 globos.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7727,12 +7727,12 @@
     "grado": 1,
     "idEjercicio": 920,
     "rutaImagen": "",
-    "retroalimentacion": "Resta: 15 − 7 \u003d 8 pelotas.",
+    "retroalimentacion": "Resta: 15 − 7 = 8 pelotas.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si 11 − □ \u003d 6, ¿cuál es el número faltante?",
+    "pregunta": "Si 11 − □ = 6, ¿cuál es el número faltante?",
     "opciones": [
       "4",
       "5",
@@ -7761,7 +7761,7 @@
     "grado": 1,
     "idEjercicio": 921,
     "rutaImagen": "",
-    "retroalimentacion": "Despeja: 11 − x \u003d 6 → x \u003d 5.",
+    "retroalimentacion": "Despeja: 11 − x = 6 → x = 5.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7795,12 +7795,12 @@
     "grado": 1,
     "idEjercicio": 922,
     "rutaImagen": "",
-    "retroalimentacion": "Suma: 8 + 9 \u003d 17 perros en total.",
+    "retroalimentacion": "Suma: 8 + 9 = 17 perros en total.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si □ + 7 \u003d 13, ¿cuál es el número oculto?",
+    "pregunta": "Si □ + 7 = 13, ¿cuál es el número oculto?",
     "opciones": [
       "5",
       "6",
@@ -7829,7 +7829,7 @@
     "grado": 1,
     "idEjercicio": 923,
     "rutaImagen": "",
-    "retroalimentacion": "Despeja: x + 7 \u003d 13 → x \u003d 6.",
+    "retroalimentacion": "Despeja: x + 7 = 13 → x = 6.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7863,7 +7863,7 @@
     "grado": 1,
     "idEjercicio": 924,
     "rutaImagen": "",
-    "retroalimentacion": "18 + 7 \u003d 25, 25 − 5 \u003d 20.",
+    "retroalimentacion": "18 + 7 = 25, 25 − 5 = 20.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7897,12 +7897,12 @@
     "grado": 1,
     "idEjercicio": 925,
     "rutaImagen": "",
-    "retroalimentacion": "20 − 8 \u003d 12 ovejas restantes.",
+    "retroalimentacion": "20 − 8 = 12 ovejas restantes.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si □ − 5 \u003d 14, ¿cuál es el número que falta?",
+    "pregunta": "Si □ − 5 = 14, ¿cuál es el número que falta?",
     "opciones": [
       "18",
       "19",
@@ -7931,7 +7931,7 @@
     "grado": 1,
     "idEjercicio": 926,
     "rutaImagen": "",
-    "retroalimentacion": "Despeja: x − 5 \u003d 14 → x \u003d 19.",
+    "retroalimentacion": "Despeja: x − 5 = 14 → x = 19.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7965,7 +7965,7 @@
     "grado": 1,
     "idEjercicio": 927,
     "rutaImagen": "",
-    "retroalimentacion": "25 − 10 \u003d 15; 15 + 8 \u003d 23.",
+    "retroalimentacion": "25 − 10 = 15; 15 + 8 = 23.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -7999,12 +7999,12 @@
     "grado": 1,
     "idEjercicio": 928,
     "rutaImagen": "",
-    "retroalimentacion": "Doble significa ×2: x × 2 \u003d 18 → x \u003d 9.",
+    "retroalimentacion": "Doble significa ×2: x × 2 = 18 → x = 9.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si 5 × □ \u003d 35, ¿qué número falta?",
+    "pregunta": "Si 5 × □ = 35, ¿qué número falta?",
     "opciones": [
       "6",
       "7",
@@ -8033,7 +8033,7 @@
     "grado": 1,
     "idEjercicio": 929,
     "rutaImagen": "",
-    "retroalimentacion": "Despeja: 5 × x \u003d 35 → x \u003d 7.",
+    "retroalimentacion": "Despeja: 5 × x = 35 → x = 7.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -8067,7 +8067,7 @@
     "grado": 1,
     "idEjercicio": 930,
     "rutaImagen": "",
-    "retroalimentacion": "Triple de 4 → 4 × 3 \u003d 12.",
+    "retroalimentacion": "Triple de 4 → 4 × 3 = 12.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -8101,12 +8101,12 @@
     "grado": 1,
     "idEjercicio": 931,
     "rutaImagen": "",
-    "retroalimentacion": "División: 30 ÷ 5 \u003d 6 dulces por niño.",
+    "retroalimentacion": "División: 30 ÷ 5 = 6 dulces por niño.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si □ ÷ 4 \u003d 5, ¿cuál es el número oculto?",
+    "pregunta": "Si □ ÷ 4 = 5, ¿cuál es el número oculto?",
     "opciones": [
       "15",
       "18",
@@ -8135,7 +8135,7 @@
     "grado": 1,
     "idEjercicio": 932,
     "rutaImagen": "",
-    "retroalimentacion": "Despeja: x ÷ 4 \u003d 5 → x \u003d 20.",
+    "retroalimentacion": "Despeja: x ÷ 4 = 5 → x = 20.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -8169,7 +8169,7 @@
     "grado": 1,
     "idEjercicio": 933,
     "rutaImagen": "",
-    "retroalimentacion": "x + x/2 \u003d 15 → 3x/2 \u003d 15 → x \u003d 10.",
+    "retroalimentacion": "x + x/2 = 15 → 3x/2 = 15 → x = 10.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -8203,7 +8203,7 @@
     "grado": 1,
     "idEjercicio": 934,
     "rutaImagen": "",
-    "retroalimentacion": "3x − 6 \u003d 12 → 3x \u003d 18 → x \u003d 6.",
+    "retroalimentacion": "3x − 6 = 12 → 3x = 18 → x = 6.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -8238,11 +8238,11 @@
     "idEjercicio": 935,
     "rutaImagen": "1",
     "retroalimentacion": "X es la etiqueta que representa la cantidad de galletas en el plato.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si X\u003d4 y siempre le sumo 3, ¿cuánto es X+3?",
+    "pregunta": "Si X=4 y siempre le sumo 3, ¿cuánto es X+3?",
     "opciones": [
       "6",
       "7",
@@ -8271,12 +8271,12 @@
     "grado": 1,
     "idEjercicio": 936,
     "rutaImagen": "",
-    "retroalimentacion": "Sustituye X por 4 y suma 3: 4 + 3 \u003d 7.",
+    "retroalimentacion": "Sustituye X por 4 y suma 3: 4 + 3 = 7.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Y representa el número de caramelos que tengo cada día. Hoy Y\u003d5, mañana Y\u003d6. ¿Qué representa Y?",
+    "pregunta": "Y representa el número de caramelos que tengo cada día. Hoy Y=5, mañana Y=6. ¿Qué representa Y?",
     "opciones": [
       "Siempre 5",
       "Siempre 6",
@@ -8310,7 +8310,7 @@
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "X + 2 \u003d 7. ¿Qué número es X?",
+    "pregunta": "X + 2 = 7. ¿Qué número es X?",
     "opciones": [
       "4",
       "5",
@@ -8339,12 +8339,12 @@
     "grado": 1,
     "idEjercicio": 938,
     "rutaImagen": "",
-    "retroalimentacion": "Despeja: X \u003d 7 − 2 \u003d 5.",
+    "retroalimentacion": "Despeja: X = 7 − 2 = 5.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si X\u003d9 y Y\u003d3, ¿Cuánto es X−Y?",
+    "pregunta": "Si X=9 y Y=3, ¿Cuánto es X−Y?",
     "opciones": [
       "6",
       "7",
@@ -8412,7 +8412,7 @@
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si X\u003d3, ¿cuánto es 4·X?",
+    "pregunta": "Si X=3, ¿cuánto es 4·X?",
     "opciones": [
       "9",
       "10",
@@ -8480,7 +8480,7 @@
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "X+Y\u003d9. Si X\u003d5, ¿Cuánto es Y?",
+    "pregunta": "X+Y=9. Si X=5, ¿Cuánto es Y?",
     "opciones": [
       "3",
       "4",
@@ -8582,7 +8582,7 @@
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "X + 6 \u003d 14. ¿Qué número es X?",
+    "pregunta": "X + 6 = 14. ¿Qué número es X?",
     "opciones": [
       "7",
       "8",
@@ -8611,7 +8611,7 @@
     "grado": 1,
     "idEjercicio": 946,
     "rutaImagen": "",
-    "retroalimentacion": "X \u003d 14 − 6 \u003d 8.",
+    "retroalimentacion": "X = 14 − 6 = 8.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -8650,7 +8650,7 @@
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "X se duplica cada día. Si X\u003d3 hoy, ¿cuánto será mañana?",
+    "pregunta": "X se duplica cada día. Si X=3 hoy, ¿cuánto será mañana?",
     "opciones": [
       "5",
       "6",
@@ -8679,12 +8679,12 @@
     "grado": 1,
     "idEjercicio": 948,
     "rutaImagen": "",
-    "retroalimentacion": "Duplicar es multiplicar por 2. Entonces 2 x X -\u003e 2 x 3 \u003d 6.",
+    "retroalimentacion": "Duplicar es multiplicar por 2. Entonces 2 x X -> 2 x 3 = 6.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si X\u003d4 y Y\u003d3, ¿Cuánto es 3·X + Y?",
+    "pregunta": "Si X=4 y Y=3, ¿Cuánto es 3·X + Y?",
     "opciones": [
       "12",
       "13",
@@ -8713,12 +8713,12 @@
     "grado": 1,
     "idEjercicio": 949,
     "rutaImagen": "",
-    "retroalimentacion": "3×4 + 3 \u003d 12 + 3 \u003d 15.",
+    "retroalimentacion": "3×4 + 3 = 12 + 3 = 15.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "X + 5 \u003d 11. ¿Qué número es X?",
+    "pregunta": "X + 5 = 11. ¿Qué número es X?",
     "opciones": [
       "5",
       "6",
@@ -8747,12 +8747,12 @@
     "grado": 1,
     "idEjercicio": 950,
     "rutaImagen": "",
-    "retroalimentacion": "X \u003d 11 − 5 \u003d 6.",
+    "retroalimentacion": "X = 11 − 5 = 6.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Si X\u003d6 y resto 2, ¿Cuánto es X−2?",
+    "pregunta": "Si X=6 y resto 2, ¿Cuánto es X−2?",
     "opciones": [
       "3",
       "4",
@@ -8781,7 +8781,7 @@
     "grado": 1,
     "idEjercicio": 951,
     "rutaImagen": "",
-    "retroalimentacion": "6 − 2 \u003d 4.",
+    "retroalimentacion": "6 − 2 = 4.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -8820,7 +8820,7 @@
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "X\u003d5 y Y\u003d4, ¿Cuánto es X·Y?",
+    "pregunta": "X=5 y Y=4, ¿Cuánto es X·Y?",
     "opciones": [
       "9",
       "19",
@@ -8849,12 +8849,12 @@
     "grado": 1,
     "idEjercicio": 953,
     "rutaImagen": "",
-    "retroalimentacion": "5×4 \u003d 20.",
+    "retroalimentacion": "5×4 = 20.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "X+Y+Z\u003d18. Si X\u003d6 y Y\u003d5, ¿cuánto es Z?",
+    "pregunta": "X+Y+Z=18. Si X=6 y Y=5, ¿cuánto es Z?",
     "opciones": [
       "6",
       "7",
@@ -8883,7 +8883,7 @@
     "grado": 1,
     "idEjercicio": 954,
     "rutaImagen": "",
-    "retroalimentacion": "Z \u003d 18 − 6 − 5 \u003d 7.",
+    "retroalimentacion": "Z = 18 − 6 − 5 = 7.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -8985,7 +8985,7 @@
     "grado": 1,
     "idEjercicio": 957,
     "rutaImagen": "",
-    "retroalimentacion": "Multiplicación: 5 × 4 \u003d 20 galletas.",
+    "retroalimentacion": "Multiplicación: 5 × 4 = 20 galletas.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9019,7 +9019,7 @@
     "grado": 1,
     "idEjercicio": 958,
     "rutaImagen": "",
-    "retroalimentacion": "3 × 6 \u003d 18 lápices en total.",
+    "retroalimentacion": "3 × 6 = 18 lápices en total.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9053,7 +9053,7 @@
     "grado": 1,
     "idEjercicio": 959,
     "rutaImagen": "",
-    "retroalimentacion": "Se suman 5 cada vez: 15 + 5 \u003d 20.",
+    "retroalimentacion": "Se suman 5 cada vez: 15 + 5 = 20.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9087,12 +9087,12 @@
     "grado": 1,
     "idEjercicio": 960,
     "rutaImagen": "",
-    "retroalimentacion": "Multiplicación: 3 × 2 \u003d 6 kg.",
+    "retroalimentacion": "Multiplicación: 3 × 2 = 6 kg.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Observa: 7 + ___ \u003d 12. ¿Qué número falta?",
+    "pregunta": "Observa: 7 + ___ = 12. ¿Qué número falta?",
     "opciones": [
       "4",
       "5",
@@ -9121,7 +9121,7 @@
     "grado": 1,
     "idEjercicio": 961,
     "rutaImagen": "",
-    "retroalimentacion": "12 − 7 \u003d 5.",
+    "retroalimentacion": "12 − 7 = 5.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9155,7 +9155,7 @@
     "grado": 1,
     "idEjercicio": 962,
     "rutaImagen": "",
-    "retroalimentacion": "Multiplicación: 6 × 5 \u003d 30 pétalos.",
+    "retroalimentacion": "Multiplicación: 6 × 5 = 30 pétalos.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9189,7 +9189,7 @@
     "grado": 1,
     "idEjercicio": 963,
     "rutaImagen": "",
-    "retroalimentacion": "4 × 2 \u003d 8 asientos.",
+    "retroalimentacion": "4 × 2 = 8 asientos.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9223,7 +9223,7 @@
     "grado": 1,
     "idEjercicio": 964,
     "rutaImagen": "",
-    "retroalimentacion": "Cada número se duplica: 8 × 2 \u003d 16.",
+    "retroalimentacion": "Cada número se duplica: 8 × 2 = 16.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9257,7 +9257,7 @@
     "grado": 1,
     "idEjercicio": 965,
     "rutaImagen": "",
-    "retroalimentacion": "2 × 7 \u003d 14 km.",
+    "retroalimentacion": "2 × 7 = 14 km.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9291,7 +9291,7 @@
     "grado": 1,
     "idEjercicio": 966,
     "rutaImagen": "",
-    "retroalimentacion": "4 × 5 \u003d 20 ruedas.",
+    "retroalimentacion": "4 × 5 = 20 ruedas.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9325,12 +9325,12 @@
     "grado": 1,
     "idEjercicio": 967,
     "rutaImagen": "",
-    "retroalimentacion": "5 × 3 \u003d 15 lados.",
+    "retroalimentacion": "5 × 3 = 15 lados.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
   {
-    "pregunta": "Calcula: 3 + 2 × 4 \u003d ___",
+    "pregunta": "Calcula: 3 + 2 × 4 = ___",
     "opciones": [
       "10",
       "11",
@@ -9359,7 +9359,7 @@
     "grado": 1,
     "idEjercicio": 968,
     "rutaImagen": "",
-    "retroalimentacion": "Primero multiplicar 2 × 4 \u003d 8, luego sumar 3 → 3 + 8 \u003d 11.",
+    "retroalimentacion": "Primero multiplicar 2 × 4 = 8, luego sumar 3 → 3 + 8 = 11.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9393,7 +9393,7 @@
     "grado": 1,
     "idEjercicio": 969,
     "rutaImagen": "",
-    "retroalimentacion": "División: 18 ÷ 6 \u003d 3.",
+    "retroalimentacion": "División: 18 ÷ 6 = 3.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9427,7 +9427,7 @@
     "grado": 1,
     "idEjercicio": 970,
     "rutaImagen": "",
-    "retroalimentacion": "60 ÷ 12 \u003d 5 días.",
+    "retroalimentacion": "60 ÷ 12 = 5 días.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9461,7 +9461,7 @@
     "grado": 1,
     "idEjercicio": 971,
     "rutaImagen": "",
-    "retroalimentacion": "3 × 4 \u003d 12 años.",
+    "retroalimentacion": "3 × 4 = 12 años.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -9495,7 +9495,7 @@
     "grado": 1,
     "idEjercicio": 972,
     "rutaImagen": "",
-    "retroalimentacion": "Secuencia multiplicativa: 16 × 2 \u003d 32.",
+    "retroalimentacion": "Secuencia multiplicativa: 16 × 2 = 32.",
     "forzarSeleccion": false,
     "imagenEnPregunta": false
   },
@@ -12997,7 +12997,7 @@
     "grado": 1,
     "idEjercicio": 1075,
     "rutaImagen": "",
-    "retroalimentacion": "Fórmula: 2×(6+4)\u003d20 cm.",
+    "retroalimentacion": "P = 4 x lado. En este caso cada lado tiene 5 cm. Entonces, 4 x 5 cm =20 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13031,7 +13031,7 @@
     "grado": 1,
     "idEjercicio": 1076,
     "rutaImagen": "",
-    "retroalimentacion": "7+7+7\u003d21 cm.",
+    "retroalimentacion": "Se suman todos los lados: 6 cm + 6 cm + 4 cm + 4 cm = 20 cm",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13065,7 +13065,7 @@
     "grado": 1,
     "idEjercicio": 1077,
     "rutaImagen": "",
-    "retroalimentacion": "9×4\u003d36 cm.",
+    "retroalimentacion": "El perimetro de un triangulo equilatero: P = 3 x lado. Entonces: P = 3 x 7 cm = 21 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13099,7 +13099,7 @@
     "grado": 1,
     "idEjercicio": 1078,
     "rutaImagen": "",
-    "retroalimentacion": "6×5\u003d30 cm.",
+    "retroalimentacion": "P = 9 cm x 4 (la cantidad de lados iguales) = 36 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13133,7 +13133,7 @@
     "grado": 1,
     "idEjercicio": 1079,
     "rutaImagen": "",
-    "retroalimentacion": "4×6\u003d24 cm.",
+    "retroalimentacion": "Si el pentagono tiene 5 lados iguales: P = 5 x 6 cm = 30 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13167,7 +13167,7 @@
     "grado": 1,
     "idEjercicio": 1080,
     "rutaImagen": "",
-    "retroalimentacion": "Se suman todos los lados: 5+6+7\u003d18 cm.",
+    "retroalimentacion": "Se suman los lados del triangulo: 5 cm + 6 cm + 7 cm = 18 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13201,7 +13201,7 @@
     "grado": 1,
     "idEjercicio": 1081,
     "rutaImagen": "",
-    "retroalimentacion": "2×(7+5)\u003d24 cm.",
+    "retroalimentacion": "Se suman los lados del rectangulo. P = 7 cm  + 7 cm + 5 cm + 5 cm = 24 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13235,7 +13235,7 @@
     "grado": 1,
     "idEjercicio": 1082,
     "rutaImagen": "",
-    "retroalimentacion": "3+4+5+6+7\u003d25 cm.",
+    "retroalimentacion": "Se suman todos los lados: 3 cm + 4 cm + 5 cm + 6 cm + 7 cm = 25 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13269,7 +13269,7 @@
     "grado": 1,
     "idEjercicio": 1083,
     "rutaImagen": "",
-    "retroalimentacion": "8+8+5\u003d21 cm.",
+    "retroalimentacion": "Se suman los lados: 8 cm + 8 cm + 5 cm = 21 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13303,7 +13303,7 @@
     "grado": 1,
     "idEjercicio": 1084,
     "rutaImagen": "",
-    "retroalimentacion": "15×4\u003d60 cm.",
+    "retroalimentacion": "4 x 15 cm = 60 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13337,7 +13337,7 @@
     "grado": 1,
     "idEjercicio": 1085,
     "rutaImagen": "",
-    "retroalimentacion": "6+8+10\u003d24 cm.",
+    "retroalimentacion": "Se suman los lados: 6 cm + 8 cm + 10 cm = 24 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13371,7 +13371,7 @@
     "grado": 1,
     "idEjercicio": 1086,
     "rutaImagen": "",
-    "retroalimentacion": "2×(12+7)\u003d38 cm.",
+    "retroalimentacion": "Se suman los lados: 12 cm + 12 cm + 7 cm + 7cm = 38 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13405,7 +13405,7 @@
     "grado": 1,
     "idEjercicio": 1087,
     "rutaImagen": "",
-    "retroalimentacion": "9×5\u003d45 cm.",
+    "retroalimentacion": "El pentagono tiene 5 lados: 5 x 9 cm = 45 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13439,7 +13439,7 @@
     "grado": 1,
     "idEjercicio": 1088,
     "rutaImagen": "",
-    "retroalimentacion": "3+4+5+3+4+5\u003d24 cm.",
+    "retroalimentacion": "Se suman todos los lados: 3 cm + 4 cm + 5 cm + 3 cm + 4 cm + 5 cm = 24 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13473,7 +13473,7 @@
     "grado": 1,
     "idEjercicio": 1089,
     "rutaImagen": "",
-    "retroalimentacion": "12×3\u003d36 cm.",
+    "retroalimentacion": "El triangulo equilatero tiene 3 lados iguales: 3 x 12 cm = 36 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13507,7 +13507,7 @@
     "grado": 1,
     "idEjercicio": 1090,
     "rutaImagen": "",
-    "retroalimentacion": "2×(20+5)\u003d50 cm.",
+    "retroalimentacion": "Se suman los lados: 20 cm + 20 cm + 5 cm + 5 cm = 50 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13541,7 +13541,7 @@
     "grado": 1,
     "idEjercicio": 1091,
     "rutaImagen": "",
-    "retroalimentacion": "7+6+8+5+4\u003d30 cm.",
+    "retroalimentacion": "Se suman todos los lados: 7 cm + 6 cm + 8 cm + 5 cm + 4 cm = 50 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13575,7 +13575,7 @@
     "grado": 1,
     "idEjercicio": 1092,
     "rutaImagen": "",
-    "retroalimentacion": "9+10+12\u003d31 cm.",
+    "retroalimentacion": "Se suman todos los lados: 7 cm + 6 cm + 8 cm + 5 cm + 4 cm = 30 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13609,7 +13609,7 @@
     "grado": 1,
     "idEjercicio": 1093,
     "rutaImagen": "",
-    "retroalimentacion": "10×6\u003d60 cm.",
+    "retroalimentacion": "Se suman los lados: 9 cm + 10 cm + 12 cm = 31 cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -13643,7 +13643,7 @@
     "grado": 1,
     "idEjercicio": 1094,
     "rutaImagen": "",
-    "retroalimentacion": "Perímetro \u003d 10cm+10cm+10cm+10cm+10cm+10cm. El perímetro es 60cm.",
+    "retroalimentacion": "Perímetro = 10cm+10cm+10cm+10cm+10cm+10cm. El perímetro es 60cm.",
     "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
@@ -23878,7 +23878,7 @@
     "idEjercicio": 1,
     "rutaImagen": "",
     "retroalimentacion": "7 es el número mayor.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24116,7 +24116,7 @@
     "idEjercicio": 8,
     "rutaImagen": "",
     "retroalimentacion": "15 es un número impar.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24184,7 +24184,7 @@
     "idEjercicio": 10,
     "rutaImagen": "",
     "retroalimentacion": "91 es mayor que 90 y menor que 100.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24252,7 +24252,7 @@
     "idEjercicio": 12,
     "rutaImagen": "",
     "retroalimentacion": "45 es múltiplo de 5.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24286,7 +24286,7 @@
     "idEjercicio": 13,
     "rutaImagen": "",
     "retroalimentacion": "180 se redondea a 200.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24422,7 +24422,7 @@
     "idEjercicio": 17,
     "rutaImagen": "",
     "retroalimentacion": "950 es el número más cercano a 1000.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24524,7 +24524,7 @@
     "idEjercicio": 20,
     "rutaImagen": "",
     "retroalimentacion": "2,000 es el número que está entre ambos.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24558,7 +24558,7 @@
     "idEjercicio": 21,
     "rutaImagen": "",
     "retroalimentacion": "0.7 es el número mayor.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24592,7 +24592,7 @@
     "idEjercicio": 22,
     "rutaImagen": "",
     "retroalimentacion": "0.2 es el número menor.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24626,7 +24626,7 @@
     "idEjercicio": 23,
     "rutaImagen": "",
     "retroalimentacion": "Tres décimas se escriben como 0.3.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24694,7 +24694,7 @@
     "idEjercicio": 25,
     "rutaImagen": "",
     "retroalimentacion": "2 unidades y 5 décimas forman 2.5.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24762,7 +24762,7 @@
     "idEjercicio": 27,
     "rutaImagen": "",
     "retroalimentacion": "1 unidad y 75 centésimas es 1.75.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24796,7 +24796,7 @@
     "idEjercicio": 28,
     "rutaImagen": "",
     "retroalimentacion": "0.8 está entre 0.7 y 1.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24864,7 +24864,7 @@
     "idEjercicio": 30,
     "rutaImagen": "",
     "retroalimentacion": "3.09 se redondea a 3.1.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24898,7 +24898,7 @@
     "idEjercicio": 31,
     "rutaImagen": "",
     "retroalimentacion": "1.20 y 1.2 tienen el mismo valor.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -24966,7 +24966,7 @@
     "idEjercicio": 33,
     "rutaImagen": "",
     "retroalimentacion": "4.9 es el más cercano a 5.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25034,7 +25034,7 @@
     "idEjercicio": 35,
     "rutaImagen": "",
     "retroalimentacion": "3.45 está entre 3.4 y 3.6.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25068,7 +25068,7 @@
     "idEjercicio": 36,
     "rutaImagen": "",
     "retroalimentacion": "Ambos tienen 7 décimas.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25238,7 +25238,7 @@
     "idEjercicio": 41,
     "rutaImagen": "",
     "retroalimentacion": "1/2 representa la mitad.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25272,7 +25272,7 @@
     "idEjercicio": 42,
     "rutaImagen": "",
     "retroalimentacion": "1/4 es un cuarto.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25340,7 +25340,7 @@
     "idEjercicio": 44,
     "rutaImagen": "",
     "retroalimentacion": "1/2 es la fracción mayor.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25374,7 +25374,7 @@
     "idEjercicio": 45,
     "rutaImagen": "",
     "retroalimentacion": "2/2 equivale a 1 entero.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25442,7 +25442,7 @@
     "idEjercicio": 47,
     "rutaImagen": "",
     "retroalimentacion": "1/4 es la menor.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25476,7 +25476,7 @@
     "idEjercicio": 48,
     "rutaImagen": "",
     "retroalimentacion": "2/4 simplificado es 1/2.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25510,7 +25510,7 @@
     "idEjercicio": 49,
     "rutaImagen": "",
     "retroalimentacion": "1/3 es 1 parte de 3.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25544,7 +25544,7 @@
     "idEjercicio": 50,
     "rutaImagen": "",
     "retroalimentacion": "3/4 es mayor que 2/3.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -25578,7 +25578,7 @@
     "idEjercicio": 51,
     "rutaImagen": "",
     "retroalimentacion": "3/6 \u003d 1/2.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
@@ -28842,7 +28842,7 @@
     "idEjercicio": 147,
     "rutaImagen": "",
     "retroalimentacion": "La mejor estimación de 97 es 100 porque está más cerca de 100 que de 90 o 95.",
-    "forzarSeleccion": false,
+    "forzarSeleccion": true,
     "imagenEnPregunta": false
   },
   {
