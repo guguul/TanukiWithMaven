@@ -797,7 +797,70 @@ public class SistemaControlador {
         }
     }
 
-   
+    public void mostrarMensaje(String mensaje, String titulo, String nombreIcono) {
+    
+        java.awt.Color blanco = java.awt.Color.WHITE;
+        java.awt.Color azulTanuki = new java.awt.Color(40, 66, 119);
+
+        javax.swing.JPanel panelPrincipal = new javax.swing.JPanel();
+        panelPrincipal.setLayout(new javax.swing.BoxLayout(panelPrincipal, javax.swing.BoxLayout.Y_AXIS));
+        panelPrincipal.setBackground(blanco); // Panel blanco
+        panelPrincipal.setPreferredSize(new java.awt.Dimension(350, 150)); 
+        panelPrincipal.setOpaque(false); // Importante: transparente para no tapar el fondo blanco
+        //panelPrincipal.add(texto, java.awt.BorderLayout.CENTER);
+        
+    
+    
+        javax.swing.JLabel etiquetaTitulo = new javax.swing.JLabel(titulo);
+
+        etiquetaTitulo.setFont(new java.awt.Font("Cy Grotesk Key", java.awt.Font.BOLD, 18)); 
+        etiquetaTitulo.setForeground(azulTanuki);
+        etiquetaTitulo.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT); // Alinear a la izquierda
+
+        javax.swing.JTextArea areaTexto = new javax.swing.JTextArea(mensaje);
+        areaTexto.setFont(new java.awt.Font("Cy Grotesk Key", java.awt.Font.PLAIN, 14));
+        areaTexto.setForeground(azulTanuki);
+        areaTexto.setBackground(blanco); 
+
+        areaTexto.setEditable(false);
+        areaTexto.setHighlighter(null);
+        areaTexto.setLineWrap(true);
+        areaTexto.setWrapStyleWord(true);
+        areaTexto.setAlignmentX(java.awt.Component.LEFT_ALIGNMENT); // Alinear a la izquierda
+        
+        // Tamaño fijo para que no se deforme
+        areaTexto.setSize(new java.awt.Dimension(350, 1)); 
+        // Un pequeño margen interno en el texto
+        areaTexto.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 0, 5, 0));
+        areaTexto.setPreferredSize(new java.awt.Dimension(350, 150));
+        // ARMAR EL PANEL 
+        panelPrincipal.add(etiquetaTitulo);
+        panelPrincipal.add(javax.swing.Box.createVerticalStrut(10)); // Espacio de 10px entre título y texto
+        panelPrincipal.add(areaTexto);
+        
+        
+        
+        panelPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        
+        javax.swing.ImageIcon icono = null;
+        try {
+            java.net.URL url = getClass().getResource("/imagenes/iconos/" + nombreIcono);
+            if (url != null) {
+                java.awt.Image img = new javax.swing.ImageIcon(url).getImage();
+                icono = new javax.swing.ImageIcon(img.getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH));
+            }
+        } catch (Exception e) {}
+
+        
+        javax.swing.JOptionPane.showMessageDialog(
+            null, 
+            panelPrincipal, 
+            "",             
+            javax.swing.JOptionPane.PLAIN_MESSAGE, 
+            icono
+        );
+    }
     
     public void mostrarProgreso(JTable logros, JLabel puntosE, JLabel racha) {
         Estudiante estudianteActual = (Estudiante) usuarioActual;
@@ -915,8 +978,8 @@ public class SistemaControlador {
                         
                         // 2. NUEVO: Guardar en Firebase (ArrayUnion para no repetir)
                         guardarLogroEnNube(est, logro);
-
-                        JOptionPane.showMessageDialog(null, "¡Nuevo Logro Desbloqueado!\n\n" + logro.getNombre(), "¡Logro Obtenido!", JOptionPane.INFORMATION_MESSAGE);
+                        mostrarMensaje("¡Nuevo Logro Desbloqueado!\n\n" + logro.getNombre(), "¡Logro Obtenido!",logro.getRutaIcono());
+                        //JOptionPane.showMessageDialog(null, "¡Nuevo Logro Desbloqueado!\n\n" + logro.getNombre(), "¡Logro Obtenido!", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
             }
@@ -940,7 +1003,7 @@ public class SistemaControlador {
 
             if (puntosDelEstudianteEnEseTema >= puntosNecesarios) {
                 est.agregarLogro(logro);
-                JOptionPane.showMessageDialog(null, "¡Nuevo logro desbloqueado: " + logro.getNombre() + "!");
+                //JOptionPane.showMessageDialog(null, "¡Nuevo logro desbloqueado: " + logro.getNombre() + "!");
             }
         }
     }

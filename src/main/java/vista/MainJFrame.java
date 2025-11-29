@@ -873,7 +873,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 salonActionPerformed(evt);
             }
         });
-        interfazEstudiante.add(salon, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 424, 330, 70));
+        interfazEstudiante.add(salon, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 330, 70));
 
         practica.setBorderPainted(false);
         practica.setContentAreaFilled(false);
@@ -1269,7 +1269,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 irAPreviaActionPerformed(evt);
             }
         });
-        descripcionTema.add(irAPrevia, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 620, 250, 70));
+        descripcionTema.add(irAPrevia, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 620, 240, 70));
 
         descripcion.setFont(new java.awt.Font("Cy Grotesk Key", 0, 24)); // NOI18N
         descripcion.setForeground(new java.awt.Color(255, 255, 255));
@@ -1293,7 +1293,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 atrasActionPerformed(evt);
             }
         });
-        previaPractica.add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 600, -1, 70));
+        previaPractica.add(atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(762, 600, 70, 70));
 
         tutorial.setBorderPainted(false);
         tutorial.setContentAreaFilled(false);
@@ -1315,7 +1315,7 @@ public class MainJFrame extends javax.swing.JFrame {
         previaPractica.add(imagenCelebrando, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 410, 500));
 
         jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tanuki interfaces/iniciarPractica.png"))); // NOI18N
-        previaPractica.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        previaPractica.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 720));
 
         cardPracticaEst.add(previaPractica, "previaPractica");
 
@@ -3945,8 +3945,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void volver2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver2ActionPerformed
         // TODO add your handling code here:
-        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
-        cardLayout.show(cardPracticaEst,"presentacionPJ");
+        java.awt.CardLayout cl = (java.awt.CardLayout) cardPracticaEst.getLayout();
+        cl.show(cardPracticaEst, "PresentacionPJ"); 
+
     }//GEN-LAST:event_volver2ActionPerformed
 
     private void irAPreviaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irAPreviaActionPerformed
@@ -4032,12 +4033,6 @@ public class MainJFrame extends javax.swing.JFrame {
         CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
         cardLayout.show(cardPracticaEst,"Tutorial");
     }//GEN-LAST:event_tutorialActionPerformed
-
-    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
-        // TODO add your handling code here:
-        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
-        cardLayout.show(cardPracticaEst,"descripcionTema");
-    }//GEN-LAST:event_atrasActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
@@ -4191,6 +4186,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private void opcionAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionAActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_opcionAActionPerformed
+
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) this.cardPracticaEst.getLayout();
+        cardLayout.show(cardPracticaEst,"descripcionTema");
+    }//GEN-LAST:event_atrasActionPerformed
     
     private modelo_tanuki.PeriodoReporte getPeriodoEnumFromString(String s) {
         if (s == null) return modelo_tanuki.PeriodoReporte.COMPLETO;
@@ -4647,6 +4648,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         } catch (Exception e) {}
     }
+    /*
     public void mostrarMensaje(String mensaje, String titulo, String nombreIcono) {
     
         java.awt.Color blanco = java.awt.Color.WHITE;
@@ -4655,7 +4657,9 @@ public class MainJFrame extends javax.swing.JFrame {
         javax.swing.JPanel panelPrincipal = new javax.swing.JPanel();
         panelPrincipal.setLayout(new javax.swing.BoxLayout(panelPrincipal, javax.swing.BoxLayout.Y_AXIS));
         panelPrincipal.setBackground(blanco); // Panel blanco
-
+        panelPrincipal.setPreferredSize(new java.awt.Dimension(350, 150)); 
+        panelPrincipal.setOpaque(false); // Importante: transparente para no tapar el fondo blanco
+        //panelPrincipal.add(texto, java.awt.BorderLayout.CENTER);
         javax.swing.JLabel etiquetaTitulo = new javax.swing.JLabel(titulo);
 
         etiquetaTitulo.setFont(new java.awt.Font("Cy Grotesk Key", java.awt.Font.BOLD, 18)); 
@@ -4688,10 +4692,10 @@ public class MainJFrame extends javax.swing.JFrame {
         
         javax.swing.ImageIcon icono = null;
         try {
-            java.net.URL url = getClass().getResource("/Recursos/Imagenes/iconos/" + nombreIcono);
+            java.net.URL url = getClass().getResource("/resources/imagenes/iconos/" + nombreIcono);
             if (url != null) {
                 java.awt.Image img = new javax.swing.ImageIcon(url).getImage();
-                icono = new javax.swing.ImageIcon(img.getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH));
+                icono = new javax.swing.ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH));
             }
         } catch (Exception e) {}
 
@@ -4703,7 +4707,7 @@ public class MainJFrame extends javax.swing.JFrame {
             javax.swing.JOptionPane.PLAIN_MESSAGE, 
             icono
         );
-    }
+    }*/
 }
 
 // Esta clase se encarga de dibujar la figura redondeada

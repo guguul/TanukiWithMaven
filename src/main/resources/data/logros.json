@@ -36,7 +36,7 @@
     "nombre": "Aprendiz de Fracciones",
     "descripcion": "Gana 150 puntos en Fracciones",
     "puntosNecesarios": 150,
-    "rutaIcono": "aprendizdelFracciones.png",
+    "rutaIcono": "aprendizdeFracciones.png",
     "idTema": 4
   },
   {
@@ -44,7 +44,7 @@
     "nombre": "Chef de Partes",
     "descripcion": "Gana 500 puntos en Fracciones",
     "puntosNecesarios": 500,
-    "rutaIcono": "chefdelPartes.png",
+    "rutaIcono": "chefdePartes.png",
     "idTema": 4
   },
   {
