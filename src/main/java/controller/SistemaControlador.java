@@ -1118,26 +1118,7 @@ public class SistemaControlador {
                 }
             }
 
-            //TRAER A LOS ESTUDIANTES SIN SALÓN
-            // Buscamos: rol == estudiante Y idSalon == null
-            List<QueryDocumentSnapshot> estudiantesLibres = db.collection("usuarios")
-                    .whereEqualTo("rol", "estudiante")
-                    .whereEqualTo("idSalon", null)
-                    .get().get().getDocuments();
-
-            for (DocumentSnapshot doc : estudiantesLibres) {
-                Long idLong = doc.getLong("idUsuario");
-                if (idLong == null) continue;
-                
-                int idEst = idLong.intValue();
-
-                // Solo lo agregamos si NO estaba ya en la lista de solicitudes
-                // (Para evitar duplicados si alguien solicitó y a la vez es null)
-                if (!idsYaAgregados.contains(idEst)) {
-                    Estudiante est = reconstruirEstudianteDesdeDoc(doc);
-                    dtm.addElement(est);
-                }
-            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();
