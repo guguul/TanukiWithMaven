@@ -56,9 +56,7 @@ public class MainJFrame extends javax.swing.JFrame {
     SistemaControlador controlador;
     private Usuario usuarioActual;
     
-    /**
-     * Creates new form MainJFrame
-     */
+    /*!!     */
     public MainJFrame() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
