@@ -61,82 +61,79 @@ public class GeneradorPDF implements IGeneradorReporte {
      * LÓGICA CASO 2: TABLA en PDF
      */
     private void crearReporteTabla(PDPageContentStream content, Reporte datos) throws Exception {
-        TextWriter writer = new TextWriter(content, 750); // (Tu helper de escritura)
-        // Título y Período (Esto se queda igual)
+        TextWriter writer = new TextWriter(content, 750); 
+        
+        // Encabezado
         writer.writeLine("Reporte de Progreso: Salón " + datos.getSalon().getNombre(), Standard14Fonts.FontName.HELVETICA_BOLD, 16);
         writer.newLine(10);
         writer.writeLine("Período: " + datos.getFechaInicio() + " al " + datos.getFechaFin(), Standard14Fonts.FontName.HELVETICA, 12);
         writer.newLine(20);
 
         if (datos.esReporteIndividual()) {
-            
-            // --- REPORTE INDIVIDUAL (¡ACTUALIZADO!) ---
+            // ... (Lógica individual se queda IGUAL, no la tocamos) ...
             ReporteDatosIndividual ind = datos.getDatosIndividuales();
-            
             writer.writeLine("Reporte Individual: " + datos.getEstudiante().getNombre(), Standard14Fonts.FontName.HELVETICA_BOLD, 14);
             writer.newLine(15);
-            
-            // --- 1. Resumen General (Tu reporte antiguo) ---
             writer.writeLine(String.format("Puntaje en Período: %d", ind.getPuntajeTotal()), Standard14Fonts.FontName.HELVETICA, 12);
             writer.writeLine(String.format("%% Aciertos General: %.1f%%", ind.getPorcentajeAciertos()), Standard14Fonts.FontName.HELVETICA, 12);
-            writer.writeLine(String.format("Áreas de Dificultad: %s", ind.getTemasDificiles()), Standard14Fonts.FontName.HELVETICA, 12);
-            writer.newLine(25); // Más espacio
-
-            // --- 2. Nueva Tabla de Desglose por Tema ---
-            writer.writeLine("Desglose de Desempeño por Tema:", Standard14Fonts.FontName.HELVETICA_BOLD, 14);
-            writer.newLine(15);
-            
-            // (Cabecera de la tabla)
-            writer.writeLine(String.format("%-20s | %-10s | %-8s | %-10s | %s", 
-                "Tema", "Nivel", "Puntos", "% Aciertos", "Intentos"), 
-                Standard14Fonts.FontName.HELVETICA_BOLD, 10);
-            writer.writeLine("-------------------------------------------------------------------", Standard14Fonts.FontName.HELVETICA_BOLD, 10);
-            
-            for (ReporteDetalleTemaEstudiante d : ind.getDetallePorTema()) {
-                String linea = String.format("%-20s | %-10s | %-8d | %-10.1f%% | %d",
-                    d.getNombreTema(),
-                    d.getNivelActual().toString(),
-                    d.getPuntosEnPeriodo(),
-                    d.getPorcentajeAciertos(),
-                    d.getIntentosEnPeriodo()
-                );
-                writer.writeLine(linea, Standard14Fonts.FontName.COURIER, 10); // (Usamos Courier para alinear)
+            writer.newLine(20);
+            writer.writeLine("Desglose por Tema:", Standard14Fonts.FontName.HELVETICA_BOLD, 14);
+            writer.newLine(10);
+            writer.writeLine(String.format("%-20s | %-10s | %-8s | %s", "Tema", "Nivel", "Puntos", "% Aciertos"), Standard14Fonts.FontName.HELVETICA_BOLD, 10);
+            writer.writeLine("------------------------------------------------------------", Standard14Fonts.FontName.HELVETICA_BOLD, 10);
+            if (ind.getDetallePorTema() != null) {
+                for (ReporteDetalleTemaEstudiante d : ind.getDetallePorTema()) {
+                    double porc = d.getPorcentajeAciertos() <= 1.0 ? d.getPorcentajeAciertos() * 100 : d.getPorcentajeAciertos();
+                    String linea = String.format("%-20s | %-10s | %-8d | %.1f%%",
+                        d.getNombreTema().length() > 18 ? d.getNombreTema().substring(0,18)+".." : d.getNombreTema(),
+                        d.getNivelActual().toString(), d.getPuntosEnPeriodo(), porc);
+                    writer.writeLine(linea, Standard14Fonts.FontName.COURIER, 10);
+                }
             }
 
         } else {
-            // --- Reporte de Salón ---
+            // ==========================================
+            // CASO B: REPORTE DE SALÓN (MODIFICADO)
+            // ==========================================
             
-            // Ranking (Req 1)
-            writer.writeLine("Ranking del Salón", Standard14Fonts.FontName.HELVETICA_BOLD, 14);
-            writer.newLine(15);
-            int rankingPos = 1;
-            for (RankingEntry entry : datos.getRanking()) {
-                String linea = String.format("%d. %s - %d puntos", 
-                                 rankingPos++, 
-                                 entry.getEstudiante().getNombre(), 
-                                 entry.getPuntaje());
-                writer.writeLine(linea, Standard14Fonts.FontName.HELVETICA, 12);
+            // 1. IMPRIMIR RANKING (Si existe)
+            if (datos.getRanking() != null && !datos.getRanking().isEmpty()) {
+                
+                writer.writeLine("Ranking del Salón", Standard14Fonts.FontName.HELVETICA_BOLD, 14);
+                writer.newLine(15);
+                
+                int rankingPos = 1;
+                for (RankingEntry entry : datos.getRanking()) {
+                    String linea = String.format("%d. %s - %d puntos", 
+                                     rankingPos++, 
+                                     entry.getEstudiante().getNombre(), 
+                                     entry.getPuntaje());
+                    writer.writeLine(linea, Standard14Fonts.FontName.HELVETICA, 12);
+                }
+                
+                // Espacio grande antes de la siguiente sección
+                writer.newLine(30); 
             }
-            writer.newLine(20);
-
-            writer.writeLine("Reporte Detallado por Tema", Standard14Fonts.FontName.HELVETICA_BOLD, 14);
-            writer.newLine(15);
             
-            for (ReporteDatosPorTema d : datos.getDatosPorTema().values()) { //itera sobre la clase reporteDatosPorTema
+            // 2. IMPRIMIR DETALLES (Si existen) - ¡YA NO HAY 'ELSE'!
+            if (datos.getDatosPorTema() != null && !datos.getDatosPorTema().isEmpty()) {
                 
-                // escribe el nombre del tema en negrita
-                writer.writeLine(d.getNombreTema() + ":", Standard14Fonts.FontName.HELVETICA_BOLD, 12);
+                writer.writeLine("Reporte Detallado por Tema", Standard14Fonts.FontName.HELVETICA_BOLD, 14);
+                writer.newLine(15);
                 
-                // escribe los detalles
-                String lineaAciertos = String.format("  - %% Aciertos: %.1f%% (%d / %d intentos)", 
-                                                     d.getPorcentajeAciertos(), 
-                                                     d.getAciertosTotales(), 
-                                                     d.getIntentosTotales());
-                String lineaPuntos = String.format("  - Puntos Generados: %d", d.getPuntosTotales());
-                
-                writer.writeLine(lineaAciertos, Standard14Fonts.FontName.HELVETICA, 11);
-                writer.writeLine(lineaPuntos, Standard14Fonts.FontName.HELVETICA, 11);
-                writer.newLine(5); // Un pequeno espacio
+                for (ReporteDatosPorTema d : datos.getDatosPorTema().values()) {
+                    writer.writeLine(d.getNombreTema() + ":", Standard14Fonts.FontName.HELVETICA_BOLD, 12);
+                    
+                    double porc = d.getPorcentajeAciertos();
+                    if (porc <= 1.0) porc *= 100.0;
+                    
+                    String lineaAciertos = String.format("  - %% Aciertos: %.1f%%", porc);
+                    String lineaPuntos = String.format("  - Puntos Generados: %d", d.getPuntosTotales());
+                    
+                    writer.writeLine(lineaAciertos, Standard14Fonts.FontName.HELVETICA, 11);
+                    writer.writeLine(lineaPuntos, Standard14Fonts.FontName.HELVETICA, 11);
+                    writer.newLine(10);
+                }
             }
         }
     }

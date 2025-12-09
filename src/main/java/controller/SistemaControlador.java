@@ -2853,101 +2853,59 @@ public class SistemaControlador {
             // REPORTE DE SALÓN (Todos los estudiantes de un salon)
            
             } else {
-                // =======================================================
-                // CASO B: REPORTE DE SALÓN (CORREGIDO Y CON DEBUG)
-                // =======================================================
-                
-                System.out.println("--- INICIANDO REPORTE DE SALÓN DESDE FIREBASE ---");
-                System.out.println("1. Salón objetivo: " + config.getSalon().getNombre());
-                
-                // PASO CRÍTICO: Asegurar que tenemos la lista de estudiantes
-                // Si tu método cargarEstudiantesDelSalon es asíncrono, esto podría fallar.
-                // Asegúrate de que este método use .get() para bloquear hasta tener los datos.
+                // 1. Cargar estudiantes y sus puntos
                 cargarEstudiantesDelSalon(config.getSalon()); 
-                
                 List<Estudiante> estudiantesDelSalon = config.getSalon().getListaEstudiantes();
-                System.out.println("2. Estudiantes encontrados en el salón: " + estudiantesDelSalon.size());
 
-                if (estudiantesDelSalon.isEmpty()) {
-                    System.err.println("⚠️ ERROR: La lista de estudiantes está vacía. No se puede generar reporte.");
-                    return null;
+                // --- PARTE 1: CALCULAR RANKING (Siempre) ---
+                List<RankingEntry> ranking = new ArrayList<>();
+                for (Estudiante e : estudiantesDelSalon) {
+                    ranking.add(new RankingEntry(e, e.getProgreso().getPuntajeTotalGeneral()));
                 }
+                // Ordenar mayor a menor
+                ranking.sort((r1, r2) -> Integer.compare(r2.getPuntaje(), r1.getPuntaje()));
+                reporteFinal.setRanking(ranking);
 
-                // --- SUB-CASO B1: RANKING (Tabla) ---
-                if (config.getFormatoVisual() == FormatoVisual.TABLA) {
-                    System.out.println("3. Generando Ranking...");
-                    List<RankingEntry> ranking = new ArrayList<>();
-                    
-                    for (Estudiante e : estudiantesDelSalon) {
-                        // Verificamos que tenga datos básicos
-                        if (e.getProgreso() == null) {
-                            // Intentamos recargar su puntaje total rápido
-                            // (Opcional: aquí podrías hacer una consulta pequeña si hace falta)
-                        }
-                        int pts = e.getProgreso().getPuntajeTotalGeneral();
-                        System.out.println("   -> Estudiante: " + e.getNombre() + " | Puntos: " + pts);
-                        ranking.add(new RankingEntry(e, pts));
-                    }
-                    
-                    ranking.sort((r1, r2) -> Integer.compare(r2.getPuntaje(), r1.getPuntaje()));
-                    reporteFinal.setRanking(ranking);
-                    System.out.println("Ranking generado con " + ranking.size() + " entradas.");
-                } 
                 
-                // --- SUB-CASO B2: DETALLADO/GRÁFICO (Estadísticas por Tema) ---
-                else {
-                    System.out.println("3. Generando Detalle por Tema...");
-                    Map<String, ReporteDatosPorTema> acumuladorSalon = new HashMap<>();
+                // --- PARTE 2: CALCULAR DETALLES POR TEMA (Siempre) ---
+                // (Ahora lo hacemos siempre, para que el PDF salga completo)
+                Map<String, ReporteDatosPorTema> acumuladorSalon = new HashMap<>();
+                
+                for (Estudiante e : estudiantesDelSalon) {
+                    // Blindaje de seguridad (Correo)
+                    if (e.getUsername() == null || e.getUsername().isEmpty()) continue;
+
+                    // Descargar resultados del periodo
+                    List<QueryDocumentSnapshot> resultadosEst = db.collection("usuarios")
+                            .document(e.getUsername())
+                            .collection("resultados")
+                            .whereGreaterThanOrEqualTo("fecha", fechaInicio.toString())
+                            .get().get().getDocuments();
                     
-                    int totalDocsProcesados = 0;
-
-                    for (Estudiante e : estudiantesDelSalon) {
+                    for (DocumentSnapshot doc : resultadosEst) {
+                        String tema = doc.getString("tema");
+                        // Blindaje de seguridad (Tema null)
+                        if (tema == null) continue;
                         
-                        // VALIDACIÓN DE CORREO
-                        if (e.getUsername() == null || e.getUsername().isEmpty()) {
-                            System.err.println("   ⚠️ Saltando estudiante " + e.getNombre() + " (ID: " + e.getIdUsuario() + ") - No tiene username/correo.");
-                            continue;
-                        }
+                        boolean correcto = doc.getBoolean("esCorrecto");
+                        int puntos = doc.getLong("puntos").intValue();
                         
-                        System.out.println("   -> Consultando a: " + e.getUsername());
-
-                        // CONSULTA A FIREBASE
-                        List<QueryDocumentSnapshot> resultadosEst = db.collection("usuarios")
-                                .document(e.getUsername())
-                                .collection("resultados")
-                                .whereGreaterThanOrEqualTo("fecha", fechaInicio.toString()) // Ojo con el formato de fecha
-                                .get().get().getDocuments();
+                        acumuladorSalon.putIfAbsent(tema, new ReporteDatosPorTema(tema));
                         
-                        System.out.println("      Resultados encontrados: " + resultadosEst.size());
-                        totalDocsProcesados += resultadosEst.size();
-
-                        for (DocumentSnapshot doc : resultadosEst) {
-                            String tema = doc.getString("tema");
-                            boolean correcto = Boolean.TRUE.equals(doc.getBoolean("esCorrecto")); // Null-safe
-                            Long ptsLong = doc.getLong("puntos");
-                            int puntos = (ptsLong != null) ? ptsLong.intValue() : 0;
-                            
-                            // Agregamos al acumulador
-                            acumuladorSalon.putIfAbsent(tema, new ReporteDatosPorTema(tema));
-                            
-                            Resultado r = new Resultado();
-                            r.setEsCorrecto(correcto);
-                            r.setPuntos(puntos);
-                            
-                            acumuladorSalon.get(tema).agregarResultado(r);
-                        }
+                        Resultado r = new Resultado();
+                        r.setEsCorrecto(correcto);
+                        r.setPuntos(puntos);
+                        
+                        acumuladorSalon.get(tema).agregarResultado(r);
                     }
-                    
-                    System.out.println("4. Procesamiento finalizado. Total documentos leídos: " + totalDocsProcesados);
-                    System.out.println("   Temas encontrados: " + acumuladorSalon.keySet());
-                    
-                    // Calcular porcentajes finales
-                    for (ReporteDatosPorTema dt : acumuladorSalon.values()) {
-                        dt.calcularPorcentaje();
-                    }
-                    
-                    reporteFinal.setDatosPorTema(acumuladorSalon);
                 }
+                
+                // Calcular porcentajes finales
+                for (ReporteDatosPorTema dt : acumuladorSalon.values()) {
+                    dt.calcularPorcentaje();
+                }
+                
+                reporteFinal.setDatosPorTema(acumuladorSalon);
             }
 
             return reporteFinal;
