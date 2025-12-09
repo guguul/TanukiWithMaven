@@ -2764,8 +2764,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_practicaActionPerformed
 
     private void cerrarSesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesion1ActionPerformed
-        CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
-        cardLayout.show(cardPrincipal,"Portada");
+        if (JOptionPane.showConfirmDialog(null, "¿Estas seguro de que deseas cerrar sesion?", "Salir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
+            cardLayout.show(cardPrincipal,"Portada");
+        }
     }//GEN-LAST:event_cerrarSesion1ActionPerformed
 
     private void perfil2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perfil2ActionPerformed
@@ -2807,8 +2809,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_reportesActionPerformed
 
     private void cerrarSesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarSesion2ActionPerformed
-        CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
-        cardLayout.show(cardPrincipal,"Portada");
+        if (JOptionPane.showConfirmDialog(null, "¿Estas seguro de que deseas cerrar sesion?", "Salir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            CardLayout cardLayout = (CardLayout) this.cardPrincipal.getLayout();
+            cardLayout.show(cardPrincipal,"Portada");
+        }
     }//GEN-LAST:event_cerrarSesion2ActionPerformed
 
     private void salir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir1ActionPerformed

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 /**
  *
  * @author adrif
@@ -18,53 +19,38 @@ public class AnalizadorSalon {
     
     private Salon salon;
 
-    /**
-     * El analizador se crea para un salón específico.
-     * @param salon
-     */
     public AnalizadorSalon(Salon salon) {
         this.salon = salon;
     }
 
-    /**
-     * Método principal. Orquesta todos los cálculos
-     * basándose en la configuración del período (Req 2)
-     * y el tipo de reporte (Req 1).
-     * @param periodo El enum (SEMANA, MES, etc.)
-     * @param est El estudiante (o null si es reporte de salón)
-     * @return Un objeto 'Reporte' con todos los datos calculados.
-     */
     public Reporte generarDatosReporte(PeriodoReporte periodo, Estudiante est, List<Tema> listaTemas) {
     
-        // --- 1. Resuelve Req 2: El Período ---
+        // 1. Definir fechas
         LocalDate fechaFin = LocalDate.now();
         LocalDate fechaInicio = calcularFechaInicio(periodo);
 
-        // 2. Prepara el objeto Reporte que se va a devolver
+        // 2. Crear objeto Reporte
         Reporte reporte = new Reporte(this.salon, fechaInicio, fechaFin);
 
-        // 3. Obtiene los progresos de TODOS los estudiantes del salón
+        // 3. Obtener progresos de TODOS los estudiantes
         List<Progreso> progresos = this.salon.getListaEstudiantes().stream()
-                                        .map(Estudiante::getProgreso)
-                                        .collect(Collectors.toList());
+                                             .map(Estudiante::getProgreso)
+                                             .collect(Collectors.toList());
 
-        // --- 4. Resuelve Req 1: Individual vs. Salón ---
+        // 4. Lógica Individual vs Salón
         if (est != null) {
-
-            // --- CASO A: REPORTE INDIVIDUAL ---
-            // ¡AQUÍ ESTÁ LA CORRECCIÓN!
-            // Ahora le pasamos el 4to argumento (listaTemas)
+            // REPORTE INDIVIDUAL (Usa la lista de temas para mostrar todo)
             reporte.setDatosIndividuales(est,
                 calcularDatosIndividuales(est.getProgreso(), fechaInicio, fechaFin, listaTemas)
             );
-
         } else {
-            // --- CASO B: REPORTE DE SALÓN ---
-            // (Esto se queda igual, ya que 'calcularDatosDetalladosPorTema'
-            //  no necesita la lista de temas, la descubre de los resultados)
+            // REPORTE DE SALÓN
+            // a) Ranking
             reporte.setRanking(
                 calcularRanking(progresos, fechaInicio, fechaFin)
             );
+            
+            // b) Datos por Tema (Solo lo practicado)
             reporte.setDatosPorTema(
                 calcularDatosDetalladosPorTema(progresos, fechaInicio, fechaFin)
             );
@@ -74,126 +60,117 @@ public class AnalizadorSalon {
     }
 
     /**
-     * (Req 1) Lógica de REPORTE INDIVIDUAL.
-     * Simplemente llama a los nuevos métodos de 'Progreso'.
+     * REPORTE INDIVIDUAL (Sin cambios, usa la lista para mostrar todo)
      */
     private ReporteDatosIndividual calcularDatosIndividuales(Progreso p, LocalDate inicio, LocalDate fin, List<Tema> listaTemas) {
-
-        // --- 1. Cálculos Generales (Tu código original) ---
         int puntos = p.getPuntajeTotal(inicio, fin);
         double porcentajeGeneral = p.getPorcentajeAciertos(inicio, fin);
         String dificultades = p.getTemasConDificultad(inicio, fin);
 
-        // --- 2. Prepara las nuevas colecciones ---
-        Map<String, Double> promedioPorTemaInd = new HashMap<>();     // Para el gráfico
-        List<ReporteDetalleTemaEstudiante> detallePorTema = new ArrayList<>(); // Para la tabla
+        Map<String, Double> promedioPorTemaInd = new HashMap<>();     
+        List<ReporteDetalleTemaEstudiante> detallePorTema = new ArrayList<>(); 
 
-        // --- 3. Bucle ÚNICO para calcular #2 y #3 ---
-        for (Tema tema : listaTemas) {
-            // Solo "temas hijos" (que tienen ejercicios)
-            if (tema.getTemasHijos() == null || tema.getTemasHijos().isEmpty()) {
+        // Aplanamos temas para buscar en subcarpetas
+        List<Tema> todosLosTemas = new ArrayList<>();
+        recopilarTemasHojas(listaTemas, todosLosTemas);
 
-                // Llama a los helpers que creamos en Progreso.java
-                NivelDificultad nivel = p.getNivelActual(tema);
-                int puntosTema = p.getPuntajeTotalPorTema(tema, inicio, fin);
-                double[] aciertosIntentos = p.getAciertosIntentosPorTema(tema, inicio, fin);
+        for (Tema tema : todosLosTemas) {
+            NivelDificultad nivel = p.getNivelActual(tema);
+            int puntosTema = p.getPuntajeTotalPorTema(tema, inicio, fin);
+            double[] aciertosIntentos = p.getAciertosIntentosPorTema(tema, inicio, fin);
 
-                double aciertos = aciertosIntentos[0];
-                double intentos = aciertosIntentos[1];
+            double aciertos = aciertosIntentos[0];
+            double intentos = aciertosIntentos[1];
 
-                // Solo procesa temas que se han practicado en el período
-                if (intentos > 0) {
-                    double promedio = (aciertos / intentos) * 100.0;
+            if (intentos > 0) {
+                double promedio = (aciertos / intentos) * 100.0;
+                promedioPorTemaInd.put(tema.getNombre(), promedio);
 
-                    // A) Añade al MAPA (para tu gráfico)
-                    promedioPorTemaInd.put(tema.getNombre(), promedio);
-
-                    // B) Añade a la LISTA (para la nueva tabla)
-                    detallePorTema.add(new ReporteDetalleTemaEstudiante(
-                        tema.getNombre(),
-                        nivel,
-                        puntosTema,
-                        promedio, // Reutiliza el promedio
-                        (int)intentos
-                    ));
-                }
+                detallePorTema.add(new ReporteDetalleTemaEstudiante(
+                    tema.getNombre(),
+                    nivel != null ? nivel : NivelDificultad.BAJO,
+                    puntosTema,
+                    promedio, 
+                    (int)intentos
+                ));
             }
         }
-
-        // --- 4. Devuelve el objeto COMPLETO ---
-        return new ReporteDatosIndividual(
-            puntos, 
-            porcentajeGeneral, 
-            dificultades, 
-            promedioPorTemaInd, // <-- Tus datos para el gráfico
-            detallePorTema      // <-- Los nuevos datos para la tabla
-        );
+        return new ReporteDatosIndividual(puntos, porcentajeGeneral, dificultades, promedioPorTemaInd, detallePorTema);
     }
-    
     
     /**
-     * (Req 1) Lógica de RANKING DE SALÓN.
-     * Obtiene el puntaje de cada estudiante y ordena la lista.
+     * REPORTE DE SALÓN: DATOS POR TEMA
+     * Lógica: Solo mostramos lo que los estudiantes hayan practicado.
      */
-    private List<RankingEntry> calcularRanking(List<Progreso> progresos, LocalDate inicio, LocalDate fin) {
-        List<RankingEntry> ranking = new ArrayList<>();
-        
-        for (Progreso p : progresos) {
-            int puntos = p.getPuntajeTotal(inicio, fin);
-            ranking.add(new RankingEntry(p.getEstudiante(), puntos));
-        }
-        
-        // Ordena la lista de mayor a menor puntaje
-        ranking.sort(Comparator.comparingInt(RankingEntry::getPuntaje).reversed());
-        return ranking;
-    }
-
     private Map<String, ReporteDatosPorTema> calcularDatosDetalladosPorTema(List<Progreso> progresos, LocalDate inicio, LocalDate fin) {
-    
-    // mapa para guardar los objetos de datos
+        
         Map<String, ReporteDatosPorTema> datosPorTema = new HashMap<>();
 
-        //itera por cada estudiante del salon
+        // 1. Recorremos TODOS los estudiantes del salón
         for (Progreso p : progresos) {
-            // itera por cada resultado filtrado de ese estudiante
-            for (Resultado res : p.getResultados(inicio, fin)) {
+            
+            // 2. Obtenemos los RESULTADOS de ese estudiante en el rango de fechas
+            List<Resultado> resultados = p.getResultados(inicio, fin);
+            
+            // Debug: Si esto imprime 0, es que el filtro de fechas está muy estricto
+            // System.out.println("Estudiante: " + p.getEstudiante().getNombre() + " - Resultados encontrados: " + resultados.size());
+
+            // 3. Recorremos cada resultado
+            for (Resultado res : resultados) {
+                
+                // Obtenemos el tema DIRECTO del ejercicio (ej: Suma, Resta)
                 Tema tema = res.getEjercicio().getTema();
                 String nombreTema = tema.getNombre();
 
-                // obtiene o crea el objeto de datos para ese tema
+                // 4. Buscamos si ya existe la fila en el reporte, si no, la creamos
                 ReporteDatosPorTema datosTema = datosPorTema.computeIfAbsent(
                     nombreTema, 
                     k -> new ReporteDatosPorTema(nombreTema)
                 );
 
-                // agrega el resultado al objeto
+                // 5. Sumamos los datos de este resultado al acumulado del salón
                 datosTema.agregarResultado(res);
             }
         }
 
-        // calcula los promedios finales
+        // 6. Calculamos los promedios finales
         for (ReporteDatosPorTema datosTema : datosPorTema.values()) {
             datosTema.calcularPorcentaje();
         }
 
-        return datosPorTema; // devuelve el mapa de objetos detallados
+        return datosPorTema;
     }
 
     /**
-     * (Req 2) Método Helper para calcular fechas.
+     * Recursividad para reporte individual
      */
+    private void recopilarTemasHojas(List<Tema> entrada, List<Tema> salida) {
+        if (entrada == null) return;
+        for (Tema t : entrada) {
+            if (t.getTemasHijos() != null && !t.getTemasHijos().isEmpty()) {
+                recopilarTemasHojas(t.getTemasHijos(), salida);
+            } else {
+                salida.add(t);
+            }
+        }
+    }
+
+    private List<RankingEntry> calcularRanking(List<Progreso> progresos, LocalDate inicio, LocalDate fin) {
+        List<RankingEntry> ranking = new ArrayList<>();
+        for (Progreso p : progresos) {
+            int puntos = p.getPuntajeTotal(inicio, fin);
+            ranking.add(new RankingEntry(p.getEstudiante(), puntos));
+        }
+        ranking.sort(Comparator.comparingInt(RankingEntry::getPuntaje).reversed());
+        return ranking;
+    }
+
     private LocalDate calcularFechaInicio(PeriodoReporte periodo) {
         switch (periodo) {
-            case SEMANA:
-                return LocalDate.now().minusWeeks(1);
-            case MES:
-                return LocalDate.now().minusMonths(1);
-            case TRIMESTRE:
-                return LocalDate.now().minusMonths(3);
-            case COMPLETO:
-            default:
-                // Retorna una fecha muy antigua para incluir todo
-                return LocalDate.of(2000, 1, 1); 
+            case SEMANA: return LocalDate.now().minusWeeks(1);
+            case MES: return LocalDate.now().minusMonths(1);
+            case TRIMESTRE: return LocalDate.now().minusMonths(3);
+            case COMPLETO: default: return LocalDate.of(2000, 1, 1); 
         }
     }
 }

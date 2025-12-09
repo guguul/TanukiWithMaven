@@ -6,10 +6,9 @@ package modelo_tanuki;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-/**
- *
- * @author adrif
- */
+import java.util.ArrayList; // Importante
+import java.util.HashMap;   // Importante
+
 public class Reporte {
     private Salon salon;
     private Estudiante estudiante; // el estudiante (si es individual)
@@ -60,13 +59,25 @@ public class Reporte {
         return datosIndividuales;
     }
 
+    // =========================================================
+    // AQUÍ ESTÁ LA SOLUCIÓN DEL ERROR (NullPointerException)
+    // =========================================================
     public List<RankingEntry> getRanking() {
+        // Si ranking es null, devolvemos una lista vacía para que el Excel no falle
+        if (this.ranking == null) {
+            return new ArrayList<>();
+        }
         return ranking;
     }
     
     public Map<String, ReporteDatosPorTema> getDatosPorTema() { 
+        // Hacemos lo mismo aquí por seguridad para el futuro
+        if (this.datosPorTema == null) {
+            return new HashMap<>();
+        }
         return datosPorTema; 
     }
+    // =========================================================
     
     public boolean esReporteIndividual() {
         return this.esIndividual;
